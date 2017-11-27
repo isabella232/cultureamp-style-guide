@@ -2,6 +2,14 @@
 
 ## 4.x
 
+### 4.1.6
+
+- ✨ Add animated loading spinner icon.
+
+### 4.1.5
+
+- 🐛 Fix issue where white-filled icon variants weren't showing correctly in IE.
+
 ### 4.1.4
 
 - 👍 Rename user icons so that they're more consistent with other icons.
@@ -22,7 +30,7 @@ performant on large Elm code bases.
 
 ### 4.1.0
 
-- ✨ Create block_layout modifier for icon styles
+- ✨ Create block_layout modifier for icon styles.
 
 ### 4.0.2
 
