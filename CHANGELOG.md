@@ -2,6 +2,10 @@
 
 ## 4.x
 
+### 4.1.5
+
+- 👍 Fix issue where white-filled icon variants weren't showing correctly in IE.
+
 ### 4.1.4
 
 - 👍 Rename user icons so that they're more consistent with other icons.
