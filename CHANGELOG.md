@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 5.0.1
+
+* 👍 Add lock icon, re-export exclamation-white icon.
+
 ## 5.0.0
 
 * 💔 Renamed CSS modules to use `*.module.scss` naming convention for
