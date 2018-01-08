@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 5.0.2
+
+* 👍  Add text analytics icons.
+
 ## 5.0.1
 
 * 👍 Add lock icon, re-export exclamation-white icon.
