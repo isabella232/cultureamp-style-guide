@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 5.1.2
+
+* 👍 Add tasks icon.
+
 ## 5.1.1
 
 * 🐛 Fix compilation issue when multiple postcss-loaders exist.
@@ -10,7 +14,7 @@
 
 ## 5.0.2
 
-* 👍 Add text analytics icons.
+* 👍 Add text analytics icon.
 
 ## 5.0.1
 
