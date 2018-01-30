@@ -73,7 +73,7 @@
 
 $sidebar-width: 12 * $ca-grid;
 %sidebar {
-  background-color: $ca-palette-stone;
+  background-color: add-tint($ca-palette-ink, 93%);
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
@@ -91,6 +91,27 @@ $sidebar-width: 12 * $ca-grid;
     width: auto;
     height: auto;
     padding: 0;
+  }
+
+  hr {
+    width: auto;
+    margin: 0 -($ca-grid / 2);
+    background: add-tint($ca-palette-ink, 80%);
+  }
+
+  // fixed width for scrollbar
+  > div {
+    width: $sidebar-width - 2 * $ca-grid;
+  }
+
+  ul > a:first-child {
+    display: block;
+    width: auto;
+    margin-left: -($ca-grid / 2);
+    margin-right: -($ca-grid / 2);
+    padding-left: $ca-grid / 2;
+    padding-right: $ca-grid / 2;
+    background-color: add-tint($ca-palette-ink, 90%);
   }
 }
 
