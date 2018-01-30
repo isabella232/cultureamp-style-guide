@@ -1,3 +1,17 @@
+@function add-tint($color, $percentage) {
+  @return mix(#fff, $color, $percentage);
+}
+
+@function add-shade($color, $percentage) {
+  @return mix(#000, $color, $percentage);
+}
+
+@function add-alpha($color, $percentage) {
+  $decimal: $percentage / 100%;
+  $inverse: 1 - $decimal;
+  @return transparentize($color, $inverse);
+}
+
 // Primary colours
 $ca-palette-ink: #3e4543;
 $ca-palette-paper: #f2edde;
@@ -21,16 +35,3 @@ $ca-base-text-color: $ca-palette-ink;
 $ca-link-text-color: $ca-palette-ocean;
 $ca-link-hover-text-color: $ca-palette-ocean;
 
-@function add-tint($color, $percentage) {
-  @return mix(#fff, $color, $percentage);
-}
-
-@function add-shade($color, $percentage) {
-  @return mix(#000, $color, $percentage);
-}
-
-@function add-alpha($color, $percentage) {
-  $decimal: $percentage / 100%;
-  $inverse: 1 - $decimal;
-  @return transparentize($color, $inverse);
-}
