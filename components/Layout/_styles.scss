@@ -57,9 +57,9 @@
 }
 
 %body {
-  display: flex;
-  justify-content: center; // for centered only child
+  display: flex; // TODO: check this is needed for sticky footer in IE
 
+  // to support sticky footer
   position: absolute; // required for height to work when content is short
   height: 100%;
   width: 100%;
@@ -71,7 +71,7 @@
   }
 }
 
-$sidebar-width: 288px;
+$sidebar-width: 12 * $ca-grid;
 %sidebar {
   background-color: $ca-palette-stone;
   height: 100vh;
@@ -82,12 +82,15 @@ $sidebar-width: 288px;
   z-index: $ca-z-index-fixed;
   padding: $ca-grid;
 
+  // stack sidebar and content vertically in print
   @media print {
     background-color: transparent;
     overflow-y: visible;
     overflow-x: visible;
     position: static;
     width: auto;
+    height: auto;
+    padding: 0;
   }
 }
 
@@ -95,10 +98,21 @@ $sidebar-width: 288px;
   // to support sticky footer
   display: flex;
   flex-direction: column;
+  margin-left: $sidebar-width;
+  padding: $ca-grid;
 
   flex: 1 1 auto;
 
+  // stack sidebar and content vertically in print
+  @media print {
+    display: block;
+    padding: 0;
+    margin-left: 0;
+    overflow: visible;
+  }
+
   &:only-child {
+    margin: 0 auto;
     width: 100%; // fixes centering in IE 11 at max-width
     min-width: 100%; // prevents too-wide content slipping under NavigationBarApp
 
