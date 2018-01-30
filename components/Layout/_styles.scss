@@ -1,3 +1,7 @@
+@import '~cultureamp-style-guide/styles/layers';
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+
 /*
       +-------------------------------------+
       |n|         header                    |
@@ -54,18 +58,11 @@
 
 %body {
   display: flex;
-  flex-direction: row;
   justify-content: center; // for centered only child
 
   position: absolute; // required for height to work when content is short
   height: 100%;
   width: 100%;
-
-  padding: 20px 0 0;
-  @media (min-width: 480px) {
-    padding-left: 30px;
-    padding-right: 40px;
-  }
 
   @media print {
     display: block;
@@ -74,12 +71,24 @@
   }
 }
 
-// Used by SurveyBrowser.scss in Murmur (TODO: REMOVE THESE)
-$sidebar-width: 250px;
-$sidebar-right-padding: 30px;
+$sidebar-width: 288px;
 %sidebar {
-  flex: 0 0 $sidebar-width;
-  padding-right: $sidebar-right-padding;
+  background-color: $ca-palette-stone;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: $sidebar-width;
+  z-index: $ca-z-index-fixed;
+  padding: $ca-grid;
+
+  @media print {
+    background-color: transparent;
+    overflow-y: visible;
+    overflow-x: visible;
+    position: static;
+    width: auto;
+  }
 }
 
 %content {
