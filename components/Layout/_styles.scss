@@ -52,8 +52,6 @@
   position: relative;
 }
 
-// TODO: Enhance below styles with capabilities of report-container.scss
-
 %body {
   display: flex;
   flex-direction: row;
@@ -67,6 +65,12 @@
   @media (min-width: 480px) {
     padding-left: 30px;
     padding-right: 40px;
+  }
+
+  @media print {
+    display: block;
+    position: static;
+    height: auto;
   }
 }
 
