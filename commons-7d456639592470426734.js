@@ -90,7 +90,7 @@
 /******/ 	__webpack_require__.c = installedModules;
 /******/
 /******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "/cultureamp-style-guide/";
+/******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// expose the chunks object
 /******/ 	__webpack_require__.s = installedChunks;
@@ -2553,7 +2553,7 @@
 	/*global __PREFIX_PATHS__, __PATH_PREFIX__ */
 	var pathPrefix = "/";
 	if (true) {
-	  pathPrefix = ("/cultureamp-style-guide");
+	  pathPrefix = ("");
 	}
 	
 	function withPrefix(path) {
