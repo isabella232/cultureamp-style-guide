@@ -61,8 +61,8 @@
       "path---molecules-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-6c050b19b1c6e67c5976.js",
-      "component---src-layouts-index-js-6c050b19b1c6e67c5976.js.map"
+      "component---src-layouts-index-js-0fc7ec8f6d78f97b94b5.js",
+      "component---src-layouts-index-js-0fc7ec8f6d78f97b94b5.js.map"
     ],
     "component---src-pages-visuals-typography-index-js": [
       "component---src-pages-visuals-typography-index-js-2e565a2e9db2f47fd012.js",
@@ -131,9 +131,9 @@
       "path---visuals-icons-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-464f715dcded0dddc933.js",
+      "app-b401bdbe283e0f4dec78.js",
       "build-js-styles.css",
-      "app-464f715dcded0dddc933.js.map",
+      "app-b401bdbe283e0f4dec78.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-pages-index-mdx": [
