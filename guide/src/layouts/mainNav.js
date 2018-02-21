@@ -43,6 +43,11 @@ const MainNav = ({ openNav }, context) => {
             link: 'https://www.cultureamp.com/',
           },
           {
+            label: 'Contribute to this guide',
+            link:
+              'https://github.com/cultureamp/cultureamp-style-guide/tree/master/guide',
+          },
+          {
             label: 'Careers',
             link: 'https://www.cultureamp.com/about/careers/',
           },
