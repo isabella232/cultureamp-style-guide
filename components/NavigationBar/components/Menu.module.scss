@@ -27,15 +27,18 @@
 .menu {
   composes: tooltip visible from './Tooltip.module.scss';
 
-  &:focus {
-    // focus is non-interactive
-    outline: 0;
-  }
+  // HACK: duplicate class selector to bump specificity to work around https://trello.com/c/VGvOyHk4
+  &.menu {
+    &:focus {
+      // focus is non-interactive
+      outline: 0;
+    }
 
-  > * {
-    align-self: flex-end;
-    padding-bottom: $ca-grid * 0.75;
-    padding-top: $ca-grid * 0.25;
+    > * {
+      align-self: flex-end;
+      padding-bottom: $ca-grid * 0.75;
+      padding-top: $ca-grid * 0.25;
+    }
   }
 }
 
