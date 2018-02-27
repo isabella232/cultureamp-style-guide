@@ -8,6 +8,7 @@
 
 * 🐛 Work around Navigation Bar menu styles broken when built for production
   (with `extract-text-webpack-plugin`).
+* 👍 Update React and ReactDOM peer dependencies to v16.
 
 ## 10.0.0
 
