@@ -14,6 +14,7 @@ type Props = {|
   hideTooltip: boolean,
   id?: string,
   onClick?: (event: SyntheticMouseEvent<>) => void,
+  onMenuChange?: boolean => void,
 |};
 
 const Link = ({
