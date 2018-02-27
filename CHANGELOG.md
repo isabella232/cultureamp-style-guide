@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 10.0.2
+
+* 🐛 Fix typing error discovered when using new version of flow.
+
 ## 10.0.1
 
 * 🐛 Work around Navigation Bar menu styles broken when built for production

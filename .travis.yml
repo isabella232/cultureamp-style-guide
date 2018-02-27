@@ -6,7 +6,9 @@ cache:
 before_script:
 - bin/setup
 - yarn list
-script: bin/buildSite
+script:
+- yarn flow
+- bin/buildSite
 deploy:
   provider: pages
   local-dir: guide/public
