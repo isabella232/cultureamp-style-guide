@@ -35,3 +35,7 @@ $ca-base-text-color: $ca-palette-ink;
 $ca-link-text-color: $ca-palette-ocean;
 $ca-link-hover-text-color: $ca-palette-ocean;
 
+// Border colours
+$ca-border-color: add-tint($ca-palette-ink, 80%);
+$ca-border-between-rows-color: add-tint($ca-palette-ink, 90%);
+
