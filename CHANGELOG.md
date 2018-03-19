@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 10.1.0
+
+* 👍 Add border color variables.
+
 ## 10.0.0
 
 * 💔 Remove kaizen "Button" component which is not actually used.
