@@ -4,6 +4,16 @@
 
 * 👍 Add border color variables.
 
+## 10.0.2
+
+* 🐛 Fix typing error discovered when using new version of flow.
+
+## 10.0.1
+
+* 🐛 Work around Navigation Bar menu styles broken when built for production
+  (with `extract-text-webpack-plugin`).
+* 👍 Update React and ReactDOM peer dependencies to v16.
+
 ## 10.0.0
 
 * 💔 Remove kaizen "Button" component which is not actually used.
@@ -14,7 +24,7 @@
 * 👍 Add `ca-inherit-baseline` mixin that can be used to prevent a baseline
   shift from occuring when using the type style mixins.
 
-  ## 9.0.2
+## 9.0.2
 
 * 👍 Add notification icon.
 
