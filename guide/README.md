@@ -22,15 +22,15 @@ If you need any help, ask somebody in the Front End Capability Team.
 
 To test locally:
 
-1. Clone the repository:
+1.  Clone the repository:
 
-   `git clone git@github.com:cultureamp/cultureamp-style-guide.git`
+    `git clone git@github.com:cultureamp/cultureamp-style-guide.git`
 
-2. Run `bin/setup` to install the dependencies
+2.  Run `bin/setup` to install the dependencies
 
-3. Run `bin/gatsby` to start the local development server
+3.  Run `bin/gatsby` to start the local development server
 
-4. Visit http://localhost:8000/ to preview the site.
+4.  Visit http://localhost:8000/ to preview the site.
 
 As you edit and save files the site will automatically rebuild and the browser
 refresh.
@@ -39,7 +39,7 @@ refresh.
 
 Most of the text heavy pages, including the product language guide, are created
 using Markdown. We actually use a special form of markdown that supports
-including React components with JSX, so we use the file extension "mdx".
+including React components with JSX, but we still use the `*.md` file extension.
 
 So if you want to edit text content, find the relevant mdx file and make your
 changes.
@@ -47,7 +47,7 @@ changes.
 ### Adding icons
 
 If you are adding a new icon, you can add it to the
-[_allIcons.js](https://github.com/cultureamp/cultureamp-style-guide/blob/master/guide/src/pages/visuals/icons/_allIcons.js)
+[\_allIcons.js](https://github.com/cultureamp/cultureamp-style-guide/blob/master/guide/src/pages/visuals/icons/_allIcons.js)
 file and it will be included on the icons page.
 
 ### Adding pages
@@ -58,7 +58,7 @@ the name of the file. If you would like to set the default page for a folder,
 you can call it `index.js` or `index.mdx`.
 
 To add a new page to the main navigation, add an entry to
-[_sitemap.js](https://github.com/cultureamp/cultureamp-style-guide/blob/master/guide/src/pages/_sitemap.js)
+[\_sitemap.js](https://github.com/cultureamp/cultureamp-style-guide/blob/master/guide/src/pages/_sitemap.js)
 
 If you create some helper JS files and don't want them to be treated as pages,
 you can start the filename with an an underscore: `_myHelper.js`.
