@@ -1,144 +1,40 @@
 {
   "assetsByChunkName": {
-    "component---src-pages-visuals-icons-index-mdx": [
-      "component---src-pages-visuals-icons-index-mdx-d58803c06df37adbab30.js",
-      "component---src-pages-visuals-icons-index-mdx-d58803c06df37adbab30.js.map"
-    ],
-    "path---language": [
-      "path---language-a0e39f21c11f6a62c5ab.js",
-      "path---language-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---visuals-typography": [
-      "path---visuals-typography-a0e39f21c11f6a62c5ab.js",
-      "path---visuals-typography-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---templates": [
-      "path---templates-a0e39f21c11f6a62c5ab.js",
-      "path---templates-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "component---src-pages-index-mdx": [
-      "component---src-pages-index-mdx-189c042c2fab70ed1e9b.js",
-      "component---src-pages-index-mdx-189c042c2fab70ed1e9b.js.map"
-    ],
     "path---": [
       "path----557518bd178906f8d58a.js",
       "path----557518bd178906f8d58a.js.map"
-    ],
-    "component---src-pages-templates-index-mdx": [
-      "component---src-pages-templates-index-mdx-6137c36637699428f442.js",
-      "component---src-pages-templates-index-mdx-6137c36637699428f442.js.map"
-    ],
-    "component---src-pages-visuals-colors-index-mdx": [
-      "component---src-pages-visuals-colors-index-mdx-5796e60df558b0a7ec4e.js",
-      "component---src-pages-visuals-colors-index-mdx-5796e60df558b0a7ec4e.js.map"
-    ],
-    "path---components": [
-      "path---components-a0e39f21c11f6a62c5ab.js",
-      "path---components-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "component---src-pages-components-index-mdx": [
-      "component---src-pages-components-index-mdx-3e13b3e53e20863bb56a.js",
-      "component---src-pages-components-index-mdx-3e13b3e53e20863bb56a.js.map"
-    ],
-    "component---src-pages-language-checklist-mdx": [
-      "component---src-pages-language-checklist-mdx-f5ec9a488f7a714ccfcc.js",
-      "component---src-pages-language-checklist-mdx-f5ec9a488f7a714ccfcc.js.map"
-    ],
-    "path---components-icon": [
-      "path---components-icon-a0e39f21c11f6a62c5ab.js",
-      "path---components-icon-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---visuals-colors": [
-      "path---visuals-colors-a0e39f21c11f6a62c5ab.js",
-      "path---visuals-colors-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---language-check-list-item": [
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js",
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js.map"
     ],
-    "path---molecules": [
-      "path---molecules-a0e39f21c11f6a62c5ab.js",
-      "path---molecules-a0e39f21c11f6a62c5ab.js.map"
-    ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-0fc7ec8f6d78f97b94b5.js",
-      "component---src-layouts-index-js-0fc7ec8f6d78f97b94b5.js.map"
-    ],
-    "component---src-pages-visuals-typography-index-js": [
-      "component---src-pages-visuals-typography-index-js-2e565a2e9db2f47fd012.js",
-      "component---src-pages-visuals-typography-index-js-2e565a2e9db2f47fd012.js.map"
-    ],
-    "component---src-pages-visuals-index-mdx": [
-      "component---src-pages-visuals-index-mdx-bf0a98842bdcb7814cb0.js",
-      "component---src-pages-visuals-index-mdx-bf0a98842bdcb7814cb0.js.map"
-    ],
-    "path---index": [
-      "path---index-a0e39f21c11f6a62c5ab.js",
-      "path---index-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---language-checklist": [
-      "path---language-checklist-a0e39f21c11f6a62c5ab.js",
-      "path---language-checklist-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---organisms": [
-      "path---organisms-a0e39f21c11f6a62c5ab.js",
-      "path---organisms-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "component---src-pages-components-icon-mdx": [
-      "component---src-pages-components-icon-mdx-cd15f207926bcb6e448b.js",
-      "component---src-pages-components-icon-mdx-cd15f207926bcb6e448b.js.map"
+      "component---src-layouts-index-js-9159aa628f244a45aa82.js",
+      "component---src-layouts-index-js-9159aa628f244a45aa82.js.map"
     ],
     "component---src-pages-404-js": [
-      "component---src-pages-404-js-f0bc864b1b920beccb1c.js",
-      "component---src-pages-404-js-f0bc864b1b920beccb1c.js.map"
-    ],
-    "path---visuals": [
-      "path---visuals-a0e39f21c11f6a62c5ab.js",
-      "path---visuals-a0e39f21c11f6a62c5ab.js.map"
+      "component---src-pages-404-js-a4f9090b179de4fb6e84.js",
+      "component---src-pages-404-js-a4f9090b179de4fb6e84.js.map"
     ],
     "commons": [
-      "commons-7d456639592470426734.js",
+      "commons-4140ab2d46d98cdf501e.js",
       "build-js-styles.css",
-      "commons-7d456639592470426734.js.map",
+      "commons-4140ab2d46d98cdf501e.js.map",
       "build-js-styles.css.map"
-    ],
-    "component---src-pages-language-index-mdx": [
-      "component---src-pages-language-index-mdx-dc1c1700b478ee641b71.js",
-      "component---src-pages-language-index-mdx-dc1c1700b478ee641b71.js.map"
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
-    "component---src-pages-molecules-index-mdx": [
-      "component---src-pages-molecules-index-mdx-b2e7d7754b4da79b7584.js",
-      "component---src-pages-molecules-index-mdx-b2e7d7754b4da79b7584.js.map"
-    ],
-    "component---src-pages-organisms-index-mdx": [
-      "component---src-pages-organisms-index-mdx-8ab98de024dd94865fd8.js",
-      "component---src-pages-organisms-index-mdx-8ab98de024dd94865fd8.js.map"
-    ],
     "component---src-pages-language-check-list-item-js": [
-      "component---src-pages-language-check-list-item-js-02b10384b522d886eafe.js",
-      "component---src-pages-language-check-list-item-js-02b10384b522d886eafe.js.map"
-    ],
-    "path---pages": [
-      "path---pages-a0e39f21c11f6a62c5ab.js",
-      "path---pages-a0e39f21c11f6a62c5ab.js.map"
-    ],
-    "path---visuals-icons": [
-      "path---visuals-icons-a0e39f21c11f6a62c5ab.js",
-      "path---visuals-icons-a0e39f21c11f6a62c5ab.js.map"
+      "component---src-pages-language-check-list-item-js-560992f14410a4f35fc4.js",
+      "component---src-pages-language-check-list-item-js-560992f14410a4f35fc4.js.map"
     ],
     "app": [
-      "app-464f715dcded0dddc933.js",
+      "app-4794da05fa22c3a56593.js",
       "build-js-styles.css",
-      "app-464f715dcded0dddc933.js.map",
+      "app-4794da05fa22c3a56593.js.map",
       "build-js-styles.css.map"
-    ],
-    "component---src-pages-pages-index-mdx": [
-      "component---src-pages-pages-index-mdx-8ba02f8ac67bab6ab2a9.js",
-      "component---src-pages-pages-index-mdx-8ba02f8ac67bab6ab2a9.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
