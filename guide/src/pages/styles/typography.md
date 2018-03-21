@@ -21,7 +21,7 @@ Typography is important when establishing a strong design system. When establish
 - Render correctly (i.e. not janky) across all devices and operating systems.
 
 ## How shouldn’t we use it?
-- You can also view the Product Writing Checklist to quickly check any text you are adding to the Culture Amp product or related communications.
+- You can also view the [Product Writing Checklist](/language/checklist) to quickly check any text you are adding to the Culture Amp product or related communications.
 
 ## General guidelines
 - Basic structure of hierarchy (examples)
