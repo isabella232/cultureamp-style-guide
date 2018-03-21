@@ -12,11 +12,12 @@ const sitemap = {
       icon: home,
       children: [
         {
-          title: 'Visual Styles',
-          href: '/visuals',
+          title: 'Styles',
+          href: '/styles',
           children: [
-            { title: 'Colors', href: '/visuals/colors' },
-            { title: 'Icons', href: '/visuals/icons' },
+            { title: 'Colors', href: '/styles/colors' },
+            { title: 'Icons', href: '/styles/icons' },
+            { title: 'Typography', href: '/styles/typography' },
           ],
         },
         {

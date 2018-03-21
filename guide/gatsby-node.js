@@ -132,7 +132,7 @@ function addMarkdownLoader(config) {
       ],
     };
   config.loader('markdown-component-loader', {
-    test: /\.mdx?$/i,
+    test: /\.md$/i,
     loaders: [
       'babel-loader?' + JSON.stringify(babelConfig),
       require.resolve('./src/webpack-util/markdownWrapper.js'),
@@ -167,5 +167,5 @@ function addSrcResolveRoot(config) {
 exports.modifyWebpackConfig = modifyWebpackConfig;
 
 exports.resolvableExtensions = function() {
-  return ['.mdx'];
+  return ['.md'];
 };
