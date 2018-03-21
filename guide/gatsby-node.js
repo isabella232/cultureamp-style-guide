@@ -10,8 +10,8 @@ function modifyWebpackConfig(_ref, options) {
   if (stage === 'build-javascript' || stage === 'develop') {
     addElmLoader(config);
   }
-  addRawLoader(config);
   addMarkdownLoader(config);
+  addStyleGuideBabelLoader(config);
   return config;
 }
 
@@ -116,13 +116,6 @@ function addSvgLoaders(config) {
   });
 }
 
-function addRawLoader(config) {
-  config.loader('raw-loader', {
-    test: /\.md$/,
-    loaders: ['raw-loader'],
-  });
-}
-
 function addMarkdownLoader(config) {
   const babelConfig = {
       presets: ['env', 'stage-0', 'react'],
@@ -139,12 +132,27 @@ function addMarkdownLoader(config) {
       ],
     };
   config.loader('markdown-component-loader', {
-    test: /\.mdx$/i,
+    test: /\.mdx?$/i,
     loaders: [
       'babel-loader?' + JSON.stringify(babelConfig),
       require.resolve('./src/webpack-util/markdownWrapper.js'),
       'markdown-component-loader?' + JSON.stringify(mdConfig),
     ],
+  });
+}
+
+function addStyleGuideBabelLoader(config) {
+  const babelConfig = {
+    presets: ['env', 'stage-0', 'react'],
+  };
+  config.loader('style-guide-babel', {
+    test: /\.jsx?$/i,
+    include: path.resolve(
+      'node_modules',
+      'cultureamp-style-guide',
+      'components'
+    ),
+    loaders: ['babel-loader?' + JSON.stringify(babelConfig)],
   });
 }
 

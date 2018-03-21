@@ -1,19 +1,26 @@
-const chalk = require('chalk');
+const red = '\u001b[31m ';
+const yellow = '\u001b[33m ';
+const reset = '\u001b[0m ';
 
 function error(message) {
   throw new Error(
-    chalk.red(`\nCULTUREAMP STYLE GUIDE ERROR:\n${singleLine(message)}\n`)
+    `${red}\nCULTUREAMP STYLE GUIDE ERROR:\n${singleLine(message)}${reset}\n`
   );
 }
 
 function warn(message) {
   console.warn(
-    chalk.yellow(`\nCULTUREAMP STYLE GUIDE WARNING:\n${singleLine(message)}\n`)
+    `${yellow}\nCULTUREAMP STYLE GUIDE WARNING:\n${singleLine(
+      message
+    )}${reset}\n`
   );
 }
 
 function singleLine(string) {
-  return string.replace(/^ +/gm, ' ').replace(/\n|\r/gm, '').trim();
+  return string
+    .replace(/^ +/gm, ' ')
+    .replace(/\n|\r/gm, '')
+    .trim();
 }
 
 module.exports = {
