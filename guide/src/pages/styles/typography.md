@@ -47,10 +47,6 @@ Typography is important when establishing a strong design system. When establish
 
 ## Best practices
 
-**Typography should…**
-
-**Typography should not…**
-
 <TipContainer>
 <TipCard title="Typography should…" type="tip">
 
