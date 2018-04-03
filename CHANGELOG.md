@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 10.1.1
+
+* 🐛 Fix missing import in type.scss
+
 ## 10.1.0
 
 * 👍 Add border color variables.
