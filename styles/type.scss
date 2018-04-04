@@ -25,7 +25,6 @@ $ca-ideal-sans-font-descender-height: 0.14;
   $family: $ca-default-font-family,
   $base-size: $ca-default-font-base-size,
   $descender-height: $ca-default-font-descender-height,
-
   $size-ratio: 1,
   $line-height-in-grid-units: 1,
   $weight: $ca-weight-book,
@@ -53,6 +52,8 @@ $ca-ideal-sans-font-descender-height: 0.14;
   position: static;
 }
 
+// Open Sans Styles
+
 @mixin ca-type-title($args...) {
   @include ca-type(
     $size-ratio: 12/7,
@@ -62,130 +63,141 @@ $ca-ideal-sans-font-descender-height: 0.14;
   );
 }
 
-@mixin ca-type-ideal-title($args...) {
-  @include ca-type-title(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
-    $args...
-  );
+@mixin ca-type-ideal-small-bold($args...) {
+  @include ca-type-ideal-small;
+  font-weight: $ca-weight-semibold;
 }
 
 @mixin ca-type-display($args...) {
-  @include ca-type(
-    $size-ratio: 10/7,
-    $weight: $ca-weight-medium,
-    $args...
-  );
-}
-
-@mixin ca-type-ideal-display($args...) {
-  @include ca-type-display(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
-    $args...
-  );
+  @include ca-type($size-ratio: 10/7, $weight: $ca-weight-medium, $args...);
 }
 
 @mixin ca-type-heading($args...) {
-  @include ca-type(
-    $size-ratio: 8/7,
-    $weight: $ca-weight-medium,
-    $args...
-  );
-}
-
-@mixin ca-type-ideal-heading($args...) {
-  @include ca-type-heading(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
-    $args...
-  );
+  @include ca-type($size-ratio: 8/7, $weight: $ca-weight-medium, $args...);
 }
 
 @mixin ca-type-lede($args...) {
-  @include ca-type(
-    $size-ratio: 8/7,
-    $args...
-  );
-}
-
-@mixin ca-type-ideal-lede($args...) {
-  @include ca-type-lede(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
-    $weight: $ca-weight-light,
-    $args...
-    );
+  @include ca-type($size-ratio: 8/7, $args...);
 }
 
 @mixin ca-type-body($args...) {
   @include ca-type($args...);
 }
 
-@mixin ca-type-ideal-body($args...) {
-  @include ca-type-body(
+@mixin ca-type-control-action($args...) {
+  @include ca-type($weight: $ca-weight-medium, $args...);
+}
+
+@mixin ca-type-small($args...) {
+  @include ca-type($size-ratio: 6/7, $args...);
+}
+
+@mixin ca-type-labels-and-legends($args...) {
+  @include ca-type($size-ratio: 6/7, $letter-spacing: 0.04em, $args...);
+  text-transform: uppercase;
+}
+
+// Ideal Sans styles
+
+@mixin ca-type-ideal($size, $weight, $line-height-in-grid-units: 1, $args...) {
+  @include ca-type(
+    $size-ratio: $size / 16,
     $family: $ca-ideal-sans-font-family,
     $base-size: $ca-ideal-sans-font-base-size,
     $descender-height: $ca-ideal-sans-font-descender-height,
-    $weight: $ca-weight-light,
+    $line-height-in-grid-units: $line-height-in-grid-units,
+    $weight: $weight,
     $args...
   );
 }
 
-@mixin ca-type-control-action($args...) {
-  @include ca-type(
+@mixin ca-type-ideal-page-title($args...) {
+  @include ca-type-ideal(
+    $size: 32,
+    $line-height-in-grid-units: 1.5,
     $weight: $ca-weight-medium,
     $args...
   );
 }
 
-@mixin ca-type-ideal-control-action($args...) {
-  @include ca-type-control-action(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
+@mixin ca-type-ideal-title($args...) {
+  @include ca-type-ideal(
+    $size: 26,
+    $line-height-in-grid-units: 1.5,
+    $weight: $ca-weight-medium,
     $args...
   );
 }
 
-@mixin ca-type-small($args...) {
-  @include ca-type(
-    $size-ratio: 6/7,
-    $args...
-  );
+@mixin ca-type-ideal-display($args...) {
+  @include ca-type-ideal($size: 21, $weight: $ca-weight-medium, $args...);
+}
+
+@mixin ca-type-ideal-heading($args...) {
+  @include ca-type-ideal($size: 18, $weight: $ca-weight-medium, $args...);
+}
+
+@mixin ca-type-ideal-lede($args...) {
+  @include ca-type-ideal($size: 20, $weight: $ca-weight-light, $args...);
+}
+
+@mixin ca-type-ideal-body($args...) {
+  @include ca-type-ideal($size: 16, $weight: $ca-weight-light, $args...);
+}
+
+@mixin ca-type-ideal-body-bold($args...) {
+  @include ca-type-ideal($size: 16, $weight: $ca-weight-medium, $args...);
 }
 
 @mixin ca-type-ideal-small($args...) {
-  @include ca-type-small(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
+  @include ca-type-ideal($size: 14, $weight: $ca-weight-light, $args...);
+}
+
+@mixin ca-type-ideal-small-bold($args...) {
+  @include ca-type-ideal($size: 14, $weight: $ca-weight-medium, $args...);
+}
+
+@mixin ca-type-ideal-notification($args...) {
+  @include ca-type-ideal(
+    $size: 15,
     $weight: $ca-weight-light,
+    $line-height-in-grid-units: 3/4,
     $args...
   );
 }
 
-@mixin ca-type-labels-and-legends($args...) {
-  @include ca-type(
-    $size-ratio: 6/7,
-    $letter-spacing: 0.04em,
-    $args...
-  );
+@mixin ca-type-ideal-label($args...) {
+  @include ca-type-ideal($size: 12, $weight: $ca-weight-medium, $args...);
   text-transform: uppercase;
 }
 
+// Deprecated, use ca-type-ideal-label instead.
 @mixin ca-type-ideal-labels-and-legends($args...) {
-  @include ca-type-labels-and-legends(
-    $family: $ca-ideal-sans-font-family,
-    $base-size: $ca-ideal-sans-font-base-size,
-    $descender-height: $ca-ideal-sans-font-descender-height,
-    $weight: $ca-weight-light,
-    $args...
-  );
+  @include ca-type-ideal-label($args...);
+}
+
+@mixin ca-type-ideal-control-action($args...) {
+  @include ca-type-ideal($size: 16, $weight: $ca-weight-medium, $args...);
+  text-decoration: underline;
+  text-decoration-skip-ink: auto;
+}
+
+@mixin ca-type-ideal-button($args...) {
+  @include ca-type-ideal($size: 18, $weight: $ca-weight-medium, $args...);
+}
+
+// Operator Mono styles
+
+@mixin ca-type-pre($args...) {
+  // TODO: set up operator mono font
+  @include ca-type-body;
+  white-space: pre;
+}
+
+@mixin ca-type-pre-bold($args...) {
+  // TODO: set up operator mono font
+  @include ca-type-ideal-body-bold;
+  white-space: pre;
 }
 
 @mixin debug-vertical-rhythm-grid() {
