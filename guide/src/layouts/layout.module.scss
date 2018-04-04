@@ -60,8 +60,11 @@ $transitionSpeed: 200ms;
   height: $ca-grid;
 }
 .footerButton {
+  composes: buttonReset from 'components/HtmlContent.module.scss';
+  composes: link from 'components/HtmlContent.module.scss';
+  @include ca-type-ideal-small;
   @include ca-inherit-baseline;
-  composes: buttonLink from 'components/HtmlContent.module.scss';
+  padding: 0 2px;
 }
 
 // Note, if the browser doesn't support CSS Grids, we leave them on the mobile view as a fallback.
