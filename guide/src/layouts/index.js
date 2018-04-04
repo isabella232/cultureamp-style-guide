@@ -12,6 +12,7 @@ import styles from './layout.module.scss';
 class TemplateWrapper extends React.Component {
   state = {
     navOpen: false,
+    showGrid: false,
   };
 
   render() {
@@ -38,7 +39,7 @@ class TemplateWrapper extends React.Component {
             <MainNav openNav={() => this.openNav()} />
           </div>
           <div className={styles.subnav}>
-            <SubNav title="What" closeNav={() => this.closeNav()} />
+            <SubNav closeNav={() => this.closeNav()} />
           </div>
           <div
             className={styles.subnavBackdrop}
@@ -47,10 +48,23 @@ class TemplateWrapper extends React.Component {
           <div className={styles.header}>
             <HeaderBar toggleNav={() => this.toggleNav()} />
           </div>
-          <div className={styles.content}>
+          <div
+            className={classNames(styles.content, {
+              [styles.baselineGrid]: this.state.showGrid,
+            })}
+          >
             <div className={styles.pageContainer}>
               <Breadcrumb />
               {children()}
+              <div className={styles.footer}>
+                &copy; Culture Amp 2018.
+                <button
+                  onClick={() => this.toggleGrid()}
+                  className={styles.footerButton}
+                >
+                  Toggle Baseline Grid
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -60,6 +74,10 @@ class TemplateWrapper extends React.Component {
 
   toggleNav() {
     this.setState({ navOpen: !this.state.navOpen });
+  }
+
+  toggleGrid() {
+    this.setState({ showGrid: !this.state.showGrid });
   }
 
   closeNav() {
