@@ -27,7 +27,7 @@ module.exports = class HTML extends React.Component {
           <link
             rel="stylesheet"
             type="text/css"
-            href="https://cloud.typography.com/6384974/640188/css/fonts.css"
+            href="https://d1vmr11cgrgrrj.cloudfront.net/6743792/css/fonts.css"
           />
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />

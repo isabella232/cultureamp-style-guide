@@ -49,6 +49,22 @@ $transitionSpeed: 200ms;
   max-width: 960px;
   padding: $ca-grid;
   clear: both;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100% - #{$ca-navigation-bar__width});
+}
+.footer {
+  @include ca-type-ideal-small;
+  margin-top: auto;
+  display: block;
+  height: $ca-grid;
+}
+.footerButton {
+  composes: buttonReset from 'components/HtmlContent.module.scss';
+  composes: link from 'components/HtmlContent.module.scss';
+  @include ca-type-ideal-small;
+  @include ca-inherit-baseline;
+  padding: 0 2px;
 }
 
 // Note, if the browser doesn't support CSS Grids, we leave them on the mobile view as a fallback.
@@ -159,4 +175,8 @@ $transitionSpeed: 200ms;
       }
     }
   }
+}
+
+.baselineGrid {
+  @include debug-vertical-rhythm-grid;
 }
