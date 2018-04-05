@@ -99,13 +99,20 @@ $ca-ideal-sans-font-descender-height: 0.14;
 
 // Ideal Sans styles
 
-@mixin ca-type-ideal($size, $weight, $line-height-in-grid-units: 1, $args...) {
+@mixin ca-type-ideal(
+  $size,
+  $weight,
+  $line-height-in-grid-units: 1,
+  $letter-spacing: normal,
+  $args...
+) {
   @include ca-type(
     $size-ratio: $size / 16,
     $family: $ca-ideal-sans-font-family,
     $base-size: $ca-ideal-sans-font-base-size,
     $descender-height: $ca-ideal-sans-font-descender-height,
     $line-height-in-grid-units: $line-height-in-grid-units,
+    $letter-spacing: $letter-spacing,
     $weight: $weight,
     $args...
   );
@@ -130,7 +137,7 @@ $ca-ideal-sans-font-descender-height: 0.14;
 }
 
 @mixin ca-type-ideal-display($args...) {
-  @include ca-type-ideal($size: 21, $weight: $ca-weight-medium, $args...);
+  @include ca-type-ideal($size: 22, $weight: $ca-weight-medium, $args...);
 }
 
 @mixin ca-type-ideal-heading($args...) {
@@ -167,7 +174,14 @@ $ca-ideal-sans-font-descender-height: 0.14;
 }
 
 @mixin ca-type-ideal-label($args...) {
-  @include ca-type-ideal($size: 12, $weight: $ca-weight-medium, $args...);
+  $letter-spacing-in-px: 0.5;
+  $size: 12;
+  @include ca-type-ideal(
+    $size: $size,
+    $weight: $ca-weight-medium,
+    $letter-spacing: $letter-spacing-in-px / $size * 1em,
+    $args...
+  );
   text-transform: uppercase;
 }
 
