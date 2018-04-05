@@ -200,20 +200,6 @@ $ca-ideal-sans-font-descender-height: 0.14;
   @include ca-type-ideal($size: 18, $weight: $ca-weight-medium, $args...);
 }
 
-// Operator Mono styles
-
-@mixin ca-type-pre($args...) {
-  // TODO: set up operator mono font
-  @include ca-type-body;
-  white-space: pre;
-}
-
-@mixin ca-type-pre-bold($args...) {
-  // TODO: set up operator mono font
-  @include ca-type-ideal-body-bold;
-  white-space: pre;
-}
-
 @mixin debug-vertical-rhythm-grid() {
   position: relative;
   &:after {

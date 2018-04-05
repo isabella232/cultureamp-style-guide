@@ -84,18 +84,6 @@ const TypographyShowcase = () => (
       sassCode="@include ca-type-ideal-small-bold;"
     />
     <TypographyItem
-      name="Pre"
-      sampleText="@import 'cultureamp-style-guide/styles/type';"
-      className="pre"
-      sassCode="@include ca-type-pre;"
-    />
-    <TypographyItem
-      name="Pre Bold"
-      sampleText="@import 'cultureamp-style-guide/styles/color';"
-      className="preBold"
-      sassCode="@include ca-type-pre-bold;"
-    />
-    <TypographyItem
       name="Notifications"
       sampleText={
         <span>
