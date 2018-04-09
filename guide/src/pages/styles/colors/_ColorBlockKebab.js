@@ -1,8 +1,12 @@
 import React from 'react';
-import Kebab from 'components/kebab';
+import Kebab from 'cultureamp-style-guide/components/Kebab';
+import {
+  MenuList,
+  MenuHeader,
+  MenuItem,
+} from 'cultureamp-style-guide/components/MenuList';
 import styles from './ColorCard.module.scss';
 import duplicate from 'cultureamp-style-guide/icons/duplicate.svg';
-import { MenuList, MenuHeader, MenuItem } from '../../../components/menu-list';
 
 const ColorBlockKebab = ({ bgColor, sassVar }) => {
   const hex = bgColor.hex(),
