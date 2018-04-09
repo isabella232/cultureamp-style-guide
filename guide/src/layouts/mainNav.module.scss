@@ -13,16 +13,17 @@
 .popupMenuHeader {
   width: 200px;
 
-  @include ca-type-body;
+  @include ca-type-ideal-body;
   @include ca-inherit-baseline;
   display: block;
-  padding: ($ca-grid / 8) 2em;
+  padding: ($ca-grid / 2) 2em;
 
   border-bottom: 1px rgba(#fff, 0.1) solid;
 
   span {
-    @include ca-type-display;
+    @include ca-type-ideal-display;
     @include ca-inherit-baseline;
+    font-weight: 300;
     margin-bottom: $ca-grid / 2;
   }
 }
