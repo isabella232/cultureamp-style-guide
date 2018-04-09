@@ -23,7 +23,7 @@ class IconSizeSpaceTouch extends React.Component {
             <strong>Spacing</strong>
             <img
               src={spacing}
-              alt="Labels should sit 10px to the right of an icon"
+              alt="Labels should sit 12px to the right of an icon"
             />
           </div>
           <div className={styles.iconExample}>
