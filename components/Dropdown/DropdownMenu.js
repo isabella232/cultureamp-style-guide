@@ -38,10 +38,10 @@ export default class DropdownMenu extends React.Component<DropdownMenuProps> {
     const { innerHeight } = window;
     const rect = menu.getBoundingClientRect();
     if (pos.bottom > innerHeight - rect.height) {
-      menu.style.bottom = '20px';
+      menu.style.bottom = '24px';
       menu.style.top = 'auto';
     } else {
-      menu.style.top = '20px';
+      menu.style.top = '24px';
       menu.style.bottom = 'auto';
     }
     menu.style.right = '0px';
