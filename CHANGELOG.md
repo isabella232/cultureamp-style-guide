@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 10.2.1
+
+* 🐛 Fix fill color of arrow-backward icon
+
 ## 10.2.0
 
 * ✨ Update all Ideal Sans type styles to the latest in the style guide.

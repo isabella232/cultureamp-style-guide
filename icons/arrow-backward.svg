@@ -11,7 +11,7 @@
             <mask id="mask-2" fill="white">
                 <use xlink:href="#path-1"></use>
             </mask>
-            <use id="Icons/Directional/arrow-backward" fill="#3E4543" xlink:href="#path-1"></use>
+            <use id="Icons/Directional/arrow-backward" fill="#000000" xlink:href="#path-1"></use>
         </g>
     </g>
 </svg>
