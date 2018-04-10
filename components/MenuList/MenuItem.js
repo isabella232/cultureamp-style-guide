@@ -13,7 +13,12 @@ const MenuItem = (props: {
 }) => {
   const { icon, hoverIcon, children, action } = props;
   const isLink = typeof action === 'string',
-    label = <span className={styles.menuItem__Label}>{children}</span>,
+    label = (
+      <span className={styles.menuItem__Label}>
+        {children}
+        {isLink && '…'}
+      </span>
+    ),
     iconNode = icon && (
       <span className={styles.menuItem__Icon}>
         <Icon icon={icon} role="presentation" />
