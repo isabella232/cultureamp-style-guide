@@ -1,27 +1,45 @@
+// @flow
 import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import classNames from 'classnames';
 import styles from './Kebab.module.scss';
-import Icon from 'cultureamp-style-guide/components/Icon/Icon';
-import kebabIcon from 'cultureamp-style-guide/icons/ellipsis.svg';
+import Icon from '../Icon/Icon';
+import kebabIcon from '../../icons/ellipsis.svg';
 import KebabMenu from './KebabMenu';
 
-export default class Kebab extends React.Component {
-  state = {
-    isKebabMenuVisible: Boolean(this.props.menuVisible),
-  };
+type DropdownState = {
+  isMenuVisible: boolean,
+};
 
-  toggleKebabMenu = e => {
+type DropdownProps = {
+  children: React.Node,
+  menuVisible: boolean,
+};
+
+export default class Kebab extends React.Component<
+  DropdownProps,
+  DropdownState
+> {
+  kebab: ?HTMLButtonElement;
+
+  constructor(props: DropdownProps) {
+    super(props);
+    this.state = {
+      isMenuVisible: Boolean(props.menuVisible),
+    };
+  }
+
+  toggleKebabMenu = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    const currentState = this.state.isKebabMenuVisible;
+    const currentState = this.state.isMenuVisible;
     this.setState({
-      isKebabMenuVisible: !currentState,
+      isMenuVisible: !currentState,
     });
   };
 
   hideKebabMenu = () => {
     this.setState({
-      isKebabMenuVisible: false,
+      isMenuVisible: false,
     });
   };
 
@@ -42,7 +60,7 @@ export default class Kebab extends React.Component {
 
   render() {
     const btnClass = classNames({
-      [styles.isOpen]: this.state.isKebabMenuVisible,
+      [styles.isOpen]: this.state.isMenuVisible,
       [styles.kebabIcon]: true,
     });
     return (
@@ -55,13 +73,8 @@ export default class Kebab extends React.Component {
         >
           <Icon icon={kebabIcon} role="img" title="Open menu" />
         </button>
-        {this.state.isKebabMenuVisible && this.renderKebabMenu()}
+        {this.state.isMenuVisible && this.renderKebabMenu()}
       </div>
     );
   }
 }
-
-Kebab.propTypes = {
-  children: PropTypes.node.isRequired,
-  menuVisible: PropTypes.bool,
-};

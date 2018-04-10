@@ -1,8 +1,22 @@
+// @flow
 import PropTypes from 'prop-types';
-import React from 'react';
+import * as React from 'react';
 import styles from './Kebab.module.scss';
 
-export default class KebabMenu extends React.Component {
+type KebabMenuProps = {
+  children: React.Node,
+  hideKebabMenu: () => void,
+  position: ?{
+    top: number,
+    bottom: number,
+    left: number,
+    right: number,
+  },
+};
+
+export default class KebabMenu extends React.Component<KebabMenuProps> {
+  menu: ?HTMLDivElement;
+
   componentDidMount() {
     document.addEventListener('click', this.handleDocumentClick, false);
     window.addEventListener('resize', this.handleDocumentResize, false);
@@ -14,30 +28,31 @@ export default class KebabMenu extends React.Component {
     window.removeEventListener('resize', this.handleDocumentResize, false);
   }
 
-  menuRef = c => {
-    this.menu = c;
-  };
-
   positionMenu() {
-    if (!this.props.position) {
+    const menu = this.menu;
+    if (!this.props.position || !menu) {
       return;
     }
     const pos = this.props.position;
     const heightBetweenTopOfRowAndKebabIcon = (pos.bottom - pos.top) / 2;
     const { innerHeight } = window;
-    const rect = this.menu.getBoundingClientRect();
+    const rect = menu.getBoundingClientRect();
     if (pos.bottom > innerHeight - rect.height) {
-      this.menu.style.bottom = '20px';
-      this.menu.style.top = undefined;
+      menu.style.bottom = '20px';
+      menu.style.top = 'auto';
     } else {
-      this.menu.style.top = '20px';
-      this.menu.style.bottom = undefined;
+      menu.style.top = '20px';
+      menu.style.bottom = 'auto';
     }
-    this.menu.style.right = '0px';
+    menu.style.right = '0px';
   }
 
-  handleDocumentClick = e => {
-    if (this.menu && !this.menu.contains(e.target)) {
+  handleDocumentClick = (e: MouseEvent) => {
+    if (
+      this.menu &&
+      e.target instanceof Node &&
+      !this.menu.contains(e.target)
+    ) {
       this.props.hideKebabMenu();
     }
   };
@@ -51,7 +66,7 @@ export default class KebabMenu extends React.Component {
     return (
       <div
         className={styles.menuContainer}
-        ref={this.menuRef}
+        ref={m => (this.menu = m)}
         onClick={() => props.hideKebabMenu()}
       >
         {props.children}
@@ -59,14 +74,3 @@ export default class KebabMenu extends React.Component {
     );
   }
 }
-
-KebabMenu.propTypes = {
-  children: PropTypes.node.isRequired,
-  hideKebabMenu: PropTypes.func.isRequired,
-  position: PropTypes.shape({
-    top: PropTypes.number,
-    bottom: PropTypes.number,
-    left: PropTypes.number,
-    right: PropTypes.number,
-  }),
-};

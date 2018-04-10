@@ -1,11 +1,12 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Menu.module.scss';
 
-const MenuHeader = ({ title, subtitle }) => (
+const MenuHeader = (props: { title: string, subtitle: string }) => (
   <div className={styles.header}>
-    <span className={styles.header__title}>{title}</span>
-    <span className={styles.header__subtitle}>{subtitle}</span>
+    <span className={styles.header__title}>{props.title}</span>
+    <span className={styles.header__subtitle}>{props.subtitle}</span>
   </div>
 );
 
