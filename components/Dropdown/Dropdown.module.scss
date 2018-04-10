@@ -13,10 +13,22 @@ $width: 248px;
   position: relative;
 }
 
+.buttonReset {
+  appearance: none;
+  display: inline;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
 .dropdownButton {
   @include ca-type-ideal-button;
   @include ca-inherit-baseline;
-  composes: buttonReset from 'components/HtmlContent.module.scss';
+  composes: buttonReset;
   cursor: pointer;
   display: flex;
   flex: 1;
