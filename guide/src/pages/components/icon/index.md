@@ -2,7 +2,7 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  Icon: ../../../../components/Icon/Icon.js
+  Icon: ../../../../../components/Icon/Icon.js
   iconPresets: ./_iconPresets.js
 ---
 
