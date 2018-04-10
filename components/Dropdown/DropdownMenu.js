@@ -1,11 +1,11 @@
 // @flow
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import styles from './Kebab.module.scss';
+import styles from './Dropdown.module.scss';
 
-type KebabMenuProps = {
+type DropdownMenuProps = {
   children: React.Node,
-  hideKebabMenu: () => void,
+  hideDropdownMenu: () => void,
   position: ?{
     top: number,
     bottom: number,
@@ -14,7 +14,7 @@ type KebabMenuProps = {
   },
 };
 
-export default class KebabMenu extends React.Component<KebabMenuProps> {
+export default class DropdownMenu extends React.Component<DropdownMenuProps> {
   menu: ?HTMLDivElement;
 
   componentDidMount() {
@@ -34,7 +34,7 @@ export default class KebabMenu extends React.Component<KebabMenuProps> {
       return;
     }
     const pos = this.props.position;
-    const heightBetweenTopOfRowAndKebabIcon = (pos.bottom - pos.top) / 2;
+    const heightBetweenTopOfRowAndDropdownIcon = (pos.bottom - pos.top) / 2;
     const { innerHeight } = window;
     const rect = menu.getBoundingClientRect();
     if (pos.bottom > innerHeight - rect.height) {
@@ -53,12 +53,12 @@ export default class KebabMenu extends React.Component<KebabMenuProps> {
       e.target instanceof Node &&
       !this.menu.contains(e.target)
     ) {
-      this.props.hideKebabMenu();
+      this.props.hideDropdownMenu();
     }
   };
 
   handleDocumentResize = () => {
-    this.props.hideKebabMenu();
+    this.props.hideDropdownMenu();
   };
 
   render() {
@@ -67,7 +67,7 @@ export default class KebabMenu extends React.Component<KebabMenuProps> {
       <div
         className={styles.menuContainer}
         ref={m => (this.menu = m)}
-        onClick={() => props.hideKebabMenu()}
+        onClick={() => props.hideDropdownMenu()}
       >
         {props.children}
       </div>

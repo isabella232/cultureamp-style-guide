@@ -2,10 +2,10 @@
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import classNames from 'classnames';
-import styles from './Kebab.module.scss';
+import styles from './Dropdown.module.scss';
 import Icon from '../Icon/Icon';
-import kebabIcon from '../../icons/ellipsis.svg';
-import KebabMenu from './KebabMenu';
+import dropdownIcon from '../../icons/ellipsis.svg';
+import DropdownMenu from './DropdownMenu';
 
 type DropdownState = {
   isMenuVisible: boolean,
@@ -16,11 +16,11 @@ type DropdownProps = {
   menuVisible: boolean,
 };
 
-export default class Kebab extends React.Component<
+export default class Dropdown extends React.Component<
   DropdownProps,
   DropdownState
 > {
-  kebab: ?HTMLButtonElement;
+  dropdownButton: ?HTMLButtonElement;
 
   constructor(props: DropdownProps) {
     super(props);
@@ -29,7 +29,7 @@ export default class Kebab extends React.Component<
     };
   }
 
-  toggleKebabMenu = (e: SyntheticEvent<HTMLButtonElement>) => {
+  toggleDropdownMenu = (e: SyntheticEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     const currentState = this.state.isMenuVisible;
     this.setState({
@@ -37,43 +37,45 @@ export default class Kebab extends React.Component<
     });
   };
 
-  hideKebabMenu = () => {
+  hideDropdownMenu = () => {
     this.setState({
       isMenuVisible: false,
     });
   };
 
   getPosition() {
-    return this.kebab ? this.kebab.getBoundingClientRect() : null;
+    return this.dropdownButton
+      ? this.dropdownButton.getBoundingClientRect()
+      : null;
   }
 
-  renderKebabMenu() {
+  renderDropdownMenu() {
     return (
-      <KebabMenu
-        hideKebabMenu={this.hideKebabMenu}
+      <DropdownMenu
+        hideDropdownMenu={this.hideDropdownMenu}
         position={this.getPosition()}
       >
         {this.props.children}
-      </KebabMenu>
+      </DropdownMenu>
     );
   }
 
   render() {
     const btnClass = classNames({
       [styles.isOpen]: this.state.isMenuVisible,
-      [styles.kebabIcon]: true,
+      [styles.dropdownIcon]: true,
     });
     return (
-      <div className={styles.fieldKebabIconInner}>
+      <div className={styles.fieldDropdownIconInner}>
         <button
           className={btnClass}
-          onClick={this.toggleKebabMenu}
+          onClick={this.toggleDropdownMenu}
           onMouseDown={e => e.preventDefault()}
-          ref={k => (this.kebab = k)}
+          ref={k => (this.dropdownButton = k)}
         >
-          <Icon icon={kebabIcon} role="img" title="Open menu" />
+          <Icon icon={dropdownIcon} role="img" title="Open menu" />
         </button>
-        {this.state.isMenuVisible && this.renderKebabMenu()}
+        {this.state.isMenuVisible && this.renderDropdownMenu()}
       </div>
     );
   }

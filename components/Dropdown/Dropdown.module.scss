@@ -4,7 +4,7 @@
 
 $width: 248px;
 
-.fieldKebabIconInner {
+.fieldDropdownIconInner {
   width: 100%;
   height: 100%;
   display: flex;
@@ -14,7 +14,7 @@ $width: 248px;
   position: relative;
 }
 
-.kebabIcon {
+.dropdownIcon {
   composes: buttonReset from 'components/HtmlContent.module.scss';
   cursor: pointer;
   display: flex;
@@ -25,15 +25,15 @@ $width: 248px;
   justify-content: center;
 }
 
-.kebabHoverArea {
-  .kebabIcon {
+.dropdownHoverArea {
+  .dropdownIcon {
     opacity: 0;
     &.isOpen,
     &:focus {
       opacity: 1;
     }
   }
-  &:hover .kebabIcon {
+  &:hover .dropdownIcon {
     opacity: 1;
   }
 }

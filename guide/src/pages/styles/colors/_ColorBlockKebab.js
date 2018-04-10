@@ -1,5 +1,5 @@
 import React from 'react';
-import Kebab from 'cultureamp-style-guide/components/Kebab';
+import Dropdown from 'cultureamp-style-guide/components/Dropdown';
 import {
   MenuList,
   MenuHeader,
@@ -22,7 +22,7 @@ const ColorBlockKebab = ({ bgColor, sassVar }) => {
       .join(', ');
   return (
     <span className={styles.kebabContainer}>
-      <Kebab>
+      <Dropdown>
         <MenuList>
           <MenuHeader title="Color Values" />
           <MenuItem {...getColorDropdownItem('SASS', sassVar)} />
@@ -30,7 +30,7 @@ const ColorBlockKebab = ({ bgColor, sassVar }) => {
           <MenuItem {...getColorDropdownItem('RGB', rgb)} />
           <MenuItem {...getColorDropdownItem('CMYK', cmyk)} />
         </MenuList>
-      </Kebab>
+      </Dropdown>
     </span>
   );
 };
