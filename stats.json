@@ -1,12 +1,16 @@
 {
   "assetsByChunkName": {
     "component---src-pages-styles-colors-index-md": [
-      "component---src-pages-styles-colors-index-md-dd3ca34ab59df45a29b0.js",
-      "component---src-pages-styles-colors-index-md-dd3ca34ab59df45a29b0.js.map"
+      "component---src-pages-styles-colors-index-md-6cf4ef36b23444253d6e.js",
+      "component---src-pages-styles-colors-index-md-6cf4ef36b23444253d6e.js.map"
     ],
     "component---src-pages-styles-index-md": [
       "component---src-pages-styles-index-md-83aa9123995df62c86ae.js",
       "component---src-pages-styles-index-md-83aa9123995df62c86ae.js.map"
+    ],
+    "component---src-pages-components-dropdown-index-md": [
+      "component---src-pages-components-dropdown-index-md-653acccbcaa9037c2c5b.js",
+      "component---src-pages-components-dropdown-index-md-653acccbcaa9037c2c5b.js.map"
     ],
     "path---language": [
       "path---language-a0e39f21c11f6a62c5ab.js",
@@ -36,21 +40,17 @@
       "path---components-icon-a0e39f21c11f6a62c5ab.js",
       "path---components-icon-a0e39f21c11f6a62c5ab.js.map"
     ],
-    "component---src-pages-components-icon-md": [
-      "component---src-pages-components-icon-md-1efa044529fb931e91b3.js",
-      "component---src-pages-components-icon-md-1efa044529fb931e91b3.js.map"
-    ],
     "path---language-check-list-item": [
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js",
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-styles-icons-index-md": [
-      "component---src-pages-styles-icons-index-md-a63438ade52c4203d586.js",
-      "component---src-pages-styles-icons-index-md-a63438ade52c4203d586.js.map"
+      "component---src-pages-styles-icons-index-md-ad23ca224b9f1d4eeee7.js",
+      "component---src-pages-styles-icons-index-md-ad23ca224b9f1d4eeee7.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-3c83bb249d50a7de3713.js",
-      "component---src-layouts-index-js-3c83bb249d50a7de3713.js.map"
+      "component---src-layouts-index-js-c93ac5695559cc647a2d.js",
+      "component---src-layouts-index-js-c93ac5695559cc647a2d.js.map"
     ],
     "path---index": [
       "path---index-a0e39f21c11f6a62c5ab.js",
@@ -74,6 +74,10 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---components-dropdown": [
+      "path---components-dropdown-a0e39f21c11f6a62c5ab.js",
+      "path---components-dropdown-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "path---styles": [
       "path---styles-a0e39f21c11f6a62c5ab.js",
       "path---styles-a0e39f21c11f6a62c5ab.js.map"
@@ -83,13 +87,13 @@
       "component---src-pages-language-check-list-item-js-02b10384b522d886eafe.js.map"
     ],
     "component---src-pages-components-index-md": [
-      "component---src-pages-components-index-md-ed83bf058f624f882312.js",
-      "component---src-pages-components-index-md-ed83bf058f624f882312.js.map"
+      "component---src-pages-components-index-md-6ef68fd1aad9bf0f7fb0.js",
+      "component---src-pages-components-index-md-6ef68fd1aad9bf0f7fb0.js.map"
     ],
     "app": [
-      "app-780d2902c74c9f28e858.js",
+      "app-2377fee0b522f4913be9.js",
       "build-js-styles.css",
-      "app-780d2902c74c9f28e858.js.map",
+      "app-2377fee0b522f4913be9.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -107,6 +111,10 @@
     "component---src-pages-language-checklist-md": [
       "component---src-pages-language-checklist-md-e50cb415d8d015c3e5cb.js",
       "component---src-pages-language-checklist-md-e50cb415d8d015c3e5cb.js.map"
+    ],
+    "component---src-pages-components-icon-index-md": [
+      "component---src-pages-components-icon-index-md-1d1fc21d922a4f6d1138.js",
+      "component---src-pages-components-icon-index-md-1d1fc21d922a4f6d1138.js.map"
     ],
     "component---src-pages-styles-typography-md": [
       "component---src-pages-styles-typography-md-fe16a1f82519637e2245.js",
