@@ -2,7 +2,7 @@ import {
   MenuList,
   MenuHeader,
   MenuItem,
-  MenuSeperator,
+  MenuSeparator,
 } from 'cultureamp-style-guide/components/MenuList';
 import meatballs from 'cultureamp-style-guide/icons/meatballs.svg';
 import kebab from 'cultureamp-style-guide/icons/kebab.svg';
@@ -20,7 +20,7 @@ const menuList = (
       Print (hover icon)
     </MenuItem>
     <MenuItem action={() => alert('print!')}>Print (no icon)</MenuItem>
-    <MenuSeperator />
+    <MenuSeparator />
     <MenuItem
       action="https://www.cultureamp.com/"
       icon={enso}
