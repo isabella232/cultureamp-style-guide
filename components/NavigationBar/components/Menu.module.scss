@@ -49,7 +49,7 @@
 }
 
 .menuItem {
-  @include ca-type-body;
+  @include ca-type-ideal-body;
 
   display: block;
   padding: ($ca-grid / 8) 2em;

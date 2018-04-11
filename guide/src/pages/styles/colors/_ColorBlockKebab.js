@@ -1,8 +1,12 @@
 import React from 'react';
-import Kebab from 'components/kebab';
+import Dropdown from 'cultureamp-style-guide/components/Dropdown';
+import {
+  MenuList,
+  MenuHeader,
+  MenuItem,
+} from 'cultureamp-style-guide/components/MenuList';
 import styles from './ColorCard.module.scss';
 import duplicate from 'cultureamp-style-guide/icons/duplicate.svg';
-import { MenuList, MenuHeader, MenuItem } from '../../../components/menu-list';
 
 const ColorBlockKebab = ({ bgColor, sassVar }) => {
   const hex = bgColor.hex(),
@@ -18,7 +22,7 @@ const ColorBlockKebab = ({ bgColor, sassVar }) => {
       .join(', ');
   return (
     <span className={styles.kebabContainer}>
-      <Kebab>
+      <Dropdown>
         <MenuList>
           <MenuHeader title="Color Values" />
           <MenuItem {...getColorDropdownItem('SASS', sassVar)} />
@@ -26,7 +30,7 @@ const ColorBlockKebab = ({ bgColor, sassVar }) => {
           <MenuItem {...getColorDropdownItem('RGB', rgb)} />
           <MenuItem {...getColorDropdownItem('CMYK', cmyk)} />
         </MenuList>
-      </Kebab>
+      </Dropdown>
     </span>
   );
 };

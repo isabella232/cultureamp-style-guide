@@ -23,7 +23,10 @@ const sitemap = {
         {
           title: 'Components',
           href: '/components',
-          children: [{ title: 'Icon', href: '/components/icon' }],
+          children: [
+            { title: 'Dropdown', href: '/components/dropdown' },
+            { title: 'Icon', href: '/components/icon' },
+          ],
         },
         {
           title: 'Language',

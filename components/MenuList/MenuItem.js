@@ -1,12 +1,24 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Icon from 'cultureamp-style-guide/components/Icon/Icon.js';
+import Icon from '../Icon/Icon.js';
 import styles from './Menu.module.scss';
 
-const MenuItem = ({ icon, hoverIcon, children, action }) => {
+const MenuItem = (props: {
+  icon: any,
+  hoverIcon: boolean,
+  children: React.Node,
+  action: string | (() => void),
+}) => {
+  const { icon, hoverIcon, children, action } = props;
   const isLink = typeof action === 'string',
-    label = <span className={styles.menuItem__Label}>{children}</span>,
+    label = (
+      <span className={styles.menuItem__Label}>
+        {children}
+        {isLink && '…'}
+      </span>
+    ),
     iconNode = icon && (
       <span className={styles.menuItem__Icon}>
         <Icon icon={icon} role="presentation" />
@@ -24,13 +36,6 @@ const MenuItem = ({ icon, hoverIcon, children, action }) => {
       {iconNode}
     </a>
   );
-};
-
-MenuItem.propTypes = {
-  children: PropTypes.node.isRequired,
-  action: PropTypes.oneOfType([PropTypes.string, PropTypes.func]).isRequired,
-  icon: PropTypes.object,
-  hoverIcon: PropTypes.bool,
 };
 
 export default MenuItem;

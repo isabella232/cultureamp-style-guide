@@ -1,5 +1,10 @@
 # Release History: cultureamp-style-guide
 
+## 10.3.0
+
+* ✨ Introduce new "Dropdown" and "MenuList" components
+* 👍 Update NavigationBar to use Ideal Sans
+
 ## 10.2.1
 
 * 🐛 Fix fill color of arrow-backward icon

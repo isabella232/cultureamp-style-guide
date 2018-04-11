@@ -3,7 +3,7 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/layers';
 
-$side-padding: 18px;
+$side-padding: 3/4 * $ca-grid;
 
 .menuList {
   background: #fff;
@@ -34,7 +34,7 @@ $side-padding: 18px;
 }
 
 .menuItem {
-  @include ca-type-ideal-labels-and-legends;
+  @include ca-type-ideal-body;
   @include ca-inherit-baseline;
   background: transparent;
   color: $ca-palette-ink;

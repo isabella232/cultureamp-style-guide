@@ -87,7 +87,7 @@ $accessibilityTileWidth: 46px;
   padding-top: calc(#{$ca-grid / 2} + #{$bottomMargin / 2});
   padding-bottom: calc(#{$ca-grid / 2} - #{$bottomMargin / 2});
 
-  composes: kebabHoverArea from 'components/kebab/Kebab.module.scss';
+  composes: kebabHoverArea from 'cultureamp-style-guide/components/Dropdown/Dropdown.module.scss';
 
   display: flex;
   flex-direction: row;

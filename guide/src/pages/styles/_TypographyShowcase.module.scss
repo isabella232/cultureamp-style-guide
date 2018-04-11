@@ -66,7 +66,7 @@
     margin: 0 0 $ca-grid 0;
   }
   pre {
-    @include ca-type-body;
+    @include ca-type-ideal-body;
     white-space: pre;
     background: $ca-palette-ink;
     color: white;
