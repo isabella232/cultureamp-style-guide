@@ -7,16 +7,6 @@ imports:
 
 Product:
 
-* <Link to="/components/">Components</Link>
-
-  * <Link to="/components/icon">Icon</Link>
-
-* <Link to="/language/">Language</Link>
-
-  * <Link to="/language/">Product Language Style Guide</Link>
-
-  * <Link to="/language/checklist/">Product Writing Checklist</Link>
-
 * <Link to="/styles/">Visual Styles</Link>
 
   * <Link to="/styles/colors/">Colors</Link>
@@ -24,3 +14,21 @@ Product:
   * <Link to="/styles/icons/">Icons</Link>
 
   * <Link to="/styles/typography/">Typography</Link>
+
+* <Link to="/components/">Components</Link>
+
+  * <Link to="/components/dropdown">Dropdown</Link>
+
+  * <Link to="/components/icon">Icon</Link>
+
+  * <Link to="/components/layout">Layout</Link>
+
+  * <Link to="/components/menulist">Menu List</Link>
+
+  * <Link to="/components/navigationbar">Navigation Bar</Link>
+
+* <Link to="/language/">Language</Link>
+
+  * <Link to="/language/">Product Language Style Guide</Link>
+
+  * <Link to="/language/checklist/">Product Writing Checklist</Link>

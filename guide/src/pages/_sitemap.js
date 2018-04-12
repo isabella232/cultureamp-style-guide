@@ -26,6 +26,9 @@ const sitemap = {
           children: [
             { title: 'Dropdown', href: '/components/dropdown' },
             { title: 'Icon', href: '/components/icon' },
+            { title: 'Layout', href: '/components/layout' },
+            { title: 'Menu List', href: '/components/menulist' },
+            { title: 'Navigation Bar', href: '/components/navigationbar' },
           ],
         },
         {

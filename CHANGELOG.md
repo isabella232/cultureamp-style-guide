@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 11.1.0
+
+* ✨ Introduce new "Layout" component
+
 ## 11.0.0
 
 * 💔 Fix spelling mistake (was "Seperator", should have been "Separator"). As the filename included the mistake, this is a breaking change.
