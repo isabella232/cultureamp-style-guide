@@ -13,6 +13,7 @@
 .page {
   @extend %page;
   box-sizing: border-box;
+  position: relative;
 }
 
 .header {

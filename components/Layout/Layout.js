@@ -36,7 +36,7 @@ class Layout extends React.Component<LayoutProps> {
           {header}
           <div className={styles.body}>
             {sidebar}
-            <div className={styles.content}>{content}</div>
+            <main className={styles.content}>{content}</main>
           </div>
           {footer}
         </div>
@@ -59,11 +59,11 @@ function Sidebar(props: { children: React.Node }) {
 }
 
 function Header(props: { children: React.Node }) {
-  return <div className={styles.header}>{props.children}</div>;
+  return <aside className={styles.header}>{props.children}</aside>;
 }
 
 function Footer(props: { children: React.Node }) {
-  return <div className={styles.footer}>{props.children}</div>;
+  return <footer className={styles.footer}>{props.children}</footer>;
 }
 
 export default Layout;
