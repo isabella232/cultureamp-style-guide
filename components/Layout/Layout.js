@@ -6,28 +6,22 @@ type LayoutProps = {
   children: React.Node,
 };
 
+function extractChildOfType(children, type) {
+  const match = children.find(child => child && child.type.name == type.name);
+  if (match) {
+    const index = children.indexOf(match);
+    children.splice(index, 1);
+  }
+  return match;
+}
+
 class Layout extends React.Component<LayoutProps> {
   render() {
-    let content = [];
-    let navbar = null;
-    let header = null;
-    let sidebar = null;
-    let footer = null;
-
-    React.Children.toArray(this.props.children).forEach(child => {
-      if (!child) return;
-      if (child.type.name == NavigationBar.name) {
-        navbar = child;
-      } else if (child.type.name == Header.name) {
-        header = child;
-      } else if (child.type.name == Sidebar.name) {
-        sidebar = child;
-      } else if (child.type.name == Footer.name) {
-        footer = child;
-      } else {
-        content.push(child);
-      }
-    });
+    const content = React.Children.toArray(this.props.children);
+    const navbar = extractChildOfType(content, NavigationBar);
+    const header = extractChildOfType(content, Header);
+    const sidebar = extractChildOfType(content, Sidebar);
+    const footer = extractChildOfType(content, Footer);
 
     return (
       <div className={styles.root}>
