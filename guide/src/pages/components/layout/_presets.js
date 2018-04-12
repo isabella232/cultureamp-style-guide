@@ -59,8 +59,9 @@ const sidebar = (
       <h2>Filters</h2>
       <p>Go here...</p>
       <p>
-        Note: the navbar and scrollbar use fixed positioning, however this is
-        disabled in this demo.
+        Note: Usually the navigation bar and sidebar will not scroll as the main
+        page content scrolls, but we have disabled the fixed positioning for
+        this demo.
       </p>
     </div>
   </Layout.Sidebar>
