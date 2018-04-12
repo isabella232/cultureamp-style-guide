@@ -12,6 +12,8 @@ imports:
 
 An icon! To control its color, set color on a parent element, and it will be inherited.
 
+Available for both Elm and React.
+
 </IntroParagraph>
 
 <Demo component={Icon} presets={iconPresets} />

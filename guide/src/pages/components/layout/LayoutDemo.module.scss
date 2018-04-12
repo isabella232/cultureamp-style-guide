@@ -1,0 +1,65 @@
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layers';
+@import '~cultureamp-style-guide/styles/border';
+
+$padding: $ca-grid;
+
+.layoutWrapper {
+  box-sizing: border-box;
+  padding: $padding;
+  width: 100%;
+  height: 100vh;
+  overflow: scroll;
+  position: relative;
+
+  > div {
+    background: $ca-palette-stone;
+  }
+
+  // Get the header and sidebar to not be "position: fixed" for the purpose of this demo.
+  header,
+  // .root > .page > .body > .sidebar
+  > div > div:last-child > :not(aside):not(footer) > :not(main) {
+    position: absolute;
+  }
+}
+
+.sidebar {
+  h2 {
+    @include ca-type-ideal-display;
+  }
+  p {
+    @include ca-type-ideal-body;
+  }
+}
+
+.content {
+  h1 {
+    @include ca-type-ideal-page-title;
+  }
+  p {
+    @include ca-type-ideal-lede;
+  }
+}
+
+.flash {
+  @include ca-type-ideal-body;
+  @include ca-inherit-baseline;
+  text-align: center;
+  position: absolute;
+  top: $ca-grid;
+  right: $ca-grid;
+  padding: $ca-grid;
+  width: 300px;
+  border: $ca-border-color 1px solid;
+  border-radius: $ca-border-radius;
+  box-shadow: $ca-box-shadow;
+  background-color: $ca-palette-stone;
+  z-index: $ca-z-index-popover;
+}
+
+.footer {
+  @include ca-type-ideal-small;
+  text-align: center;
+}
