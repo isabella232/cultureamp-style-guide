@@ -6,15 +6,6 @@ type LayoutProps = {
   children: React.Node,
 };
 
-function extractChildOfType(children, type) {
-  const match = children.find(child => child && child.type.name == type.name);
-  if (match) {
-    const index = children.indexOf(match);
-    children.splice(index, 1);
-  }
-  return match;
-}
-
 class Layout extends React.Component<LayoutProps> {
   render() {
     const content = React.Children.toArray(this.props.children);
@@ -58,6 +49,15 @@ function Header(props: { children: React.Node }) {
 
 function Footer(props: { children: React.Node }) {
   return <footer className={styles.footer}>{props.children}</footer>;
+}
+
+function extractChildOfType(children, type) {
+  const match = children.find(child => child && child.type.name == type.name);
+  if (match) {
+    const index = children.indexOf(match);
+    children.splice(index, 1);
+  }
+  return match;
 }
 
 export default Layout;
