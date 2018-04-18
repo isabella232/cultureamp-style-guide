@@ -1,9 +1,9 @@
 // @flow
 import * as React from 'react';
 import classNames from 'classnames';
-import styles from './Heading.scss';
+import styles from './Text.scss';
 
-type HeadingProps = {
+type TextProps = {
   tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
   style?: 'page-title' | 'title' | 'display' | 'heading',
   className?: string,
@@ -29,4 +29,4 @@ const Heading = (props: HeadingProps) => {
   );
 };
 
-export default Heading;
+export default Text;
