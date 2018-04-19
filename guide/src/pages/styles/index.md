@@ -9,6 +9,6 @@ imports:
 
 Menu:
 
-* <Link to="/visuals/colors">Colors</Link>
-* <Link to="/visuals/icons">Icons</Link>
-* <Link to="/visuals/typography">Typography</Link>
+* <Link to="/styles/colors">Colors</Link>
+* <Link to="/styles/icons">Icons</Link>
+* <Link to="/styles/typography">Typography</Link>

@@ -16,3 +16,4 @@ Menu:
 * <Link to="/components/layout">Layout</Link>
 * <Link to="/components/menulist">Menu List</Link>
 * <Link to="/components/navigationbar">Navigation Bar</Link>
+* <Link to="/components/text">Text</Link>

@@ -27,6 +27,8 @@ Product:
 
   * <Link to="/components/navigationbar">Navigation Bar</Link>
 
+  * <Link to="/components/text">Text</Link>
+
 * <Link to="/language/">Language</Link>
 
   * <Link to="/language/">Product Language Style Guide</Link>

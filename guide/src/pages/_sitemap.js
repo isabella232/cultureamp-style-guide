@@ -29,6 +29,7 @@ const sitemap = {
             { title: 'Layout', href: '/components/layout' },
             { title: 'Menu List', href: '/components/menulist' },
             { title: 'Navigation Bar', href: '/components/navigationbar' },
+            { title: 'Text', href: '/components/text' },
           ],
         },
         {
