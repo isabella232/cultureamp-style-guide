@@ -1,0 +1,57 @@
+@import '../../styles/type';
+
+.page-title {
+  @include ca-type-ideal-page-title;
+}
+
+.title {
+  @include ca-type-ideal-title;
+}
+
+.display {
+  @include ca-type-ideal-display;
+}
+
+.heading {
+  @include ca-type-ideal-heading;
+}
+
+.lede {
+  @include ca-type-ideal-lede;
+}
+
+.body {
+  @include ca-type-ideal-body;
+}
+
+.body-bold {
+  @include ca-type-ideal-body-bold;
+}
+
+.small {
+  @include ca-type-ideal-small;
+}
+
+.small-bold {
+  @include ca-type-ideal-small-bold;
+}
+
+.notification {
+  @include ca-type-ideal-notification;
+}
+
+.label {
+  @include ca-type-ideal-label;
+}
+
+.control-action {
+  @include ca-type-ideal-control-action;
+}
+
+.button {
+  @include ca-type-ideal-button;
+}
+
+.inheritBaseline {
+  @include ca-inherit-baseline;
+}
