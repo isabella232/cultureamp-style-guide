@@ -2,22 +2,32 @@
 
 .page-title {
   @include ca-type-ideal-page-title;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .title {
   @include ca-type-ideal-title;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .display {
   @include ca-type-ideal-display;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .heading {
   @include ca-type-ideal-heading;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .lede {
   @include ca-type-ideal-lede;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .body {
@@ -30,26 +40,37 @@
 
 .small {
   @include ca-type-ideal-small;
+  margin: 0;
 }
 
 .small-bold {
   @include ca-type-ideal-small-bold;
+  margin: 0;
 }
 
 .notification {
   @include ca-type-ideal-notification;
+  margin: 0;
 }
 
 .label {
   @include ca-type-ideal-label;
+  margin: 0;
 }
 
 .control-action {
   @include ca-type-ideal-control-action;
+  margin: 0;
 }
 
 .button {
   @include ca-type-ideal-button;
+  margin: 0;
+}
+
+.paragraph {
+  margin-top: 0;
+  margin-bottom: $ca-grid;
 }
 
 .inheritBaseline {

@@ -41,6 +41,7 @@ const Text = (props: TextProps) => {
     <Tag
       className={classNames(styles[style], {
         [styles.inheritBaseline]: props.inheritBaseline,
+        [styles.paragraph]: Tag === 'p',
       })}
     >
       {props.children}

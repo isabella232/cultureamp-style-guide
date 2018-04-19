@@ -14,6 +14,8 @@ A generic text component which sets the default styles for the semantic element 
 
 You can override the styles with the `style` property.
 
+Headers and paragraphs will include default margins.
+
 You can cancel the baseline alignment by using `inheritBaseline={true}`
 
 </IntroParagraph>
