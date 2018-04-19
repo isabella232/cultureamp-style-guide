@@ -12,10 +12,10 @@ type DropdownState = {
 };
 
 type DropdownProps = {
-  icon: ?{},
+  icon?: {},
   label: ?React.Node,
   children: React.Node,
-  menuVisible: boolean,
+  menuVisible?: boolean,
 };
 
 export default class Dropdown extends React.Component<

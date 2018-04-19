@@ -6,8 +6,8 @@ import Icon from '../Icon/Icon.js';
 import styles from './Menu.module.scss';
 
 const MenuItem = (props: {
-  icon: any,
-  hoverIcon: boolean,
+  icon?: any,
+  hoverIcon?: boolean,
   children: React.Node,
   action: string | (() => void),
 }) => {
