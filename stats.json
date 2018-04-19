@@ -9,8 +9,8 @@
       "component---src-pages-components-navigationbar-navigation-bar-demo-js-bb14b7c8309be44c4db0.js.map"
     ],
     "component---src-pages-styles-index-md": [
-      "component---src-pages-styles-index-md-06c755117daee5a2e5f1.js",
-      "component---src-pages-styles-index-md-06c755117daee5a2e5f1.js.map"
+      "component---src-pages-styles-index-md-97d35f136540617eefc0.js",
+      "component---src-pages-styles-index-md-97d35f136540617eefc0.js.map"
     ],
     "component---src-pages-components-layout-layout-demo-js": [
       "component---src-pages-components-layout-layout-demo-js-26686dfe850c0947209e.js",
@@ -27,6 +27,10 @@
     "path---components-layout-layout-demo": [
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js",
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-components-text-index-md": [
+      "component---src-pages-components-text-index-md-5910de9498ca19558812.js",
+      "component---src-pages-components-text-index-md-5910de9498ca19558812.js.map"
     ],
     "path---styles-icons": [
       "path---styles-icons-a0e39f21c11f6a62c5ab.js",
@@ -77,8 +81,8 @@
       "component---src-pages-styles-icons-index-md-6bea457846bfcc15db13.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-ec30bb052af05631639f.js",
-      "component---src-layouts-index-js-ec30bb052af05631639f.js.map"
+      "component---src-layouts-index-js-0d7519cdddcc5aab3128.js",
+      "component---src-layouts-index-js-0d7519cdddcc5aab3128.js.map"
     ],
     "path---index": [
       "path---index-a0e39f21c11f6a62c5ab.js",
@@ -119,13 +123,13 @@
       "component---src-pages-language-check-list-item-js-02b10384b522d886eafe.js.map"
     ],
     "component---src-pages-components-index-md": [
-      "component---src-pages-components-index-md-5b67447be724d56f800b.js",
-      "component---src-pages-components-index-md-5b67447be724d56f800b.js.map"
+      "component---src-pages-components-index-md-46086985b9912fd0b226.js",
+      "component---src-pages-components-index-md-46086985b9912fd0b226.js.map"
     ],
     "app": [
-      "app-854fe328729f846f1777.js",
+      "app-08cfd564fe8835b00fc2.js",
       "build-js-styles.css",
-      "app-854fe328729f846f1777.js.map",
+      "app-08cfd564fe8835b00fc2.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -133,8 +137,8 @@
       "component---src-pages-language-index-md-17082525af3849581191.js.map"
     ],
     "component---src-pages-index-md": [
-      "component---src-pages-index-md-b99b8cb97f95f80f92ad.js",
-      "component---src-pages-index-md-b99b8cb97f95f80f92ad.js.map"
+      "component---src-pages-index-md-dbda924c8a8fba787122.js",
+      "component---src-pages-index-md-dbda924c8a8fba787122.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
@@ -143,6 +147,10 @@
     "component---src-pages-language-checklist-md": [
       "component---src-pages-language-checklist-md-e50cb415d8d015c3e5cb.js",
       "component---src-pages-language-checklist-md-e50cb415d8d015c3e5cb.js.map"
+    ],
+    "path---components-text": [
+      "path---components-text-a0e39f21c11f6a62c5ab.js",
+      "path---components-text-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---components-layout": [
       "path---components-layout-a0e39f21c11f6a62c5ab.js",
