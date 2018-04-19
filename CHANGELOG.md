@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 11.2.0
+
+* ✨ Introduce new "Text" component
+
 ## 11.1.0
 
 * ✨ Introduce new "Layout" component
