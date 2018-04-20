@@ -56,7 +56,7 @@ const presets = [
     name: 'Control action',
     props: {
       label: 'Print',
-      controlAction: '',
+      controlAction: true,
       icon: print,
       children: menuList,
     },
