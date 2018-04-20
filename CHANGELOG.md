@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 11.2.1
+
+* 🐛 Fix for icons not being clickable with jQuery delegated event handlers in IE11.
+
 ## 11.2.0
 
 * ✨ Introduce new "Text" component
