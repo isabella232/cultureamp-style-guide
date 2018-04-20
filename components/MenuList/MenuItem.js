@@ -8,10 +8,12 @@ import styles from './Menu.module.scss';
 const MenuItem = (props: {
   icon?: any,
   hoverIcon?: boolean,
+  active?: boolean,
+  destructive?: boolean,
   children: React.Node,
   action: string | (() => void),
 }) => {
-  const { icon, hoverIcon, children, action } = props;
+  const { icon, hoverIcon, children, action, active, destructive } = props;
   const isLink = typeof action === 'string',
     label = (
       <span className={styles.menuItem__Label}>
@@ -29,6 +31,8 @@ const MenuItem = (props: {
     className = classNames({
       [styles.menuItem]: true,
       [styles.hoverIcon]: icon && hoverIcon,
+      [styles['menuItem--active']]: active,
+      [styles['menuItem--destructive']]: destructive,
     });
   return (
     <a href={href} onClick={handleOnClick} className={className}>

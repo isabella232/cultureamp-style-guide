@@ -28,6 +28,7 @@ $side-padding: 3/4 * $ca-grid;
 .menuItem {
   @include ca-type-ideal-body;
   @include ca-inherit-baseline;
+  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
   background: transparent;
   color: $ca-palette-ink;
   cursor: pointer;
@@ -40,22 +41,35 @@ $side-padding: 3/4 * $ca-grid;
   display: flex;
   flex: 0 0 100%;
 
+  &.menuItem--active,
   &:hover,
   &:focus {
     background: $ca-palette-stone;
+    color: $ca-palette-ocean;
 
     .menuItem__Icon {
-      color: add-tint($ca-palette-ink, 60%);
+      color: $ca-palette-ocean;
     }
+  }
+}
+
+.menuItem--active {
+  composes: active from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+}
+
+.menuItem--destructive {
+  color: add-shade($ca-palette-coral, 20%);
+  .menuItem__Icon {
+    color: add-shade($ca-palette-coral, 20%);
   }
 }
 
 .menuItem__Label {
   flex: 1;
+  margin-right: $ca-grid / 2;
 }
 
 .menuItem__Icon {
-  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
   text-align: right;
   color: $ca-palette-ink;
   position: relative;
@@ -64,6 +78,7 @@ $side-padding: 3/4 * $ca-grid;
   .hoverIcon & {
     opacity: 0;
   }
+  .menuItem--active &,
   .hoverIcon:hover &,
   .hoverIcon:focus & {
     opacity: 1;
