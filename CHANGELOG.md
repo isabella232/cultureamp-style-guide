@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.1
+
+* 👍 Give control actions a pointer cursor.
+
 ## 12.0.0
 
 * 👍 Allow a Dropdown to be styled as a Control Action rather than a Button.

@@ -195,6 +195,7 @@ $ca-ideal-sans-font-descender-height: 0.14;
   text-decoration: none;
   text-decoration-skip-ink: auto;
   color: $ca-palette-ocean;
+  cursor: pointer;
   &:hover {
     text-decoration: underline;
   }
