@@ -1,5 +1,12 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.0
+
+* 👍 Allow a Dropdown to be styled as a Control Action rather than a Button.
+* 👍 Improvements to Control Action type styles.
+* 👍 Add "active" and "destructive" states to MenuItem.
+* 💔 Remove "subtitle" property on MenuHeader.
+
 ## 11.2.1
 
 * 🐛 Fix for icons not being clickable with jQuery delegated event handlers in IE11.
