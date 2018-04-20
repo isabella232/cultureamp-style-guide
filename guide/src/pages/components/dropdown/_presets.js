@@ -12,28 +12,26 @@ import React from 'react';
 
 const menuList = (
   <MenuList>
-    <MenuHeader title="My Dropdown Menu" />
+    <MenuHeader title="Contextual Select Menu" />
     <MenuItem action={() => alert('print!')} icon={print} hoverIcon={false}>
-      Print (icon)
+      Action label with icon
     </MenuItem>
     <MenuItem action={() => alert('print!')} icon={print} hoverIcon={true}>
-      Print (hover icon)
+      Action label with hover icon
     </MenuItem>
-    <MenuItem action={() => alert('print!')}>Print (no icon)</MenuItem>
+    <MenuItem action={() => alert('print!')}>Action label</MenuItem>
     <MenuSeparator />
     <MenuItem
       action="https://www.cultureamp.com/"
       icon={enso}
       hoverIcon={false}
     >
-      Culture Amp (icon)
+      Link label with icon
     </MenuItem>
     <MenuItem action="https://www.cultureamp.com/" icon={enso} hoverIcon={true}>
-      Culture Amp (hover icon)
+      Link label with hover icon
     </MenuItem>
-    <MenuItem action="https://www.cultureamp.com/">
-      Culture Amp (no icon)
-    </MenuItem>
+    <MenuItem action="https://www.cultureamp.com/">Link label</MenuItem>
   </MenuList>
 );
 
@@ -47,12 +45,21 @@ const presets = [
     props: { icon: kebab, children: menuList },
   },
   {
-    name: 'Label and Icon',
+    name: 'Label and icon',
     props: { label: 'Print', icon: print, children: menuList },
   },
   {
-    name: 'Text Only',
+    name: 'Text only',
     props: { label: 'Print', children: menuList },
+  },
+  {
+    name: 'Control action',
+    props: {
+      label: 'Print',
+      controlAction: '',
+      icon: print,
+      children: menuList,
+    },
   },
 ];
 
