@@ -192,8 +192,12 @@ $ca-ideal-sans-font-descender-height: 0.14;
 
 @mixin ca-type-ideal-control-action($args...) {
   @include ca-type-ideal($size: 16, $weight: $ca-weight-medium, $args...);
-  text-decoration: underline;
+  text-decoration: none;
   text-decoration-skip-ink: auto;
+  color: $ca-palette-ocean;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 @mixin ca-type-ideal-button($args...) {
