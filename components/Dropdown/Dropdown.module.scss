@@ -38,11 +38,17 @@ $width: 248px;
   justify-content: center;
 }
 
+.dropdownControlAction {
+  @include ca-type-ideal-control-action;
+  @include ca-inherit-baseline;
+}
+
 .dropdownIcon {
   box-sizing: border-box;
   width: $ca-grid;
   height: $ca-grid;
   padding: 2px;
+  color: $ca-palette-ocean;
 }
 
 .dropdownLabel {
