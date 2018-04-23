@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.2
+
+* 👍 Use "Book" weight for headings and other type styles. We recommend using the new typography bundle at https://d1vmr11cgrgrrj.cloudfront.net/7095992/css/fonts.css to load these fonts.
+
 ## 12.0.1
 
 * 👍 Give control actions a pointer cursor.
