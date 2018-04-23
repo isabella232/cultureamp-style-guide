@@ -16,9 +16,8 @@ class TypographyItem extends React.Component {
     let title = this.state.size ? `${name} – ${this.state.size}` : name;
     return (
       <div className={styles.typographyShowcaseItem}>
-        <h3>{title}</h3>
         <p ref={p => (this.paragraph = p)} className={styles[className]}>
-          {sampleText}
+          {title}
         </p>
         <pre>{sassCode}</pre>
       </div>
