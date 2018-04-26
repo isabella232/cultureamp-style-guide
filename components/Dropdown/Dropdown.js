@@ -13,7 +13,7 @@ type DropdownState = {
 
 type DropdownProps = {
   icon?: {},
-  label: ?React.Node,
+  label?: React.Node,
   children: React.Node,
   menuVisible?: boolean,
   controlAction?: boolean,
