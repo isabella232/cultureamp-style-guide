@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.3
+
+* 👍 Minor improvements to Flow type definitions: `label` prop on Dropdown is now optional, `action` prop on MenuItem now can expect to receive an Event as a parameter to the callback function.
+
 ## 12.0.2
 
 * 👍 Use "Book" weight for headings and other type styles. We recommend using the new typography bundle at https://d1vmr11cgrgrrj.cloudfront.net/7095992/css/fonts.css to load these fonts.
