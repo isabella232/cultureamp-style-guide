@@ -11,7 +11,7 @@ const MenuItem = (props: {
   active?: boolean,
   destructive?: boolean,
   children: React.Node,
-  action: string | (() => void),
+  action: string | ((e: Event) => void),
 }) => {
   const { icon, hoverIcon, children, action, active, destructive } = props;
   const isLink = typeof action === 'string',
