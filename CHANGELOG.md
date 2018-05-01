@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.4
+
+* 🐛 Pin node-sass to version 4.7.2 due to webpack timeouts we are intermittently experiencing.
+
 ## 12.0.3
 
 * 👍 Minor improvements to Flow type definitions: `label` prop on Dropdown is now optional, `action` prop on MenuItem now can expect to receive an Event as a parameter to the callback function.
