@@ -12,8 +12,17 @@ const MenuItem = (props: {
   destructive?: boolean,
   children: React.Node,
   action: string | ((e: Event) => void),
+  automationId?: string,
 }) => {
-  const { icon, hoverIcon, children, action, active, destructive } = props;
+  const {
+    icon,
+    hoverIcon,
+    children,
+    action,
+    active,
+    destructive,
+    automationId,
+  } = props;
   const isLink = typeof action === 'string',
     label = (
       <span className={styles.menuItem__Label}>
@@ -35,7 +44,12 @@ const MenuItem = (props: {
       [styles['menuItem--destructive']]: destructive,
     });
   return (
-    <a href={href} onClick={handleOnClick} className={className}>
+    <a
+      href={href}
+      onClick={handleOnClick}
+      className={className}
+      data-automation-id={automationId}
+    >
       {label}
       {iconNode}
     </a>

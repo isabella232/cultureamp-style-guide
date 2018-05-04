@@ -17,6 +17,7 @@ type DropdownProps = {
   children: React.Node,
   menuVisible?: boolean,
   controlAction?: boolean,
+  automationId?: string,
 };
 
 export default class Dropdown extends React.Component<
@@ -64,7 +65,7 @@ export default class Dropdown extends React.Component<
   }
 
   render() {
-    let { icon, label, controlAction } = this.props;
+    let { icon, label, controlAction, automationId } = this.props;
     if (!icon && !label) {
       icon = defaultIcon;
     }
@@ -79,6 +80,7 @@ export default class Dropdown extends React.Component<
           onClick={this.toggleDropdownMenu}
           onMouseDown={e => e.preventDefault()}
           ref={k => (this.dropdownButton = k)}
+          data-automation-id={automationId}
         >
           {icon && (
             <span className={styles.dropdownIcon}>
