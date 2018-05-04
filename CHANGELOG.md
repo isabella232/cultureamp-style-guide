@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.0.5
+
+* 🐛 Remove unnecessary flex rule that triggered bug with dropdown in IE11.
+
 ## 12.0.4
 
 * 🐛 Pin node-sass to version 4.7.2 due to webpack timeouts we are intermittently experiencing.
