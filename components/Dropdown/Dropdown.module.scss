@@ -68,6 +68,11 @@ $width: 248px;
   }
 }
 
+.chevronIcon {
+  position: relative;
+  top: 4px;
+}
+
 .menuContainer {
   position: absolute;
   width: $width;
