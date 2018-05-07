@@ -1,5 +1,14 @@
 # Release History: cultureamp-style-guide
 
+## 12.1.0
+
+* ✨ Add `Layout.Toasts` and `Layout.Announcers`. These regions are used with `aria-live="assertive"` so their contents will be read by a screen reader whenever the contents are changed. These are included in the high-level layout component as some screen readers need these regions to exist on the initial render.
+* 👍 Allow `<Text tag="label">`.
+* 👍 Add automationId props for MenuItem and Dropdown.
+* 👍 Add a chevron to all control-action styled dropdowns.
+* 👍 Use Book font-weight for control-actions (was previously using Medium).
+* 🐛 Ensure MenuItem links do not have underline on hover. This bug only existed when legacy global styles, such as Bootstrap, were used.
+
 ## 12.0.5
 
 * 🐛 Remove unnecessary flex rule that triggered bug with dropdown in IE11.
