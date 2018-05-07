@@ -16,7 +16,8 @@
   font: inherit;
   margin: 0;
   padding: 0;
-  transition: none; // override _bootstrap-overrides.scss
+  // override Murmur global styles :(
+  transition: none;
 
   // fill parent
   display: block;

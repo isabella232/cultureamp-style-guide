@@ -4,7 +4,7 @@ import styles from './Text.module.scss';
 import classNames from 'classnames';
 
 type TextProps = {
-  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div',
+  tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'label',
   style?:
     | 'page-title'
     | 'title'
@@ -32,6 +32,7 @@ const defaultStyles = {
   h6: 'heading',
   p: 'body',
   div: 'body',
+  label: 'body',
 };
 
 const Text = (props: TextProps) => {

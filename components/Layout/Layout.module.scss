@@ -40,3 +40,16 @@
   @extend %footer;
   box-sizing: border-box;
 }
+
+.toasts {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.announcers {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.5;
+}

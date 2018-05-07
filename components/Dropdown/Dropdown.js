@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import styles from './Dropdown.module.scss';
 import Icon from '../Icon/Icon';
 import defaultIcon from '../../icons/ellipsis.svg';
+import chevronDown from '../../icons/chevron-down.svg';
 import DropdownMenu from './DropdownMenu';
 
 type DropdownState = {
@@ -17,6 +18,7 @@ type DropdownProps = {
   children: React.Node,
   menuVisible?: boolean,
   controlAction?: boolean,
+  automationId?: string,
 };
 
 export default class Dropdown extends React.Component<
@@ -64,7 +66,7 @@ export default class Dropdown extends React.Component<
   }
 
   render() {
-    let { icon, label, controlAction } = this.props;
+    let { icon, label, controlAction, automationId } = this.props;
     if (!icon && !label) {
       icon = defaultIcon;
     }
@@ -79,6 +81,7 @@ export default class Dropdown extends React.Component<
           onClick={this.toggleDropdownMenu}
           onMouseDown={e => e.preventDefault()}
           ref={k => (this.dropdownButton = k)}
+          data-automation-id={automationId}
         >
           {icon && (
             <span className={styles.dropdownIcon}>
@@ -86,6 +89,12 @@ export default class Dropdown extends React.Component<
             </span>
           )}
           {label && <span className={styles.dropdownLabel}>{label}</span>}
+          {label &&
+            controlAction && (
+              <span className={styles.chevronIcon}>
+                <Icon icon={chevronDown} role="img" title="Open menu" />
+              </span>
+            )}
         </button>
         {this.state.isMenuVisible && this.renderDropdownMenu()}
       </div>
