@@ -40,7 +40,6 @@ const Text = (props: TextProps) => {
   const style = props.style || defaultStyles[Tag];
   return (
     <Tag
-      {...props}
       className={classNames(styles[style], {
         [styles.inheritBaseline]: props.inheritBaseline,
         [styles.paragraph]: Tag === 'p',
