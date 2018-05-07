@@ -46,6 +46,7 @@ $side-padding: 3/4 * $ca-grid;
   &:focus {
     background: $ca-palette-stone;
     color: $ca-palette-ocean;
+    text-decoration: none;
 
     .menuItem__Icon {
       color: $ca-palette-ocean;
