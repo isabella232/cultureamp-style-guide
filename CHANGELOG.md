@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.1.1
+
+* 🐛 Add `sass-loader` as a `peerDependency` to help avoid multiple versions of this loader running in a single webpack build, which has been the source of intermittent hangs.
+
 ## 12.1.0
 
 * ✨ Add `Layout.Toasts` and `Layout.Announcers`. These regions are used with `aria-live="assertive"` so their contents will be read by a screen reader whenever the contents are changed. These are included in the high-level layout component as some screen readers need these regions to exist on the initial render.
