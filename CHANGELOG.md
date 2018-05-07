@@ -1,8 +1,9 @@
 # Release History: cultureamp-style-guide
 
-## 12.1.1
+## 12.2.0
 
 * 🐛 Add `sass-loader` as a `peerDependency` to help avoid multiple versions of this loader running in a single webpack build, which has been the source of intermittent hangs.
+* 👍 Re-upgrade `node-sass` to version 4.9.0 or compatible to match Murmur now that the source of webpack timeouts has been found.
 
 ## 12.1.0
 
