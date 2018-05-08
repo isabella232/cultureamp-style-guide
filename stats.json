@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "component---src-pages-styles-colors-index-md": [
-      "component---src-pages-styles-colors-index-md-fad0f95a046f06f772d1.js",
-      "component---src-pages-styles-colors-index-md-fad0f95a046f06f772d1.js.map"
+      "component---src-pages-styles-colors-index-md-a9c6feb859575eadd412.js",
+      "component---src-pages-styles-colors-index-md-a9c6feb859575eadd412.js.map"
     ],
     "component---src-pages-components-navigationbar-navigation-bar-demo-js": [
       "component---src-pages-components-navigationbar-navigation-bar-demo-js-bb14b7c8309be44c4db0.js",
@@ -13,12 +13,12 @@
       "component---src-pages-styles-index-md-97d35f136540617eefc0.js.map"
     ],
     "component---src-pages-components-layout-layout-demo-js": [
-      "component---src-pages-components-layout-layout-demo-js-26686dfe850c0947209e.js",
-      "component---src-pages-components-layout-layout-demo-js-26686dfe850c0947209e.js.map"
+      "component---src-pages-components-layout-layout-demo-js-9a8a6ddea8a302b0cb92.js",
+      "component---src-pages-components-layout-layout-demo-js-9a8a6ddea8a302b0cb92.js.map"
     ],
     "component---src-pages-components-dropdown-index-md": [
-      "component---src-pages-components-dropdown-index-md-5e265b6cf5df0f65263f.js",
-      "component---src-pages-components-dropdown-index-md-5e265b6cf5df0f65263f.js.map"
+      "component---src-pages-components-dropdown-index-md-859678adb924bb25d362.js",
+      "component---src-pages-components-dropdown-index-md-859678adb924bb25d362.js.map"
     ],
     "path---language": [
       "path---language-a0e39f21c11f6a62c5ab.js",
@@ -29,8 +29,8 @@
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-text-index-md": [
-      "component---src-pages-components-text-index-md-5910de9498ca19558812.js",
-      "component---src-pages-components-text-index-md-5910de9498ca19558812.js.map"
+      "component---src-pages-components-text-index-md-6354d0d87498fc173216.js",
+      "component---src-pages-components-text-index-md-6354d0d87498fc173216.js.map"
     ],
     "path---styles-icons": [
       "path---styles-icons-a0e39f21c11f6a62c5ab.js",
@@ -49,8 +49,8 @@
       "path---styles-colors-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-menulist-index-md": [
-      "component---src-pages-components-menulist-index-md-bec343cd5fa7463dbd1d.js",
-      "component---src-pages-components-menulist-index-md-bec343cd5fa7463dbd1d.js.map"
+      "component---src-pages-components-menulist-index-md-b04d2dafa2f1f4032544.js",
+      "component---src-pages-components-menulist-index-md-b04d2dafa2f1f4032544.js.map"
     ],
     "path---components": [
       "path---components-a0e39f21c11f6a62c5ab.js",
@@ -161,8 +161,8 @@
       "component---src-pages-components-icon-index-md-315c0b7229aa44fc3847.js.map"
     ],
     "component---src-pages-components-layout-index-md": [
-      "component---src-pages-components-layout-index-md-4b555d895ec48cfd4f94.js",
-      "component---src-pages-components-layout-index-md-4b555d895ec48cfd4f94.js.map"
+      "component---src-pages-components-layout-index-md-0faa5af33db8d03eb58a.js",
+      "component---src-pages-components-layout-index-md-0faa5af33db8d03eb58a.js.map"
     ],
     "component---src-pages-styles-typography-md": [
       "component---src-pages-styles-typography-md-d1f3769245e0b17156ae.js",
