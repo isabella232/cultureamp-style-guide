@@ -118,64 +118,63 @@ $ca-ideal-sans-font-descender-height: 0.14;
   );
 }
 
-@mixin ca-type-ideal-page-title($args...) {
+@mixin ca-type-ideal-page-title($size: 32, $args...) {
   @include ca-type-ideal(
-    $size: 32,
+    $size: $size,
     $line-height-in-grid-units: 1.5,
     $weight: $ca-weight-book,
     $args...
   );
 }
 
-@mixin ca-type-ideal-title($args...) {
+@mixin ca-type-ideal-title($size: 26, $args...) {
   @include ca-type-ideal(
-    $size: 26,
+    $size: $size,
     $line-height-in-grid-units: 1.5,
     $weight: $ca-weight-book,
     $args...
   );
 }
 
-@mixin ca-type-ideal-display($args...) {
-  @include ca-type-ideal($size: 22, $weight: $ca-weight-book, $args...);
+@mixin ca-type-ideal-display($size: 22, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-book, $args...);
 }
 
-@mixin ca-type-ideal-heading($args...) {
-  @include ca-type-ideal($size: 18, $weight: $ca-weight-book, $args...);
+@mixin ca-type-ideal-heading($size: 18, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-book, $args...);
 }
 
-@mixin ca-type-ideal-lede($args...) {
-  @include ca-type-ideal($size: 20, $weight: $ca-weight-light, $args...);
+@mixin ca-type-ideal-lede($size: 20, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-light, $args...);
 }
 
-@mixin ca-type-ideal-body($args...) {
-  @include ca-type-ideal($size: 16, $weight: $ca-weight-light, $args...);
+@mixin ca-type-ideal-body($size: 16, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-light, $args...);
 }
 
-@mixin ca-type-ideal-body-bold($args...) {
-  @include ca-type-ideal($size: 16, $weight: $ca-weight-book, $args...);
+@mixin ca-type-ideal-body-bold($size: 16, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-book, $args...);
 }
 
-@mixin ca-type-ideal-small($args...) {
-  @include ca-type-ideal($size: 14, $weight: $ca-weight-light, $args...);
+@mixin ca-type-ideal-small($size: 14, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-light, $args...);
 }
 
-@mixin ca-type-ideal-small-bold($args...) {
-  @include ca-type-ideal($size: 14, $weight: $ca-weight-book, $args...);
+@mixin ca-type-ideal-small-bold($size: 14, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-book, $args...);
 }
 
-@mixin ca-type-ideal-notification($args...) {
+@mixin ca-type-ideal-notification($size: 15, $args...) {
   @include ca-type-ideal(
-    $size: 15,
+    $size: $size,
     $weight: $ca-weight-light,
     $line-height-in-grid-units: 3/4,
     $args...
   );
 }
 
-@mixin ca-type-ideal-label($args...) {
+@mixin ca-type-ideal-label($size: 12, $args...) {
   $letter-spacing-in-px: 0.5;
-  $size: 12;
   @include ca-type-ideal(
     $size: $size,
     $weight: $ca-weight-medium,
@@ -190,8 +189,8 @@ $ca-ideal-sans-font-descender-height: 0.14;
   @include ca-type-ideal-label($args...);
 }
 
-@mixin ca-type-ideal-control-action($args...) {
-  @include ca-type-ideal($size: 16, $weight: $ca-weight-book, $args...);
+@mixin ca-type-ideal-control-action($size: 16, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-book, $args...);
   text-decoration: none;
   text-decoration-skip-ink: auto;
   color: $ca-palette-ocean;
@@ -201,8 +200,8 @@ $ca-ideal-sans-font-descender-height: 0.14;
   }
 }
 
-@mixin ca-type-ideal-button($args...) {
-  @include ca-type-ideal($size: 18, $weight: $ca-weight-medium, $args...);
+@mixin ca-type-ideal-button($size: 18, $args...) {
+  @include ca-type-ideal($size: $size, $weight: $ca-weight-medium, $args...);
 }
 
 @mixin debug-vertical-rhythm-grid() {
