@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.3.0
+
+* ✨ Support passing a `$size` argument to override the default size of Ideal Sans font style mixins. Use this if you need a type style based on one of our standard styles, but with a different size.
+
 ## 12.2.0
 
 * 🐛 Add `sass-loader` as a `peerDependency` to help avoid multiple versions of this loader running in a single webpack build, which has been the source of intermittent hangs.
