@@ -1,0 +1,142 @@
+@import '../../styles/layers';
+@import '../../styles/color';
+@import '../../styles/type';
+
+/*
+      +-------------------------------------+
+      |n|         header                    |
+      |a|-----------------------------------| --
+      |v|       |                           |  |
+      |b|       |                           |  |
+      |a|   s   |                           |  |
+      |r|   i   |                           |  |
+      | |   d   |                           |  |
+      | |   e   |         content           |  |  body
+      | |   b   |                           |  |
+      | |   a   |                           |  |
+      | |   r   |                           |  |
+      | |       |                           |  |
+      | |       |                           |  |
+      | |-----------------------------------| --
+      | |         footer                    |
+      +-------------------------------------+
+
+        |-----------------------------------|
+                      page
+*/
+
+%root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+%navigation-bar {
+  flex: 1 0 0px;
+}
+
+%page {
+  display: flex;
+  flex: 1 0 0px;
+  flex-direction: column;
+  height: 100vh; // scrolling content will overflow
+}
+
+%header,
+%footer {
+  flex: 0 0 auto;
+}
+
+%body {
+  // %body provides a positioning context for %body-inner,
+  // which may be nested n levels deep in the DOM.
+  position: relative;
+  flex: 1 1 0px;
+  height: 0; // flex-basis 0px doesn't work in most browsers
+
+  // to support %legacy-sticky-footer (TODO: remove once it's not used)
+  display: flex;
+  flex-direction: column;
+}
+
+// old Murmur pages include this as a child of %body
+// NOTE: not compatible with %body-inner - cannot use both on same page
+%legacy-sticky-footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+// nested (possibly deeply) descendant of %body that will adopt its dimensions
+// and support a sticky footer that conforms to those dimensions
+%body-inner {
+  display: flex;
+
+  // match position & dimensions of %body
+  position: absolute; // required for height to work when content is short
+  height: 100%;
+  width: 100%;
+
+  @media print {
+    display: block;
+    position: static;
+    height: auto;
+    width: auto;
+  }
+}
+
+$sidebar-width: 12 * $ca-grid;
+%sidebar {
+  background-color: $ca-palette-stone;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: $sidebar-width;
+  z-index: $ca-z-index-fixed;
+  padding: $ca-grid;
+
+  // stack sidebar and content vertically in print
+  @media print {
+    background-color: transparent;
+    overflow-y: visible;
+    overflow-x: visible;
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+}
+
+// enforce fixed width to avoid change when scrollbar on %sidebar is visible
+%sidebar-inner {
+  width: $sidebar-width - 2 * $ca-grid;
+}
+
+%content {
+  // to support sticky footer
+  display: flex;
+  flex-direction: column;
+  margin-left: $sidebar-width;
+  padding: $ca-grid;
+
+  flex: 1 1 auto;
+
+  // stack sidebar and content vertically in print
+  @media print {
+    display: block;
+    padding: 0;
+    margin-left: 0;
+    overflow: visible;
+  }
+
+  &:only-child {
+    margin: 0 auto;
+    width: 100%; // fixes centering in IE 11 at max-width
+    min-width: 100%; // prevents too-wide content slipping under NavigationBarApp
+
+    @media (min-width: 480px) {
+      min-width: auto;
+      max-width: 900px;
+    }
+  }
+}

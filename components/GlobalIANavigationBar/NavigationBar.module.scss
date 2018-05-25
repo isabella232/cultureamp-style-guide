@@ -1,0 +1,69 @@
+@import 'styles';
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+
+.navigationBar {
+  @extend %ca-global-ia-navigation-bar;
+
+  &.kaizen {
+    background: $ca-palette-wisteria;
+  }
+}
+
+.links {
+  margin-bottom: auto;
+  flex: 1 0 0px;
+  height: $ca-navigation-bar__height;
+  padding-left: 2 * $ca-grid;
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+}
+
+.child {
+  display: flex;
+  margin: $ca-grid / 4;
+  height: 2 * $ca-grid;
+  box-sizing: content-box;
+
+  @include ca-type-ideal-heading;
+  @include ca-inherit-baseline;
+
+  top: 0;
+
+  // auto 1:1 (square) aspect ratio
+  // position: relative;
+
+  &::after {
+    display: block;
+    content: '';
+    padding-bottom: calc(100%); // % of parent width
+  }
+  > * {
+    // fill the square
+    // position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .support & {
+    width: 5 * $ca-grid;
+    padding: 0;
+
+    @include ca-type-ideal-body;
+    @include ca-inherit-baseline;
+  }
+}
+
+.square {
+  width: 2 * $ca-grid;
+  padding: 0;
+}
+
+.support {
+  border-right: 1px solid add-tint($ca-palette-ink, 20%);
+}

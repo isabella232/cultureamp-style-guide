@@ -1,0 +1,64 @@
+@import '~cultureamp-style-guide/styles/border';
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  // contain child margins
+  display: inline-block;
+
+  &:focus {
+    // non-interactive focus, so no focus outline
+    outline: 0;
+  }
+}
+
+.tooltip {
+  $tooltip__arrow-size: $ca-grid * 0.25;
+
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  height: 100%;
+  top: $ca-grid * 7/3;
+
+  &:not(.suppressed) {
+    :hover > &,
+    :focus > &,
+    :focus + &,
+    &.visible {
+      left: calc(100% + #{$ca-grid - $tooltip__arrow-size});
+    }
+  }
+
+  // tooltip arrow
+  &::before {
+    content: '';
+    position: absolute;
+    left: -$tooltip__arrow-size;
+    top: calc(50% - #{$tooltip__arrow-size});
+
+    border: $tooltip__arrow-size solid transparent;
+    border-left-width: 0;
+    border-right-color: $ca-palette-ink;
+  }
+
+  > * {
+    color: #fff;
+    background-color: $ca-palette-ink;
+    border-radius: $ca-border-radius;
+    padding: $ca-border-radius 0;
+    white-space: nowrap;
+  }
+}
+
+.content {
+  @include ca-type-ideal-small;
+  @include ca-inherit-baseline;
+  margin: 0 1em;
+  position: static;
+}
