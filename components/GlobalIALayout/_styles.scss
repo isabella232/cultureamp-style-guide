@@ -2,76 +2,53 @@
 @import '../../styles/color';
 @import '../../styles/type';
 
-/*
-      +-------------------------------------+
-      |n|         header                    |
-      |a|-----------------------------------| --
-      |v|       |                           |  |
-      |b|       |                           |  |
-      |a|   s   |                           |  |
-      |r|   i   |                           |  |
-      | |   d   |                           |  |
-      | |   e   |         content           |  |  body
-      | |   b   |                           |  |
-      | |   a   |                           |  |
-      | |   r   |                           |  |
-      | |       |                           |  |
-      | |       |                           |  |
-      | |-----------------------------------| --
-      | |         footer                    |
-      +-------------------------------------+
-
-        |-----------------------------------|
-                      page
-*/
-
-%root {
+%global-ia-root {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
 
-%navigation-bar {
+%global-ia-navigation-bar {
   flex: 1 0 0px;
 }
 
-%page {
+%global-ia-page {
   display: flex;
   flex: 1 0 0px;
   flex-direction: column;
   height: 100vh; // scrolling content will overflow
 }
 
-%header,
-%footer {
+%global-ia-header,
+%global-ia-footer {
   flex: 0 0 auto;
 }
 
-%body {
-  // %body provides a positioning context for %body-inner,
+%global-ia-body {
+  // %global-ia-body provides a positioning context for %global-ia-body-inner,
   // which may be nested n levels deep in the DOM.
   position: relative;
   flex: 1 1 0px;
   height: 0; // flex-basis 0px doesn't work in most browsers
 
-  // to support %legacy-sticky-footer (TODO: remove once it's not used)
+  // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
   display: flex;
   flex-direction: column;
 }
 
-// old Murmur pages include this as a child of %body
-// NOTE: not compatible with %body-inner - cannot use both on same page
-%legacy-sticky-footer {
+// old Murmur pages include this as a child of %global-ia-body
+// NOTE: not compatible with %global-ia-body-inner - cannot use both on same page
+%global-ia-legacy-sticky-footer {
   margin-top: auto;
   width: 100%;
 }
 
-// nested (possibly deeply) descendant of %body that will adopt its dimensions
+// nested (possibly deeply) descendant of %global-ia-body that will adopt its dimensions
 // and support a sticky footer that conforms to those dimensions
-%body-inner {
+%global-ia-body-inner {
   display: flex;
 
-  // match position & dimensions of %body
+  // match position & dimensions of %global-ia-body
   position: absolute; // required for height to work when content is short
   height: 100%;
   width: 100%;
@@ -84,14 +61,14 @@
   }
 }
 
-$sidebar-width: 12 * $ca-grid;
-%sidebar {
+$global-ia-sidebar-width: 12 * $ca-grid;
+%global-ia-sidebar {
   background-color: $ca-palette-stone;
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
   position: fixed;
-  width: $sidebar-width;
+  width: $global-ia-sidebar-width;
   z-index: $ca-z-index-fixed;
   padding: $ca-grid;
 
@@ -107,16 +84,16 @@ $sidebar-width: 12 * $ca-grid;
   }
 }
 
-// enforce fixed width to avoid change when scrollbar on %sidebar is visible
-%sidebar-inner {
-  width: $sidebar-width - 2 * $ca-grid;
+// enforce fixed width to avoid change when scrollbar on %global-ia-sidebar is visible
+%global-ia-sidebar-inner {
+  width: $global-ia-sidebar-width - 2 * $ca-grid;
 }
 
-%content {
+%global-ia-content {
   // to support sticky footer
   display: flex;
   flex-direction: column;
-  margin-left: $sidebar-width;
+  margin-left: $global-ia-sidebar-width;
   padding: $ca-grid;
 
   flex: 1 1 auto;

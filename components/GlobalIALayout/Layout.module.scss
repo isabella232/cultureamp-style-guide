@@ -1,43 +1,43 @@
-@import '~cultureamp-style-guide/components/Layout/styles';
+@import './styles';
 
 .root {
-  @extend %root;
+  @extend %global-ia-root;
 }
 
 .navigationBar {
-  @extend %navigation-bar;
+  @extend %global-ia-navigation-bar;
   box-sizing: border-box;
   width: 60px;
 }
 
 .page {
-  @extend %page;
+  @extend %global-ia-page;
   box-sizing: border-box;
   position: relative;
 }
 
 .header {
-  @extend %header;
+  @extend %global-ia-header;
   box-sizing: border-box;
 }
 
 .body {
-  @extend %body;
+  @extend %global-ia-body;
   box-sizing: border-box;
 }
 
 .sidebar {
-  @extend %sidebar;
+  @extend %global-ia-sidebar;
   box-sizing: border-box;
 }
 
 .content {
-  @extend %content;
+  @extend %global-ia-content;
   box-sizing: border-box;
 }
 
 .footer {
-  @extend %footer;
+  @extend %global-ia-footer;
   box-sizing: border-box;
 }
 
