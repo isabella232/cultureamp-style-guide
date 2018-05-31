@@ -33,17 +33,13 @@
 
   top: 0;
 
-  // auto 1:1 (square) aspect ratio
-  // position: relative;
-
   &::after {
     display: block;
     content: '';
-    padding-bottom: calc(100%); // % of parent width
+    padding-bottom: 100%;
   }
   > * {
     // fill the square
-    // position: absolute;
     width: 100%;
     height: 100%;
   }

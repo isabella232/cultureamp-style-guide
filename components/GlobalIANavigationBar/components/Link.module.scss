@@ -1,10 +1,6 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
 
-.root {
-  composes: root from './Tooltip.module.scss';
-}
-
 .link {
   // fill parent
   display: flex;
@@ -20,6 +16,7 @@
   composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
 
   color: add-tint($ca-palette-ink, 70%);
+  padding: 0 $ca-grid;
 
   &:hover,
   &:focus {
@@ -30,28 +27,15 @@
   }
 }
 
-.textLink {
-  padding: 0 $ca-grid;
+.linkIcon {
+  display: inline-flex;
 }
 
-.separator {
-  display: inline-block;
-  width: $ca-grid / 2;
-  height: 0;
+.linkIcon + .linkText {
+  margin-left: $ca-grid / 2;
 }
 
 .active {
   composes: active from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
 }
 
-.tooltip {
-  composes: tooltip from './Tooltip.module.scss';
-}
-
-.content {
-  composes: content from './Tooltip.module.scss';
-}
-
-.suppressed {
-  composes: suppressed from './Tooltip.module.scss';
-}

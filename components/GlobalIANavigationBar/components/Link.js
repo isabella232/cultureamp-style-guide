@@ -11,45 +11,30 @@ type Props = {|
   text?: string,
   href: string,
   active: boolean,
-  tooltip: string,
-  hideTooltip: boolean,
   id?: string,
   onClick?: (event: SyntheticMouseEvent<>) => void,
-  onMenuChange?: boolean => void,
 |};
 
-const Link = ({
-  icon,
-  text,
-  href,
-  active,
-  tooltip,
-  hideTooltip,
-  id,
-  onClick,
-}: Props) => {
-  const textLink = <span className={styles.textLink}>{text}</span>;
-
+const Link = ({ icon, text, href, active, id, onClick }: Props) => {
   return (
-    <div className={styles.root}>
-      <a
-        className={classNames(styles.link, {
-          [iconStyles.active]: active,
-          [styles.textLink]: !icon && text,
-        })}
-        {...{ href, id, onClick }}
-      >
-        {icon && <Icon icon={icon} title={tooltip} />}
-        {icon && text && <span className={styles.separator} />}
-        {text}
-      </a>
-    </div>
+    <a
+      className={classNames(styles.link, {
+        [iconStyles.active]: active,
+      })}
+      {...{ href, id, onClick }}
+    >
+      {icon && (
+        <span className={styles.linkIcon}>
+          <Icon icon={icon} />
+        </span>
+      )}
+      {text && <span className={styles.linkText}>{text}</span>}
+    </a>
   );
 };
 
 Link.defaultProps = {
   active: false,
-  hideTooltip: true,
 };
 
 export default Link;

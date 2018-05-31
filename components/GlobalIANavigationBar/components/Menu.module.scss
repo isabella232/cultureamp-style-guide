@@ -28,7 +28,7 @@
 }
 
 .menu {
-  $tooltip__arrow-size: $ca-grid * 0.25;
+  $menu__arrow-size: $ca-grid * 0.25;
 
   display: flex;
   align-items: center;
@@ -39,19 +39,16 @@
   left: -9rem;
   z-index: $ca-z-index-dropdown;
 
-  // tooltip arrow
+  // menu arrow
   &::before {
     content: '';
     position: absolute;
-    // left: -$tooltip__arrow-size;
-    right: 2.35rem;
-    // top: calc(50% - #{$tooltip__arrow-size});
-    top: -0.5rem;
-    transform: rotateZ(90deg);
+    right: 2.15rem;
+    top: -0.4rem;
 
-    border: $tooltip__arrow-size solid transparent;
-    border-left-width: 0;
-    border-right-color: $ca-palette-ink;
+    border: $menu__arrow-size solid transparent;
+    border-top-width: 0;
+    border-bottom-color: #3e4543;
   }
 
   > * {

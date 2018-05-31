@@ -2,7 +2,6 @@
 import * as React from 'react';
 
 import styles from './Menu.module.scss';
-import Tooltip from './Tooltip.js';
 
 type MenuItem = {
   label: string,
@@ -13,10 +12,7 @@ type MenuItem = {
 type Props = {|
   children?: React.Element<any>,
   header?: React.Element<any>,
-  tooltip: string,
-  hideTooltip: boolean,
   items: Array<MenuItem>,
-  onMenuChange?: (open: boolean) => void,
   automationId?: string,
 |};
 
@@ -29,13 +25,12 @@ export default class Menu extends React.Component<Props, State> {
 
   static defaultProps = {
     items: [],
-    hideTooltip: true,
   };
 
   state = { open: false };
 
   render() {
-    const { children, tooltip, hideTooltip, automationId } = this.props;
+    const { children, automationId } = this.props;
 
     return (
       <nav className={styles.root} ref={root => (this.root = root)}>
@@ -56,7 +51,6 @@ export default class Menu extends React.Component<Props, State> {
   toggle = (e: SyntheticEvent<> | MouseEvent) => {
     const open = !this.state.open;
     this.setState({ open });
-    if (this.props.onMenuChange) this.props.onMenuChange(open);
   };
 
   renderMenu() {
