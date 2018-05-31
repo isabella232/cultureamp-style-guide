@@ -22,30 +22,25 @@ type Props = {|
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
-type State = {|
-  menusOpen: number,
-|};
-
-export default class NavigationBar extends React.Component<Props, State> {
+export default class NavigationBar extends React.Component<Props> {
   render() {
     const { environment, loading, children, colorScheme } = this.props;
 
-    const links = [];
-    const supportLinks = [];
+    const leftLinks = [];
+    const rightLinks = [];
     const otherChildren = [];
     React.Children.toArray(children).forEach(child => {
       if (child === false) return;
       if (child.props.id == 'support-center-navigation-link')
-        supportLinks.push(child);
-      else if (child.type.name == Link.name) links.push(child);
+        rightLinks.push(child);
+      else if (child.type.name == Link.name) leftLinks.push(child);
       else otherChildren.push(child);
     });
 
     return (
       <header className={classNames(styles.navigationBar, styles[colorScheme])}>
         {this.renderBadge()}
-        {this.renderLinks(links)}
-        {this.renderSupport(supportLinks)}
+        {this.renderLinks(leftLinks, rightLinks)}
         {this.renderOtherChildren(otherChildren)}
       </header>
     );
@@ -66,22 +61,29 @@ export default class NavigationBar extends React.Component<Props, State> {
     return <Badge loading={loading} />;
   }
 
-  renderLinks(links: SupportedChild[]) {
+  renderLinks(leftLinks: SupportedChild[], rightLinks: SupportedChild[]) {
     return (
       <nav className={styles.links}>
         <ul className={styles.linkList}>
-          {links.map(link => (
+          {leftLinks.map(link => (
             <li
               key={link.key}
-              className={classNames(styles.child, {
+              className={classNames(styles.child, styles.primaryLink, {
                 [styles.square]: link.props.square,
               })}
             >
-              <div>
-                {React.cloneElement(link, {
-                  hideTooltip: this.state.menusOpen > 0,
-                })}
-              </div>
+              {link}
+            </li>
+          ))}
+          {rightLinks.map((link, index) => (
+            <li
+              key={link.key}
+              className={classNames(styles.child, styles.secondaryLink, {
+                [styles.square]: link.props.square,
+                [styles.first]: index === 0,
+              })}
+            >
+              {link}
             </li>
           ))}
         </ul>
@@ -89,57 +91,26 @@ export default class NavigationBar extends React.Component<Props, State> {
     );
   }
 
-  renderSupport(supportLinks: SupportedChild[]) {
+  renderOtherChildren(otherChildren: SupportedChild[]) {
     return (
-      <div className={styles.support}>
-        {supportLinks.map(link => (
+      <div className={styles.otherChildren}>
+        {otherChildren.map(child => (
           <div
-            key={link.key}
-            className={classNames(styles.child, {
-              [styles.square]: link.props.square,
-            })}
+            key={child.key}
+            className={classNames(styles.child, styles.square)}
           >
-            {React.cloneElement(link, {
-              hideTooltip: this.state.menusOpen > 0,
-            })}
+            {child}
           </div>
         ))}
       </div>
     );
   }
 
-  renderOtherChildren(otherChildren: SupportedChild[]) {
-    return otherChildren.map(child => (
-      <div
-        key={child.key}
-        className={classNames(styles.child, {
-          [styles.square]: true,
-        })}
-      >
-        <div>
-          {React.cloneElement(child, {
-            hideTooltip: this.state.menusOpen > 0,
-            onMenuChange: this.menuChange,
-          })}
-        </div>
-      </div>
-    ));
-  }
-
-  menuChange = (open: boolean) => {
-    this.setState(state => ({
-      ...state,
-      menusOpen: state.menusOpen + (open ? 1 : -1),
-    }));
-  };
-
   static defaultProps = {
     environment: 'production',
     loading: false,
     colorScheme: 'cultureamp',
   };
-
-  state = { menusOpen: 0 };
 
   static Link = Link;
   static Menu = Menu;
