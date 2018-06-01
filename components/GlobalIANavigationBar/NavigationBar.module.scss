@@ -12,7 +12,7 @@
 
 .links {
   flex: 1 0 0px;
-  padding-left: 2 * $ca-grid;
+  margin-left: 2 * $ca-grid;
 
   > ul {
     margin: 0;
@@ -24,34 +24,11 @@
 
 .child {
   display: flex;
-  margin: $ca-grid / 4;
-  height: 2 * $ca-grid;
-  box-sizing: content-box;
+  flex: 0 0 auto;
 
-  @include ca-type-ideal-heading;
-  @include ca-inherit-baseline;
-
-  top: 0;
-
-  &::after {
-    display: block;
-    content: '';
-    padding-bottom: 100%;
+  &.secondary.first {
+    margin-left: auto;
   }
-  > * {
-    // fill the square
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.square {
-  width: 2 * $ca-grid;
-  padding: 0;
-}
-
-.secondaryLink.first {
-  margin-left: auto;
 }
 
 .otherChildren {
@@ -59,4 +36,3 @@
   border-left: 1px solid add-tint($ca-palette-ink, 20%);
   margin-left: -1px;
 }
-

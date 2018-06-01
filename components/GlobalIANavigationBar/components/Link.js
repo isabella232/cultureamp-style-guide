@@ -12,15 +12,16 @@ type Props = {|
   href: string,
   active: boolean,
   id?: string,
-  square?: boolean,
+  secondary: boolean,
   onClick?: (event: SyntheticMouseEvent<>) => void,
 |};
 
-const Link = ({ icon, text, href, active, id, onClick, square }: Props) => {
+const Link = ({ icon, text, href, active, id, onClick, secondary }: Props) => {
   return (
     <a
       className={classNames(styles.link, {
         [iconStyles.active]: active,
+        [styles.containsText]: typeof text != 'undefined',
       })}
       {...{ href, id, onClick }}
     >
@@ -36,6 +37,7 @@ const Link = ({ icon, text, href, active, id, onClick, square }: Props) => {
 
 Link.defaultProps = {
   active: false,
+  secondary: false,
 };
 
 export default Link;

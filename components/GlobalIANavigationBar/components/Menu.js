@@ -14,7 +14,6 @@ type Props = {|
   header?: React.Element<any>,
   items: Array<MenuItem>,
   automationId?: string,
-  square?: boolean,
 |};
 
 type State = {|
@@ -26,6 +25,7 @@ export default class Menu extends React.Component<Props, State> {
 
   static defaultProps = {
     items: [],
+    secondary: false,
   };
 
   state = { open: false };

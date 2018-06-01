@@ -26,21 +26,18 @@ export default class NavigationBar extends React.Component<Props> {
   render() {
     const { environment, loading, children, colorScheme } = this.props;
 
-    const leftLinks = [];
-    const rightLinks = [];
+    const links = [];
     const otherChildren = [];
     React.Children.toArray(children).forEach(child => {
       if (child === false) return;
-      if (child.props.id == 'support-center-navigation-link')
-        rightLinks.push(child);
-      else if (child.type.name == Link.name) leftLinks.push(child);
+      else if (child.type.name == Link.name) links.push(child);
       else otherChildren.push(child);
     });
 
     return (
       <header className={classNames(styles.navigationBar, styles[colorScheme])}>
         {this.renderBadge()}
-        {this.renderLinks(leftLinks, rightLinks)}
+        {this.renderLinks(links)}
         {this.renderOtherChildren(otherChildren)}
       </header>
     );
@@ -61,26 +58,20 @@ export default class NavigationBar extends React.Component<Props> {
     return <Badge loading={loading} />;
   }
 
-  renderLinks(leftLinks: SupportedChild[], rightLinks: SupportedChild[]) {
+  renderLinks(links: SupportedChild[]) {
+    const indexOfFirstSecondaryLink = links.findIndex(
+      link => link.props.secondary
+    );
+
     return (
       <nav className={styles.links}>
-        <ul className={styles.linkList}>
-          {leftLinks.map(link => (
+        <ul>
+          {links.map((link, index) => (
             <li
               key={link.key}
-              className={classNames(styles.child, styles.primaryLink, {
-                [styles.square]: link.props.square,
-              })}
-            >
-              {link}
-            </li>
-          ))}
-          {rightLinks.map((link, index) => (
-            <li
-              key={link.key}
-              className={classNames(styles.child, styles.secondaryLink, {
-                [styles.square]: link.props.square,
-                [styles.first]: index === 0,
+              className={classNames(styles.child, {
+                [styles.secondary]: link.props.secondary,
+                [styles.first]: index === indexOfFirstSecondaryLink,
               })}
             >
               {link}
@@ -95,10 +86,7 @@ export default class NavigationBar extends React.Component<Props> {
     return (
       <div className={styles.otherChildren}>
         {otherChildren.map(child => (
-          <div
-            key={child.key}
-            className={classNames(styles.child, styles.square)}
-          >
+          <div key={child.key} className={styles.child}>
             {child}
           </div>
         ))}

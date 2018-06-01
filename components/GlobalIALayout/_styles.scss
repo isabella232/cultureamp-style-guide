@@ -6,17 +6,17 @@
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  height: 100vh; // scrolling content will overflow
 }
 
 %global-ia-navigation-bar {
-  flex: 1 0 0px;
+  flex: 0 0 auto;
 }
 
 %global-ia-page {
   display: flex;
   flex: 1 0 0px;
   flex-direction: column;
-  height: 100vh; // scrolling content will overflow
 }
 
 %global-ia-header,
