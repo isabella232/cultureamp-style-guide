@@ -12,10 +12,11 @@ type Props = {|
   href: string,
   active: boolean,
   id?: string,
+  square?: boolean,
   onClick?: (event: SyntheticMouseEvent<>) => void,
 |};
 
-const Link = ({ icon, text, href, active, id, onClick }: Props) => {
+const Link = ({ icon, text, href, active, id, onClick, square }: Props) => {
   return (
     <a
       className={classNames(styles.link, {

@@ -14,6 +14,7 @@ type Props = {|
   header?: React.Element<any>,
   items: Array<MenuItem>,
   automationId?: string,
+  square?: boolean,
 |};
 
 type State = {|
