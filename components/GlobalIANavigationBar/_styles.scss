@@ -6,13 +6,10 @@ $ca-navigation-bar__height: 2.5 * $ca-grid;
 %ca-global-ia-navigation-bar {
   display: flex;
   flex-direction: row;
-
   background-color: add-shade($ca-palette-ink, 20%);
-
   height: $ca-navigation-bar__height;
   width: 100%;
   position: fixed;
-  z-index: $ca-z-index-fixed;
 
   @media print {
     display: none;

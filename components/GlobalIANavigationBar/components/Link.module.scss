@@ -4,7 +4,7 @@
 .link {
   // fill parent
   display: flex;
-  min-width: $ca-grid * 2;
+  min-width: 2 * $ca-grid;
   height: 2 * $ca-grid;
   margin: $ca-grid / 4;
 
