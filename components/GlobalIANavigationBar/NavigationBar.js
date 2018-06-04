@@ -28,9 +28,9 @@ export default class NavigationBar extends React.Component<Props> {
 
     const links = [];
     const otherChildren = [];
-    React.Children.toArray(children).forEach(child => {
+    React.Children.forEach(children, child => {
       if (child === false) return;
-      else if (child.type.name == Link.name) links.push(child);
+      else if (child.type.name == Link.name) links.push(((child: any): React.Element<typeof Link>));
       else otherChildren.push(child);
     });
 
@@ -58,7 +58,7 @@ export default class NavigationBar extends React.Component<Props> {
     return <Badge loading={loading} />;
   }
 
-  renderLinks(links: SupportedChild[]) {
+  renderLinks(links: React.Element<typeof Link>[]) {
     const indexOfFirstSecondaryLink = links.findIndex(
       link => link.props.secondary
     );
