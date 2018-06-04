@@ -47,12 +47,12 @@
 
     border: $menu__arrow-size solid transparent;
     border-top-width: 0;
-    border-bottom-color: #3e4543;
+    border-bottom-color: add-shade($ca-palette-ink, 20%);
   }
 
   > * {
     color: #fff;
-    background-color: $ca-palette-ink;
+    background-color: add-shade($ca-palette-ink, 20%);
     border-radius: $ca-border-radius;
     padding: $ca-border-radius 0;
     white-space: nowrap;

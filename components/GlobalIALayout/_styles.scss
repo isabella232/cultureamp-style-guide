@@ -1,6 +1,7 @@
 @import '../../styles/layers';
 @import '../../styles/color';
 @import '../../styles/type';
+@import '../GlobalIANavigationBar/styles';
 
 %global-ia-root {
   display: flex;
@@ -10,6 +11,9 @@
 }
 
 %global-ia-navigation-bar {
+  position: fixed;
+  height: $ca-navigation-bar__height;
+  z-index: $ca-z-index-fixed;
   flex: 0 0 auto;
 }
 
@@ -17,6 +21,7 @@
   display: flex;
   flex: 1 0 0px;
   flex-direction: column;
+  margin-top: $ca-navigation-bar__height;
 }
 
 %global-ia-header,
@@ -64,7 +69,7 @@
 $global-ia-sidebar-width: 12 * $ca-grid;
 %global-ia-sidebar {
   background-color: $ca-palette-stone;
-  height: 100vh;
+  height: calc(100vh - #{$ca-navigation-bar__height});
   overflow-x: hidden;
   overflow-y: auto;
   position: fixed;

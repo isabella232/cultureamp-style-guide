@@ -7,11 +7,12 @@ $ca-navigation-bar__height: 2.5 * $ca-grid;
   display: flex;
   flex-direction: row;
 
-  background-color: $ca-palette-ink;
+  background-color: add-shade($ca-palette-ink, 20%);
 
   height: $ca-navigation-bar__height;
   width: 100%;
-  position: static;
+  position: fixed;
+  z-index: $ca-z-index-fixed;
 
   @media print {
     display: none;
