@@ -8,7 +8,8 @@ import iconStyles from '../../Icon/Icon.module.scss';
 
 type Props = {|
   icon?: { id: string, viewBox: string },
-  text?: string,
+  text: string,
+  iconOnly: boolean,
   href: string,
   active: boolean,
   id?: string,
@@ -16,7 +17,16 @@ type Props = {|
   onClick?: (event: SyntheticMouseEvent<>) => void,
 |};
 
-const Link = ({ icon, text, href, active, id, onClick, secondary }: Props) => {
+const Link = ({
+  icon,
+  text,
+  href,
+  active,
+  id,
+  onClick,
+  secondary,
+  iconOnly,
+}: Props) => {
   return (
     <a
       className={classNames(styles.link, {
@@ -28,15 +38,21 @@ const Link = ({ icon, text, href, active, id, onClick, secondary }: Props) => {
     >
       {icon && (
         <span className={styles.linkIcon}>
-          <Icon icon={icon} />
+          <Icon
+            icon={icon}
+            role={iconOnly ? 'img' : 'presentation'}
+            title={iconOnly && text}
+          />
         </span>
       )}
-      {text && <span className={styles.linkText}>{text}</span>}
+      {text &&
+        !(icon && iconOnly) && <span className={styles.linkText}>{text}</span>}
     </a>
   );
 };
 
 Link.defaultProps = {
+  iconOnly: false,
   active: false,
   secondary: false,
 };
