@@ -30,6 +30,11 @@
   @include ca-type-ideal-heading;
   @include ca-inherit-baseline;
   top: 0;
+
+  &.secondary {
+    @include ca-type-ideal-body;
+    @include ca-inherit-baseline;
+  }
 }
 
 .linkIcon {
@@ -37,11 +42,11 @@
 }
 
 .linkIcon + .linkText {
-  margin-left: $ca-grid / 2;
+  margin-left: $ca-grid / 4;
 }
 
 .containsText {
-  padding: 0 $ca-grid;
+  padding: 0 ($ca-grid / 2);
 }
 
 .active {

@@ -22,6 +22,7 @@ const Link = ({ icon, text, href, active, id, onClick, secondary }: Props) => {
       className={classNames(styles.link, {
         [iconStyles.active]: active,
         [styles.containsText]: typeof text != 'undefined',
+        [styles.secondary]: secondary,
       })}
       {...{ href, id, onClick }}
     >
