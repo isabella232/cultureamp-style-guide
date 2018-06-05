@@ -1,0 +1,97 @@
+@import '~cultureamp-style-guide/styles/border';
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layers';
+
+.root {
+  position: relative;
+  margin: $ca-grid / 4;
+}
+
+.button {
+  // reset button styles
+  appearance: none;
+  background: transparent;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  // override Murmur global styles :(
+  transition: none;
+
+  // fill parent
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.menu {
+  $menu__arrow-size: $ca-grid / 4;
+
+  display: flex;
+  align-items: center;
+
+  position: absolute;
+  height: 100%;
+  top: 4rem;
+  left: -9rem;
+  z-index: $ca-z-index-dropdown;
+
+  // menu arrow
+  &::before {
+    content: '';
+    position: absolute;
+    right: 2.15rem;
+    top: -0.4rem;
+
+    border: $menu__arrow-size solid transparent;
+    border-top-width: 0;
+    border-bottom-color: add-shade($ca-palette-ink, 20%);
+  }
+
+  > * {
+    color: #fff;
+    background-color: add-shade($ca-palette-ink, 20%);
+    border-radius: $ca-border-radius;
+    padding: $ca-border-radius 0;
+    white-space: nowrap;
+  }
+
+  // HACK: duplicate class selector to bump specificity to work around https://trello.com/c/VGvOyHk4
+  &.menu {
+    &:focus {
+      // focus is non-interactive
+      outline: 0;
+    }
+
+    > * {
+      align-self: flex-start;
+      padding-bottom: $ca-grid * 0.75;
+      padding-top: $ca-grid * 0.25;
+    }
+  }
+}
+
+.menuTitle {
+  // screen readers only
+  position: absolute;
+  left: -9999em;
+}
+
+.menuItem {
+  @include ca-type-ideal-body;
+
+  display: block;
+  padding: ($ca-grid / 8) 2em;
+
+  &,
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: add-tint($ca-palette-ink, 10%);
+  }
+}

@@ -1,0 +1,54 @@
+@import '~cultureamp-style-guide/styles/border';
+@import '~cultureamp-style-guide/styles/type';
+
+.link {
+  // fill parent
+  display: flex;
+  min-width: 2 * $ca-grid;
+  height: 2 * $ca-grid;
+  margin: $ca-grid / 4;
+
+  // center child
+  align-items: center;
+  justify-content: center;
+
+  border-radius: $ca-border-radius;
+
+  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+
+  color: add-tint($ca-palette-ink, 70%);
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    background-color: rgba(#fff, 0.1);
+    color: #fff; // override hyperlink hover color
+    outline: none; // override native focus styles
+    text-decoration: none;
+  }
+
+  @include ca-type-ideal-heading;
+  @include ca-inherit-baseline;
+  top: 0;
+
+  &.secondary {
+    @include ca-type-ideal-body;
+    @include ca-inherit-baseline;
+  }
+}
+
+.linkIcon {
+  display: inline-flex;
+}
+
+.linkIcon + .linkText {
+  margin-left: $ca-grid / 4;
+}
+
+.containsText {
+  padding: 0 ($ca-grid / 2);
+}
+
+.active {
+  composes: active from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+}

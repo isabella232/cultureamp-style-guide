@@ -1,0 +1,38 @@
+@import 'styles';
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+
+.navigationBar {
+  @extend %ca-global-ia-navigation-bar;
+
+  &.kaizen {
+    background: $ca-palette-wisteria;
+  }
+}
+
+.links {
+  flex: 1 0 0px;
+  margin-left: 2 * $ca-grid;
+
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+  }
+}
+
+.child {
+  display: flex;
+  flex: 0 0 auto;
+
+  &.secondary.first {
+    margin-left: auto;
+  }
+}
+
+.otherChildren {
+  display: flex;
+  border-left: 1px solid add-alpha(#ffffff, 20%);
+  margin-left: -1px;
+}

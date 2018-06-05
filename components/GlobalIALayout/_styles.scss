@@ -1,0 +1,120 @@
+@import '../../styles/layers';
+@import '../../styles/color';
+@import '../../styles/type';
+@import '../GlobalIANavigationBar/styles';
+
+%global-ia-root {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  height: 100vh; // scrolling content will overflow
+}
+
+%global-ia-navigation-bar {
+  flex: 0 0 auto;
+}
+
+%global-ia-page {
+  display: flex;
+  flex: 1 0 0px;
+  flex-direction: column;
+}
+
+%global-ia-header,
+%global-ia-footer {
+  flex: 0 0 auto;
+}
+
+%global-ia-body {
+  // %global-ia-body provides a positioning context for %global-ia-body-inner,
+  // which may be nested n levels deep in the DOM.
+  position: relative;
+  flex: 1 1 0px;
+  height: 0; // flex-basis 0px doesn't work in most browsers
+
+  // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
+  display: flex;
+  flex-direction: column;
+}
+
+// old Murmur pages include this as a child of %global-ia-body
+// NOTE: not compatible with %global-ia-body-inner - cannot use both on same page
+%global-ia-legacy-sticky-footer {
+  margin-top: auto;
+  width: 100%;
+}
+
+// nested (possibly deeply) descendant of %global-ia-body that will adopt its dimensions
+// and support a sticky footer that conforms to those dimensions
+%global-ia-body-inner {
+  display: flex;
+
+  // match position & dimensions of %global-ia-body
+  position: absolute; // required for height to work when content is short
+  height: 100%;
+  width: 100%;
+
+  @media print {
+    display: block;
+    position: static;
+    height: auto;
+    width: auto;
+  }
+}
+
+$global-ia-sidebar-width: 12 * $ca-grid;
+%global-ia-sidebar {
+  background-color: $ca-palette-stone;
+  height: calc(100vh - #{$ca-navigation-bar__height});
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  width: $global-ia-sidebar-width;
+  z-index: $ca-z-index-fixed;
+  padding: $ca-grid;
+
+  // stack sidebar and content vertically in print
+  @media print {
+    background-color: transparent;
+    overflow-y: visible;
+    overflow-x: visible;
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+  }
+}
+
+// enforce fixed width to avoid change when scrollbar on %global-ia-sidebar is visible
+%global-ia-sidebar-inner {
+  width: $global-ia-sidebar-width - 2 * $ca-grid;
+}
+
+%global-ia-content {
+  // to support sticky footer
+  display: flex;
+  flex-direction: column;
+  margin-left: $global-ia-sidebar-width;
+  padding: $ca-grid;
+
+  flex: 1 1 auto;
+
+  // stack sidebar and content vertically in print
+  @media print {
+    display: block;
+    padding: 0;
+    margin-left: 0;
+    overflow: visible;
+  }
+
+  &:only-child {
+    margin: 0 auto;
+    width: 100%; // fixes centering in IE 11 at max-width
+    min-width: 100%; // prevents too-wide content slipping under NavigationBarApp
+
+    @media (min-width: 480px) {
+      min-width: auto;
+      max-width: 900px;
+    }
+  }
+}
