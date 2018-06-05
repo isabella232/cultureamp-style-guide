@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.4.0
+
+* ✨ Create GlobalIALayout and GlobalIANavigationBar components to support new horizontal nav bar.
+
 ## 12.3.0
 
 * ✨ Support passing a `$size` argument to override the default size of Ideal Sans font style mixins. Use this if you need a type style based on one of our standard styles, but with a different size.
