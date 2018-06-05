@@ -25,7 +25,6 @@ export default class Menu extends React.Component<Props, State> {
 
   static defaultProps = {
     items: [],
-    secondary: false,
   };
 
   state = { open: false };
