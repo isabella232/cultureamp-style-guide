@@ -15,7 +15,7 @@
 }
 
 %global-ia-page {
-  display: flex;
+  display: block;
   flex: 1 0 0px;
   flex-direction: column;
 }
@@ -71,7 +71,7 @@ $global-ia-sidebar-width: 12 * $ca-grid;
   position: fixed;
   width: $global-ia-sidebar-width;
   z-index: $ca-z-index-fixed;
-  padding: $ca-grid;
+  padding: $ca-grid 0;
 
   // stack sidebar and content vertically in print
   @media print {
