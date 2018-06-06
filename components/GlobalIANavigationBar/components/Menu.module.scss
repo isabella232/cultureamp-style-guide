@@ -6,7 +6,8 @@
 .root {
   position: relative;
   margin: $ca-grid / 4;
-  max-width: $ca-grid * 2;
+  width: $ca-grid * 2;
+  height: $ca-grid * 2;
 }
 
 .button {
@@ -35,7 +36,7 @@
 
   position: absolute;
   height: 100%;
-  top: 4rem;
+  top: calc(100% + #{$ca-grid * 0.75});
   right: 0;
   z-index: $ca-z-index-dropdown;
 
@@ -43,7 +44,7 @@
   &::before {
     content: '';
     position: absolute;
-    right: 1.15rem;
+    left: calc(50% - #{$menu__arrow-size / 2});
     top: -0.4rem;
 
     border: $menu__arrow-size solid transparent;

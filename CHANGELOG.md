@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.4.2
+
+* 🐛 Fix navbar logo square which was broken in Firefox and Safari.
+
 ## 12.4.1
 
 * 🐛 Remove default `secondary` props for Menu sub-component in GlobalIANavigationBar (was causing a Flow error).
