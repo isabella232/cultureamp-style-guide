@@ -30,7 +30,7 @@
   // which may be nested n levels deep in the DOM.
   position: relative;
   flex: 1 1 0px;
-  height: 0; // flex-basis 0px doesn't work in most browsers
+  // height: 0; // flex-basis 0px doesn't work in most browsers
   max-width: 1400px;
   padding: 0 25px;
   margin: 0 auto;
@@ -38,6 +38,7 @@
   // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
   display: flex;
   flex-direction: column;
+  height: auto;
 }
 
 // old Murmur pages include this as a child of %global-ia-body
@@ -53,7 +54,8 @@
   display: flex;
 
   // match position & dimensions of %global-ia-body
-  position: absolute; // required for height to work when content is short
+  // position: absolute; // required for height to work when content is short
+  position: static;
   height: 100%;
   width: 100%;
 
