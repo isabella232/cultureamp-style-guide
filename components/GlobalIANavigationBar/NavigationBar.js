@@ -51,7 +51,7 @@ export default class NavigationBar extends React.Component<Props> {
     const badges: {
       [key: string]: React.ComponentType<{|
         loading: boolean,
-        badgeHref: string,
+        href: string,
       |}>,
     } = {
       production: ProductionBadge,
@@ -60,7 +60,7 @@ export default class NavigationBar extends React.Component<Props> {
       local: LocalBadge,
     };
     const Badge = badges[environment] || namedBadge(environment);
-    return <Badge loading={loading} badgeHref={badgeHref} />;
+    return <Badge loading={loading} href={badgeHref} />;
   }
 
   renderLinks(links: React.Element<typeof Link>[]) {

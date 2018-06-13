@@ -9,13 +9,13 @@ import spinner from 'cultureamp-style-guide/icons/spinner.svg';
 
 type BadgeProps = {|
   loading: boolean,
-  badgeHref: string,
+  href: string,
 |};
 
 export function ProductionBadge(props: BadgeProps) {
   return (
     <div className={styles.badge}>
-      <a href={props.badgeHref}>
+      <a href={props.href}>
         {props.loading ? (
           <Icon icon={spinner} title="loading…" />
         ) : (
@@ -32,7 +32,7 @@ export function StagingBadge(props: BadgeProps) {
       envClass={styles.staging}
       monogram="staging"
       loading={props.loading}
-      badgeHref={props.badgeHref}
+      href={props.href}
     />
   );
 }
@@ -43,7 +43,7 @@ export function TestBadge(props: BadgeProps) {
       envClass={styles.test}
       monogram="test"
       loading={props.loading}
-      badgeHref={props.badgeHref}
+      href={props.href}
     />
   );
 }
@@ -54,7 +54,7 @@ export function LocalBadge(props: BadgeProps) {
       envClass={styles.local}
       monogram="local"
       loading={props.loading}
-      badgeHref={props.badgeHref}
+      href={props.href}
     />
   );
 }
@@ -65,7 +65,7 @@ export function namedBadge(environment: string) {
       envClass={styles.named}
       monogram={environment}
       loading={props.loading}
-      badgeHref={props.badgeHref}
+      href={props.href}
     />
   );
 }
@@ -79,7 +79,7 @@ type MonogramBadgeProps = {|
 function MonogramBadge(props: MonogramBadgeProps) {
   return (
     <div className={classNames(styles.badge, props.envClass)}>
-      <a href={props.badgeHref} aria-live="polite">
+      <a href={props.href} aria-live="polite">
         {props.loading ? (
           <Icon icon={spinner} title="loading" />
         ) : (
