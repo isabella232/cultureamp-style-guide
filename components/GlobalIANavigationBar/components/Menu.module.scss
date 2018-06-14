@@ -3,9 +3,13 @@
 @import '~cultureamp-style-guide/styles/type';
 @import '~cultureamp-style-guide/styles/layers';
 
+$menu__square-size: $ca-grid * 2;
+
 .root {
   position: relative;
   margin: $ca-grid / 4;
+  width: $menu__square-size;
+  height: $menu__square-size;
 }
 
 .button {
@@ -34,15 +38,15 @@
 
   position: absolute;
   height: 100%;
-  top: 4rem;
-  left: -9rem;
+  top: calc(100% + #{$ca-grid * 0.75});
+  right: 0;
   z-index: $ca-z-index-dropdown;
 
   // menu arrow
   &::before {
     content: '';
     position: absolute;
-    right: 2.15rem;
+    right: calc(#{$menu__square-size / 2} - #{$menu__arrow-size});
     top: -0.4rem;
 
     border: $menu__arrow-size solid transparent;
