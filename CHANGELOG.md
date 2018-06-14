@@ -3,6 +3,7 @@
 ## 12.4.2
 
 * 🐛 Fix navbar logo square which was broken in Firefox and Safari.
+* 👍 Make nav bar badge/chip link dynamic.
 
 ## 12.4.1
 
