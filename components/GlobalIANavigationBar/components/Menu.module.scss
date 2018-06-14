@@ -3,13 +3,13 @@
 @import '~cultureamp-style-guide/styles/type';
 @import '~cultureamp-style-guide/styles/layers';
 
-$square-size: $ca-grid * 2;
+$menu__square-size: $ca-grid * 2;
 
 .root {
   position: relative;
   margin: $ca-grid / 4;
-  width: $square-size;
-  height: $square-size;
+  width: $menu__square-size;
+  height: $menu__square-size;
 }
 
 .button {
@@ -46,7 +46,7 @@ $square-size: $ca-grid * 2;
   &::before {
     content: '';
     position: absolute;
-    right: calc(#{$square-size / 2} - #{$menu__arrow-size});
+    right: calc(#{$menu__square-size / 2} - #{$menu__arrow-size});
     top: -0.4rem;
 
     border: $menu__arrow-size solid transparent;
