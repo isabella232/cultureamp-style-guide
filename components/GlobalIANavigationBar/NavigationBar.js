@@ -19,6 +19,7 @@ type Props = {|
   environment: string,
   loading: boolean,
   colorScheme: 'cultureamp' | 'kaizen',
+  badgeHref: string,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
@@ -45,10 +46,13 @@ export default class NavigationBar extends React.Component<Props> {
   }
 
   renderBadge() {
-    const { environment, loading } = this.props;
+    const { environment, loading, badgeHref } = this.props;
 
     const badges: {
-      [key: string]: React.ComponentType<{| loading: boolean |}>,
+      [key: string]: React.ComponentType<{|
+        loading: boolean,
+        href: string,
+      |}>,
     } = {
       production: ProductionBadge,
       staging: StagingBadge,
@@ -56,7 +60,7 @@ export default class NavigationBar extends React.Component<Props> {
       local: LocalBadge,
     };
     const Badge = badges[environment] || namedBadge(environment);
-    return <Badge loading={loading} />;
+    return <Badge loading={loading} href={badgeHref} />;
   }
 
   renderLinks(links: React.Element<typeof Link>[]) {
@@ -99,6 +103,7 @@ export default class NavigationBar extends React.Component<Props> {
     environment: 'production',
     loading: false,
     colorScheme: 'cultureamp',
+    badgeHref: '/',
   };
 
   static Link = Link;
