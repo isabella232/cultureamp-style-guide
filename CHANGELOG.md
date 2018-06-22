@@ -1,5 +1,9 @@
 # Release History: cultureamp-style-guide
 
+## 12.4.3
+
+* 👍 Update GlobalIALayout to work with centred max-width body.
+
 ## 12.4.2
 
 * 🐛 Fix navbar logo square which was broken in Firefox and Safari.

@@ -3,6 +3,9 @@
 @import '../../styles/type';
 @import '../GlobalIANavigationBar/styles';
 
+$global-ia-layout__max-width: 1400px;
+$global-ia-layout__side-padding: 25px;
+
 %global-ia-root {
   display: flex;
   flex-direction: column;
@@ -18,6 +21,7 @@
   display: flex;
   flex: 1 0 0px;
   flex-direction: column;
+  align-items: center;
 }
 
 %global-ia-header,
@@ -30,11 +34,14 @@
   // which may be nested n levels deep in the DOM.
   position: relative;
   flex: 1 1 0px;
-  height: 0; // flex-basis 0px doesn't work in most browsers
+  max-width: $global-ia-layout__max-width;
+  padding: 0 $global-ia-layout__side-padding;
 
   // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
   display: flex;
   flex-direction: column;
+  height: auto;
+  width: 100%;
 }
 
 // old Murmur pages include this as a child of %global-ia-body
@@ -50,7 +57,7 @@
   display: flex;
 
   // match position & dimensions of %global-ia-body
-  position: absolute; // required for height to work when content is short
+  position: static;
   height: 100%;
   width: 100%;
 
@@ -71,7 +78,7 @@ $global-ia-sidebar-width: 12 * $ca-grid;
   position: fixed;
   width: $global-ia-sidebar-width;
   z-index: $ca-z-index-fixed;
-  padding: $ca-grid;
+  padding: $ca-grid 0;
 
   // stack sidebar and content vertically in print
   @media print {
