@@ -3,6 +3,9 @@
 @import '../../styles/type';
 @import '../GlobalIANavigationBar/styles';
 
+$global-ia-layout__max-width: 1400px;
+$global-ia-layout__side-padding: 25px;
+
 %global-ia-root {
   display: flex;
   flex-direction: column;
@@ -31,8 +34,8 @@
   // which may be nested n levels deep in the DOM.
   position: relative;
   flex: 1 1 0px;
-  max-width: 1400px;
-  padding: 0 25px;
+  max-width: $global-ia-layout__max-width;
+  padding: 0 $global-ia-layout__side-padding;
 
   // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
   display: flex;
