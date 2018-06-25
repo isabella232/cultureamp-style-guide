@@ -10,18 +10,18 @@ Alternatively, build it yourself:
 
 To start the local development server:
 
-1. Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
-   installed.
-2. Install the dependencies: `bin/setup`
-3. Run Gatsby local development server: `bin/gatsby`
-4. View the site at http://localhost:8000
+1.  Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
+    installed.
+2.  Install the dependencies: `bin/setup`
+3.  Run Gatsby local development server: `bin/gatsby`
+4.  View the site at http://localhost:8000
 
 To deploy the site to Github pages:
 
-1. Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
-   installed.
-2. Install the dependencies: `bin/setup`
-3. Run the Gatsby deploy script: `bin/deploySite`
+1.  Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
+    installed.
+2.  Install the dependencies: `bin/setup`
+3.  Run the Gatsby deploy script: `bin/deploySite`
 
 ## Using components in your project
 
@@ -104,6 +104,12 @@ not contain an index.js) because Webpack does not support eliminating the unused
 components from this type of import. See
 [webpack/webpack#2867](https://github.com/webpack/webpack/issues/2867) for many
 examples of people struggling with this.
+
+## Changelog
+
+You can view the release history from the [Releases page on Github](https://github.com/cultureamp/cultureamp-style-guide/releases).
+
+For release history pre-dating 12.4.3, you can see the [old CHANGELOG.md](https://github.com/cultureamp/cultureamp-style-guide/blob/23c17f2e8e296ef0c470e6872cd715321ab1910c/CHANGELOG.md).
 
 ---
 
