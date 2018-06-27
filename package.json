@@ -19,19 +19,23 @@
   "scripts": {
     "commit": "git-cz"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -e"
-    }
-  },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ],
     "rules": {
-      "footer-leading-blank": [0, "always"],
-      "header-max-length": [0, "always"],
-      "subject-case": [0, "always"]
+      "footer-leading-blank": [
+        0,
+        "always"
+      ],
+      "header-max-length": [
+        0,
+        "always"
+      ],
+      "subject-case": [
+        0,
+        "always"
+      ]
     }
   },
   "release": {
@@ -56,7 +60,6 @@
     "extract-text-webpack-plugin": "^3.0.0",
     "flow-bin": "^0.69.0",
     "gh-pages": "^1.0.0",
-    "husky": "^1.0.0-rc.9",
     "postcss-normalize": "^3.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
