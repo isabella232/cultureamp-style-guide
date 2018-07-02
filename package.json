@@ -84,6 +84,7 @@
     "css-loader": "^0.28.5",
     "elm-css-modules-loader": "^2.0.0",
     "elm-webpack-loader": "^4.3.1",
+    "focus-visible": "^4.1.4",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
     "prop-types": "^15.6.1",

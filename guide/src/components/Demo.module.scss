@@ -13,11 +13,16 @@
 .canvas {
   @include checkerboard(12px, add-tint($ca-palette-ink, 95%), #fff);
   display: flex;
-  align-items: center;
+  align-items: start;
   justify-content: center;
   margin: 0 auto;
-  min-height: 100px;
+  min-height: $ca-grid * 3;
+  padding: $ca-grid 0;
   transition: width 500ms;
+}
+
+.gridOverlay {
+  @include debug-vertical-rhythm-grid();
 }
 
 .selectPreset {

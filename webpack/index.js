@@ -10,6 +10,7 @@ function decorateConfig(config, options) {
     decorateRules,
     addStyleGuideRules,
     addStyleGuideAlias,
+    addStyleGuideDependencies,
   ].reduce((decoratedConfig, decorator) => {
     return decorator(decoratedConfig, options);
   }, config);
@@ -227,4 +228,15 @@ function styleGuidePaths() {
   ];
 
   return module._styleGuidePaths;
+}
+
+function addStyleGuideDependencies(config) {
+  const dependencies = [require.resolve('focus.visible')];
+
+  const entry = {};
+  Object.entries(config.entry).forEach(([key, value]) => {
+    entry[key] = dependencies.concat(value);
+  });
+
+  return Object.assign({}, config, { entry });
 }

@@ -1,0 +1,17 @@
+@import 'styles';
+
+.container {
+  @extend %caButtonContainer;
+}
+
+.button {
+  @extend %caButton;
+}
+
+.content {
+  @extend %caButtonContent;
+}
+
+.label {
+  @extend %caButtonLabel;
+}

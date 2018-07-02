@@ -1,0 +1,83 @@
+@import '../../styles/border';
+@import '../../styles/color';
+@import '../../styles/type';
+
+// reset user agent syles for button elment type
+@mixin button-reset {
+  appearance: none;
+  background: transparent;
+  border: none;
+  font: inherit;
+  margin: 0;
+  padding: 0;
+  transition: none; // override Murmur global styles :(
+}
+
+%caButtonContainer {
+  @include ca-type-block(inline-block);
+}
+
+%caButton {
+  @include button-reset;
+  @include ca-type-ideal-button;
+
+  display: inline-block;
+
+  $caButton-border-width: 1px;
+  border: $caButton-border-width solid;
+  border-radius: $ca-border-radius;
+  padding: calc(#{$ca-grid / 2} - #{$caButton-border-width})
+    calc(#{$ca-grid} - #{$caButton-border-width});
+
+  // Enabled (to restrict application of hover/focus/active styles)
+  //
+  // We can't just used :enabled here, because we want to be able to apply these
+  // styles to non-form elements, such as hyperlinks. :not(:disabled) is
+  // equivalent to :enabled on form elements, but also allows these styles to be
+  // applied to elements that have no enabled/disabled states.
+  &:not(:disabled) {
+    background: $white;
+    border-color: add-tint($ca-palette-ink, 80%);
+    color: $ca-palette-ink;
+
+    &:hover,
+    &:active {
+      background: add-tint($ca-palette-ink, 97%);
+      border-color: add-tint($ca-palette-ink, 60%);
+    }
+
+    &:active {
+      border-color: add-tint($ca-palette-ink, 40%);
+      transform: translateY(1px);
+    }
+
+    // Use JS polyfill to simulate :focus-visible, not yet supported by browsers
+    // https://github.com/WICG/focus-visible#backwards-compatibility
+    :global(.js-focus-visible) & {
+      // hide native focus ring when :focus but not :focus-visible
+      &:focus {
+        outline: none;
+      }
+
+      // show custom focus ring when :focus-visible
+      &:global(.focus-visible) {
+        $caButton-focus-border-width: 2px;
+        border: $caButton-focus-border-width solid $ca-palette-ocean;
+        padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
+          calc(#{$ca-grid} - #{$caButton-focus-border-width});
+      }
+    }
+  }
+
+  // Disabled
+  &:disabled {
+  }
+}
+
+%caButtonContent {
+  display: flex;
+}
+
+%caButtonLabel {
+  display: inline;
+}

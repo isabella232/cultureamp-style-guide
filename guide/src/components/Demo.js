@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './Demo.module.scss';
+import classNames from 'classnames';
 
 const MIN_CANVAS_WIDTH = 240;
 
@@ -17,6 +18,7 @@ export default class Demo extends React.Component {
       width: null,
       height: null,
     },
+    showGridOverlay: false,
   };
 
   render() {
@@ -27,7 +29,7 @@ export default class Demo extends React.Component {
         <div className={styles.controls}>
           {this.renderSizePresets()}
           {this.renderCanvasDimensions()}
-          {this.renderComponentTypes()}
+          {this.renderOptions()}
         </div>
       </div>
     );
@@ -56,7 +58,9 @@ export default class Demo extends React.Component {
     return (
       <div className={styles.frame} ref={div => (this.frame = div)}>
         <div
-          className={styles.canvas}
+          className={classNames(styles.canvas, {
+            [styles.gridOverlay]: this.state.showGridOverlay,
+          })}
           style={{ width: this.state.assignedCanvasWidth }}
           ref={div => (this.canvas = div)}
         >
@@ -98,10 +102,11 @@ export default class Demo extends React.Component {
     );
   }
 
-  renderComponentTypes() {
+  renderOptions() {
     return (
       <div className={styles.componentTypes}>
-        <button>React</button>
+        <input type="checkbox" onChange={this.onChangeGridOverlay} /> Grid
+        overlay
       </div>
     );
   }
@@ -114,6 +119,11 @@ export default class Demo extends React.Component {
   componentWillUnmount() {
     window.removeEventListener('resize', this.onResize);
   }
+
+  onChangeGridOverlay = e => {
+    const showGridOverlay = e.target.checked;
+    this.setState({ ...this.state, showGridOverlay });
+  };
 
   onSelectPreset = e => {
     const selectedPreset = parseInt(e.target.value);

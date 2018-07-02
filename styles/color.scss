@@ -1,9 +1,12 @@
+$white: #fff;
+$black: #000;
+
 @function add-tint($color, $percentage) {
-  @return mix(#fff, $color, $percentage);
+  @return mix($white, $color, $percentage);
 }
 
 @function add-shade($color, $percentage) {
-  @return mix(#000, $color, $percentage);
+  @return mix($black, $color, $percentage);
 }
 
 @function add-alpha($color, $percentage) {
