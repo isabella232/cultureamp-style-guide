@@ -1,6 +1,8 @@
 import React from 'react';
-import styles from './Demo.module.scss';
+import reactElementToJSXString from 'react-element-to-jsx-string';
+import Text from 'cultureamp-style-guide/components/Text';
 import classNames from 'classnames';
+import styles from './Demo.module.scss';
 
 const MIN_CANVAS_WIDTH = 240;
 
@@ -31,6 +33,7 @@ export default class Demo extends React.Component {
           {this.renderCanvasDimensions()}
           {this.renderOptions()}
         </div>
+        {this.renderReactCode()}
       </div>
     );
   }
@@ -107,6 +110,21 @@ export default class Demo extends React.Component {
       <div className={styles.componentTypes}>
         <input type="checkbox" onChange={this.onChangeGridOverlay} /> Grid
         overlay
+      </div>
+    );
+  }
+
+  renderReactCode() {
+    let jsxCode = reactElementToJSXString(this.selectedPreset());
+    jsxCode = jsxCode.replace(
+      /icon={<symbol (.*)<\/symbol>}/g,
+      'icon={importedSvgIcon}'
+    );
+    jsxCode = jsxCode.replace(/function noRefCheck\(\) {}/g, 'function () {})');
+    return (
+      <div>
+        <Text tag="h3">Code for this example</Text>
+        <Text tag="pre">{jsxCode}</Text>
       </div>
     );
   }
