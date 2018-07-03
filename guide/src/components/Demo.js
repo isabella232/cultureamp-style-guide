@@ -53,7 +53,7 @@ export default class Demo extends React.Component {
   }
 
   renderCanvas() {
-    const Component = this.props.component;
+    const presetComponent = this.selectedPreset();
 
     return (
       <div className={styles.frame} ref={div => (this.frame = div)}>
@@ -64,14 +64,14 @@ export default class Demo extends React.Component {
           style={{ width: this.state.assignedCanvasWidth }}
           ref={div => (this.canvas = div)}
         >
-          <Component {...this.selectedPresetProps()} />
+          {presetComponent}
         </div>
       </div>
     );
   }
 
-  selectedPresetProps() {
-    return this.props.presets[this.state.selectedPreset].props;
+  selectedPreset() {
+    return this.props.presets[this.state.selectedPreset].node;
   }
 
   renderSizePresets() {

@@ -2,7 +2,6 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  NavigationBarDemo: ./NavigationBarDemo.js
   presets: ./_presets.js
 ---
 
@@ -16,4 +15,4 @@ Currently available for React.
 
 </IntroParagraph>
 
-<Demo component={NavigationBarDemo} presets={presets} />
+<Demo presets={presets} />

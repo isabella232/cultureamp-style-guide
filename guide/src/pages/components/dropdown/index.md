@@ -2,7 +2,6 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  Dropdown: ../../../../../components/Dropdown/Dropdown.js
   presets: ./_presets.js
 ---
 
@@ -15,4 +14,4 @@ Do not use this if the user is selecting a value, prefer a select box instead.
 
 </IntroParagraph>
 
-<Demo component={Dropdown} presets={presets} />
+<Demo presets={presets} />

@@ -2,7 +2,6 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  MenuList: ../../../../../components/MenuList/
   presets: ./_presets.js
 ---
 
@@ -16,7 +15,7 @@ Currently available for React.
 
 </IntroParagraph>
 
-<Demo component={MenuList} presets={presets} />
+<Demo presets={presets} />
 
 ## Example code:
 

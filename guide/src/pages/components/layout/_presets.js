@@ -5,6 +5,7 @@ import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
 import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import supportIcon from 'cultureamp-style-guide/icons/support.svg';
+import LayoutDemo from './LayoutDemo';
 import styles from './LayoutDemo.module.scss';
 
 const navBar = (
@@ -105,15 +106,34 @@ const footer = (
 const presets = [
   {
     name: 'With sidebar',
-    props: { children: [navBar, sidebar, content] },
+    node: (
+      <LayoutDemo>
+        {navBar}
+        {sidebar}
+        {content}
+      </LayoutDemo>
+    ),
   },
   {
     name: 'Without sidebar',
-    props: { children: [navBar, content] },
+    node: (
+      <LayoutDemo>
+        {navBar}
+        {content}
+      </LayoutDemo>
+    ),
   },
   {
     name: 'With footer and header',
-    props: { children: [header, navBar, sidebar, content, footer] },
+    node: (
+      <LayoutDemo>
+        {header}
+        {navBar}
+        {sidebar}
+        {content}
+        {footer}
+      </LayoutDemo>
+    ),
   },
 ];
 

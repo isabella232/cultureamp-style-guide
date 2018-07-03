@@ -1,4 +1,5 @@
 import {
+  MenuList,
   MenuHeader,
   MenuItem,
   MenuSeparator,
@@ -63,19 +64,25 @@ const separator = <MenuSeparator />;
 const presets = [
   {
     name: 'Default',
-    props: {
-      children: [
-        heading,
-        ...actions,
-        separator,
-        ...links,
-        separator,
-        ...destructiveActions,
-      ],
-    },
+    node: (
+      <MenuList>
+        {heading}
+        {actions}
+        {separator}
+        {links}
+        {separator}
+        {destructiveActions}
+      </MenuList>
+    ),
   },
   {
     name: 'Simple list',
+    node: (
+      <MenuList>
+        {activeState}
+        {actions}
+      </MenuList>
+    ),
     props: { children: [activeState, ...actions] },
   },
 ];
