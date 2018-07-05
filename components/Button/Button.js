@@ -23,14 +23,6 @@ type Props = {|
 
 type IconPosition = 'start' | 'end';
 
-export default function Button(props: Props) {
-  return (
-    <span className={styles.container}>
-      {props.href ? renderLink(props) : renderButton(props)}
-    </span>
-  );
-}
-
 Button.defaultProps = {
   iconPosition: 'start',
   form: false,
@@ -39,6 +31,14 @@ Button.defaultProps = {
   disabled: false,
   reversed: false,
 };
+
+export default function Button(props: Props) {
+  return (
+    <span className={styles.container}>
+      {props.href ? renderLink(props) : renderButton(props)}
+    </span>
+  );
+}
 
 function renderButton(props: Props) {
   return (
