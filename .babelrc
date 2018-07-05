@@ -1,0 +1,9 @@
+{
+  "babelrc": false,
+  "presets": [["es2015", { "modules": "commonjs" }], "react", "flow"],
+  "plugins": [
+    "add-react-displayname",
+    "transform-class-properties",
+    "transform-object-rest-spread"
+  ]
+}
