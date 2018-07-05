@@ -4,7 +4,7 @@ import GenericNotification from './GenericNotification';
 
 type Props = {|
   type: 'positive' | 'warning' | 'negative' | 'info',
-  children?: ?React.Node,
+  children: React.Node,
   onHide?: ?() => void | any,
 |};
 

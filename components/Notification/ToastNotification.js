@@ -6,7 +6,7 @@ type Props = {|
   type: 'positive' | 'warning' | 'negative' | 'info',
   persistent: boolean,
   title: string,
-  children?: ?React.Node,
+  children: React.Node,
   autohide?: ?boolean,
   onHide?: ?() => void | any,
 |};

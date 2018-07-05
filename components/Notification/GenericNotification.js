@@ -11,9 +11,9 @@ import classnames from 'classnames';
 type Props = {|
   type: 'positive' | 'warning' | 'negative' | 'info',
   style: 'global' | 'normal' | 'toast',
-  persistent?: boolean,
+  children: React.Node,
   title?: string,
-  children?: ?React.Node,
+  persistent?: boolean,
   autohide?: ?boolean,
   onHide?: ?() => void | any,
 |};
