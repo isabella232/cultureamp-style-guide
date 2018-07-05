@@ -11,7 +11,7 @@
 }
 
 .canvas {
-  @include checkerboard(12px, add-tint($ca-palette-ink, 95%), #fff);
+  @include checkerboard($ca-grid / 2, add-tint($ca-palette-ink, 95%), #fff);
   display: flex;
   align-items: start;
   justify-content: center;
@@ -23,6 +23,14 @@
 
 .gridOverlay {
   @include debug-vertical-rhythm-grid();
+}
+
+.darkBackground {
+  @include checkerboard(
+    $ca-grid / 2,
+    add-tint($ca-palette-ocean, 30%),
+    add-tint($ca-palette-ocean, 25%)
+  );
 }
 
 .selectPreset {
@@ -63,4 +71,8 @@
 
 .dimension {
   font-weight: $ca-weight-medium;
+}
+
+.renderOptions > *:not(:first-child) {
+  margin-left: $ca-grid;
 }

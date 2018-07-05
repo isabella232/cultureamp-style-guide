@@ -8,6 +8,46 @@
   @extend %caButton;
 }
 
+.primary {
+  @extend %caButtonPrimary;
+}
+
+.destructive {
+  @extend %caButtonDestructive;
+}
+
+.form {
+  @extend %caButtonForm;
+}
+
+.reversed {
+  @extend %caButtonReversed;
+}
+
+.reverseColorLapis {
+  @extend %caButtonReverseColorLapis;
+}
+
+.reverseColorOcean {
+  @extend %caButtonReverseColorOcean;
+}
+
+.reverseColorPeach {
+  @extend %caButtonReverseColorPeach;
+}
+
+.reverseColorSeedling {
+  @extend %caButtonReverseColorSeedling;
+}
+
+.reverseColorWisteria {
+  @extend %caButtonReverseColorWisteria;
+}
+
+.reverseColorYuzu {
+  @extend %caButtonReverseColorYuzu;
+}
+
 .content {
   @extend %caButtonContent;
 }

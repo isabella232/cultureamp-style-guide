@@ -231,12 +231,16 @@ function styleGuidePaths() {
 }
 
 function addStyleGuideDependencies(config) {
-  const dependencies = [require.resolve('focus.visible')];
+  const dependencies = [require.resolve('focus-visible')];
 
   const entry = {};
-  Object.entries(config.entry).forEach(([key, value]) => {
-    entry[key] = dependencies.concat(value);
-  });
+  if (typeof config.entry === 'object') {
+    Object.entries(config.entry).forEach(([key, value]) => {
+      entry[key] = dependencies.concat(value);
+    });
+  } else {
+    config.entry = dependencies.concat(config.entry);
+  }
 
   return Object.assign({}, config, { entry });
 }

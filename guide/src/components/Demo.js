@@ -21,6 +21,7 @@ export default class Demo extends React.Component {
       height: null,
     },
     showGridOverlay: false,
+    darkBackground: false,
   };
 
   render() {
@@ -56,13 +57,14 @@ export default class Demo extends React.Component {
   }
 
   renderCanvas() {
-    const presetComponent = this.selectedPreset();
+    const presetComponent = this.selectedPreset().node;
 
     return (
       <div className={styles.frame} ref={div => (this.frame = div)}>
         <div
           className={classNames(styles.canvas, {
             [styles.gridOverlay]: this.state.showGridOverlay,
+            [styles.darkBackground]: this.state.darkBackground,
           })}
           style={{ width: this.state.assignedCanvasWidth }}
           ref={div => (this.canvas = div)}
@@ -74,7 +76,7 @@ export default class Demo extends React.Component {
   }
 
   selectedPreset() {
-    return this.props.presets[this.state.selectedPreset].node;
+    return this.props.presets[this.state.selectedPreset];
   }
 
   renderSizePresets() {
@@ -107,15 +109,28 @@ export default class Demo extends React.Component {
 
   renderOptions() {
     return (
-      <div className={styles.componentTypes}>
-        <input type="checkbox" onChange={this.onChangeGridOverlay} /> Grid
-        overlay
+      <div className={styles.renderOptions}>
+        <input
+          type="checkbox"
+          onChange={this.onChangeGridOverlay}
+          checked={this.state.showGridOverlay}
+        />{' '}
+        Grid overlay
+        <input
+          type="checkbox"
+          onChange={this.onChangeDarkBackground}
+          checked={this.state.darkBackground}
+        />{' '}
+        Dark BG
       </div>
     );
   }
 
   renderReactCode() {
-    let jsxCode = reactElementToJSXString(this.selectedPreset());
+    let jsxCode = reactElementToJSXString(this.selectedPreset().node, {
+      showDefaultProps: false,
+      sortProps: false,
+    });
     jsxCode = jsxCode.replace(
       /icon={<symbol (.*)<\/symbol>}/g,
       'icon={importedSvgIcon}'
@@ -140,12 +155,22 @@ export default class Demo extends React.Component {
 
   onChangeGridOverlay = e => {
     const showGridOverlay = e.target.checked;
-    this.setState({ ...this.state, showGridOverlay });
+    this.setState({ showGridOverlay });
+  };
+
+  onChangeDarkBackground = e => {
+    const darkBackground = e.target.checked;
+    this.setState({ darkBackground });
   };
 
   onSelectPreset = e => {
     const selectedPreset = parseInt(e.target.value);
-    this.setState({ ...this.state, selectedPreset });
+    this.setState({
+      ...this.state,
+      selectedPreset,
+      darkBackground:
+        this.props.presets[selectedPreset].darkBackground === true,
+    });
   };
 
   onClickResizeTo(size) {

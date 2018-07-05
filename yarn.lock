@@ -3666,6 +3666,10 @@ focus-visible@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-4.1.4.tgz#f9963bcf5784b1d9dcde62ba53214d38a4f3f9af"
 
+focus-visible@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.yarnpkg.com/focus-visible/-/focus-visible-4.1.4.tgz#f9963bcf5784b1d9dcde62ba53214d38a4f3f9af"
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"

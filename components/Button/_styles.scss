@@ -2,6 +2,9 @@
 @import '../../styles/color';
 @import '../../styles/type';
 
+$caButton-border-width: 1px;
+$caButton-focus-border-width: 2px;
+
 // reset user agent syles for button elment type
 @mixin button-reset {
   appearance: none;
@@ -22,12 +25,13 @@
   @include ca-type-ideal-button;
 
   display: inline-block;
-
-  $caButton-border-width: 1px;
   border: $caButton-border-width solid;
   border-radius: $ca-border-radius;
-  padding: calc(#{$ca-grid / 2} - #{$caButton-border-width})
-    calc(#{$ca-grid} - #{$caButton-border-width});
+  // looking for padding? See %caButtonContent
+
+  &[href] {
+    text-decoration: none;
+  }
 
   // Enabled (to restrict application of hover/focus/active styles)
   //
@@ -47,6 +51,7 @@
     }
 
     &:active {
+      background: add-tint($ca-palette-ink, 94%);
       border-color: add-tint($ca-palette-ink, 40%);
       transform: translateY(1px);
     }
@@ -61,23 +66,239 @@
 
       // show custom focus ring when :focus-visible
       &:global(.focus-visible) {
-        $caButton-focus-border-width: 2px;
         border: $caButton-focus-border-width solid $ca-palette-ocean;
-        padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
-          calc(#{$ca-grid} - #{$caButton-focus-border-width});
       }
     }
   }
 
   // Disabled
   &:disabled {
+    background: $white;
+    border-color: add-tint($ca-palette-ink, 80%);
+    color: add-alpha($ca-palette-ink, 30%);
+  }
+}
+
+%caButtonPrimary,
+%caButtonDestructive {
+  &:not(:disabled) {
+    background: add-tint($ca-palette-seedling, 10%);
+    border-color: add-tint($ca-palette-seedling, 10%);
+    color: $white;
+
+    &:hover {
+      background: $ca-palette-seedling;
+      border-color: $ca-palette-seedling;
+    }
+
+    &:active {
+      background: add-shade($ca-palette-seedling, 10%);
+      border-color: add-shade($ca-palette-seedling, 10%);
+    }
+  }
+
+  &:disabled {
+    background: add-tint($ca-palette-ink, 90%);
+    border-color: add-tint($ca-palette-ink, 90%);
+  }
+}
+
+%caButtonDestructive:not(:disabled) {
+  background: $ca-palette-coral;
+  border-color: $ca-palette-coral;
+
+  &:hover {
+    background: add-shade($ca-palette-coral, 10%);
+    border-color: add-shade($ca-palette-coral, 10%);
+  }
+
+  &:active {
+    background: add-shade($ca-palette-coral, 15%);
+    border-color: add-shade($ca-palette-coral, 15%);
+  }
+
+  :global(.js-focus-visible) &:global(.focus-visible) {
+    border-color: add-shade($ca-palette-coral, 40%);
+  }
+}
+
+%caButtonReversed {
+  &:not(:disabled) {
+    background: transparent;
+    border-color: $white;
+    color: $white;
+
+    &:hover {
+      background: add-alpha($white, 10%);
+      border-color: $white;
+    }
+
+    :global(.js-focus-visible) &:global(.focus-visible) {
+      border-color: $ca-palette-yuzu;
+
+      &:not(:active) {
+        background: add-alpha($white, 10%);
+      }
+    }
+
+    &:active {
+      background: add-alpha($white, 20%);
+      border-color: $white;
+    }
+  }
+
+  &:disabled {
+    background: transparent;
+    border-color: add-alpha($white, 30%);
+    color: add-alpha($white, 30%);
+  }
+
+  &%caButtonPrimary {
+    &:not(:disabled) {
+      background: $white;
+      border-color: transparent;
+      color: $ca-palette-ink;
+
+      &%caButtonReverseColorLapis {
+        color: $ca-palette-lapis;
+      }
+
+      &%caButtonReverseColorOcean {
+        color: $ca-palette-ocean;
+      }
+
+      &%caButtonReverseColorPeach {
+        color: $ca-palette-peach;
+      }
+
+      &%caButtonReverseColorSeedling {
+        color: $ca-palette-seedling;
+      }
+
+      &%caButtonReverseColorWisteria {
+        color: $ca-palette-wisteria;
+      }
+
+      &%caButtonReverseColorYuzu {
+        color: $ca-palette-yuzu;
+      }
+
+      &:hover {
+        background: add-alpha($white, 95%);
+      }
+
+      :global(.js-focus-visible) &:global(.focus-visible) {
+        border-color: $ca-palette-yuzu;
+
+        &:not(:active) {
+          background: add-alpha($white, 95%);
+        }
+      }
+
+      &:active {
+        background: add-alpha($white, 90%);
+        border-color: transparent;
+      }
+
+      // knockout text effect (background visible through text) for supported browsers
+      @supports (mix-blend-mode: lighten) {
+        // add background to %caButtonContent instead, so we can mix-blend-mode the button's background but not its border (for solid focus ring)
+        background: transparent;
+        border-width: 0;
+        overflow: hidden;
+
+        %caButtonContent {
+          mix-blend-mode: screen;
+          background: $white;
+          color: $black; // mix-blend-mode makes this transparent
+        }
+
+        &:hover {
+          background: transparent;
+
+          %caButtonContent {
+            // mix-blend-mode makes this 95% alpha white
+            background: add-tint($black, 95%);
+          }
+        }
+
+        :global(.js-focus-visible) &:global(.focus-visible):not(:active) {
+          background: transparent;
+
+          %caButtonContent {
+            // mix-blend-mode makes this 95% alpha white
+            background: add-tint($black, 95%);
+          }
+        }
+
+        &:active {
+          background: transparent;
+
+          // translateY interferes with mix-blend-mode, so use margin instead
+          margin-top: 1px;
+          margin-bottom: -1px;
+          transform: none;
+
+          %caButtonContent {
+            // mix-blend-mode makes this 90% alpha white
+            background: add-tint($black, 90%);
+          }
+        }
+      }
+    }
+
+    &:disabled {
+      background: add-alpha($white, 10%);
+      border-color: transparent;
+    }
   }
 }
 
 %caButtonContent {
   display: flex;
+  align-items: center;
+
+  // Padding applied to button content and not button so that mix-blend-mode
+  // effects can be applied to the button content but not the button border
+  padding: calc(#{$ca-grid / 2} - #{$caButton-border-width})
+    calc(#{$ca-grid * 1} - #{$caButton-border-width});
+
+  %caButtonForm & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-border-width});
+  }
+
+  @supports (mix-blend-mode: screen) {
+    %caButtonReversed%caButtonPrimary & {
+      padding: ($ca-grid / 2) ($ca-grid * 1);
+    }
+
+    %caButtonForm%caButtonReversed%caButtonPrimary & {
+      padding: ($ca-grid / 3) ($ca-grid * 1);
+    }
+  }
+
+  :global(.js-focus-visible) %caButton:global(.focus-visible) & {
+    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+  }
+
+  :global(.js-focus-visible) %caButtonForm:global(.focus-visible) & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+  }
 }
 
 %caButtonLabel {
-  display: inline;
+  &:only-child {
+    margin: 0 $ca-grid / 2;
+  }
+
+  &:not(:first-child) {
+    margin-left: 0.5em;
+  }
+
+  &:not(:last-child) {
+    margin-right: 0.5em;
+  }
 }
