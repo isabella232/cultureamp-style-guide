@@ -1,0 +1,171 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The basic notification renders correctly 1`] = `
+<GlobalNotification
+  type="positive"
+>
+  <GenericNotification
+    persistent={false}
+    style="global"
+    type="positive"
+  >
+    <div
+      className="notification positive global fading"
+    >
+      <div
+        className="icon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={true}
+          role="presentation"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon inheritSize"
+            focusable="false"
+            role="presentation"
+            viewBox="viewBox"
+          >
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </div>
+      <div
+        className="textContainer"
+      >
+        <span
+          className="textWrapper"
+        >
+          <span
+            className="text"
+          >
+            This is my positive notification
+          </span>
+        </span>
+      </div>
+      <span
+        className="cancel"
+        onClick={[Function]}
+      >
+        <span
+          className="cancelInner"
+        >
+          <Icon
+            icon={null}
+            inheritSize={true}
+            role="img"
+            title="close notification"
+          >
+            <svg
+              aria-labelledby="id-2-title"
+              className="icon inheritSize"
+              focusable="false"
+              role="img"
+              viewBox="viewBox"
+            >
+              <title
+                id="id-2-title"
+              >
+                close notification
+              </title>
+              <use
+                xlinkHref="#id"
+              />
+            </svg>
+          </Icon>
+        </span>
+      </span>
+    </div>
+  </GenericNotification>
+</GlobalNotification>
+`;
+
+exports[`You can change the type 1`] = `
+<GlobalNotification
+  type="info"
+>
+  <GenericNotification
+    persistent={false}
+    style="global"
+    type="info"
+  >
+    <div
+      className="notification info global fading"
+    >
+      <div
+        className="icon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={true}
+          role="presentation"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon inheritSize"
+            focusable="false"
+            role="presentation"
+            viewBox="viewBox"
+          >
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </div>
+      <div
+        className="textContainer"
+      >
+        <span
+          className="textWrapper"
+        >
+          <span
+            className="text"
+          >
+            This is my 
+            <em>
+              informational
+            </em>
+             notification
+          </span>
+        </span>
+      </div>
+      <span
+        className="cancel"
+        onClick={[Function]}
+      >
+        <span
+          className="cancelInner"
+        >
+          <Icon
+            icon={null}
+            inheritSize={true}
+            role="img"
+            title="close notification"
+          >
+            <svg
+              aria-labelledby="id-4-title"
+              className="icon inheritSize"
+              focusable="false"
+              role="img"
+              viewBox="viewBox"
+            >
+              <title
+                id="id-4-title"
+              >
+                close notification
+              </title>
+              <use
+                xlinkHref="#id"
+              />
+            </svg>
+          </Icon>
+        </span>
+      </span>
+    </div>
+  </GenericNotification>
+</GlobalNotification>
+`;

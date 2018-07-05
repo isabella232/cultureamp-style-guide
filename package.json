@@ -72,6 +72,7 @@
     "react-elm-components": "^1.0.1",
     "react-test-renderer": "^16.4.1",
     "semantic-release": "^15.6.3",
+    "sinon": "^6.1.0",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1",
     "webpack-manifest-plugin": "^1.1.0"

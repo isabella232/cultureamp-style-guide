@@ -1,0 +1,149 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Persistent versions of the notifications work 1`] = `
+<Notification
+  persistent={true}
+  title="Error"
+  type="negative"
+>
+  <GenericNotification
+    persistent={true}
+    style="normal"
+    title="Error"
+    type="negative"
+  >
+    <div
+      className="notification negative normal fading"
+    >
+      <div
+        className="icon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={true}
+          role="presentation"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon inheritSize"
+            focusable="false"
+            role="presentation"
+            viewBox="viewBox"
+          >
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </div>
+      <div
+        className="textContainer"
+      >
+        <span
+          className="title"
+        >
+          Error
+        </span>
+        <span
+          className="textWrapper"
+        >
+          <span
+            className="text"
+          >
+            Something has gone wrong
+          </span>
+        </span>
+      </div>
+    </div>
+  </GenericNotification>
+</Notification>
+`;
+
+exports[`The basic notification renders correctly 1`] = `
+<Notification
+  title="Warning"
+  type="warning"
+>
+  <GenericNotification
+    style="normal"
+    title="Warning"
+    type="warning"
+  >
+    <div
+      className="notification warning normal fading"
+    >
+      <div
+        className="icon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={true}
+          role="presentation"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon inheritSize"
+            focusable="false"
+            role="presentation"
+            viewBox="viewBox"
+          >
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </div>
+      <div
+        className="textContainer"
+      >
+        <span
+          className="title"
+        >
+          Warning
+        </span>
+        <span
+          className="textWrapper"
+        >
+          <span
+            className="text"
+          >
+            Something has gone wrong
+          </span>
+        </span>
+      </div>
+      <span
+        className="cancel"
+        onClick={[Function]}
+      >
+        <span
+          className="cancelInner"
+        >
+          <Icon
+            icon={null}
+            inheritSize={true}
+            role="img"
+            title="close notification"
+          >
+            <svg
+              aria-labelledby="id-2-title"
+              className="icon inheritSize"
+              focusable="false"
+              role="img"
+              viewBox="viewBox"
+            >
+              <title
+                id="id-2-title"
+              >
+                close notification
+              </title>
+              <use
+                xlinkHref="#id"
+              />
+            </svg>
+          </Icon>
+        </span>
+      </span>
+    </div>
+  </GenericNotification>
+</Notification>
+`;

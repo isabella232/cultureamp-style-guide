@@ -5,7 +5,7 @@ import successIcon from '../../icons/success.svg';
 import exclamationIcon from '../../icons/exclamation.svg';
 import infoIcon from '../../icons/information.svg';
 import closeIcon from '../../icons/close.svg';
-import styles from './Notification.module.scss';
+import styles from './GenericNotification.module.scss';
 import classnames from 'classnames';
 
 type Props = {|

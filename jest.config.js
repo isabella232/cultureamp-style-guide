@@ -9,6 +9,7 @@ module.exports = {
     '<rootDir>/tmp',
     '<rootDir>/guide',
   ],
+  setupFiles: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
     '\\.(svg)$': 'identity-obj-proxy',
