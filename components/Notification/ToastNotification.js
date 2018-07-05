@@ -8,7 +8,7 @@ type Props = {|
   title: string,
   children: React.Node,
   autohide?: ?boolean,
-  onHide?: ?() => void | any,
+  onHide?: () => void,
 |};
 
 const ToastNotification = (props: Props) => (

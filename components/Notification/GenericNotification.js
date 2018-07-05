@@ -15,7 +15,7 @@ type Props = {|
   title?: string,
   persistent?: boolean,
   autohide?: ?boolean,
-  onHide?: ?() => void | any,
+  onHide?: () => void,
 |};
 
 type State = {

@@ -7,7 +7,7 @@ type Props = {|
   title: string,
   children: React.Node,
   persistent?: boolean,
-  onHide?: ?() => void | any,
+  onHide?: () => void,
 |};
 
 const Notification = (props: Props) => (
