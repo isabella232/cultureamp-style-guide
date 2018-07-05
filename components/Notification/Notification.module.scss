@@ -1,0 +1,71 @@
+@import 'styles';
+
+.notification {
+  @extend %ca-notification;
+}
+
+// Structure
+
+.icon {
+  @extend %ca-notification__icon;
+}
+
+.textContainer {
+  @extend %ca-notification__text-container;
+}
+
+.title {
+  @extend %ca-notification__title;
+}
+
+.textWrapper {
+  @extend %ca-notification__textWrapper;
+}
+
+.text {
+  @extend %ca-notification__text;
+}
+
+.cancel {
+  @extend %ca-notification__cancel;
+}
+
+.cancelInner {
+  @extend %ca-notification__cancel__inner;
+}
+
+.fading {
+  @extend %ca-notification---fading;
+}
+
+// Notification Style
+
+.normal {
+  @extend %ca-notification---normal;
+}
+
+.toast {
+  @extend %ca-notification---toast;
+}
+
+.global {
+  @extend %ca-notification---global;
+}
+
+// Notification Type
+
+.positive {
+  @extend %ca-notification---positive;
+}
+
+.info {
+  @extend %ca-notification---info;
+}
+
+.warning {
+  @extend %ca-notification---warning;
+}
+
+.negative {
+  @extend %ca-notification---negative;
+}
