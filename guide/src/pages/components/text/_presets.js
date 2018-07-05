@@ -4,127 +4,138 @@ import React from 'react';
 const presets = [
   {
     name: 'H1',
-    props: { tag: 'h1', children: 'This is a Page Title (H1)' },
+    node: <Text tag="h1">This is a Page Title (H1)</Text>,
   },
   {
     name: 'H1 (inherit baseline)',
-    props: {
-      tag: 'h1',
-      inheritBaseline: true,
-      children: 'This is a Page Title that inherits the baseline',
-    },
+    node: (
+      <Text tag="h1" inheritBaseline>
+        This is a Page Title (H1) that inherits the baseline
+      </Text>
+    ),
   },
   {
     name: 'H2',
-    props: { tag: 'h2', children: 'This is a Title (H2)' },
+    node: <Text tag="h2">This is a Title (H2)</Text>,
   },
   {
     name: 'H3',
-    props: { tag: 'h3', children: 'This is a Display Heading (H3)' },
+    node: <Text tag="h3">This is a Display Heading (H3)</Text>,
   },
   {
     name: 'H4',
-    props: { tag: 'h4', children: 'This is a Heading (H4)' },
+    node: <Text tag="h4">This is a Heading (H4)</Text>,
   },
   {
     name: 'H5',
-    props: {
-      tag: 'h5',
-      children: 'This is a H5, which uses Heading styles',
-    },
+    node: <Text tag="h5"> This is a H5, which uses Heading styles </Text>,
   },
   {
     name: 'H6',
-    props: { tag: 'h6', children: 'This is a H6, which uses Heading styles' },
+    node: <Text tag="h6">This is a H6, which uses Heading styles</Text>,
   },
   {
     name: 'Paragraph',
-    props: {
-      tag: 'p',
-      children:
-        'Dr. Brené Brown, author of Daring Greatly, is a research professor from the University of Houston who studies human emotions, including shame and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is not weakness, and that myth is profoundly dangerous.” She went on to say that after 12 years of research, she has actually determined that vulnerability is “our most accurate measurement of courage.”',
-    },
+    node: (
+      <Text tag="p">
+        Dr. Brené Brown, author of Daring Greatly, is a research professor from
+        the University of Houston who studies human emotions, including shame
+        and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is
+        not weakness, and that myth is profoundly dangerous.” She went on to say
+        that after 12 years of research, she has actually determined that
+        vulnerability is “our most accurate measurement of courage.”
+      </Text>
+    ),
   },
   {
     name: 'Lede Paragraph',
-    props: {
-      tag: 'p',
-      style: 'lede',
-      children:
-        'Dr. Brené Brown, author of Daring Greatly, is a research professor from the University of Houston who studies human emotions, including shame and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is not weakness, and that myth is profoundly dangerous.” She went on to say that after 12 years of research, she has actually determined that vulnerability is “our most accurate measurement of courage.”',
-    },
+    node: (
+      <Text tag="p" style="lede">
+        Dr. Brené Brown, author of Daring Greatly, is a research professor from
+        the University of Houston who studies human emotions, including shame
+        and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is
+        not weakness, and that myth is profoundly dangerous.” She went on to say
+        that after 12 years of research, she has actually determined that
+        vulnerability is “our most accurate measurement of courage.”
+      </Text>
+    ),
   },
   {
     name: 'Div',
-    props: {
-      tag: 'div',
-      children:
-        'Dr. Brené Brown, author of Daring Greatly, is a research professor from the University of Houston who studies human emotions, including shame and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is not weakness, and that myth is profoundly dangerous.” She went on to say that after 12 years of research, she has actually determined that vulnerability is “our most accurate measurement of courage.”',
-    },
+    node: (
+      <Text tag="div">
+        Dr. Brené Brown, author of Daring Greatly, is a research professor from
+        the University of Houston who studies human emotions, including shame
+        and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is
+        not weakness, and that myth is profoundly dangerous.” She went on to say
+        that after 12 years of research, she has actually determined that
+        vulnerability is “our most accurate measurement of courage.”
+      </Text>
+    ),
   },
   {
     name: 'Div with Page Title styles',
-    props: {
-      tag: 'div',
-      style: 'page-title',
-      children: 'Div with "Page Title" styles',
-    },
+    node: (
+      <Text tag="div" style="page-title">
+        Div with "Page Title" styles
+      </Text>
+    ),
   },
   {
     name: 'Body-bold',
-    props: {
-      tag: 'div',
-      style: 'body-bold',
-      children: 'Div with "Body Bold" styles',
-    },
+    node: (
+      <Text tag="div" style="body-bold">
+        Div with "Body Bold" styles
+      </Text>
+    ),
   },
   {
     name: 'Small',
-    props: {
-      tag: 'div',
-      style: 'small',
-      children: 'Div with "Small" styles',
-    },
+    node: (
+      <Text tag="div" style="small">
+        Div with "Small" styles
+      </Text>
+    ),
   },
   {
     name: 'Small-bold',
-    props: {
-      tag: 'div',
-      style: 'small-bold',
-      children: 'Div with "Small Bold" styles',
-    },
+    node: (
+      <Text tag="div" style="small-bold">
+        Div with "Small Bold" styles
+      </Text>
+    ),
   },
   {
     name: 'Notification',
-    props: {
-      tag: 'div',
-      style: 'notification',
-      children: 'Div with "Notification" styles',
-    },
+    node: (
+      <Text tag="div" style="notification">
+        Div with "Notification" styles
+      </Text>
+    ),
   },
   {
     name: 'Label',
-    props: {
-      tag: 'div',
-      style: 'label',
-      children: 'Div with "Label" styles',
-    },
+    node: (
+      <Text tag="div" style="label">
+        Div with "Label" styles
+      </Text>
+    ),
   },
   {
     name: 'Control-action',
-    props: {
-      tag: 'div',
-      style: 'control-action',
-      children: 'Div with "Control Action" styles',
-    },
+    node: (
+      <Text tag="div" style="control-action">
+        Div with "Control Action" styles
+      </Text>
+    ),
   },
   {
     name: 'Button',
-    props: {
-      tag: 'div',
-      style: 'button',
-      children: 'Div with "Button" styles',
-    },
+    node: (
+      <Text tag="div" style="button">
+        Div with "Button" styles
+      </Text>
+    ),
   },
 ];
 

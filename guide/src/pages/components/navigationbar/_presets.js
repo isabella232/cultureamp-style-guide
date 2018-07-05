@@ -3,6 +3,7 @@ import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
 import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import supportIcon from 'cultureamp-style-guide/icons/support.svg';
+import NavigationBarDemo from './NavigationBarDemo';
 import React from 'react';
 
 const homeLink = (
@@ -47,19 +48,36 @@ const menu = (
 const presets = [
   {
     name: 'Default',
-    props: { children: [homeLink, supportLink, menu] },
+    node: (
+      <NavigationBarDemo>
+        {homeLink}
+        {supportLink}
+        {menu}
+      </NavigationBarDemo>
+    ),
   },
   {
     name: 'Loading',
-    props: { loading: true, children: [homeLink, supportLink, menu] },
+    node: (
+      <NavigationBarDemo loading>
+        {homeLink}
+        {supportLink}
+        {menu}
+      </NavigationBarDemo>
+    ),
   },
   {
     name: 'Kaizen Colours',
-    props: { colorScheme: 'kaizen', children: [homeLink, menu] },
+    node: (
+      <NavigationBarDemo colorScheme="kaizen">
+        {homeLink}
+        {menu}
+      </NavigationBarDemo>
+    ),
   },
   {
     name: 'Empty',
-    props: { children: [] },
+    node: <NavigationBarDemo />,
   },
 ];
 

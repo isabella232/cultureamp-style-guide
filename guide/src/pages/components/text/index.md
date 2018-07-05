@@ -2,7 +2,6 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  Text: ../../../../../components/Text/Text.js
   presets: ./_presets.js
 ---
 
@@ -20,4 +19,4 @@ You can cancel the baseline alignment by using `inheritBaseline={true}`
 
 </IntroParagraph>
 
-<Demo component={Text} presets={presets} />
+<Demo presets={presets} />

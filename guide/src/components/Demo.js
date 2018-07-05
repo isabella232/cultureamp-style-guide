@@ -1,4 +1,7 @@
 import React from 'react';
+import reactElementToJSXString from 'react-element-to-jsx-string';
+import Text from 'cultureamp-style-guide/components/Text';
+import classNames from 'classnames';
 import styles from './Demo.module.scss';
 
 const MIN_CANVAS_WIDTH = 240;
@@ -17,6 +20,8 @@ export default class Demo extends React.Component {
       width: null,
       height: null,
     },
+    showGridOverlay: false,
+    darkBackground: false,
   };
 
   render() {
@@ -27,8 +32,9 @@ export default class Demo extends React.Component {
         <div className={styles.controls}>
           {this.renderSizePresets()}
           {this.renderCanvasDimensions()}
-          {this.renderComponentTypes()}
+          {this.renderOptions()}
         </div>
+        {this.renderReactCode()}
       </div>
     );
   }
@@ -51,23 +57,26 @@ export default class Demo extends React.Component {
   }
 
   renderCanvas() {
-    const Component = this.props.component;
+    const presetComponent = this.selectedPreset().node;
 
     return (
       <div className={styles.frame} ref={div => (this.frame = div)}>
         <div
-          className={styles.canvas}
+          className={classNames(styles.canvas, {
+            [styles.gridOverlay]: this.state.showGridOverlay,
+            [styles.darkBackground]: this.state.darkBackground,
+          })}
           style={{ width: this.state.assignedCanvasWidth }}
           ref={div => (this.canvas = div)}
         >
-          <Component {...this.selectedPresetProps()} />
+          {presetComponent}
         </div>
       </div>
     );
   }
 
-  selectedPresetProps() {
-    return this.props.presets[this.state.selectedPreset].props;
+  selectedPreset() {
+    return this.props.presets[this.state.selectedPreset];
   }
 
   renderSizePresets() {
@@ -98,10 +107,39 @@ export default class Demo extends React.Component {
     );
   }
 
-  renderComponentTypes() {
+  renderOptions() {
     return (
-      <div className={styles.componentTypes}>
-        <button>React</button>
+      <div className={styles.renderOptions}>
+        <input
+          type="checkbox"
+          onChange={this.onChangeGridOverlay}
+          checked={this.state.showGridOverlay}
+        />{' '}
+        Grid overlay
+        <input
+          type="checkbox"
+          onChange={this.onChangeDarkBackground}
+          checked={this.state.darkBackground}
+        />{' '}
+        Dark BG
+      </div>
+    );
+  }
+
+  renderReactCode() {
+    let jsxCode = reactElementToJSXString(this.selectedPreset().node, {
+      showDefaultProps: false,
+      sortProps: false,
+    });
+    jsxCode = jsxCode.replace(
+      /icon={<symbol (.*)<\/symbol>}/g,
+      'icon={importedSvgIcon}'
+    );
+    jsxCode = jsxCode.replace(/function noRefCheck\(\) {}/g, 'function () {})');
+    return (
+      <div>
+        <Text tag="h3">Code for this example</Text>
+        <Text tag="pre">{jsxCode}</Text>
       </div>
     );
   }
@@ -115,9 +153,24 @@ export default class Demo extends React.Component {
     window.removeEventListener('resize', this.onResize);
   }
 
+  onChangeGridOverlay = e => {
+    const showGridOverlay = e.target.checked;
+    this.setState({ showGridOverlay });
+  };
+
+  onChangeDarkBackground = e => {
+    const darkBackground = e.target.checked;
+    this.setState({ darkBackground });
+  };
+
   onSelectPreset = e => {
     const selectedPreset = parseInt(e.target.value);
-    this.setState({ ...this.state, selectedPreset });
+    this.setState({
+      ...this.state,
+      selectedPreset,
+      darkBackground:
+        this.props.presets[selectedPreset].darkBackground === true,
+    });
   };
 
   onClickResizeTo(size) {

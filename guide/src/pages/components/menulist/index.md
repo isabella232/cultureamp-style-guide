@@ -2,7 +2,6 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  MenuList: ../../../../../components/MenuList/
   presets: ./_presets.js
 ---
 
@@ -16,11 +15,11 @@ Currently available for React.
 
 </IntroParagraph>
 
-<Demo component={MenuList} presets={presets} />
+<Demo presets={presets} />
 
-## Example code:
+### Import snippet
 
-React To import:
+To import js React components into your JS file:
 
 ```
 import {
@@ -29,23 +28,4 @@ import {
   MenuItem,
   MenuSeparator,
 } from 'cultureamp-style-guide/components/MenuList';
-```
-
-To render:
-
-```
-  <MenuList>
-    <MenuHeader title="My Dropdown Menu" />
-    <MenuItem action={() => alert('print!')} icon={print} hoverIcon={false}>
-      Print (icon)
-    </MenuItem>
-    <MenuItem action={() => alert('print!')} icon={print} hoverIcon={true}>
-      Print (hover icon)
-    </MenuItem>
-    <MenuItem action={() => alert('print!')}>Print (no icon)</MenuItem>
-    <MenuSeparator />
-    <MenuItem action="https://www.cultureamp.com/">
-      Culture Amp (no icon)
-    </MenuItem>
-  </MenuList>
 ```

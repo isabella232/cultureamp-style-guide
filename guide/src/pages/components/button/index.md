@@ -2,17 +2,17 @@
 imports:
   Demo: components/Demo.js
   IntroParagraph: components/IntroParagraph.js
-  iconPresets: ./_iconPresets.js
+  buttonPresets: ./_buttonPresets.js
 ---
 
-# Icon
+# Button
 
 <IntroParagraph>
 
-An icon! To control its color, set color on a parent element, and it will be inherited.
+A button!
 
 Available for both Elm and React.
 
 </IntroParagraph>
 
-<Demo presets={iconPresets} />
+<Demo presets={buttonPresets} />

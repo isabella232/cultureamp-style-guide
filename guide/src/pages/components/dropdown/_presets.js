@@ -1,3 +1,4 @@
+import Dropdown from 'cultureamp-style-guide/components/Dropdown';
 import {
   MenuList,
   MenuHeader,
@@ -38,28 +39,31 @@ const menuList = (
 const presets = [
   {
     name: 'Default (Meatball)',
-    props: { children: menuList },
+    node: <Dropdown>{menuList}</Dropdown>,
   },
   {
     name: 'Kebab',
-    props: { icon: kebab, children: menuList },
+    node: <Dropdown icon={kebab}>{menuList}</Dropdown>,
   },
   {
     name: 'Label and icon',
-    props: { label: 'Print', icon: print, children: menuList },
+    node: (
+      <Dropdown label="Print" icon={kebab}>
+        {menuList}
+      </Dropdown>
+    ),
   },
   {
     name: 'Text only',
-    props: { label: 'Print', children: menuList },
+    node: <Dropdown label="Print">{menuList}</Dropdown>,
   },
   {
     name: 'Control action',
-    props: {
-      label: 'Print',
-      controlAction: true,
-      icon: print,
-      children: menuList,
-    },
+    node: (
+      <Dropdown label="Print" icon={print} controlAction={true}>
+        {menuList}
+      </Dropdown>
+    ),
   },
 ];
 

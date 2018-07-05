@@ -1,17 +1,19 @@
+import React from 'react';
+import Icon from 'cultureamp-style-guide/components/Icon';
 import configureIcon from 'cultureamp-style-guide/icons/configure.svg';
 
 const iconPresets = [
   {
     name: 'Meaningful',
-    props: { icon: configureIcon, role: 'img', title: 'Warning' },
+    node: <Icon icon={configureIcon} role="img" title="Warning" />,
   },
   {
     name: 'Presentational',
-    props: { icon: configureIcon, role: 'presentation' },
+    node: <Icon icon={configureIcon} role="presentation" />,
   },
   {
     name: 'Inherit size',
-    props: { icon: configureIcon, inheritSize: true, role: 'presentation' },
+    node: <Icon icon={configureIcon} role="presentation" inheritSize />,
   },
 ];
 

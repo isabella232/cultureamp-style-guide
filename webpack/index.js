@@ -10,6 +10,7 @@ function decorateConfig(config, options) {
     decorateRules,
     addStyleGuideRules,
     addStyleGuideAlias,
+    addStyleGuideDependencies,
   ].reduce((decoratedConfig, decorator) => {
     return decorator(decoratedConfig, options);
   }, config);
@@ -227,4 +228,19 @@ function styleGuidePaths() {
   ];
 
   return module._styleGuidePaths;
+}
+
+function addStyleGuideDependencies(config) {
+  const dependencies = [require.resolve('focus-visible')];
+
+  const entry = {};
+  if (typeof config.entry === 'object') {
+    Object.entries(config.entry).forEach(([key, value]) => {
+      entry[key] = dependencies.concat(value);
+    });
+  } else {
+    config.entry = dependencies.concat(config.entry);
+  }
+
+  return Object.assign({}, config, { entry });
 }

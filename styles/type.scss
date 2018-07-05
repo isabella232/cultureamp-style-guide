@@ -48,6 +48,13 @@ $ca-ideal-sans-font-descender-height: 0.14;
   // transform: translateY(#{$descender-height + $line-spacing / 2}em);
 }
 
+// Containing block for baseline-shifted text
+// Creates whitespace for the contained text to shift “into”
+@mixin ca-type-block($display: block) {
+  display: $display;
+  padding-bottom: $ca-grid / 2;
+}
+
 @mixin ca-inherit-baseline {
   position: static;
 }

@@ -24,6 +24,7 @@ const sitemap = {
           title: 'Components',
           href: '/components',
           children: [
+            { title: 'Button', href: '/components/button' },
             { title: 'Dropdown', href: '/components/dropdown' },
             { title: 'Icon', href: '/components/icon' },
             { title: 'Layout', href: '/components/layout' },
