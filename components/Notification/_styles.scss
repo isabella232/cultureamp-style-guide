@@ -8,7 +8,6 @@ $caNotification-toast-fade-time: 0.5s;
 
 %ca-notification {
   display: flex;
-  position: relative;
 
   a {
     color: $ca-link-text-color;
@@ -30,7 +29,6 @@ $caNotification-toast-fade-time: 0.5s;
   align-items: flex-start;
   width: $ca-grid;
   height: $ca-grid;
-  position: relative;
   margin-top: $ca-grid / 4;
 }
 
@@ -58,7 +56,6 @@ $caNotification-toast-fade-time: 0.5s;
 
 %ca-notification__cancel {
   color: add-tint($ca-palette-lapis, 40%);
-  position: relative;
   display: flex;
   align-items: center;
   justify-content: flex-end;
