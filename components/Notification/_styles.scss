@@ -2,7 +2,11 @@
 @import '../../styles/type';
 @import '../../styles/border';
 
-$caNotification-toast-fade-time: 0.5s;
+$ca-notification-toast-fade-time: 0.5s;
+$ca-notification-border-width: 1px;
+$ca-notification-vertical-padding: calc(
+  #{$ca-grid / 4} - #{$ca-notification-border-width}
+);
 
 // Structure
 
@@ -34,7 +38,6 @@ $caNotification-toast-fade-time: 0.5s;
   flex-direction: row;
   flex-wrap: wrap;
   flex: 1 0 0;
-  margin-left: $ca-grid / 2;
 }
 
 %ca-notification__title {
@@ -72,8 +75,8 @@ $caNotification-toast-fade-time: 0.5s;
 
 %ca-notification---fading {
   opacity: 0;
-  transition: opacity $caNotification-toast-fade-time linear,
-    transform ($caNotification-toast-fade-time * 0.8) ease-in;
+  transition: opacity $ca-notification-toast-fade-time linear,
+    transform ($ca-notification-toast-fade-time * 0.8) ease-in;
 
   %ca-notification__cancel:hover {
     cursor: auto;
@@ -126,13 +129,8 @@ $caNotification-toast-fade-time: 0.5s;
 
 %ca-notification---inline,
 %ca-notification---toast {
-  $borderWidth: 1px;
-  $verticalPadding: calc(#{$ca-grid / 4} - #{$borderWidth});
-  $horizontalPadding: 20px;
-  padding: $verticalPadding $horizontalPadding;
-
   margin-bottom: $ca-grid;
-  border-width: $borderWidth;
+  border-width: $ca-notification-border-width;
   border-style: solid;
   border-radius: $ca-border-radius;
 
@@ -140,6 +138,10 @@ $caNotification-toast-fade-time: 0.5s;
     width: $ca-grid;
     height: $ca-grid;
     margin-top: $ca-grid / 4;
+  }
+
+  %ca-notification__text-container {
+    margin-left: 10px;
   }
 
   %ca-notification__text {
@@ -153,22 +155,37 @@ $caNotification-toast-fade-time: 0.5s;
     width: $ca-grid * 2;
     height: $ca-grid * 2;
     // The negative margins are so that our clickable area will overlap the notification padding
-    margin-right: -20px;
     margin-top: -$ca-grid / 4;
     margin-bottom: -$ca-grid / 4;
   }
 }
 
 %ca-notification---inline {
+  $horizontal-padding: 20px;
+  padding: $ca-notification-vertical-padding $horizontal-padding;
+
   width: 100%;
+
+  %ca-notification__cancel {
+    // The negative margins are so that our clickable area will overlap the notification padding
+    margin-right: -$horizontal-padding;
+  }
 }
 
 %ca-notification---toast {
+  $horizontal-padding: 10px;
+  padding: $ca-notification-vertical-padding $horizontal-padding;
+
   width: 25rem;
   box-shadow: 0 3px 7px add-alpha($ca-palette-ink, 9%);
-  transition: opacity $caNotification-toast-fade-time linear,
-    transform ($caNotification-toast-fade-time * 0.8) ease-out;
+  transition: opacity $ca-notification-toast-fade-time linear,
+    transform ($ca-notification-toast-fade-time * 0.8) ease-out;
   will-change: transform;
+
+  %ca-notification__cancel {
+    // The negative margins are so that our clickable area will overlap the notification padding
+    margin-right: -$horizontal-padding;
+  }
 
   &%ca-notification---fading {
     transform: translateX(50%);
@@ -187,6 +204,10 @@ $caNotification-toast-fade-time: 0.5s;
     height: $ca-grid * 1.25;
     margin-top: $ca-grid / 8;
     color: $ca-palette-lapis;
+  }
+
+  %ca-notification__text-container {
+    margin-left: 14px;
   }
 
   %ca-notification__text {
