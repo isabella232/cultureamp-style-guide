@@ -3,7 +3,7 @@ import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
 import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import supportIcon from 'cultureamp-style-guide/icons/support.svg';
-import NavigationBarDemo from './NavigationBarDemo';
+import NavigationBarDemo from './_NavigationBarDemo';
 import React from 'react';
 
 const homeLink = (
