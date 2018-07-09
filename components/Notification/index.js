@@ -1,14 +1,12 @@
 // @flow
 import GenericNotification from './GenericNotification.js';
 import GlobalNotification from './GlobalNotification.js';
-import Notification from './Notification.js';
+import InlineNotification from './InlineNotification.js';
 import ToastNotification from './ToastNotification.js';
 
 export {
   GenericNotification,
   GlobalNotification,
-  Notification,
+  InlineNotification,
   ToastNotification,
 };
-
-export default Notification;

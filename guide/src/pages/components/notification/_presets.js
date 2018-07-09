@@ -1,4 +1,5 @@
-import Notification, {
+import {
+  InlineNotification,
   GlobalNotification,
   ToastNotification,
 } from 'cultureamp-style-guide/components/Notification/';
@@ -8,107 +9,107 @@ const iconPresets = [
   {
     name: 'Normal',
     node: (
-      <Notification type="positive" title="Success!">
+      <InlineNotification type="positive" title="Success!">
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Normal Persistent',
     node: (
-      <Notification type="positive" title="Success!" persistent>
+      <InlineNotification type="positive" title="Success!" persistent>
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Slim',
     node: (
-      <Notification type="positive" title="Success!">
+      <InlineNotification type="positive" title="Success!">
         <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Slim Persistent',
     node: (
-      <Notification type="positive" title="Success!" persistent>
+      <InlineNotification type="positive" title="Success!" persistent>
         <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Positive',
     node: (
-      <Notification type="positive" title="Success!">
+      <InlineNotification type="positive" title="Success!">
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Info',
     node: (
-      <Notification type="info" title="Information">
+      <InlineNotification type="info" title="Information">
         New user data is currently being processed. We'll let you know when the
         process s completed. <a href="/">Manage users</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Warning',
     node: (
-      <Notification type="warning" title="Warning">
+      <InlineNotification type="warning" title="Warning">
         New user data, imported by mackenzie@hooli.com has uploaded with some
         minor issues. <a href="/">View issues</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Negative',
     node: (
-      <Notification type="negative" title="Error">
+      <InlineNotification type="negative" title="Error">
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
         as possible. For assistance, please <a href="/">contact support</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Persistent, Positive',
     node: (
-      <Notification type="positive" title="Success!" persistent>
+      <InlineNotification type="positive" title="Success!" persistent>
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Persistent, Info',
     node: (
-      <Notification type="info" title="Information" persistent>
+      <InlineNotification type="info" title="Information" persistent>
         New user data is currently being processed. We'll let you know when the
         process s completed. <a href="/">Manage users</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Persistent, Warning',
     node: (
-      <Notification type="warning" title="Warning" persistent>
+      <InlineNotification type="warning" title="Warning" persistent>
         New user data, imported by mackenzie@hooli.com has uploaded with some
         minor issues. <a href="/">View issues</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {
     name: 'Persistent, Negative',
     node: (
-      <Notification type="negative" title="Error" persistent>
+      <InlineNotification type="negative" title="Error" persistent>
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
         as possible. For assistance, please <a href="/">contact support</a>
-      </Notification>
+      </InlineNotification>
     ),
   },
   {

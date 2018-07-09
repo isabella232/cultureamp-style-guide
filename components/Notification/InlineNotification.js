@@ -10,8 +10,8 @@ type Props = {|
   onHide?: () => void,
 |};
 
-const Notification = (props: Props) => (
+const InlineNotification = (props: Props) => (
   <GenericNotification style="normal" {...props} />
 );
 
-export default Notification;
+export default InlineNotification;
