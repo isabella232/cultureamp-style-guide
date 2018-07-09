@@ -7,7 +7,7 @@ import React from 'react';
 
 const presets = [
   {
-    name: 'Inline (Affirmative)',
+    name: 'Affirmative',
     node: (
       <InlineNotification type="affirmative" title="Success!">
         New user data, imported by mackenzie@hooli.com has successfully
@@ -16,7 +16,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Informative)',
+    name: 'Informative',
     node: (
       <InlineNotification type="informative" title="Informative">
         New user data is currently being processed. We'll let you know when the
@@ -25,7 +25,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Warning)',
+    name: 'Warning',
     node: (
       <InlineNotification type="warning" title="Warning">
         New user data, imported by mackenzie@hooli.com has uploaded with some
@@ -34,7 +34,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Negative)',
+    name: 'Negative',
     node: (
       <InlineNotification type="negative" title="Error">
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
@@ -43,7 +43,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Persistent, Affirmative)',
+    name: 'Persistent, Affirmative',
     node: (
       <InlineNotification type="affirmative" title="Success!" persistent>
         New user data, imported by mackenzie@hooli.com has successfully
@@ -52,7 +52,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Persistent, Informative)',
+    name: 'Persistent, Informative',
     node: (
       <InlineNotification type="informative" title="Informative" persistent>
         New user data is currently being processed. We'll let you know when the
@@ -61,7 +61,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Persistent, Warning)',
+    name: 'Persistent, Warning',
     node: (
       <InlineNotification type="warning" title="Warning" persistent>
         New user data, imported by mackenzie@hooli.com has uploaded with some
@@ -70,7 +70,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Persistent, Negative)',
+    name: 'Persistent, Negative',
     node: (
       <InlineNotification type="negative" title="Error" persistent>
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
@@ -79,7 +79,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Multiline)',
+    name: 'Multiline',
     node: (
       <InlineNotification type="negative" title="Error">
         There’s a problem connecting to your HRIS. Check your HRIS is working
@@ -89,7 +89,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Multiline, Persistent)',
+    name: 'Multiline, Persistent',
     node: (
       <InlineNotification type="negative" title="Error" persistent>
         There’s a problem connecting to your HRIS. Check your HRIS is working
@@ -99,7 +99,7 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Slim)',
+    name: 'Slim',
     node: (
       <InlineNotification type="affirmative" title="Success!">
         <a href="/">Manage users is now available</a>
@@ -107,11 +107,43 @@ const presets = [
     ),
   },
   {
-    name: 'Inline (Slim, Persistent)',
+    name: 'Slim, Persistent',
     node: (
       <InlineNotification type="affirmative" title="Success!" persistent>
         <a href="/">Manage users is now available</a>
       </InlineNotification>
+    ),
+  },
+  {
+    name: 'Slim, Persistent',
+    node: (
+      <InlineNotification type="affirmative" title="Success!" persistent>
+        <a href="/">Manage users is now available</a>
+      </InlineNotification>
+    ),
+  },
+  {
+    name: 'Multiple notifications',
+    node: (
+      <div>
+        <InlineNotification type="affirmative" title="Success!">
+          New user data, imported by mackenzie@hooli.com has successfully
+          uploaded. <a href="/">Manage users is now available</a>
+        </InlineNotification>
+        <InlineNotification type="informative" title="Informative">
+          New user data is currently being processed. We'll let you know when
+          the process s completed. <a href="/">Manage users</a>
+        </InlineNotification>
+        <InlineNotification type="warning" title="Warning">
+          New user data, imported by mackenzie@hooli.com has uploaded with some
+          minor issues. <a href="/">View issues</a>
+        </InlineNotification>
+        <InlineNotification type="negative" title="Error">
+          Oh, snap! Some shit's just gone down. We're trying to fix it as
+          quickly as possible. For assistance, please{' '}
+          <a href="/">contact support</a>
+        </InlineNotification>
+      </div>
     ),
   },
 ];
