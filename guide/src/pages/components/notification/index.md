@@ -1,18 +1,10 @@
 ---
 imports:
-  Demo: components/Demo.js
-  IntroParagraph: components/IntroParagraph.js
-  presets: ./_presets.js
+  Link: components/Link.js
 ---
 
 # Notification
 
-<IntroParagraph>
-
-A notification!
-
-Available for both Elm and React.
-
-</IntroParagraph>
-
-<Demo presets={presets} />
+* <Link to="/components/notification/global">Global Notification</Link>
+* <Link to="/components/notification/inline">Inline Notification</Link>
+* <Link to="/components/notification/toast">Toast Notification</Link>
