@@ -7,59 +7,25 @@ import React from 'react';
 
 const iconPresets = [
   {
-    name: 'Normal',
+    name: 'Inline (Affirmative)',
     node: (
-      <InlineNotification type="positive" title="Success!">
+      <InlineNotification type="affirmative" title="Success!">
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </InlineNotification>
     ),
   },
   {
-    name: 'Normal Persistent',
+    name: 'Inline (Informative)',
     node: (
-      <InlineNotification type="positive" title="Success!" persistent>
-        New user data, imported by mackenzie@hooli.com has successfully
-        uploaded. <a href="/">Manage users is now available</a>
-      </InlineNotification>
-    ),
-  },
-  {
-    name: 'Slim',
-    node: (
-      <InlineNotification type="positive" title="Success!">
-        <a href="/">Manage users is now available</a>
-      </InlineNotification>
-    ),
-  },
-  {
-    name: 'Slim Persistent',
-    node: (
-      <InlineNotification type="positive" title="Success!" persistent>
-        <a href="/">Manage users is now available</a>
-      </InlineNotification>
-    ),
-  },
-  {
-    name: 'Positive',
-    node: (
-      <InlineNotification type="positive" title="Success!">
-        New user data, imported by mackenzie@hooli.com has successfully
-        uploaded. <a href="/">Manage users is now available</a>
-      </InlineNotification>
-    ),
-  },
-  {
-    name: 'Info',
-    node: (
-      <InlineNotification type="info" title="Information">
+      <InlineNotification type="informative" title="Informative">
         New user data is currently being processed. We'll let you know when the
         process s completed. <a href="/">Manage users</a>
       </InlineNotification>
     ),
   },
   {
-    name: 'Warning',
+    name: 'Inline (Warning)',
     node: (
       <InlineNotification type="warning" title="Warning">
         New user data, imported by mackenzie@hooli.com has uploaded with some
@@ -68,7 +34,7 @@ const iconPresets = [
     ),
   },
   {
-    name: 'Negative',
+    name: 'Inline (Negative)',
     node: (
       <InlineNotification type="negative" title="Error">
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
@@ -77,25 +43,25 @@ const iconPresets = [
     ),
   },
   {
-    name: 'Persistent, Positive',
+    name: 'Inline (Persistent, Affirmative)',
     node: (
-      <InlineNotification type="positive" title="Success!" persistent>
+      <InlineNotification type="affirmative" title="Success!" persistent>
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </InlineNotification>
     ),
   },
   {
-    name: 'Persistent, Info',
+    name: 'Inline (Persistent, Informative)',
     node: (
-      <InlineNotification type="info" title="Information" persistent>
+      <InlineNotification type="informative" title="Informative" persistent>
         New user data is currently being processed. We'll let you know when the
         process s completed. <a href="/">Manage users</a>
       </InlineNotification>
     ),
   },
   {
-    name: 'Persistent, Warning',
+    name: 'Inline (Persistent, Warning)',
     node: (
       <InlineNotification type="warning" title="Warning" persistent>
         New user data, imported by mackenzie@hooli.com has uploaded with some
@@ -104,7 +70,7 @@ const iconPresets = [
     ),
   },
   {
-    name: 'Persistent, Negative',
+    name: 'Inline (Persistent, Negative)',
     node: (
       <InlineNotification type="negative" title="Error" persistent>
         Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
@@ -113,27 +79,63 @@ const iconPresets = [
     ),
   },
   {
-    name: 'Toast (Positive)',
+    name: 'Inline (Multiline)',
     node: (
-      <ToastNotification type="positive" title="Success!">
+      <InlineNotification type="negative" title="Error">
+        There’s a problem connecting to your HRIS. Check your HRIS is working
+        and check your<a href="/">integration settings</a>, or if you require
+        more assistance please <a href="/">contact support</a>.
+      </InlineNotification>
+    ),
+  },
+  {
+    name: 'Inline (Multiline, Persistent)',
+    node: (
+      <InlineNotification type="negative" title="Error" persistent>
+        There’s a problem connecting to your HRIS. Check your HRIS is working
+        and check your<a href="/">integration settings</a>, or if you require
+        more assistance please <a href="/">contact support</a>.
+      </InlineNotification>
+    ),
+  },
+  {
+    name: 'Inline (Slim)',
+    node: (
+      <InlineNotification type="affirmative" title="Success!">
+        <a href="/">Manage users is now available</a>
+      </InlineNotification>
+    ),
+  },
+  {
+    name: 'Inline (Slim, Persistent)',
+    node: (
+      <InlineNotification type="affirmative" title="Success!" persistent>
+        <a href="/">Manage users is now available</a>
+      </InlineNotification>
+    ),
+  },
+  {
+    name: 'Toast (Affirmative)',
+    node: (
+      <ToastNotification type="affirmative" title="Success!">
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </ToastNotification>
     ),
   },
   {
-    name: 'Toast (Positive, Autohide)',
+    name: 'Toast (Affirmative, Autohide)',
     node: (
-      <ToastNotification type="positive" title="Success!" autohide>
+      <ToastNotification type="affirmative" title="Success!" autohide>
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </ToastNotification>
     ),
   },
   {
-    name: 'Toast (Information)',
+    name: 'Toast (Informative)',
     node: (
-      <ToastNotification type="info" title="Information">
+      <ToastNotification type="informative" title="Informative">
         New user data is currently being processed. We'll let you know when the
         process is completed. <a href="/">Manage users</a>
       </ToastNotification>
@@ -160,16 +162,16 @@ const iconPresets = [
   {
     name: 'Toast (Persistent, Positive)',
     node: (
-      <ToastNotification type="positive" title="Success!" persistent>
+      <ToastNotification type="affirmative" title="Success!" persistent>
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </ToastNotification>
     ),
   },
   {
-    name: 'Toast (Persistent, Information)',
+    name: 'Toast (Persistent, Informative)',
     node: (
-      <ToastNotification type="info" title="Information" persistent>
+      <ToastNotification type="informative" title="Informative" persistent>
         New user data is currently being processed. We'll let you know when the
         process is completed. <a href="/">Manage users</a>
       </ToastNotification>
@@ -194,18 +196,18 @@ const iconPresets = [
     ),
   },
   {
-    name: 'Global (Positive)',
+    name: 'Global (Affirmative)',
     node: (
-      <GlobalNotification type="positive">
+      <GlobalNotification type="affirmative">
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
       </GlobalNotification>
     ),
   },
   {
-    name: 'Global (Information)',
+    name: 'Global (Informative)',
     node: (
-      <GlobalNotification type="info">
+      <GlobalNotification type="informative">
         New user data is currently being processed. We'll let you know when the
         process is completed. <a href="/">Manage users</a>
       </GlobalNotification>

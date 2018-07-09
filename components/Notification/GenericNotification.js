@@ -9,7 +9,7 @@ import styles from './GenericNotification.module.scss';
 import classnames from 'classnames';
 
 type Props = {|
-  type: 'positive' | 'warning' | 'negative' | 'info',
+  type: 'affirmative' | 'informative' | 'warning' | 'negative',
   style: 'global' | 'normal' | 'toast',
   children: React.Node,
   title?: string,

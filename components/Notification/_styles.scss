@@ -149,13 +149,23 @@ $caNotification-toast-fade-time: 0.5s;
 
 // Notification Type
 
-%ca-notification---positive {
+%ca-notification---affirmative {
   background: add-tint($ca-palette-seedling, 90%);
   border-color: add-tint($ca-palette-seedling, 60%);
   color: $ca-palette-lapis;
 
   %ca-notification__icon {
     color: add-tint($ca-palette-seedling, 40%);
+  }
+}
+
+%ca-notification---informative {
+  background: add-tint($ca-palette-ocean, 90%);
+  border-color: add-tint($ca-palette-ocean, 60%);
+  color: $ca-palette-lapis;
+
+  %ca-notification__icon {
+    color: add-tint($ca-palette-ocean, 30%);
   }
 }
 
@@ -176,15 +186,5 @@ $caNotification-toast-fade-time: 0.5s;
 
   %ca-notification__icon {
     color: add-tint($ca-palette-coral, 20%);
-  }
-}
-
-%ca-notification---info {
-  background: add-tint($ca-palette-ocean, 90%);
-  border-color: add-tint($ca-palette-ocean, 60%);
-  color: $ca-palette-lapis;
-
-  %ca-notification__icon {
-    color: add-tint($ca-palette-ocean, 30%);
   }
 }

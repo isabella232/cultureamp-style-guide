@@ -54,12 +54,12 @@
 
 // Notification Type
 
-.positive {
-  @extend %ca-notification---positive;
+.affirmative {
+  @extend %ca-notification---affirmative;
 }
 
-.info {
-  @extend %ca-notification---info;
+.informative {
+  @extend %ca-notification---informative;
 }
 
 .warning {

@@ -3,7 +3,7 @@ import * as React from 'react';
 import GenericNotification from './GenericNotification';
 
 type Props = {|
-  type: 'positive' | 'warning' | 'negative' | 'info',
+  type: 'affirmative' | 'informative' | 'warning' | 'negative',
   persistent: boolean,
   title: string,
   children: React.Node,
