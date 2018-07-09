@@ -67,13 +67,13 @@ class GenericNotification extends React.Component<Props, State> {
 
   getIconType() {
     switch (this.props.type) {
-      case 'positive':
+      case 'affirmative':
         return successIcon;
       case 'negative':
         return exclamationIcon;
       case 'warning':
         return exclamationIcon;
-      case 'info':
+      case 'informative':
         return infoIcon;
       default:
         return infoIcon;
