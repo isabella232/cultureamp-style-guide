@@ -27,9 +27,6 @@ $caNotification-toast-fade-time: 0.5s;
 
 %ca-notification__icon {
   align-items: flex-start;
-  width: $ca-grid;
-  height: $ca-grid;
-  margin-top: $ca-grid / 4;
 }
 
 %ca-notification__text-container {
@@ -83,74 +80,6 @@ $caNotification-toast-fade-time: 0.5s;
   }
 }
 
-// Notification Style
-
-%ca-notification---inline,
-%ca-notification---toast {
-  $borderWidth: 1px;
-  $verticalPadding: calc(#{$ca-grid / 4} - #{$borderWidth});
-  $horizontalPadding: 20px;
-  padding: $verticalPadding $horizontalPadding;
-
-  margin-bottom: $ca-grid;
-  border-width: $borderWidth;
-  border-style: solid;
-  border-radius: $ca-border-radius;
-
-  %ca-notification__text {
-    @include ca-type-ideal-notification;
-    // When the title and text are on different lines this ensures the baselines are exactly 1 grid unit apart.
-    // When they are both on a single line it ensures both are 1 grid unit tall.
-    margin-top: $ca-grid / 4;
-  }
-
-  %ca-notification__cancel {
-    width: $ca-grid * 2;
-    height: $ca-grid * 2;
-    // The negative margins are so that our clickable area will overlap the notification padding
-    margin-right: -20px;
-    margin-top: -$ca-grid / 4;
-    margin-bottom: -$ca-grid / 4;
-  }
-}
-
-%ca-notification---inline {
-  width: 100%;
-}
-
-%ca-notification---toast {
-  width: 25rem;
-  box-shadow: 0 3px 7px add-alpha($ca-palette-ink, 9%);
-  transition: opacity $caNotification-toast-fade-time linear,
-    transform ($caNotification-toast-fade-time * 0.8) ease-out;
-  will-change: transform;
-
-  &%ca-notification---fading {
-    transform: translateX(50%);
-  }
-}
-
-%ca-notification---global {
-  padding: $ca-grid / 2 20px;
-  width: 100%;
-  border-width: 0;
-  border-radius: 0;
-  margin-bottom: 0;
-
-  %ca-notification__text {
-    @include ca-type-ideal-body;
-  }
-
-  %ca-notification__cancel {
-    width: $ca-grid * 2.5;
-    height: $ca-grid * 2.5;
-    // The negative margins are so that our clickable area will overlap the notification padding
-    margin-right: -20px;
-    margin-top: -$ca-grid / 2;
-    margin-bottom: -$ca-grid / 2;
-  }
-}
-
 // Notification Type
 
 %ca-notification---affirmative {
@@ -190,5 +119,103 @@ $caNotification-toast-fade-time: 0.5s;
 
   %ca-notification__icon {
     color: add-tint($ca-palette-coral, 20%);
+  }
+}
+
+// Notification Style
+
+%ca-notification---inline,
+%ca-notification---toast {
+  $borderWidth: 1px;
+  $verticalPadding: calc(#{$ca-grid / 4} - #{$borderWidth});
+  $horizontalPadding: 20px;
+  padding: $verticalPadding $horizontalPadding;
+
+  margin-bottom: $ca-grid;
+  border-width: $borderWidth;
+  border-style: solid;
+  border-radius: $ca-border-radius;
+
+  %ca-notification__icon {
+    width: $ca-grid;
+    height: $ca-grid;
+    margin-top: $ca-grid / 4;
+  }
+
+  %ca-notification__text {
+    @include ca-type-ideal-notification;
+    // When the title and text are on different lines this ensures the baselines are exactly 1 grid unit apart.
+    // When they are both on a single line it ensures both are 1 grid unit tall.
+    margin-top: $ca-grid / 4;
+  }
+
+  %ca-notification__cancel {
+    width: $ca-grid * 2;
+    height: $ca-grid * 2;
+    // The negative margins are so that our clickable area will overlap the notification padding
+    margin-right: -20px;
+    margin-top: -$ca-grid / 4;
+    margin-bottom: -$ca-grid / 4;
+  }
+}
+
+%ca-notification---inline {
+  width: 100%;
+}
+
+%ca-notification---toast {
+  width: 25rem;
+  box-shadow: 0 3px 7px add-alpha($ca-palette-ink, 9%);
+  transition: opacity $caNotification-toast-fade-time linear,
+    transform ($caNotification-toast-fade-time * 0.8) ease-out;
+  will-change: transform;
+
+  &%ca-notification---fading {
+    transform: translateX(50%);
+  }
+}
+
+%ca-notification---global {
+  padding: $ca-grid / 2 15px;
+  width: 100%;
+  border-width: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+
+  %ca-notification__icon {
+    width: $ca-grid * 1.25;
+    height: $ca-grid * 1.25;
+    margin-top: $ca-grid / 8;
+    color: $ca-palette-lapis;
+  }
+
+  %ca-notification__text {
+    @include ca-type-ideal-body;
+  }
+
+  %ca-notification__cancel {
+    width: $ca-grid * 2.5;
+    height: $ca-grid * 2.5;
+    // The negative margins are so that our clickable area will overlap the notification padding
+    margin-right: -15px;
+    margin-top: -$ca-grid / 2;
+    margin-bottom: -$ca-grid / 2;
+  }
+
+  a {
+    color: $ca-palette-lapis;
+  }
+
+  &%ca-notification---affirmative {
+    background-color: add-tint($ca-palette-seedling, 70%);
+  }
+  &%ca-notification---informative {
+    background-color: add-tint($ca-palette-ocean, 70%);
+  }
+  &%ca-notification---warning {
+    background-color: add-tint($ca-palette-yuzu, 70%);
+  }
+  &%ca-notification---negative {
+    background-color: add-tint($ca-palette-coral, 50%);
   }
 }
