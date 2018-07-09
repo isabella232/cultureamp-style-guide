@@ -11,7 +11,7 @@ type Props = {|
 |};
 
 const InlineNotification = (props: Props) => (
-  <GenericNotification style="normal" {...props} />
+  <GenericNotification style="inline" {...props} />
 );
 
 export default InlineNotification;

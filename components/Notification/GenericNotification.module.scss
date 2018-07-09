@@ -40,8 +40,8 @@
 
 // Notification Style
 
-.normal {
-  @extend %ca-notification---normal;
+.inline {
+  @extend %ca-notification---inline;
 }
 
 .toast {

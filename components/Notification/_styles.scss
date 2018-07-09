@@ -85,7 +85,7 @@ $caNotification-toast-fade-time: 0.5s;
 
 // Notification Style
 
-%ca-notification---normal,
+%ca-notification---inline,
 %ca-notification---toast {
   $borderWidth: 1px;
   $verticalPadding: calc(#{$ca-grid / 4} - #{$borderWidth});
@@ -112,6 +112,10 @@ $caNotification-toast-fade-time: 0.5s;
     margin-top: -$ca-grid / 4;
     margin-bottom: -$ca-grid / 4;
   }
+}
+
+%ca-notification---inline {
+  width: 100%;
 }
 
 %ca-notification---toast {

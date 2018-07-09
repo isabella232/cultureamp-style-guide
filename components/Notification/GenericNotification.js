@@ -10,7 +10,7 @@ import classnames from 'classnames';
 
 type Props = {|
   type: 'affirmative' | 'informative' | 'warning' | 'negative',
-  style: 'global' | 'normal' | 'toast',
+  style: 'global' | 'inline' | 'toast',
   children: React.Node,
   title?: string,
   persistent?: boolean,
