@@ -6,12 +6,24 @@ type Props = {|
   type: 'affirmative' | 'informative' | 'warning' | 'negative',
   title: string,
   children: React.Node,
-  autohide?: ?boolean,
+  autohide?: false | true | 'hideCloseIcon',
   onHide?: () => void,
 |};
 
-const ToastNotification = (props: Props) => (
-  <GenericNotification style="toast" {...props} />
-);
+const ToastNotification = (props: Props) => {
+  const persistent = props.autohide === 'hideCloseIcon';
+  return (
+    <GenericNotification
+      style="toast"
+      persistent={persistent}
+      type={props.type}
+      title={props.title}
+      autohide={Boolean(props.autohide)}
+      onHide={props.onHide}
+    >
+      {props.children}
+    </GenericNotification>
+  );
+};
 
 export default ToastNotification;

@@ -25,6 +25,19 @@ const presets = [
     ),
   },
   {
+    name: 'Affirmative, Autohide, Hide Close Icon',
+    node: (
+      <ToastNotification
+        type="affirmative"
+        title="Success!"
+        autohide="hideCloseIcon"
+      >
+        New user data, imported by mackenzie@hooli.com has successfully
+        uploaded. <a href="/">Manage users is now available</a>
+      </ToastNotification>
+    ),
+  },
+  {
     name: 'Informative',
     node: (
       <ToastNotification type="informative" title="Informative">

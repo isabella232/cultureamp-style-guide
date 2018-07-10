@@ -9,7 +9,7 @@ imports:
 
 <IntroParagraph>
 
-A global notification!
+A toast notification!
 
 Available for both Elm and React.
 
