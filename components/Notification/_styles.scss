@@ -1,6 +1,7 @@
 @import '../../styles/color';
 @import '../../styles/type';
 @import '../../styles/border';
+@import '../Button/styles';
 
 $ca-notification-toast-fade-time: 0.5s;
 $ca-notification-border-width: 1px;
@@ -55,12 +56,18 @@ $ca-notification-vertical-padding: calc(
 }
 
 %ca-notification__cancel {
+  @include button-reset;
   composes: interactiveIconWrapper from '../Icon/Icon.module.scss';
   color: $ca-palette-lapis;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   cursor: pointer;
+  transform: none;
+
+  &:active {
+    transform: translateY(1px);
+  }
 }
 
 %ca-notification__cancel__inner {

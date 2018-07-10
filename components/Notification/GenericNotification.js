@@ -82,7 +82,7 @@ class GenericNotification extends React.Component<Props, State> {
 
   renderCancelButton() {
     return (
-      <span className={styles.cancel} onClick={() => this.triggerHide()}>
+      <button className={styles.cancel} onClick={() => this.triggerHide()}>
         <span className={styles.cancelInner}>
           <Icon
             icon={closeIcon}
@@ -91,7 +91,7 @@ class GenericNotification extends React.Component<Props, State> {
             inheritSize
           />
         </span>
-      </span>
+      </button>
     );
   }
 
