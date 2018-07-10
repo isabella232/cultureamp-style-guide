@@ -223,7 +223,8 @@ $ca-notification-vertical-padding: calc(
     margin-bottom: -$ca-grid / 2;
   }
 
-  a {
+  a,
+  a:hover {
     color: $ca-palette-lapis;
   }
 
