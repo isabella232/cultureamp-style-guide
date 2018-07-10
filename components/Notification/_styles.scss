@@ -55,15 +55,12 @@ $ca-notification-vertical-padding: calc(
 }
 
 %ca-notification__cancel {
-  color: add-tint($ca-palette-lapis, 40%);
+  composes: interactiveIconWrapper from '../Icon/Icon.module.scss';
+  color: $ca-palette-lapis;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-
-  &:hover {
-    color: add-tint($ca-palette-lapis, 20%);
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 %ca-notification__cancel__inner {
