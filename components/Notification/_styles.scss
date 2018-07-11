@@ -176,6 +176,10 @@ $ca-notification-slide-right: transform $ca-notification-fade-time ease-out;
   transition: $ca-notification-fade-out,
     $ca-notification-collapse-height-delayed;
 
+  %ca-notification__textContainer {
+    transition: $ca-notification-fade-out;
+  }
+
   %ca-notification__cancel {
     // The negative margins are so that our clickable area will overlap the notification padding
     margin-right: -$horizontal-padding;
