@@ -36,13 +36,21 @@ $global-ia-layout__content-width: 1080px;
   // which may be nested n levels deep in the DOM.
   position: relative;
   flex: 1 1 0px;
-  max-width: $global-ia-layout__max-width;
-  padding: 0 $global-ia-layout__side-padding;
 
   // to support %global-ia-legacy-sticky-footer (TODO: remove once it's not used)
   display: flex;
   flex-direction: column;
   height: auto;
+  width: 100%;
+}
+
+%global-ia-app-root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+%global-ia-title-block {
   width: 100%;
 }
 
@@ -57,6 +65,9 @@ $global-ia-layout__content-width: 1080px;
 // and support a sticky footer that conforms to those dimensions
 %global-ia-body-inner {
   display: flex;
+
+  max-width: $global-ia-layout__max-width;
+  padding: 0 $global-ia-layout__side-padding;
 
   // match position & dimensions of %global-ia-body
   position: static;
@@ -74,13 +85,12 @@ $global-ia-layout__content-width: 1080px;
 $global-ia-sidebar-width: 12 * $ca-grid;
 %global-ia-sidebar {
   background-color: $ca-palette-stone;
-  height: calc(100vh - #{$ca-navigation-bar__height});
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
   width: $global-ia-sidebar-width;
-  z-index: $ca-z-index-fixed;
   padding: $ca-grid 0;
+  overflow-x: visible;
+  overflow-y: visible;
+  height: auto;
+  position: static;
 
   // stack sidebar and content vertically in print
   @media print {
@@ -103,9 +113,8 @@ $global-ia-sidebar-width: 12 * $ca-grid;
   // to support sticky footer
   display: flex;
   flex-direction: column;
-  margin-left: $global-ia-sidebar-width;
   padding: $ca-grid;
-
+  margin-left: $global-ia-sidebar-width;
   flex: 1 1 auto;
 
   // stack sidebar and content vertically in print
