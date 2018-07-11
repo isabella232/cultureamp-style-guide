@@ -1,19 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Persistent versions of the notifications work 1`] = `
-<Notification
+<InlineNotification
   persistent={true}
   title="Error"
   type="negative"
 >
   <GenericNotification
     persistent={true}
-    style="normal"
+    style="inline"
     title="Error"
     type="negative"
   >
     <div
-      className="notification negative normal fading"
+      className="notification negative inline fading"
+      onTransitionEnd={[Function]}
+      style={
+        Object {
+          "marginTop": undefined,
+        }
+      }
     >
       <div
         className="icon"
@@ -56,21 +62,27 @@ exports[`Persistent versions of the notifications work 1`] = `
       </div>
     </div>
   </GenericNotification>
-</Notification>
+</InlineNotification>
 `;
 
 exports[`The basic notification renders correctly 1`] = `
-<Notification
+<InlineNotification
   title="Warning"
   type="warning"
 >
   <GenericNotification
-    style="normal"
+    style="inline"
     title="Warning"
     type="warning"
   >
     <div
-      className="notification warning normal fading"
+      className="notification warning inline fading"
+      onTransitionEnd={[Function]}
+      style={
+        Object {
+          "marginTop": undefined,
+        }
+      }
     >
       <div
         className="icon"
@@ -111,7 +123,7 @@ exports[`The basic notification renders correctly 1`] = `
           </span>
         </span>
       </div>
-      <span
+      <button
         className="cancel"
         onClick={[Function]}
       >
@@ -142,8 +154,8 @@ exports[`The basic notification renders correctly 1`] = `
             </svg>
           </Icon>
         </span>
-      </span>
+      </button>
     </div>
   </GenericNotification>
-</Notification>
+</InlineNotification>
 `;

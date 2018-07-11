@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import Notification from '../Notification';
+import GenericNotification from '../GenericNotification';
 
 beforeEach(() => {
   jest.useFakeTimers();
@@ -9,9 +9,9 @@ beforeEach(() => {
 
 test('Begins with "fading" but transitions out of it immediately', () => {
   const notification = mount(
-    <Notification type="positive" title="Success!">
+    <GenericNotification type="positive" style="inline" title="Success!">
       This is my positive notification
-    </Notification>
+    </GenericNotification>
   );
 
   expect(notification.find('div.notification').hasClass('fading')).toBe(true);
@@ -23,9 +23,14 @@ test('Begins with "fading" but transitions out of it immediately', () => {
 test('The cancel button hides the notification and triggers the onHide callback', () => {
   const onHide = sinon.spy();
   const notification = mount(
-    <Notification type="positive" title="Success!" onHide={onHide}>
+    <GenericNotification
+      type="positive"
+      style="inline"
+      title="Success!"
+      onHide={onHide}
+    >
       This is my positive notification
-    </Notification>
+    </GenericNotification>
   );
 
   // At first, the element should be visible (not fading)
@@ -41,7 +46,9 @@ test('The cancel button hides the notification and triggers the onHide callback'
   expect(onHide.callCount).toBe(0);
 
   // After the fade out animation has had time to run, the onHide handler should trigger.
-  jest.advanceTimersByTime(600);
+  notification.find('div.notification').simulate('transitionend', {
+    propertyName: 'margin-top',
+  });
   notification.update();
   expect(onHide.callCount).toBe(1);
 });

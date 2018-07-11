@@ -1,12 +1,12 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Notification from '../Notification';
+import InlineNotification from '../InlineNotification';
 
 test('The basic notification renders correctly', () => {
   const notification = mount(
-    <Notification type="warning" title="Warning">
+    <InlineNotification type="warning" title="Warning">
       Something has gone wrong
-    </Notification>
+    </InlineNotification>
   );
   expect(notification.find('.cancel')).toHaveLength(1);
   expect(notification).toMatchSnapshot();
@@ -14,9 +14,9 @@ test('The basic notification renders correctly', () => {
 
 test('Persistent versions of the notifications work', () => {
   const notification = mount(
-    <Notification type="negative" title="Error" persistent>
+    <InlineNotification type="negative" title="Error" persistent>
       Something has gone wrong
-    </Notification>
+    </InlineNotification>
   );
   expect(notification.find('.cancel')).toHaveLength(0);
   expect(notification).toMatchSnapshot();

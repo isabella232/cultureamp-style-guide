@@ -13,9 +13,9 @@ test('The basic notification renders correctly', () => {
   expect(notification).toMatchSnapshot();
 });
 
-test('Persistent versions of the notifications work', () => {
+test('You can hide the close icon on an autohide toast notification', () => {
   const notification = mount(
-    <ToastNotification type="negative" title="Info" persistent>
+    <ToastNotification type="negative" title="Info" autohide="hideCloseIcon">
       Currently processing...
     </ToastNotification>
   );
@@ -58,7 +58,9 @@ test('Autohide works as expected', () => {
   expect(onHide.callCount).toBe(0);
 
   // After the fade out animation has had time to run, the onHide handler should trigger.
-  jest.advanceTimersByTime(600);
+  notification.find('div.notification').simulate('transitionend', {
+    propertyName: 'margin-top',
+  });
   notification.update();
   expect(onHide.callCount).toBe(1);
 });
