@@ -20,7 +20,7 @@ const presets = [
     node: (
       <InlineNotification type="informative" title="Informative">
         New user data is currently being processed. We'll let you know when the
-        process s completed. <a href="/">Manage users</a>
+        process is completed. <a href="/">Manage users</a>
       </InlineNotification>
     ),
   },
@@ -56,7 +56,7 @@ const presets = [
     node: (
       <InlineNotification type="informative" title="Informative" persistent>
         New user data is currently being processed. We'll let you know when the
-        process s completed. <a href="/">Manage users</a>
+        process is completed. <a href="/">Manage users</a>
       </InlineNotification>
     ),
   },
@@ -125,14 +125,14 @@ const presets = [
   {
     name: 'Multiple notifications',
     node: (
-      <div>
+      <div style={{ width: '100%' }}>
         <InlineNotification type="affirmative" title="Success!">
           New user data, imported by mackenzie@hooli.com has successfully
           uploaded. <a href="/">Manage users is now available</a>
         </InlineNotification>
         <InlineNotification type="informative" title="Informative">
           New user data is currently being processed. We'll let you know when
-          the process s completed. <a href="/">Manage users</a>
+          the process is completed. <a href="/">Manage users</a>
         </InlineNotification>
         <InlineNotification type="warning" title="Warning">
           New user data, imported by mackenzie@hooli.com has uploaded with some

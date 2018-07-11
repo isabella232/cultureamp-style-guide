@@ -45,7 +45,7 @@ const presets = [
   {
     name: 'Multiple notifications',
     node: (
-      <div>
+      <div style={{ width: '100%' }}>
         <GlobalNotification type="affirmative">
           New user data, imported by mackenzie@hooli.com has successfully
           uploaded. <a href="/">Manage users is now available</a>
