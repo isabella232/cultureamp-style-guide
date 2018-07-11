@@ -1,18 +1,25 @@
 @import '../../styles/color';
 @import '../../styles/type';
 @import '../../styles/border';
+@import '../../styles/layers';
 @import '../Button/styles';
 
-$ca-notification-toast-fade-time: 0.5s;
 $ca-notification-border-width: 1px;
 $ca-notification-vertical-padding: calc(
   #{$ca-grid / 4} - #{$ca-notification-border-width}
 );
+$ca-notification-fade-time: 0.5s;
+$ca-notification-fade-out: opacity $ca-notification-fade-time ease;
+$ca-notification-collapse-height: margin-top $ca-notification-fade-time ease;
+$ca-notification-collapse-height-delayed: margin-top $ca-notification-fade-time
+  $ca-notification-fade-time ease;
+$ca-notification-slide-right: transform $ca-notification-fade-time ease-out;
 
 // Structure
 
 %ca-notification {
   display: flex;
+  box-sizing: border-box;
 
   a {
     color: $ca-link-text-color;
@@ -79,8 +86,6 @@ $ca-notification-vertical-padding: calc(
 
 %ca-notification---fading {
   opacity: 0;
-  transition: opacity $ca-notification-toast-fade-time linear,
-    transform ($ca-notification-toast-fade-time * 0.8) ease-in;
 
   %ca-notification__cancel:hover {
     cursor: auto;
@@ -166,9 +171,10 @@ $ca-notification-vertical-padding: calc(
 
 %ca-notification---inline {
   $horizontal-padding: 20px;
-  padding: $ca-notification-vertical-padding $horizontal-padding;
-
   width: 100%;
+  padding: $ca-notification-vertical-padding $horizontal-padding;
+  transition: $ca-notification-fade-out,
+    $ca-notification-collapse-height-delayed;
 
   %ca-notification__cancel {
     // The negative margins are so that our clickable area will overlap the notification padding
@@ -178,12 +184,11 @@ $ca-notification-vertical-padding: calc(
 
 %ca-notification---toast {
   $horizontal-padding: 10px;
-  padding: $ca-notification-vertical-padding $horizontal-padding;
-
   width: 25rem;
   box-shadow: 0 3px 7px add-alpha($ca-palette-ink, 9%);
-  transition: opacity $ca-notification-toast-fade-time linear,
-    transform ($ca-notification-toast-fade-time * 0.8) ease-out;
+  padding: $ca-notification-vertical-padding $horizontal-padding;
+  transition: $ca-notification-fade-out, $ca-notification-slide-right,
+    $ca-notification-collapse-height-delayed;
   will-change: transform;
 
   %ca-notification__cancel {
@@ -192,16 +197,25 @@ $ca-notification-vertical-padding: calc(
   }
 
   &%ca-notification---fading {
+    transition-timing-function: ease-in;
     transform: translateX(50%);
   }
 }
 
 %ca-notification---global {
-  padding: $ca-grid / 2 15px;
   width: 100%;
+  padding: $ca-grid / 2 15px;
   border-width: 0;
   border-radius: 0;
   margin-bottom: 0;
+  transition: $ca-notification-collapse-height;
+  position: relative;
+  z-index: $ca-z-index-fixed;
+
+  &%ca-notification---fading {
+    z-index: $ca-z-index-fixed - 1;
+    opacity: 1;
+  }
 
   %ca-notification__icon {
     width: $ca-grid * 1.25;

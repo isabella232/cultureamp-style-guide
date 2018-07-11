@@ -20,12 +20,15 @@ type Props = {|
 
 type State = {
   isFading: boolean,
+  isRemoved: boolean,
 };
 
 class GenericNotification extends React.Component<Props, State> {
   state = {
     isFading: true,
+    isRemoved: false,
   };
+  container: ?Element;
 
   componentDidMount() {
     requestAnimationFrame(() => this.setState({ isFading: false }));
@@ -36,8 +39,16 @@ class GenericNotification extends React.Component<Props, State> {
   }
 
   render() {
+    if (this.state.isRemoved) {
+      return null;
+    }
     return (
-      <div className={this.determineClassName()}>
+      <div
+        className={this.determineClassName()}
+        style={{ marginTop: this.getMarginTop() }}
+        ref={div => (this.container = div)}
+        onTransitionEnd={e => this.onTransitionEnd(e)}
+      >
         <div className={styles.icon}>
           <Icon icon={this.getIconType()} role="presentation" inheritSize />
         </div>
@@ -63,6 +74,22 @@ class GenericNotification extends React.Component<Props, State> {
         [styles.fading]: this.state.isFading,
       }
     );
+  }
+
+  getMarginTop(): ?string {
+    if (this.state.isFading && this.container) {
+      const container = this.container,
+        height = container.getBoundingClientRect().height,
+        style = getComputedStyle(container),
+        bottomMargin = parseInt(style.marginBottom, 10);
+      return -(height + bottomMargin) + 'px';
+    }
+  }
+
+  onTransitionEnd(e: TransitionEvent) {
+    if (this.state.isFading && e.propertyName === 'margin-top') {
+      this.setState({ isRemoved: true });
+    }
   }
 
   getIconType() {
