@@ -89,6 +89,9 @@ class GenericNotification extends React.Component<Props, State> {
   onTransitionEnd(e: TransitionEvent) {
     if (this.state.isFading && e.propertyName === 'margin-top') {
       this.setState({ isRemoved: true });
+      if (this.props.onHide) {
+        this.props.onHide();
+      }
     }
   }
 
@@ -123,11 +126,7 @@ class GenericNotification extends React.Component<Props, State> {
   }
 
   triggerHide() {
-    requestAnimationFrame(() => this.setState({ isFading: true }));
-
-    setTimeout(() => {
-      this.props.onHide && this.props.onHide();
-    }, 600);
+    this.setState({ isFading: true });
   }
 }
 
