@@ -2,6 +2,7 @@ import React from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Text from 'cultureamp-style-guide/components/Text';
 import classNames from 'classnames';
+import Code from './Code';
 import styles from './Demo.module.scss';
 
 const MIN_CANVAS_WIDTH = 240;
@@ -130,6 +131,7 @@ export default class Demo extends React.Component {
     let jsxCode = reactElementToJSXString(this.selectedPreset().node, {
       showDefaultProps: false,
       sortProps: false,
+      tabStop: 4,
     });
     jsxCode = jsxCode.replace(
       /icon={<symbol (.*)<\/symbol>}/g,
@@ -139,7 +141,7 @@ export default class Demo extends React.Component {
     return (
       <div>
         <Text tag="h3">Code for this example</Text>
-        <Text tag="pre">{jsxCode}</Text>
+        <Code>{jsxCode}</Code>
       </div>
     );
   }
