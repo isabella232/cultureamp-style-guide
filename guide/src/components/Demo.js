@@ -11,6 +11,8 @@ const MEDIUM = Symbol('medium');
 const LARGE = Symbol('large');
 const RANDOM = Symbol('random');
 const FULL = Symbol('full');
+const REACT = Symbol('react');
+const ELM = Symbol('elm');
 
 export default class Demo extends React.Component {
   state = {
@@ -22,6 +24,7 @@ export default class Demo extends React.Component {
     },
     showGridOverlay: false,
     darkBackground: false,
+    platform: REACT,
   };
 
   render() {
@@ -57,8 +60,6 @@ export default class Demo extends React.Component {
   }
 
   renderCanvas() {
-    const presetComponent = this.selectedPreset().node;
-
     return (
       <div className={styles.frame} ref={div => (this.frame = div)}>
         <div
@@ -69,10 +70,52 @@ export default class Demo extends React.Component {
           style={{ width: this.state.assignedCanvasWidth }}
           ref={div => (this.canvas = div)}
         >
-          {presetComponent}
+          {this.renderComponent()}
         </div>
       </div>
     );
+  }
+
+  renderComponent() {
+    const presetComponent = this.selectedPreset().node;
+
+    return {
+      [ELM]: (
+        <ElmWithRefreshingProps
+          src={this.props.elm && this.props.elm()}
+          flags={this.elmFlagsFromProps(presetComponent.props)}
+          ports={this.elmPortsFromProps(presetComponent.props)}
+        />
+      ),
+      [REACT]: presetComponent,
+    }[this.state.platform];
+  }
+
+  elmFlagsFromProps(props) {
+    return Object.keys(props).reduce(
+      (flags, key) =>
+        typeof props[key] !== 'function'
+          ? Object.assign(flags, { [key]: props[key] })
+          : flags,
+      {}
+    );
+  }
+
+  elmPortsFromProps(props) {
+    return (ports = {}) => {
+      const listeners = Object.keys(props).reduce(
+        (listeners, key) =>
+          typeof props[key] === 'function'
+            ? Object.assign(listeners, { [key]: props[key] })
+            : listeners,
+        {}
+      );
+
+      Object.keys(listeners).forEach(key => {
+        if (ports[key]) ports[key].subscribe(listeners[key]);
+        else console.warn(`No Elm port found for function prop '${key}'`);
+      });
+    };
   }
 
   selectedPreset() {
@@ -110,18 +153,32 @@ export default class Demo extends React.Component {
   renderOptions() {
     return (
       <div className={styles.renderOptions}>
-        <input
-          type="checkbox"
-          onChange={this.onChangeGridOverlay}
-          checked={this.state.showGridOverlay}
-        />{' '}
-        Grid overlay
-        <input
-          type="checkbox"
-          onChange={this.onChangeDarkBackground}
-          checked={this.state.darkBackground}
-        />{' '}
-        Dark BG
+        <label>
+          <input
+            type="checkbox"
+            onChange={this.onChangeGridOverlay}
+            checked={this.state.showGridOverlay}
+          />{' '}
+          Grid overlay
+        </label>
+        <label>
+          <input
+            type="checkbox"
+            onChange={this.onChangeDarkBackground}
+            checked={this.state.darkBackground}
+          />{' '}
+          Dark BG
+        </label>
+        {this.props.elm && (
+          <label>
+            <input
+              type="checkbox"
+              onChange={this.onChangeElm}
+              checked={this.state.platform === ELM}
+            />{' '}
+            Elm
+          </label>
+        )}
       </div>
     );
   }
@@ -161,6 +218,11 @@ export default class Demo extends React.Component {
   onChangeDarkBackground = e => {
     const darkBackground = e.target.checked;
     this.setState({ darkBackground });
+  };
+
+  onChangeElm = e => {
+    const elm = e.target.checked;
+    this.setState({ platform: elm ? ELM : REACT });
   };
 
   onSelectPreset = e => {
@@ -263,4 +325,30 @@ export default class Demo extends React.Component {
 
 function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
+}
+
+// We are not using react-elm-components because they do not update the Elm app when props change.
+class ElmWithRefreshingProps extends React.Component {
+  render() {
+    return <div ref={node => (this.node = node)} />;
+  }
+
+  componentDidMount() {
+    this.mountElm();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
+      this.mountElm();
+    }
+  }
+
+  mountElm() {
+    this.node.innerHTML = '';
+    const app = this.props.src.embed(this.node, this.props.flags);
+
+    if (typeof this.props.ports !== 'undefined') {
+      this.props.ports(app.ports);
+    }
+  }
 }

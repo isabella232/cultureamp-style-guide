@@ -15,4 +15,4 @@ Available for both Elm and React.
 
 </IntroParagraph>
 
-<Demo presets={iconPresets} />
+<Demo presets={iconPresets} elm={function () { return require('./Demo.elm').Icon.Demo; }} />

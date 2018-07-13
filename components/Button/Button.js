@@ -17,8 +17,9 @@ type Props = {|
   form: Boolean,
   reversed: Boolean,
   reverseColor?: 'lapis' | 'ocean' | 'peach' | 'seedling' | 'wisteria' | 'yuzu',
-  onClick?: MouseEventListener,
+  onClick?: MouseEvent => void,
   href?: String,
+  automationId?: String,
 |};
 
 type IconPosition = 'start' | 'end';
@@ -41,11 +42,19 @@ export default function Button(props: Props) {
 }
 
 function renderButton(props: Props) {
+  const { disabled, onClick } = props;
+
   return (
     <button
-      disabled={props.disabled}
+      disabled={disabled}
       className={buttonClass(props)}
-      onClick={props.onClick}
+      onClick={e => {
+        if (onClick) {
+          e.preventDefault();
+          onClick && onClick(e);
+        }
+      }}
+      data-automation-id={props.automationId}
     >
       {renderContent(props)}
     </button>
@@ -53,8 +62,20 @@ function renderButton(props: Props) {
 }
 
 function renderLink(props: Props) {
+  const { href, onClick } = props;
+
   return (
-    <a href={props.href} className={buttonClass(props)} onClick={props.onClick}>
+    <a
+      href={href}
+      className={buttonClass(props)}
+      onClick={e => {
+        if (onClick) {
+          e.preventDefault();
+          onClick && onClick(e);
+        }
+      }}
+      data-automation-id={props.automationId}
+    >
       {renderContent(props)}
     </a>
   );
@@ -64,7 +85,6 @@ function buttonClass(props: Props) {
   return classNames(styles.button, {
     [styles.primary]: props.primary,
     [styles.destructive]: props.destructive,
-    [styles.disabled]: props.disabled,
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',

@@ -89,7 +89,10 @@ function addElmLoader(config) {
   config.loader('elm-webpack-loader', {
     test: /\.elm$/,
     exclude: [/elm-stuff/, /node_modules/],
-    loaders: ['elm-css-modules-loader', 'elm-webpack-loader'],
+    loaders: [
+      'elm-css-modules-loader',
+      'elm-webpack-loader?' + JSON.stringify({ debug: true }),
+    ],
   });
 }
 

@@ -1,4 +1,6 @@
-module Icon.SvgAsset exposing (SvgAsset, svgAsset)
+module Icon.SvgAsset exposing (SvgAsset, svgAsset, decoder)
+
+import Json.Decode as Json
 
 
 svgAsset : String -> SvgAsset
@@ -13,3 +15,10 @@ type alias SvgAsset =
     { id : String
     , viewBox : String
     }
+
+
+decoder : Json.Decoder SvgAsset
+decoder =
+    Json.map2 SvgAsset
+        (Json.field "id" Json.string)
+        (Json.field "viewBox" Json.string)

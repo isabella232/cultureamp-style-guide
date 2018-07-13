@@ -15,4 +15,4 @@ Available for both Elm and React.
 
 </IntroParagraph>
 
-<Demo presets={buttonPresets} />
+<Demo presets={buttonPresets} elm={function () { return require('./Demo.elm').Button.Demo; }} />
