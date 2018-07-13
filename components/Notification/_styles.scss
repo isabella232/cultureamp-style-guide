@@ -2,18 +2,18 @@
 @import '../../styles/type';
 @import '../../styles/border';
 @import '../../styles/layers';
+@import '../../styles/animation';
 @import '../Button/styles';
 
 $ca-notification-border-width: 1px;
 $ca-notification-vertical-padding: calc(
   #{$ca-grid / 4} - #{$ca-notification-border-width}
 );
-$ca-notification-fade-time: 0.5s;
-$ca-notification-fade-out: opacity $ca-notification-fade-time ease;
-$ca-notification-collapse-height: margin-top $ca-notification-fade-time ease;
-$ca-notification-collapse-height-delayed: margin-top $ca-notification-fade-time
-  $ca-notification-fade-time ease;
-$ca-notification-slide-right: transform $ca-notification-fade-time ease-out;
+$ca-notification-fade-out: opacity $ca-duration-slow ease;
+$ca-notification-collapse-height: margin-top $ca-duration-slow ease;
+$ca-notification-collapse-height-delayed: margin-top $ca-duration-fast
+  $ca-duration-slow ease;
+$ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
 // Structure
 
