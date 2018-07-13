@@ -1,10 +1,11 @@
 @import '~cultureamp-style-guide/styles/type';
 @import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/animation';
 
 .label {
   @include ca-type-ideal-body;
   display: block;
-  transition: color 0.2s ease;
+  transition: color $ca-duration-fast ease;
 }
 
 .checked {
