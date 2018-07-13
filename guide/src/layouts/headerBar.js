@@ -17,7 +17,7 @@ const HeaderBar = ({ toggleNav }) => (
     <ExternalLink to="https://github.com/cultureamp/component-library">
       Download Style Guide
       <span className={styles.downloadIcon}>
-        <Icon icon={diamond} type="presentation" />
+        <Icon icon={diamond} role="presentation" />
       </span>
     </ExternalLink>
   </div>
