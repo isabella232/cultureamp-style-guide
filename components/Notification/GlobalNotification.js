@@ -1,9 +1,10 @@
 // @flow
 import * as React from 'react';
 import GenericNotification from './GenericNotification';
+import type { NotificationType } from './GenericNotification';
 
 type Props = {|
-  type: 'affirmative' | 'informative' | 'warning' | 'negative',
+  type: NotificationType,
   children: React.Node,
   onHide?: () => void,
 |};

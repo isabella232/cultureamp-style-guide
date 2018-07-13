@@ -8,8 +8,14 @@ import closeIcon from '../../icons/close.svg';
 import styles from './GenericNotification.module.scss';
 import classnames from 'classnames';
 
+export type NotificationType =
+  | 'affirmative'
+  | 'informative'
+  | 'warning'
+  | 'negative';
+
 type Props = {|
-  type: 'affirmative' | 'informative' | 'warning' | 'negative',
+  type: NotificationType,
   style: 'global' | 'inline' | 'toast',
   children: React.Node,
   title?: string,
