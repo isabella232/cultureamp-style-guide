@@ -134,11 +134,11 @@ class GenericNotification extends React.Component<Props, State> {
   triggerHide() {
     this.setState({ isFading: true });
   }
-}
 
-GenericNotification.defaultProps = {
-  persistent: false,
-  autohide: false,
-};
+  static defaultProps = {
+    persistent: false,
+    autohide: false,
+  };
+}
 
 export default GenericNotification;
