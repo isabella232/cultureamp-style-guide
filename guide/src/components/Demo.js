@@ -77,18 +77,16 @@ export default class Demo extends React.Component {
   }
 
   renderComponent() {
-    const presetComponent = this.selectedPreset().node;
-
     return {
-      [ELM]: (
+      [ELM]: presetComponent => (
         <ElmWithRefreshingProps
           src={this.props.elm && this.props.elm()}
           flags={this.elmFlagsFromProps(presetComponent.props)}
           ports={this.elmPortsFromProps(presetComponent.props)}
         />
       ),
-      [REACT]: presetComponent,
-    }[this.state.platform];
+      [REACT]: presetComponent => presetComponent,
+    }[this.state.platform](this.selectedPreset().node);
   }
 
   elmFlagsFromProps(props) {
