@@ -7,9 +7,7 @@ function modifyWebpackConfig(_ref, options) {
   addSassLoaders(config, stage);
   addSrcResolveRoot(config);
   addSvgLoaders(config);
-  if (stage === 'build-javascript' || stage === 'develop') {
-    addElmLoader(config);
-  }
+  addElmLoader(config);
   addMarkdownLoader(config);
   addStyleGuideBabelLoader(config);
   return config;

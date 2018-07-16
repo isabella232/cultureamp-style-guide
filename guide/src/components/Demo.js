@@ -80,7 +80,7 @@ export default class Demo extends React.Component {
     return {
       [ELM]: presetComponent => (
         <ElmWithRefreshingProps
-          src={this.props.elm && this.props.elm()}
+          src={this.props.elm}
           flags={this.elmFlagsFromProps(presetComponent.props)}
           ports={this.elmPortsFromProps(presetComponent.props)}
         />
