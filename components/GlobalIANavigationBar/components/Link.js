@@ -51,6 +51,7 @@ const Link = ({
   );
 };
 
+Link.displayName = 'Link';
 Link.defaultProps = {
   iconOnly: false,
   active: false,

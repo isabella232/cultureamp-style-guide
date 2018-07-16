@@ -25,6 +25,7 @@ export default class Dropdown extends React.Component<
   DropdownProps,
   DropdownState
 > {
+  static displayName = 'Dropdown';
   dropdownButton: ?HTMLButtonElement;
 
   constructor(props: DropdownProps) {
