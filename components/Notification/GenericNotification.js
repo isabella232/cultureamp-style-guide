@@ -19,8 +19,8 @@ type Props = {|
   style: 'global' | 'inline' | 'toast',
   children: React.Node,
   title?: string,
-  persistent?: boolean,
-  autohide?: ?boolean,
+  persistent: boolean,
+  autohide: boolean,
   onHide?: () => void,
 |};
 
@@ -135,5 +135,10 @@ class GenericNotification extends React.Component<Props, State> {
     this.setState({ isFading: true });
   }
 }
+
+GenericNotification.defaultProps = {
+  persistent: false,
+  autohide: false,
+};
 
 export default GenericNotification;

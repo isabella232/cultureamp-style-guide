@@ -7,12 +7,16 @@ type Props = {|
   type: NotificationType,
   title: string,
   children: React.Node,
-  persistent?: boolean,
+  persistent: boolean,
   onHide?: () => void,
 |};
 
 const InlineNotification = (props: Props) => (
   <GenericNotification style="inline" {...props} />
 );
+
+InlineNotification.defaultProps = {
+  persistent: false,
+};
 
 export default InlineNotification;

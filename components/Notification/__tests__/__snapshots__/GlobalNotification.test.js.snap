@@ -5,6 +5,7 @@ exports[`The basic notification renders correctly 1`] = `
   type="positive"
 >
   <GenericNotification
+    autohide={false}
     persistent={false}
     style="global"
     type="positive"
@@ -94,6 +95,7 @@ exports[`You can change the type 1`] = `
   type="info"
 >
   <GenericNotification
+    autohide={false}
     persistent={false}
     style="global"
     type="info"

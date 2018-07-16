@@ -2,6 +2,8 @@
 
 exports[`The basic notification renders correctly 1`] = `
 <ToastNotification
+  autohide={false}
+  hideCloseIcon={false}
   title="Success!"
   type="positive"
 >
@@ -99,7 +101,8 @@ exports[`The basic notification renders correctly 1`] = `
 
 exports[`You can hide the close icon on an autohide toast notification 1`] = `
 <ToastNotification
-  autohide="hideCloseIcon"
+  autohide={true}
+  hideCloseIcon={true}
   title="Info"
   type="negative"
 >

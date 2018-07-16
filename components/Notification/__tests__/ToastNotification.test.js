@@ -15,7 +15,7 @@ test('The basic notification renders correctly', () => {
 
 test('You can hide the close icon on an autohide toast notification', () => {
   const notification = mount(
-    <ToastNotification type="negative" title="Info" autohide="hideCloseIcon">
+    <ToastNotification type="negative" title="Info" autohide hideCloseIcon>
       Currently processing...
     </ToastNotification>
   );

@@ -7,6 +7,7 @@ exports[`Persistent versions of the notifications work 1`] = `
   type="negative"
 >
   <GenericNotification
+    autohide={false}
     persistent={true}
     style="inline"
     title="Error"
@@ -67,10 +68,13 @@ exports[`Persistent versions of the notifications work 1`] = `
 
 exports[`The basic notification renders correctly 1`] = `
 <InlineNotification
+  persistent={false}
   title="Warning"
   type="warning"
 >
   <GenericNotification
+    autohide={false}
+    persistent={false}
     style="inline"
     title="Warning"
     type="warning"
