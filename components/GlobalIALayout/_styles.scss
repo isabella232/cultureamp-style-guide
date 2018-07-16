@@ -106,7 +106,7 @@ $global-ia-sidebar-width: 12 * $ca-grid;
 
 // enforce fixed width to avoid change when scrollbar on %global-ia-sidebar is visible
 %global-ia-sidebar-inner {
-  width: $global-ia-sidebar-width - 2 * $ca-grid;
+  width: $global-ia-sidebar-width - $ca-grid;
 }
 
 %global-ia-content {
