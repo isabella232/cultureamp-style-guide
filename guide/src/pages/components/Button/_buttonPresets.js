@@ -5,7 +5,7 @@ import React from 'react';
 const buttonPresets = [
   {
     name: 'Default',
-    node: <Button label="Label" />,
+    node: <Button label="Label" automationId="demo-button" />,
   },
   {
     name: 'Hyperlink',
@@ -17,7 +17,9 @@ const buttonPresets = [
       <Button
         label="Label"
         href="//example.com"
-        onClick={e => e.preventDefault()}
+        onClick={e => {
+          alert('click!');
+        }}
       />
     ),
   },

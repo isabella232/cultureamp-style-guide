@@ -1,6 +1,7 @@
 ---
 imports:
   Demo: components/Demo.js
+  Elm: ./Demo.elm
   IntroParagraph: components/IntroParagraph.js
   iconPresets: ./_iconPresets.js
 ---
@@ -15,4 +16,4 @@ Available for both Elm and React.
 
 </IntroParagraph>
 
-<Demo presets={iconPresets} />
+<Demo presets={iconPresets} elm={Elm.Icon.Demo} />

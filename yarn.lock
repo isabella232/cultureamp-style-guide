@@ -6294,10 +6294,6 @@ react-dom@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
-react-elm-components@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/react-elm-components/-/react-elm-components-1.0.1.tgz#19c7766b5c5ff4412867acc22dcf9f1d9eae9e3d"
-
 react-html-id@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/react-html-id/-/react-html-id-0.1.0.tgz#936bb7cfe712c34355011b620c084a3a67a38e77"

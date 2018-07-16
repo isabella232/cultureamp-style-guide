@@ -63,7 +63,6 @@
     "postcss-normalize": "^3.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "react-elm-components": "^1.0.1",
     "semantic-release": "^15.6.0",
     "webpack": "^3.3.0",
     "webpack-dev-server": "^2.5.1",
