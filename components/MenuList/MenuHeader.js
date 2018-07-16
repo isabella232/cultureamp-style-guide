@@ -7,5 +7,6 @@ const MenuHeader = (props: { title: string }) => (
     <span className={styles.header__title}>{props.title}</span>
   </div>
 );
+MenuHeader.displayName = 'MenuHeader';
 
 export default MenuHeader;

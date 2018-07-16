@@ -99,6 +99,7 @@ export default class NavigationBar extends React.Component<Props> {
     );
   }
 
+  static displayName = 'NavigationBar';
   static defaultProps = {
     environment: 'production',
     loading: false,

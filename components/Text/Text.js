@@ -49,5 +49,6 @@ const Text = (props: TextProps) => {
     </Tag>
   );
 };
+Text.displayName = 'Text';
 
 export default Text;

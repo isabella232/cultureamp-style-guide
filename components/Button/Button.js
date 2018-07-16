@@ -61,6 +61,8 @@ function renderButton(props: Props) {
   );
 }
 
+Button.displayName = 'Button';
+
 function renderLink(props: Props) {
   const { href, onClick } = props;
 

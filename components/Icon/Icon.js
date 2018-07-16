@@ -13,6 +13,8 @@ const roles = [
 ];
 
 export default class Icon extends React.Component {
+  static displayName = 'Icon';
+
   constructor() {
     super();
     enableUniqueIds(this);
