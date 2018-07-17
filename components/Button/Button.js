@@ -12,6 +12,7 @@ type Props = {|
   },
   iconPosition: IconPosition,
   primary: boolean,
+  secondary: boolean,
   destructive: boolean,
   disabled: boolean,
   form: boolean,
@@ -28,6 +29,7 @@ Button.defaultProps = {
   iconPosition: 'start',
   form: false,
   primary: false,
+  secondary: false,
   destructive: false,
   disabled: false,
   reversed: false,
@@ -84,9 +86,12 @@ function renderLink(props: Props) {
 }
 
 function buttonClass(props: Props) {
-  return classNames(styles.button, {
-    [styles.primary]: props.primary,
-    [styles.destructive]: props.destructive,
+  const variantClass =
+    (props.destructive && styles.destructive) ||
+    (props.primary && styles.primary) ||
+    (props.secondary && styles.secondary);
+
+  return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',

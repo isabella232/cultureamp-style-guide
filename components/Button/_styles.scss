@@ -75,7 +75,7 @@ $caButton-focus-border-width: 2px;
   &:disabled {
     background: $white;
     border-color: add-tint($ca-palette-ink, 80%);
-    color: add-alpha($ca-palette-ink, 30%);
+    color: add-tint($ca-palette-ink, 70%);
   }
 }
 
@@ -119,6 +119,37 @@ $caButton-focus-border-width: 2px;
 
   :global(.js-focus-visible) &:global(.focus-visible) {
     border-color: add-shade($ca-palette-coral, 40%);
+  }
+}
+
+%caButtonSecondary {
+  @include ca-type-ideal-body-bold;
+
+  &:not(:disabled) {
+    background: transparent;
+    border-color: transparent;
+    color: add-tint($ca-palette-ocean, 30%);
+
+    %caButtonLabel {
+      color: $ca-palette-ocean;
+    }
+
+    &:hover,
+    &:active {
+      color: $ca-palette-ocean;
+      background: add-tint($ca-palette-ink, 94%);
+      border-color: transparent;
+    }
+
+    &:active {
+      background: add-tint($ca-palette-ink, 90%);
+    }
+  }
+
+  &:disabled {
+    background: transparent;
+    border-color: transparent;
+    color: add-tint($ca-palette-ink, 70%);
   }
 }
 
