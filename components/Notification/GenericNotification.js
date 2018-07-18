@@ -25,19 +25,19 @@ type Props = {|
 |};
 
 type State = {
-  isFading: boolean,
-  isRemoved: boolean,
+  hidden: boolean,
+  removed: boolean,
 };
 
 class GenericNotification extends React.Component<Props, State> {
   state = {
-    isFading: true,
-    isRemoved: false,
+    hidden: true,
+    removed: false,
   };
   container: ?Element;
 
   componentDidMount() {
-    requestAnimationFrame(() => this.setState({ isFading: false }));
+    requestAnimationFrame(() => this.setState({ hidden: false }));
 
     if (this.props.style === 'toast' && this.props.autohide) {
       setTimeout(() => this.hide(), 5000);
@@ -45,7 +45,7 @@ class GenericNotification extends React.Component<Props, State> {
   }
 
   render() {
-    if (this.state.isRemoved) {
+    if (this.state.removed) {
       return null;
     }
     return (
@@ -77,13 +77,13 @@ class GenericNotification extends React.Component<Props, State> {
       styles[this.props.type],
       styles[this.props.style],
       {
-        [styles.fading]: this.state.isFading,
+        [styles.hidden]: this.state.hidden,
       }
     );
   }
 
   marginTop(): ?string {
-    if (this.state.isFading && this.container) {
+    if (this.state.hidden && this.container) {
       const container = this.container,
         height = container.getBoundingClientRect().height,
         style = getComputedStyle(container),
@@ -93,8 +93,9 @@ class GenericNotification extends React.Component<Props, State> {
   }
 
   onTransitionEnd(e: TransitionEvent) {
-    if (this.state.isFading && e.propertyName === 'margin-top') {
-      this.setState({ isRemoved: true });
+    // Be careful: this assumes the final CSS property to be animated is "margin-top".
+    if (this.state.hidden && e.propertyName === 'margin-top') {
+      this.setState({ removed: true });
       if (this.props.onHide) {
         this.props.onHide();
       }
@@ -117,7 +118,7 @@ class GenericNotification extends React.Component<Props, State> {
   }
 
   hide() {
-    this.setState({ isFading: true });
+    this.setState({ hidden: true });
   }
 
   static defaultProps = {

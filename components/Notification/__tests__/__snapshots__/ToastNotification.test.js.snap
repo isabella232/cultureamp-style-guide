@@ -15,7 +15,7 @@ exports[`The basic notification renders correctly 1`] = `
     type="positive"
   >
     <div
-      className="notification positive toast fading"
+      className="notification positive toast hidden"
       onTransitionEnd={[Function]}
       style={
         Object {
@@ -62,44 +62,151 @@ exports[`The basic notification renders correctly 1`] = `
           </span>
         </span>
       </div>
-      <button
-        className="cancel"
+      <CancelButton
         onClick={[Function]}
       >
-        <span
-          className="cancelInner"
+        <button
+          className="cancel"
+          onClick={[Function]}
         >
-          <Icon
-            icon={null}
-            inheritSize={true}
-            role="img"
-            title="close notification"
+          <span
+            className="cancelInner"
           >
-            <svg
-              aria-labelledby="id-2-title"
-              className="icon inheritSize"
-              focusable="false"
+            <Icon
+              icon={null}
+              inheritSize={true}
               role="img"
-              viewBox="viewBox"
+              title="close notification"
             >
-              <title
-                id="id-2-title"
+              <svg
+                aria-labelledby="id-2-title"
+                className="icon inheritSize"
+                focusable="false"
+                role="img"
+                viewBox="viewBox"
               >
-                close notification
-              </title>
-              <use
-                xlinkHref="#id"
-              />
-            </svg>
-          </Icon>
-        </span>
-      </button>
+                <title
+                  id="id-2-title"
+                >
+                  close notification
+                </title>
+                <use
+                  xlinkHref="#id"
+                />
+              </svg>
+            </Icon>
+          </span>
+        </button>
+      </CancelButton>
     </div>
   </GenericNotification>
 </ToastNotification>
 `;
 
-exports[`You can hide the close icon on an autohide toast notification 1`] = `
+exports[`You cannot hide the close icon unless it is an autohide 1`] = `
+<ToastNotification
+  autohide={false}
+  hideCloseIcon={true}
+  title="Info"
+  type="negative"
+>
+  <GenericNotification
+    autohide={false}
+    persistent={false}
+    style="toast"
+    title="Info"
+    type="negative"
+  >
+    <div
+      className="notification negative toast hidden"
+      onTransitionEnd={[Function]}
+      style={
+        Object {
+          "marginTop": undefined,
+        }
+      }
+    >
+      <div
+        className="icon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={true}
+          role="presentation"
+        >
+          <svg
+            aria-hidden={true}
+            className="icon inheritSize"
+            focusable="false"
+            role="presentation"
+            viewBox="viewBox"
+          >
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </div>
+      <div
+        className="textContainer"
+      >
+        <span
+          className="title"
+        >
+          Info
+        </span>
+        <span
+          className="textWrapper"
+        >
+          <span
+            className="text"
+          >
+            Currently processing...
+          </span>
+        </span>
+      </div>
+      <CancelButton
+        onClick={[Function]}
+      >
+        <button
+          className="cancel"
+          onClick={[Function]}
+        >
+          <span
+            className="cancelInner"
+          >
+            <Icon
+              icon={null}
+              inheritSize={true}
+              role="img"
+              title="close notification"
+            >
+              <svg
+                aria-labelledby="id-5-title"
+                className="icon inheritSize"
+                focusable="false"
+                role="img"
+                viewBox="viewBox"
+              >
+                <title
+                  id="id-5-title"
+                >
+                  close notification
+                </title>
+                <use
+                  xlinkHref="#id"
+                />
+              </svg>
+            </Icon>
+          </span>
+        </button>
+      </CancelButton>
+    </div>
+  </GenericNotification>
+</ToastNotification>
+`;
+
+exports[`autohide and hideClose icon both work together correctly 1`] = `
 <ToastNotification
   autohide={true}
   hideCloseIcon={true}
@@ -114,7 +221,7 @@ exports[`You can hide the close icon on an autohide toast notification 1`] = `
     type="negative"
   >
     <div
-      className="notification negative toast fading"
+      className="notification negative toast hidden"
       onTransitionEnd={[Function]}
       style={
         Object {

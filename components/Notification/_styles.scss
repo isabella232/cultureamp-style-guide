@@ -84,7 +84,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   margin-right: 10px;
 }
 
-%ca-notification---fading {
+%ca-notification---hidden {
   opacity: 0;
 
   %ca-notification__cancel:hover {
@@ -200,7 +200,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     margin-right: -$horizontal-padding;
   }
 
-  &%ca-notification---fading {
+  &%ca-notification---hidden {
     transition-timing-function: ease-in;
     transform: translateX(50%);
   }
@@ -216,7 +216,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   position: relative;
   z-index: $ca-z-index-fixed;
 
-  &%ca-notification---fading {
+  &%ca-notification---hidden {
     z-index: $ca-z-index-fixed - 1;
     opacity: 1;
   }

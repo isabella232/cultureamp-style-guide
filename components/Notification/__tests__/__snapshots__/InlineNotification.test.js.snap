@@ -14,7 +14,7 @@ exports[`Persistent versions of the notifications work 1`] = `
     type="negative"
   >
     <div
-      className="notification negative inline fading"
+      className="notification negative inline hidden"
       onTransitionEnd={[Function]}
       style={
         Object {
@@ -80,7 +80,7 @@ exports[`The basic notification renders correctly 1`] = `
     type="warning"
   >
     <div
-      className="notification warning inline fading"
+      className="notification warning inline hidden"
       onTransitionEnd={[Function]}
       style={
         Object {
@@ -127,38 +127,42 @@ exports[`The basic notification renders correctly 1`] = `
           </span>
         </span>
       </div>
-      <button
-        className="cancel"
+      <CancelButton
         onClick={[Function]}
       >
-        <span
-          className="cancelInner"
+        <button
+          className="cancel"
+          onClick={[Function]}
         >
-          <Icon
-            icon={null}
-            inheritSize={true}
-            role="img"
-            title="close notification"
+          <span
+            className="cancelInner"
           >
-            <svg
-              aria-labelledby="id-2-title"
-              className="icon inheritSize"
-              focusable="false"
+            <Icon
+              icon={null}
+              inheritSize={true}
               role="img"
-              viewBox="viewBox"
+              title="close notification"
             >
-              <title
-                id="id-2-title"
+              <svg
+                aria-labelledby="id-2-title"
+                className="icon inheritSize"
+                focusable="false"
+                role="img"
+                viewBox="viewBox"
               >
-                close notification
-              </title>
-              <use
-                xlinkHref="#id"
-              />
-            </svg>
-          </Icon>
-        </span>
-      </button>
+                <title
+                  id="id-2-title"
+                >
+                  close notification
+                </title>
+                <use
+                  xlinkHref="#id"
+                />
+              </svg>
+            </Icon>
+          </span>
+        </button>
+      </CancelButton>
     </div>
   </GenericNotification>
 </InlineNotification>

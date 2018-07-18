@@ -34,8 +34,10 @@
   @extend %ca-notification__cancel__inner;
 }
 
-.fading {
-  @extend %ca-notification---fading;
+// Animation
+
+.hidden {
+  @extend %ca-notification---hidden;
 }
 
 // Notification Style
