@@ -12,19 +12,14 @@ type Props = {|
   onHide?: () => void,
 |};
 
-const ToastNotification = (props: Props) => {
-  const persistent = props.autohide && props.hideCloseIcon;
+const ToastNotification = ({ hideCloseIcon, ...otherProps }: Props) => {
+  const persistent = otherProps.autohide && hideCloseIcon;
   return (
     <GenericNotification
       style="toast"
       persistent={persistent}
-      type={props.type}
-      title={props.title}
-      autohide={props.autohide}
-      onHide={props.onHide}
-    >
-      {props.children}
-    </GenericNotification>
+      {...otherProps}
+    />
   );
 };
 
