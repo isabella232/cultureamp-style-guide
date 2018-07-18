@@ -1,3 +1,4 @@
+// @flow
 import NavigationBar from 'cultureamp-style-guide/components/NavigationBar';
 import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
@@ -20,7 +21,6 @@ const supportLink = (
 const menu = (
   <NavigationBar.Menu
     tooltip="Culture Amp"
-    header={null}
     items={[
       {
         label: 'About Culture Amp',

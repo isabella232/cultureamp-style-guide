@@ -5,21 +5,21 @@ import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
 type Props = {|
-  label: String,
+  label: string,
   icon?: {
-    id: String,
-    viewBox: String,
+    id: string,
+    viewBox: string,
   },
   iconPosition: IconPosition,
-  primary: Boolean,
-  destructive: Boolean,
-  disabled: Boolean,
-  form: Boolean,
-  reversed: Boolean,
+  primary: boolean,
+  destructive: boolean,
+  disabled: boolean,
+  form: boolean,
+  reversed: boolean,
   reverseColor?: 'lapis' | 'ocean' | 'peach' | 'seedling' | 'wisteria' | 'yuzu',
   onClick?: MouseEvent => void,
-  href?: String,
-  automationId?: String,
+  href?: string,
+  automationId?: string,
 |};
 
 type IconPosition = 'start' | 'end';

@@ -1,5 +1,4 @@
 [ignore]
-<PROJECT_ROOT>/guide/.*
 .*node_modules/fbjs/.*
 .*node_modules/find-elm-dependencies/.*
 .*node_modules/relay-compiler/.*
