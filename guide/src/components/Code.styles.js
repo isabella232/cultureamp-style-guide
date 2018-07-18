@@ -1,3 +1,5 @@
+// This file is based closely on react-syntax-highlighter/dist/styles/prism/prism.js
+// The only major changes have been using Culture Amp branded colors and fonts.
 const ink = '#3E4543';
 const white = '#FFFFFF';
 const oceanTint70 = '#BBD6DB';
@@ -14,7 +16,6 @@ export default {
   'code[class*="language-"]': {
     color: white,
     background: 'none',
-    // textShadow: '0 1px white',
     fontFamily: fonts,
     fontWeight: 300,
     textAlign: 'left',
@@ -34,7 +35,6 @@ export default {
   'pre[class*="language-"]': {
     color: white,
     background: ink,
-    // textShadow: '0 1px white',
     fontFamily: fonts,
     fontWeight: 300,
     textAlign: 'left',
