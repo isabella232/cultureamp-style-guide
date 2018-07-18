@@ -21,10 +21,8 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   display: flex;
   box-sizing: border-box;
 
-  a {
+  a[href] {
     color: $ca-link-text-color;
-    text-decoration: underline;
-    cursor: pointer;
 
     &:hover {
       color: $ca-link-hover-text-color;
@@ -69,7 +67,6 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  cursor: pointer;
   transform: none;
 
   &:active {
