@@ -49,15 +49,14 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 %ca-notification__title {
   @include ca-type-ideal-heading;
   display: block;
+  margin: 0;
   padding-right: $ca-grid / 2;
 }
 
-%ca-notification__textWrapper {
-  @include ca-type-block;
-}
-
 %ca-notification__text {
+  @include ca-type-block;
   display: block;
+  margin: 0;
 }
 
 %ca-notification__cancel {

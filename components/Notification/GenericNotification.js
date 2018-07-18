@@ -60,11 +60,9 @@ class GenericNotification extends React.Component<Props, State> {
         </div>
         <div className={styles.textContainer}>
           {this.props.title && (
-            <span className={styles.title}>{this.props.title}</span>
+            <h6 className={styles.title}>{this.props.title}</h6>
           )}
-          <span className={styles.textWrapper}>
-            <span className={styles.text}>{this.props.children}</span>
-          </span>
+          <p className={styles.text}>{this.props.children}</p>
         </div>
         {!this.props.persistent && <CancelButton onClick={() => this.hide()} />}
       </div>

@@ -2,25 +2,6 @@
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/border';
 
-.contentContainer {
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  blockquote {
-    max-width: 650px;
-  }
-}
-
-.htmlContent {
-  composes: contentContainer;
-}
-
 .h1,
 .htmlContent h1 {
   @include ca-type-ideal-title;
