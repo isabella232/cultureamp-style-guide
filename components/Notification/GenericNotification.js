@@ -40,7 +40,7 @@ class GenericNotification extends React.Component<Props, State> {
     requestAnimationFrame(() => this.setState({ isFading: false }));
 
     if (this.props.style === 'toast' && this.props.autohide) {
-      setTimeout(() => this.triggerHide(), 5000);
+      setTimeout(() => this.hide(), 5000);
     }
   }
 
@@ -50,13 +50,13 @@ class GenericNotification extends React.Component<Props, State> {
     }
     return (
       <div
-        className={this.determineClassName()}
-        style={{ marginTop: this.getMarginTop() }}
+        className={this.className()}
+        style={{ marginTop: this.marginTop() }}
         ref={div => (this.container = div)}
         onTransitionEnd={e => this.onTransitionEnd(e)}
       >
         <div className={styles.icon}>
-          <Icon icon={this.getIconType()} role="presentation" inheritSize />
+          <Icon icon={this.iconType()} role="presentation" inheritSize />
         </div>
         <div className={styles.textContainer}>
           {this.props.title && (
@@ -66,12 +66,12 @@ class GenericNotification extends React.Component<Props, State> {
             <span className={styles.text}>{this.props.children}</span>
           </span>
         </div>
-        {!this.props.persistent && this.renderCancelButton()}
+        {!this.props.persistent && <CancelButton onClick={() => this.hide()} />}
       </div>
     );
   }
 
-  determineClassName(): string {
+  className(): string {
     return classnames(
       styles.notification,
       styles[this.props.type],
@@ -82,7 +82,7 @@ class GenericNotification extends React.Component<Props, State> {
     );
   }
 
-  getMarginTop(): ?string {
+  marginTop(): ?string {
     if (this.state.isFading && this.container) {
       const container = this.container,
         height = container.getBoundingClientRect().height,
@@ -101,7 +101,7 @@ class GenericNotification extends React.Component<Props, State> {
     }
   }
 
-  getIconType() {
+  iconType() {
     switch (this.props.type) {
       case 'affirmative':
         return successIcon;
@@ -116,22 +116,7 @@ class GenericNotification extends React.Component<Props, State> {
     }
   }
 
-  renderCancelButton() {
-    return (
-      <button className={styles.cancel} onClick={() => this.triggerHide()}>
-        <span className={styles.cancelInner}>
-          <Icon
-            icon={closeIcon}
-            role="img"
-            title="close notification"
-            inheritSize
-          />
-        </span>
-      </button>
-    );
-  }
-
-  triggerHide() {
+  hide() {
     this.setState({ isFading: true });
   }
 
@@ -140,5 +125,18 @@ class GenericNotification extends React.Component<Props, State> {
     autohide: false,
   };
 }
+
+const CancelButton = ({ onClick }) => (
+  <button className={styles.cancel} onClick={onClick}>
+    <span className={styles.cancelInner}>
+      <Icon
+        icon={closeIcon}
+        role="img"
+        title="close notification"
+        inheritSize
+      />
+    </span>
+  </button>
+);
 
 export default GenericNotification;
