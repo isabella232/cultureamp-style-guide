@@ -8,7 +8,7 @@ const selection = {
   background: '#b3d4fc',
 };
 const fonts =
-  "'Ideal Sans A', 'Ideal Sans B', 'Consolas', 'monaco', 'Andale Mono', 'Ubuntu Mono', monospace";
+  "'Operator Mono A', 'Operator Mono B', 'Consolas', 'monaco', 'Andale Mono', 'Ubuntu Mono', monospace";
 
 export default {
   'code[class*="language-"]': {

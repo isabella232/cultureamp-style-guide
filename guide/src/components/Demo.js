@@ -136,7 +136,6 @@ export default class Demo extends React.Component {
     let jsxCode = reactElementToJSXString(this.selectedPreset().node, {
       showDefaultProps: false,
       sortProps: false,
-      tabStop: 4,
     });
     jsxCode = jsxCode.replace(
       /icon={<symbol (.*)<\/symbol>}/g,
