@@ -49,6 +49,22 @@ const buttonPresets = [
     node: <Button label="Label" primary disabled />,
   },
   {
+    name: 'Secondary',
+    node: <Button label="Label" secondary />,
+  },
+  {
+    name: 'Secondary Disabled',
+    node: <Button label="Label" secondary disabled />,
+  },
+  {
+    name: 'Secondary w/ Icon',
+    node: <Button label="Configure" icon={configureIcon} secondary />,
+  },
+  {
+    name: 'Secondary Disabled w/ Icon',
+    node: <Button label="Configure" icon={configureIcon} secondary disabled />,
+  },
+  {
     name: 'Destructive',
     node: <Button label="Label" destructive />,
   },

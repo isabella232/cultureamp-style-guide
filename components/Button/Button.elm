@@ -3,6 +3,7 @@ module Button.Button
         ( view
         , default
         , primary
+        , secondary
         , destructive
         , disabled
         , icon
@@ -43,6 +44,7 @@ view (Config config) label =
             [ classList
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
+                , ( .secondary, config.variant == Secondary )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -115,6 +117,7 @@ viewIconFor (Config { icon, iconPosition }) forPosition =
         { container = ""
         , button = ""
         , primary = ""
+        , secondary = ""
         , destructive = ""
         , form = ""
         , reversed = ""
@@ -154,6 +157,7 @@ type alias ConfigValue msg =
 type Variant
     = Default
     | Primary
+    | Secondary
     | Destructive
 
 
@@ -194,6 +198,11 @@ defaults =
 primary : Config msg
 primary =
     Config { defaults | variant = Primary }
+
+
+secondary : Config msg
+secondary =
+    Config { defaults | variant = Secondary }
 
 
 destructive : Config msg

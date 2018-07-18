@@ -71,6 +71,7 @@ decode props =
     in
         Ok default
             -- variants
+            |> decodeField "secondary" Json.bool (variantFlag secondary) props
             |> decodeField "primary" Json.bool (variantFlag primary) props
             |> decodeField "destructive" Json.bool (variantFlag destructive) props
             -- modifiers
