@@ -1,3 +1,4 @@
+// @flow
 import Text from 'cultureamp-style-guide/components/Text';
 import React from 'react';
 
