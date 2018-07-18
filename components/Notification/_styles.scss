@@ -64,9 +64,6 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   @include button-reset;
   composes: interactiveIconWrapper from '../Icon/Icon.module.scss';
   color: $ca-palette-lapis;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
   transform: none;
 
   &:active {
@@ -75,9 +72,9 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 }
 
 %ca-notification__cancel__inner {
-  $size: 20px;
-  height: $size;
-  width: $size;
+  // We ignore line-height so that the icon wrapper is the same size as the icon, not the current line.
+  line-height: 0;
+  float: right;
   margin-right: 10px;
 }
 
