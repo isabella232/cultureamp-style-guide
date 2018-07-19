@@ -30,7 +30,8 @@ const presets = [
       <ToastNotification
         type="affirmative"
         title="Success!"
-        autohide="hideCloseIcon"
+        autohide
+        hideCloseIcon
       >
         New user data, imported by mackenzie@hooli.com has successfully
         uploaded. <a href="/">Manage users is now available</a>
