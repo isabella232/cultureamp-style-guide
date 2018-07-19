@@ -30,6 +30,8 @@ const Tooltip = ({ children, tabIndex, tooltip, hideTooltip }: Props) => {
   );
 };
 
+Tooltip.displayName = 'Tooltip';
+
 Tooltip.defaultProps = {
   hideTooltip: false,
   tabIndex: 0,

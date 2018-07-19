@@ -15,6 +15,7 @@ type DropdownMenuProps = {
 };
 
 export default class DropdownMenu extends React.Component<DropdownMenuProps> {
+  static displayName = 'DropdownMenu';
   menu: ?HTMLDivElement;
 
   componentDidMount() {

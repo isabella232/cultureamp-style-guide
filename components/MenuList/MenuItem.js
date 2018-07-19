@@ -55,5 +55,6 @@ const MenuItem = (props: {
     </a>
   );
 };
+MenuItem.displayName = 'MenuItem';
 
 export default MenuItem;

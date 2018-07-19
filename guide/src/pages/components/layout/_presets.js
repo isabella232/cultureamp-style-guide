@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import Layout from 'cultureamp-style-guide/components/Layout';
 import NavigationBar from 'cultureamp-style-guide/components/NavigationBar';
@@ -25,7 +26,6 @@ const navBar = (
       />
       <NavigationBar.Menu
         tooltip="Culture Amp"
-        header={null}
         items={[
           {
             label: 'About Culture Amp',

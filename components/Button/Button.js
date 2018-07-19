@@ -5,20 +5,22 @@ import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
 type Props = {|
-  label: String,
+  label: string,
   icon?: {
-    id: String,
-    viewBox: String,
+    id: string,
+    viewBox: string,
   },
   iconPosition: IconPosition,
-  primary: Boolean,
-  destructive: Boolean,
-  disabled: Boolean,
-  form: Boolean,
-  reversed: Boolean,
+  primary: boolean,
+  secondary: boolean,
+  destructive: boolean,
+  disabled: boolean,
+  form: boolean,
+  reversed: boolean,
   reverseColor?: 'lapis' | 'ocean' | 'peach' | 'seedling' | 'wisteria' | 'yuzu',
-  onClick?: MouseEventListener,
-  href?: String,
+  onClick?: MouseEvent => void,
+  href?: string,
+  automationId?: string,
 |};
 
 type IconPosition = 'start' | 'end';
@@ -27,6 +29,7 @@ Button.defaultProps = {
   iconPosition: 'start',
   form: false,
   primary: false,
+  secondary: false,
   destructive: false,
   disabled: false,
   reversed: false,
@@ -41,30 +44,54 @@ export default function Button(props: Props) {
 }
 
 function renderButton(props: Props) {
+  const { disabled, onClick } = props;
+
   return (
     <button
-      disabled={props.disabled}
+      disabled={disabled}
       className={buttonClass(props)}
-      onClick={props.onClick}
+      onClick={e => {
+        if (onClick) {
+          e.preventDefault();
+          onClick && onClick(e);
+        }
+      }}
+      data-automation-id={props.automationId}
     >
       {renderContent(props)}
     </button>
   );
 }
 
+Button.displayName = 'Button';
+
 function renderLink(props: Props) {
+  const { href, onClick } = props;
+
   return (
-    <a href={props.href} className={buttonClass(props)} onClick={props.onClick}>
+    <a
+      href={href}
+      className={buttonClass(props)}
+      onClick={e => {
+        if (onClick) {
+          e.preventDefault();
+          onClick && onClick(e);
+        }
+      }}
+      data-automation-id={props.automationId}
+    >
       {renderContent(props)}
     </a>
   );
 }
 
 function buttonClass(props: Props) {
-  return classNames(styles.button, {
-    [styles.primary]: props.primary,
-    [styles.destructive]: props.destructive,
-    [styles.disabled]: props.disabled,
+  const variantClass =
+    (props.destructive && styles.destructive) ||
+    (props.primary && styles.primary) ||
+    (props.secondary && styles.secondary);
+
+  return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',

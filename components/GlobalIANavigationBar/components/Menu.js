@@ -23,6 +23,7 @@ type State = {|
 export default class Menu extends React.Component<Props, State> {
   root: ?HTMLElement;
 
+  static displayName = 'Menu';
   static defaultProps = {
     items: [],
   };

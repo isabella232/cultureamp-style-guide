@@ -7,9 +7,7 @@ function modifyWebpackConfig(_ref, options) {
   addSassLoaders(config, stage);
   addSrcResolveRoot(config);
   addSvgLoaders(config);
-  if (stage === 'build-javascript' || stage === 'develop') {
-    addElmLoader(config);
-  }
+  addElmLoader(config);
   addMarkdownLoader(config);
   addStyleGuideBabelLoader(config);
   return config;
@@ -89,7 +87,10 @@ function addElmLoader(config) {
   config.loader('elm-webpack-loader', {
     test: /\.elm$/,
     exclude: [/elm-stuff/, /node_modules/],
-    loaders: ['elm-css-modules-loader', 'elm-webpack-loader'],
+    loaders: [
+      'elm-css-modules-loader',
+      'elm-webpack-loader?' + JSON.stringify({ debug: true }),
+    ],
   });
 }
 

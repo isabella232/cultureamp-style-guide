@@ -33,6 +33,7 @@ class Layout extends React.Component<LayoutProps> {
     );
   }
 
+  static displayName = 'Layout';
   static NavigationBar = NavigationBar;
   static Sidebar = Sidebar;
   static Header = Header;
@@ -44,18 +45,22 @@ class Layout extends React.Component<LayoutProps> {
 function NavigationBar(props: { children: React.Node }) {
   return <div className={styles.navigationBar}>{props.children}</div>;
 }
+NavigationBar.displayName = 'NavigationBar';
 
 function Sidebar(props: { children: React.Node }) {
   return <div className={styles.sidebar}>{props.children}</div>;
 }
+Sidebar.displayName = 'Sidebar';
 
 function Header(props: { children: React.Node }) {
   return <aside className={styles.header}>{props.children}</aside>;
 }
+Header.displayName = 'Header';
 
 function Footer(props: { children: React.Node }) {
   return <footer className={styles.footer}>{props.children}</footer>;
 }
+Footer.displayName = 'Footer';
 
 /**
  * An area for toast notifications that will also trigger a screen-reader announcement.
@@ -70,6 +75,7 @@ function Toasts(props: { children: React.Node }) {
     </div>
   );
 }
+Toasts.displayName = 'Toasts';
 
 /**
  * Announcements intended for screen readers only. Content will be invisible for sighted users.
@@ -83,6 +89,7 @@ function Announcers(props: { children: React.Node }) {
     </div>
   );
 }
+Announcers.displayName = 'Announcers';
 
 function extractChildOfType(children, type) {
   const match = children.find(child => child && child.type.name == type.name);

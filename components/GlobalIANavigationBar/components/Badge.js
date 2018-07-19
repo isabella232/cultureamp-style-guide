@@ -25,6 +25,7 @@ export function ProductionBadge(props: BadgeProps) {
     </div>
   );
 }
+ProductionBadge.displayName = 'ProductionBadge';
 
 export function StagingBadge(props: BadgeProps) {
   return (
@@ -36,6 +37,7 @@ export function StagingBadge(props: BadgeProps) {
     />
   );
 }
+StagingBadge.displayName = 'StagingBadge';
 
 export function TestBadge(props: BadgeProps) {
   return (
@@ -47,6 +49,7 @@ export function TestBadge(props: BadgeProps) {
     />
   );
 }
+TestBadge.displayName = 'TestBadge';
 
 export function LocalBadge(props: BadgeProps) {
   return (
@@ -58,6 +61,7 @@ export function LocalBadge(props: BadgeProps) {
     />
   );
 }
+LocalBadge.displayName = 'LocalBadge';
 
 export function namedBadge(environment: string) {
   return (props: BadgeProps) => (
@@ -69,6 +73,7 @@ export function namedBadge(environment: string) {
     />
   );
 }
+namedBadge.displayName = 'namedBadge';
 
 type MonogramBadgeProps = {|
   ...BadgeProps,
@@ -89,3 +94,4 @@ function MonogramBadge(props: MonogramBadgeProps) {
     </div>
   );
 }
+MonogramBadge.displayName = 'MonogramBadge';

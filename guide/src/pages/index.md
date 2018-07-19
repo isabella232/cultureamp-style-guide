@@ -17,11 +17,11 @@ Product:
 
 * <Link to="/components/">Components</Link>
 
-  * <Link to="/components/button">Button</Link>
+  * <Link to="/components/Button">Button</Link>
 
   * <Link to="/components/dropdown">Dropdown</Link>
 
-  * <Link to="/components/icon">Icon</Link>
+  * <Link to="/components/Icon">Icon</Link>
 
   * <Link to="/components/layout">Layout</Link>
 

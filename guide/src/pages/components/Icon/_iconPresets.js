@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import Icon from 'cultureamp-style-guide/components/Icon';
 import configureIcon from 'cultureamp-style-guide/icons/configure.svg';

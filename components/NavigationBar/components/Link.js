@@ -48,6 +48,8 @@ const Link = ({
   );
 };
 
+Link.displayName = 'Link';
+
 Link.defaultProps = {
   active: false,
   hideTooltip: false,

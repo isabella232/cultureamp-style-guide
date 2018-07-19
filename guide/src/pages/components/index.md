@@ -11,9 +11,9 @@ imports:
 
 Menu:
 
-* <Link to="/components/button">Button</Link>
+* <Link to="/components/Button">Button</Link>
 * <Link to="/components/dropdown">Dropdown</Link>
-* <Link to="/components/icon">Icon</Link>
+* <Link to="/components/Icon">Icon</Link>
 * <Link to="/components/layout">Layout</Link>
 * <Link to="/components/menulist">Menu List</Link>
 * <Link to="/components/navigationbar">Navigation Bar</Link>

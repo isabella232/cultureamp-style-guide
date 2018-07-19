@@ -1,4 +1,12 @@
-module Icon.Icon exposing (Config, main, view, img, imgWithDesc, presentation, inheritSize)
+module Icon.Icon
+    exposing
+        ( Config
+        , view
+        , presentation
+        , img
+        , imgWithDesc
+        , inheritSize
+        )
 
 import Html exposing (Html, text)
 import Html.Attributes exposing (attribute)
@@ -9,12 +17,12 @@ import Icon.SvgAsset exposing (SvgAsset, svgAsset)
 import CssModules exposing (css)
 
 
-view : Config -> SvgAsset -> String -> Html Never
-view config svgAsset id =
-    let
-        (Config { inheritSize, role }) =
-            config
+-- VIEW
 
+
+view : Config -> SvgAsset -> Html Never
+view ((Config { inheritSize, role }) as config) svgAsset =
+    let
         { toString } =
             css "cultureamp-style-guide/components/Icon/Icon.module.scss"
                 { icon = ""
@@ -24,6 +32,7 @@ view config svgAsset id =
         svg
             (List.append
                 [ class
+                    -- cannot use Html.Attributes.classList for svg :(
                     ([ ( .icon, True )
                      , ( .inheritSize, inheritSize )
                      ]
@@ -35,23 +44,23 @@ view config svgAsset id =
                 , viewBox svgAsset.viewBox
                 , attribute "focusable" "false" -- work around IE11 making all SVGs focusable. See http://simplyaccessible.com/article/7-solutions-svgs/#acc-heading-4
                 ]
-                (a11yAttributes config id)
+                (a11yAttributes config)
             )
             (List.append
-                (a11yElements config id)
+                (a11yElements config)
                 [ use [ xlinkHref ("#" ++ svgAsset.id) ] [] ]
             )
 
 
-a11yAttributes : Config -> String -> List (Html.Attribute Never)
-a11yAttributes (Config { role }) id =
+a11yAttributes : Config -> List (Html.Attribute Never)
+a11yAttributes (Config { role }) =
     case role of
         Presentation ->
             [ Aria.role "presentation"
             , ariaHidden True
             ]
 
-        Img { desc } ->
+        Img (Id id) _ desc ->
             [ Aria.role "img"
             , ariaLabelledby <|
                 case desc of
@@ -64,13 +73,13 @@ a11yAttributes (Config { role }) id =
             ]
 
 
-a11yElements : Config -> String -> List (Html Never)
-a11yElements (Config { role }) id =
+a11yElements : Config -> List (Html Never)
+a11yElements (Config { role }) =
     case role of
-        Img { title, desc } ->
+        Img (Id id) (Title title) desc ->
             [ Svg.title [ Html.Attributes.id (titleId id) ] [ text title ]
             , case desc of
-                Just str ->
+                Just (Description str) ->
                     Svg.desc [ Html.Attributes.id (descId id) ] [ text str ]
 
                 Nothing ->
@@ -91,67 +100,63 @@ descId id =
     id ++ "-desc"
 
 
-defaultConfig : Config
-defaultConfig =
-    Config
-        { inheritSize = False
-        , role = Presentation
-        }
+
+-- VARIANTS
+
+
+type Config
+    = Config ConfigValue
+
+
+type alias ConfigValue =
+    { inheritSize : Bool
+    , role : Role
+    }
+
+
+type Role
+    = Img Id Title (Maybe Description)
+    | Presentation
+
+
+type Id
+    = Id String
+
+
+type Title
+    = Title String
+
+
+type Description
+    = Description String
+
+
+defaults : ConfigValue
+defaults =
+    { inheritSize = False
+    , role = Presentation
+    }
 
 
 presentation : Config
 presentation =
-    defaultConfig
+    Config defaults
 
 
-{-| Meaningful image. Title should be read aloud to users who can't see it.
--}
-img : String -> Config
-img title =
-    let
-        (Config defaults) =
-            defaultConfig
-    in
-        Config { defaults | role = Img (ImgAlt title Nothing) }
+img : String -> String -> Config
+img id title =
+    Config { defaults | role = Img (Id id) (Title title) Nothing }
 
 
-{-| Meaningful image with title and description. Title and description should be
-read aloud to users who can't see it.
--}
-imgWithDesc : String -> String -> Config -> Config
-imgWithDesc title desc (Config config) =
-    let
-        (Config defaults) =
-            defaultConfig
-    in
-        Config { defaults | role = Img (ImgAlt title (Just desc)) }
+imgWithDesc : String -> String -> String -> Config
+imgWithDesc id title desc =
+    Config { defaults | role = Img (Id id) (Title title) (Just (Description desc)) }
 
 
-inheritSize : Config -> Config
-inheritSize (Config config) =
-    Config { config | inheritSize = True }
+
+-- MODIFIERS
 
 
-type Config
-    = Config
-        { inheritSize : Bool
-        , role : Role
-        }
-
-
-type Role
-    = Img ImgAlt
-    | Presentation
-
-
-type alias ImgAlt =
-    { title : String
-    , desc : Maybe String
-    }
-
-
-main : Html Never
-main =
-    view presentation
-        (svgAsset "cultureamp-style-guide/icons/exclamation.svg")
-        "elm-icon-demo"
+inheritSize : Bool -> Config -> Config
+inheritSize value (Config config) =
+    Config { config | inheritSize = value }

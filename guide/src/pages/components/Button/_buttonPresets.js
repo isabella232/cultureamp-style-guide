@@ -1,3 +1,4 @@
+// @flow
 import configureIcon from 'cultureamp-style-guide/icons/configure.svg';
 import Button from 'cultureamp-style-guide/components/Button/Button.js';
 import React from 'react';
@@ -5,7 +6,7 @@ import React from 'react';
 const buttonPresets = [
   {
     name: 'Default',
-    node: <Button label="Label" />,
+    node: <Button label="Label" automationId="demo-button" />,
   },
   {
     name: 'Hyperlink',
@@ -17,7 +18,9 @@ const buttonPresets = [
       <Button
         label="Label"
         href="//example.com"
-        onClick={e => e.preventDefault()}
+        onClick={e => {
+          alert('click!');
+        }}
       />
     ),
   },
@@ -44,6 +47,22 @@ const buttonPresets = [
   {
     name: 'Primary Disabled',
     node: <Button label="Label" primary disabled />,
+  },
+  {
+    name: 'Secondary',
+    node: <Button label="Label" secondary />,
+  },
+  {
+    name: 'Secondary Disabled',
+    node: <Button label="Label" secondary disabled />,
+  },
+  {
+    name: 'Secondary w/ Icon',
+    node: <Button label="Configure" icon={configureIcon} secondary />,
+  },
+  {
+    name: 'Secondary Disabled w/ Icon',
+    node: <Button label="Configure" icon={configureIcon} secondary disabled />,
   },
   {
     name: 'Destructive',

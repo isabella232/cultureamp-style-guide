@@ -21,6 +21,7 @@
     "normalize.css": "^8.0.0",
     "raw-loader": "^0.5.1",
     "react-element-to-jsx-string": "^14.0.1",
+    "react-elm-components": "https://github.com/evancz/react-elm-components",
     "react-helmet": "^5.2.0",
     "react-syntax-highlighter": "^8.0.1",
     "style-loader": "^0.20.3",
