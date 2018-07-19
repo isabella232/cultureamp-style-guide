@@ -1,5 +1,5 @@
 // @flow
-import React from 'react';
+import * as React from 'react';
 import SyntaxHighlighter, {
   registerLanguage,
 } from 'react-syntax-highlighter/prism-light';
@@ -8,7 +8,7 @@ import styles from './Code.styles.js';
 
 registerLanguage('jsx', jsx);
 
-class Code extends React.Component {
+class Code extends React.Component<{ children: React.Node }> {
   render() {
     return (
       <SyntaxHighlighter language="jsx" style={styles}>
