@@ -43,15 +43,11 @@ exports[`The basic notification renders correctly 1`] = `
       <div
         className="textContainer"
       >
-        <span
-          className="textWrapper"
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            This is my positive notification
-          </span>
-        </span>
+          This is my positive notification
+        </p>
       </div>
       <CancelButton
         onClick={[Function]}
@@ -65,13 +61,13 @@ exports[`The basic notification renders correctly 1`] = `
           >
             <Icon
               icon={null}
-              inheritSize={true}
+              inheritSize={false}
               role="img"
               title="close notification"
             >
               <svg
                 aria-labelledby="id-2-title"
-                className="icon inheritSize"
+                className="icon"
                 focusable="false"
                 role="img"
                 viewBox="viewBox"
@@ -137,19 +133,15 @@ exports[`You can change the type 1`] = `
       <div
         className="textContainer"
       >
-        <span
-          className="textWrapper"
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            This is my 
-            <em>
-              informational
-            </em>
-             notification
-          </span>
-        </span>
+          This is my 
+          <em>
+            informational
+          </em>
+           notification
+        </p>
       </div>
       <CancelButton
         onClick={[Function]}
@@ -163,13 +155,13 @@ exports[`You can change the type 1`] = `
           >
             <Icon
               icon={null}
-              inheritSize={true}
+              inheritSize={false}
               role="img"
               title="close notification"
             >
               <svg
                 aria-labelledby="id-4-title"
-                className="icon inheritSize"
+                className="icon"
                 focusable="false"
                 role="img"
                 viewBox="viewBox"

@@ -42,20 +42,16 @@ exports[`The cancel button hides the notification and triggers the onHide callba
     <div
       className="textContainer"
     >
-      <span
+      <h6
         className="title"
       >
         Success!
-      </span>
-      <span
-        className="textWrapper"
+      </h6>
+      <p
+        className="text"
       >
-        <span
-          className="text"
-        >
-          This is my positive notification
-        </span>
-      </span>
+        This is my positive notification
+      </p>
     </div>
     <CancelButton
       onClick={[Function]}
@@ -69,13 +65,13 @@ exports[`The cancel button hides the notification and triggers the onHide callba
         >
           <Icon
             icon={null}
-            inheritSize={true}
+            inheritSize={false}
             role="img"
             title="close notification"
           >
             <svg
               aria-labelledby="id-4-title"
-              className="icon inheritSize"
+              className="icon"
               focusable="false"
               role="img"
               viewBox="viewBox"
@@ -139,20 +135,16 @@ exports[`The cancel button hides the notification and triggers the onHide callba
     <div
       className="textContainer"
     >
-      <span
+      <h6
         className="title"
       >
         Success!
-      </span>
-      <span
-        className="textWrapper"
+      </h6>
+      <p
+        className="text"
       >
-        <span
-          className="text"
-        >
-          This is my positive notification
-        </span>
-      </span>
+        This is my positive notification
+      </p>
     </div>
     <CancelButton
       onClick={[Function]}
@@ -166,13 +158,13 @@ exports[`The cancel button hides the notification and triggers the onHide callba
         >
           <Icon
             icon={null}
-            inheritSize={true}
+            inheritSize={false}
             role="img"
             title="close notification"
           >
             <svg
               aria-labelledby="id-4-title"
-              className="icon inheritSize"
+              className="icon"
               focusable="false"
               role="img"
               viewBox="viewBox"

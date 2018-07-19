@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import ToastNotification from '../ToastNotification';
-import GenericNotification from '../GenericNotification';
+import GenericNotification from '../components/GenericNotification';
 
 test('The basic notification renders correctly', () => {
   const notification = mount(

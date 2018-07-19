@@ -46,20 +46,16 @@ exports[`Persistent versions of the notifications work 1`] = `
       <div
         className="textContainer"
       >
-        <span
+        <h6
           className="title"
         >
           Error
-        </span>
-        <span
-          className="textWrapper"
+        </h6>
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            Something has gone wrong
-          </span>
-        </span>
+          Something has gone wrong
+        </p>
       </div>
     </div>
   </GenericNotification>
@@ -112,20 +108,16 @@ exports[`The basic notification renders correctly 1`] = `
       <div
         className="textContainer"
       >
-        <span
+        <h6
           className="title"
         >
           Warning
-        </span>
-        <span
-          className="textWrapper"
+        </h6>
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            Something has gone wrong
-          </span>
-        </span>
+          Something has gone wrong
+        </p>
       </div>
       <CancelButton
         onClick={[Function]}
@@ -139,13 +131,13 @@ exports[`The basic notification renders correctly 1`] = `
           >
             <Icon
               icon={null}
-              inheritSize={true}
+              inheritSize={false}
               role="img"
               title="close notification"
             >
               <svg
                 aria-labelledby="id-2-title"
-                className="icon inheritSize"
+                className="icon"
                 focusable="false"
                 role="img"
                 viewBox="viewBox"

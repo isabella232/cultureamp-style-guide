@@ -47,20 +47,16 @@ exports[`The basic notification renders correctly 1`] = `
       <div
         className="textContainer"
       >
-        <span
+        <h6
           className="title"
         >
           Success!
-        </span>
-        <span
-          className="textWrapper"
+        </h6>
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            It worked!
-          </span>
-        </span>
+          It worked!
+        </p>
       </div>
       <CancelButton
         onClick={[Function]}
@@ -74,13 +70,13 @@ exports[`The basic notification renders correctly 1`] = `
           >
             <Icon
               icon={null}
-              inheritSize={true}
+              inheritSize={false}
               role="img"
               title="close notification"
             >
               <svg
                 aria-labelledby="id-2-title"
-                className="icon inheritSize"
+                className="icon"
                 focusable="false"
                 role="img"
                 viewBox="viewBox"
@@ -150,20 +146,16 @@ exports[`You cannot hide the close icon unless it is an autohide 1`] = `
       <div
         className="textContainer"
       >
-        <span
+        <h6
           className="title"
         >
           Info
-        </span>
-        <span
-          className="textWrapper"
+        </h6>
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            Currently processing...
-          </span>
-        </span>
+          Currently processing...
+        </p>
       </div>
       <CancelButton
         onClick={[Function]}
@@ -177,13 +169,13 @@ exports[`You cannot hide the close icon unless it is an autohide 1`] = `
           >
             <Icon
               icon={null}
-              inheritSize={true}
+              inheritSize={false}
               role="img"
               title="close notification"
             >
               <svg
                 aria-labelledby="id-5-title"
-                className="icon inheritSize"
+                className="icon"
                 focusable="false"
                 role="img"
                 viewBox="viewBox"
@@ -253,20 +245,16 @@ exports[`autohide and hideClose icon both work together correctly 1`] = `
       <div
         className="textContainer"
       >
-        <span
+        <h6
           className="title"
         >
           Info
-        </span>
-        <span
-          className="textWrapper"
+        </h6>
+        <p
+          className="text"
         >
-          <span
-            className="text"
-          >
-            Currently processing...
-          </span>
-        </span>
+          Currently processing...
+        </p>
       </div>
     </div>
   </GenericNotification>
