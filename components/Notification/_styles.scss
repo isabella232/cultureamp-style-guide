@@ -3,9 +3,7 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/layers';
 @import '~cultureamp-style-guide/styles/animation';
-@import '../Button/styles';
-
-// Variables
+@import '~cultureamp-style-guide/components/Button/styles';
 
 $ca-notification-border-width: 1px;
 $ca-notification-vertical-padding: calc(
@@ -18,8 +16,6 @@ $ca-notification-collapse-height: margin-top $ca-duration-slow ease;
 $ca-notification-collapse-height-delayed: margin-top $ca-duration-fast
   $ca-duration-slow ease;
 $ca-notification-slide-right: transform $ca-duration-slow ease-out;
-
-// Structure
 
 %ca-notification {
   display: flex;
@@ -35,7 +31,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     border-radius: $ca-border-radius;
   }
 
-  %ca-notification---inline {
+  &%ca-notification---inline {
     width: 100%;
     padding: $ca-notification-vertical-padding
       $ca-notification-inline-horizontal-padding;
@@ -43,7 +39,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
       $ca-notification-collapse-height-delayed;
   }
 
-  %ca-notification---toast {
+  &%ca-notification---toast {
     width: 25rem;
     box-shadow: 0 3px 7px add-alpha($ca-palette-ink, 9%);
     padding: $ca-notification-vertical-padding
@@ -53,7 +49,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     will-change: transform;
   }
 
-  %ca-notification---global {
+  &%ca-notification---global {
     width: 100%;
     padding: $ca-grid / 2 15px;
     border-width: 0;
@@ -64,14 +60,14 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     z-index: $ca-z-index-fixed;
   }
 
-  // Type
+  // Types
 
   &%ca-notification---affirmative {
     background: add-tint($ca-palette-seedling, 90%);
     border-color: add-tint($ca-palette-seedling, 60%);
     color: $ca-palette-lapis;
 
-    %ca-notification---global {
+    &%ca-notification---global {
       background-color: add-tint($ca-palette-seedling, 70%);
     }
   }
@@ -81,7 +77,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     border-color: add-tint($ca-palette-ocean, 60%);
     color: $ca-palette-lapis;
 
-    %ca-notification---global {
+    &%ca-notification---global {
       background-color: add-tint($ca-palette-ocean, 70%);
     }
   }
@@ -91,7 +87,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     border-color: add-tint($ca-palette-yuzu, 60%);
     color: $ca-palette-lapis;
 
-    %ca-notification---global {
+    &%ca-notification---global {
       background-color: add-tint($ca-palette-yuzu, 70%);
     }
   }
@@ -101,7 +97,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     border-color: add-tint($ca-palette-coral, 60%);
     color: $ca-palette-lapis;
 
-    %ca-notification---global {
+    &%ca-notification---global {
       background-color: add-tint($ca-palette-coral, 50%);
     }
   }
@@ -128,26 +124,6 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 %ca-notification__icon {
   align-items: flex-start;
 
-  %ca-notification---inline &,
-  %ca-notification---toast & {
-    width: $ca-grid;
-    height: $ca-grid;
-    margin-top: $ca-grid / 4;
-  }
-
-  %ca-notification---global & {
-    width: $ca-grid * 1.25;
-    height: $ca-grid * 1.25;
-    margin-top: $ca-grid / 8;
-
-    %ca-notification---affirmative&,
-    %ca-notification---informative&,
-    %ca-notification---warning&,
-    %ca-notification---negative& {
-      color: $ca-palette-lapis;
-    }
-  }
-
   %ca-notification---affirmative & {
     color: add-tint($ca-palette-seedling, 40%);
   }
@@ -162,6 +138,21 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
   %ca-notification---negative & {
     color: add-tint($ca-palette-coral, 20%);
+  }
+
+  %ca-notification---inline &,
+  %ca-notification---toast & {
+    width: $ca-grid;
+    height: $ca-grid;
+    margin-top: $ca-grid / 4;
+  }
+
+  %ca-notification---global & {
+    width: $ca-grid * 1.25;
+    height: $ca-grid * 1.25;
+    margin-top: $ca-grid / 8;
+    // Override the type-specific color values set above
+    color: $ca-palette-lapis;
   }
 }
 
@@ -230,7 +221,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
 %ca-notification__cancel {
   @include button-reset;
-  composes: interactiveIconWrapper from '../Icon/Icon.module.scss';
+  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
   color: $ca-palette-lapis;
   transform: none;
 

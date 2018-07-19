@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import Icon from '../../../components/Icon';
+import Icon from '../../Icon';
 import successIcon from 'cultureamp-style-guide/icons/success.svg';
 import exclamationIcon from 'cultureamp-style-guide/icons/exclamation.svg';
 import infoIcon from 'cultureamp-style-guide/icons/information.svg';

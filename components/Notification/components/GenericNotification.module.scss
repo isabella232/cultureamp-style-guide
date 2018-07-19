@@ -36,7 +36,7 @@
   @extend %ca-notification---hidden;
 }
 
-// Notification Style
+// Variant
 
 .inline {
   @extend %ca-notification---inline;
@@ -50,7 +50,7 @@
   @extend %ca-notification---global;
 }
 
-// Notification Type
+// Type
 
 .affirmative {
   @extend %ca-notification---affirmative;
