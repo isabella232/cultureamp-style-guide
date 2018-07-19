@@ -1,7 +1,7 @@
 // @flow
 import * as React from 'react';
-import GenericNotification from './GenericNotification';
-import type { NotificationType } from './GenericNotification';
+import GenericNotification from './components/GenericNotification';
+import type { NotificationType } from './components/GenericNotification';
 
 type Props = {|
   type: NotificationType,

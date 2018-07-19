@@ -1,10 +1,10 @@
 // @flow
 import * as React from 'react';
-import Icon from '../Icon/Icon';
-import successIcon from '../../icons/success.svg';
-import exclamationIcon from '../../icons/exclamation.svg';
-import infoIcon from '../../icons/information.svg';
-import closeIcon from '../../icons/close.svg';
+import Icon from '../../../components/Icon';
+import successIcon from 'cultureamp-style-guide/icons/success.svg';
+import exclamationIcon from 'cultureamp-style-guide/icons/exclamation.svg';
+import infoIcon from 'cultureamp-style-guide/icons/information.svg';
+import closeIcon from 'cultureamp-style-guide/icons/close.svg';
 import styles from './GenericNotification.module.scss';
 import classnames from 'classnames';
 
