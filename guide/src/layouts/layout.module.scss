@@ -2,13 +2,14 @@
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/layers';
+@import '~cultureamp-style-guide/styles/animation';
 @import '~cultureamp-style-guide/components/NavigationBar/_styles';
 @import '~components/SubNav.module.scss';
 
 $tablet: (min-width: 768px);
 $desktop: (min-width: 1366px);
 $headerHeight: $ca-navigation-bar__width;
-$transitionSpeed: 200ms;
+$transitionSpeed: $ca-duration-slow;
 
 @mixin fullscreenFixed {
   display: block;

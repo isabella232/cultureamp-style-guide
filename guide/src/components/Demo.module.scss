@@ -1,5 +1,6 @@
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/animation';
 @import 'checkerboard';
 
 .root {
@@ -18,7 +19,7 @@
   margin: 0 auto;
   min-height: $ca-grid * 3;
   padding: $ca-grid 0;
-  transition: width 500ms;
+  transition: width $ca-duration-deliberate;
 }
 
 .gridOverlay {
@@ -51,25 +52,11 @@
 
   > * {
     @include ca-type-ideal-body;
-    flex: 1;
-    text-align: center;
-
-    &:first-child {
-      text-align: left;
-    }
-
-    &:last-child {
-      text-align: right;
-    }
 
     button {
       @include ca-type-ideal-button;
     }
   }
-}
-
-.dimension {
-  font-weight: $ca-weight-medium;
 }
 
 .renderOptions > *:not(:first-child) {

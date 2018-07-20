@@ -1,0 +1,198 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The cancel button hides the notification and triggers the onHide callback 1`] = `
+<GenericNotification
+  autohide={false}
+  onHide={[Function]}
+  persistent={false}
+  style="inline"
+  title="Success!"
+  type="positive"
+>
+  <div
+    className="notification positive inline"
+    onTransitionEnd={[Function]}
+    style={
+      Object {
+        "marginTop": undefined,
+      }
+    }
+  >
+    <div
+      className="icon"
+    >
+      <Icon
+        icon={null}
+        inheritSize={true}
+        role="presentation"
+      >
+        <svg
+          aria-hidden={true}
+          className="icon inheritSize"
+          focusable="false"
+          role="presentation"
+          viewBox="viewBox"
+        >
+          <use
+            xlinkHref="#id"
+          />
+        </svg>
+      </Icon>
+    </div>
+    <div
+      className="textContainer"
+    >
+      <h6
+        className="title"
+      >
+        Success!
+      </h6>
+      <p
+        className="text"
+      >
+        This is my positive notification
+      </p>
+    </div>
+    <CancelButton
+      onClick={[Function]}
+    >
+      <button
+        className="cancel"
+        onClick={[Function]}
+      >
+        <span
+          className="cancelInner"
+        >
+          <Icon
+            icon={null}
+            inheritSize={false}
+            role="img"
+            title="close notification"
+          >
+            <svg
+              aria-labelledby="id-4-title"
+              className="icon"
+              focusable="false"
+              role="img"
+              viewBox="viewBox"
+            >
+              <title
+                id="id-4-title"
+              >
+                close notification
+              </title>
+              <use
+                xlinkHref="#id"
+              />
+            </svg>
+          </Icon>
+        </span>
+      </button>
+    </CancelButton>
+  </div>
+</GenericNotification>
+`;
+
+exports[`The cancel button hides the notification and triggers the onHide callback 2`] = `
+<GenericNotification
+  autohide={false}
+  onHide={[Function]}
+  persistent={false}
+  style="inline"
+  title="Success!"
+  type="positive"
+>
+  <div
+    className="notification positive inline hidden"
+    onTransitionEnd={[Function]}
+    style={
+      Object {
+        "marginTop": "NaNpx",
+      }
+    }
+  >
+    <div
+      className="icon"
+    >
+      <Icon
+        icon={null}
+        inheritSize={true}
+        role="presentation"
+      >
+        <svg
+          aria-hidden={true}
+          className="icon inheritSize"
+          focusable="false"
+          role="presentation"
+          viewBox="viewBox"
+        >
+          <use
+            xlinkHref="#id"
+          />
+        </svg>
+      </Icon>
+    </div>
+    <div
+      className="textContainer"
+    >
+      <h6
+        className="title"
+      >
+        Success!
+      </h6>
+      <p
+        className="text"
+      >
+        This is my positive notification
+      </p>
+    </div>
+    <CancelButton
+      onClick={[Function]}
+    >
+      <button
+        className="cancel"
+        onClick={[Function]}
+      >
+        <span
+          className="cancelInner"
+        >
+          <Icon
+            icon={null}
+            inheritSize={false}
+            role="img"
+            title="close notification"
+          >
+            <svg
+              aria-labelledby="id-4-title"
+              className="icon"
+              focusable="false"
+              role="img"
+              viewBox="viewBox"
+            >
+              <title
+                id="id-4-title"
+              >
+                close notification
+              </title>
+              <use
+                xlinkHref="#id"
+              />
+            </svg>
+          </Icon>
+        </span>
+      </button>
+    </CancelButton>
+  </div>
+</GenericNotification>
+`;
+
+exports[`The cancel button hides the notification and triggers the onHide callback 3`] = `
+<GenericNotification
+  autohide={false}
+  onHide={[Function]}
+  persistent={false}
+  style="inline"
+  title="Success!"
+  type="positive"
+/>
+`;

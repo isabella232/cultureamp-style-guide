@@ -1,9 +1,7 @@
-module.exports = {
-  babelrc: false,
-  presets: [['es2015', { modules: false }], 'react'],
-  plugins: [
-    'add-react-displayname',
-    'transform-class-properties',
-    'transform-object-rest-spread',
-  ],
-};
+const fs = require('fs');
+const path = require('path');
+
+const json = fs.readFileSync(path.resolve(__dirname, '../.babelrc'));
+const config = JSON.parse(json);
+
+module.exports = config;

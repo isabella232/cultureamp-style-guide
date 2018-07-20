@@ -1,7 +1,9 @@
 import React from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Text from 'cultureamp-style-guide/components/Text';
+import Button from 'cultureamp-style-guide/components/Button';
 import classNames from 'classnames';
+import Code from './Code';
 import styles from './Demo.module.scss';
 
 const MIN_CANVAS_WIDTH = 240;
@@ -32,10 +34,10 @@ export default class Demo extends React.Component {
       <div className={styles.root}>
         {this.renderPresetList()}
         {this.renderCanvas()}
+        <div className={styles.controls}>{this.renderSizePresets()}</div>
         <div className={styles.controls}>
-          {this.renderSizePresets()}
-          {this.renderCanvasDimensions()}
           {this.renderOptions()}
+          {this.renderCanvasDimensions()}
         </div>
         {this.renderReactCode()}
       </div>
@@ -122,12 +124,12 @@ export default class Demo extends React.Component {
 
   renderSizePresets() {
     return (
-      <div className={styles.sizePresets}>
-        <button onClick={this.onClickResizeTo(FULL)}>Full</button>
-        <button onClick={this.onClickResizeTo(RANDOM)}>Random</button>
-        <button onClick={this.onClickResizeTo(LARGE)}>Large</button>
-        <button onClick={this.onClickResizeTo(MEDIUM)}>Medium</button>
-        <button onClick={this.onClickResizeTo(SMALL)}>Small</button>
+      <div>
+        <Button label="Full" onClick={this.onClickResizeTo(FULL)} />
+        <Button label="Random" onClick={this.onClickResizeTo(RANDOM)} />
+        <Button label="Large" onClick={this.onClickResizeTo(LARGE)} />
+        <Button label="Medium" onClick={this.onClickResizeTo(MEDIUM)} />
+        <Button label="Small" onClick={this.onClickResizeTo(SMALL)} />
       </div>
     );
   }
@@ -138,12 +140,12 @@ export default class Demo extends React.Component {
     return (
       width &&
       height && (
-        <div className={styles.canvasDimensions}>
-          <span className={styles.dimension}>{width}px</span>
+        <Text tag="p">
+          <strong>{width}px</strong>
           {' × '}
-          <span className={styles.dimension}>{height}px</span>
+          <strong>{height}px</strong>
           {' viewport'}
-        </div>
+        </Text>
       )
     );
   }
@@ -194,7 +196,7 @@ export default class Demo extends React.Component {
     return (
       <div>
         <Text tag="h3">Code for this example</Text>
-        <Text tag="pre">{jsxCode}</Text>
+        <Code>{jsxCode}</Code>
       </div>
     );
   }
