@@ -82,7 +82,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     }
   }
 
-  &%ca-notification---warning {
+  &%ca-notification---cautionary {
     background: add-tint($ca-palette-yuzu, 95%);
     border-color: add-tint($ca-palette-yuzu, 60%);
     color: $ca-palette-lapis;
@@ -132,7 +132,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     color: add-tint($ca-palette-ocean, 30%);
   }
 
-  %ca-notification---warning & {
+  %ca-notification---cautionary & {
     color: add-tint($ca-palette-yuzu, 20%);
   }
 

@@ -66,17 +66,17 @@ exports[`The basic notification renders correctly 1`] = `
 <InlineNotification
   persistent={false}
   title="Warning"
-  type="warning"
+  type="cautionary"
 >
   <GenericNotification
     autohide={false}
     persistent={false}
     style="inline"
     title="Warning"
-    type="warning"
+    type="cautionary"
   >
     <div
-      className="notification warning inline hidden"
+      className="notification cautionary inline hidden"
       onTransitionEnd={[Function]}
       style={
         Object {

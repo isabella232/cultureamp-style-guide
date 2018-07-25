@@ -4,7 +4,7 @@ import InlineNotification from '../InlineNotification';
 
 test('The basic notification renders correctly', () => {
   const notification = mount(
-    <InlineNotification type="warning" title="Warning">
+    <InlineNotification type="cautionary" title="Warning">
       Something has gone wrong
     </InlineNotification>
   );

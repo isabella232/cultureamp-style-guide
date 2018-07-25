@@ -25,9 +25,9 @@ const presets = [
     ),
   },
   {
-    name: 'Warning',
+    name: 'Cautionary',
     node: (
-      <InlineNotification type="warning" title="Warning">
+      <InlineNotification type="cautionary" title="Warning">
         New user data, imported by mackenzie@hooli.com has uploaded with some
         minor issues. <a href="/">View issues</a>
       </InlineNotification>
@@ -61,9 +61,9 @@ const presets = [
     ),
   },
   {
-    name: 'Persistent, Warning',
+    name: 'Persistent, Cautionary',
     node: (
-      <InlineNotification type="warning" title="Warning" persistent>
+      <InlineNotification type="cautionary" title="Warning" persistent>
         New user data, imported by mackenzie@hooli.com has uploaded with some
         minor issues. <a href="/">View issues</a>
       </InlineNotification>
@@ -134,7 +134,7 @@ const presets = [
           New user data is currently being processed. We'll let you know when
           the process is completed. <a href="/">Manage users</a>
         </InlineNotification>
-        <InlineNotification type="warning" title="Warning">
+        <InlineNotification type="cautionary" title="Warning">
           New user data, imported by mackenzie@hooli.com has uploaded with some
           minor issues. <a href="/">View issues</a>
         </InlineNotification>

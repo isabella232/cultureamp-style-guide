@@ -11,7 +11,7 @@ import classnames from 'classnames';
 export type NotificationType =
   | 'affirmative'
   | 'informative'
-  | 'warning'
+  | 'cautionary'
   | 'negative';
 
 type Props = {|
@@ -106,7 +106,7 @@ class GenericNotification extends React.Component<Props, State> {
         return successIcon;
       case 'negative':
         return exclamationIcon;
-      case 'warning':
+      case 'cautionary':
         return exclamationIcon;
       case 'informative':
         return infoIcon;
