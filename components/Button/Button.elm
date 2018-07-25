@@ -78,15 +78,24 @@ view (Config config) label =
 
                 Nothing ->
                     []
+
+        title =
+            if config.variant == Tertiary then
+                [ Html.Attributes.title label ]
+            else
+                []
+
+        attribs =
+            buttonClass ++ onClick ++ automationId ++ title
     in
         span [ class .container ]
             [ case config.href of
                 Just href ->
-                    a ([ Html.Attributes.href href ] ++ buttonClass ++ onClick ++ automationId)
+                    a (attribs ++ [ Html.Attributes.href href ])
                         [ viewContent (Config config) label |> Html.map never ]
 
                 Nothing ->
-                    button (disabled ++ buttonClass ++ onClick ++ automationId)
+                    button (attribs ++ disabled)
                         [ viewContent (Config config) label |> Html.map never ]
             ]
 
