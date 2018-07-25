@@ -13,6 +13,7 @@ type Props = {|
   iconPosition: IconPosition,
   primary: boolean,
   secondary: boolean,
+  tertiary: boolean,
   destructive: boolean,
   disabled: boolean,
   form: boolean,
