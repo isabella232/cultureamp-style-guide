@@ -4,6 +4,7 @@ module Button.Button
         , default
         , primary
         , secondary
+        , tertiary
         , destructive
         , disabled
         , icon
@@ -45,6 +46,7 @@ view (Config config) label =
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
+                , ( .tertiary, config.variant == Tertiary )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -90,13 +92,20 @@ view (Config config) label =
 
 
 viewContent : Config msg -> String -> Html Never
-viewContent config label =
-    span [ class .content ]
-        [ viewIconFor config Start
-        , span [ class .label ]
-            [ text label ]
-        , viewIconFor config End
-        ]
+viewContent (Config config) label =
+    let
+        labelOutput =
+            if config.variant == Tertiary then
+                text ""
+            else
+                span [ class .label ]
+                    [ text label ]
+    in
+        span [ class .content ]
+            [ viewIconFor (Config config) Start
+            , labelOutput
+            , viewIconFor (Config config) End
+            ]
 
 
 viewIconFor : Config msg -> IconPosition -> Html Never
@@ -118,6 +127,7 @@ viewIconFor (Config { icon, iconPosition }) forPosition =
         , button = ""
         , primary = ""
         , secondary = ""
+        , tertiary = ""
         , destructive = ""
         , form = ""
         , reversed = ""
@@ -158,6 +168,7 @@ type Variant
     = Default
     | Primary
     | Secondary
+    | Tertiary
     | Destructive
 
 
@@ -203,6 +214,11 @@ primary =
 secondary : Config msg
 secondary =
     Config { defaults | variant = Secondary }
+
+
+tertiary : Config msg
+tertiary =
+    Config { defaults | variant = Tertiary }
 
 
 destructive : Config msg

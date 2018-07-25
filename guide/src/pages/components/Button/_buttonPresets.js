@@ -65,6 +65,10 @@ const buttonPresets = [
     node: <Button label="Configure" icon={configureIcon} secondary disabled />,
   },
   {
+    name: 'Tertiary w/ Icon',
+    node: <Button label="Configure" tertiary icon={configureIcon} />,
+  },
+  {
     name: 'Destructive',
     node: <Button label="Label" destructive />,
   },
