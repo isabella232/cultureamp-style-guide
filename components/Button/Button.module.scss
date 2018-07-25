@@ -16,6 +16,10 @@
   @extend %caButtonSecondary;
 }
 
+.tertiary {
+  @extend %caButtonTertiary;
+}
+
 .destructive {
   @extend %caButtonDestructive;
 }

@@ -28,6 +28,7 @@ Button.defaultProps = {
   form: false,
   primary: false,
   secondary: false,
+  tertiary: false,
   destructive: false,
   disabled: false,
   reversed: false,
@@ -87,7 +88,8 @@ function buttonClass(props: Props) {
   const variantClass =
     (props.destructive && styles.destructive) ||
     (props.primary && styles.primary) ||
-    (props.secondary && styles.secondary);
+    (props.secondary && styles.secondary) ||
+    (props.tertiary && styles.tertiary);
 
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
@@ -105,7 +107,8 @@ function renderContent(props: Props) {
   return (
     <span className={styles.content}>
       {iconForPosition(props, 'start')}
-      <span className={styles.label}>{props.label}</span>
+      {!props.tertiary &&
+        <span className={styles.label}>{props.label}</span>}
       {iconForPosition(props, 'end')}
     </span>
   );
