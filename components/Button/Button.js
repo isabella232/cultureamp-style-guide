@@ -58,6 +58,7 @@ function renderButton(props: Props) {
         }
       }}
       data-automation-id={props.automationId}
+      title={props.tertiary && props.label}
     >
       {renderContent(props)}
     </button>
