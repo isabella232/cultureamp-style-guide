@@ -22,6 +22,7 @@ type Props = {|
   persistent: boolean,
   autohide: boolean,
   onHide?: () => void,
+  automationId?: string,
 |};
 
 type State = {
@@ -54,6 +55,7 @@ class GenericNotification extends React.Component<Props, State> {
         style={{ marginTop: this.marginTop() }}
         ref={div => (this.container = div)}
         onTransitionEnd={e => this.onTransitionEnd(e)}
+        data-automation-id={this.props.automationId}
       >
         <div className={styles.icon}>
           <Icon icon={this.iconType()} role="presentation" inheritSize />

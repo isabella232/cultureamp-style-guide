@@ -10,6 +10,7 @@ type Props = {|
   autohide: boolean,
   hideCloseIcon: boolean,
   onHide?: () => void,
+  automationId?: string,
 |};
 
 const ToastNotification = ({ hideCloseIcon, ...otherProps }: Props) => {
