@@ -5,15 +5,19 @@ import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 import type { SvgAsset } from '../Icon/Icon.js';
 
-type IconPosition = 'start' | 'end';
+type IconButtonPosition = 'start' | 'end';
+
+type IconButton = {
+  glyph: SvgAsset,
+  position?: IconButtonPosition,
+  noLabel?: boolean,
+};
 
 type Props = {
   label: string,
-  icon?: SvgAsset,
-  iconPosition: IconPosition,
+  icon?: IconButton,
   primary: boolean,
   secondary: boolean,
-  tertiary: boolean,
   destructive: boolean,
   disabled: boolean,
   form: boolean,
@@ -25,11 +29,9 @@ type Props = {
 };
 
 Button.defaultProps = {
-  iconPosition: 'start',
   form: false,
   primary: false,
   secondary: false,
-  tertiary: false,
   destructive: false,
   disabled: false,
   reversed: false,
@@ -44,8 +46,8 @@ export default function Button(props: Props) {
 }
 
 function renderButton(props: Props) {
-  const { disabled, onClick } = props;
-  const label = props.tertiary && props.label ? props.label : undefined;
+  const { icon, disabled, onClick } = props;
+  const label = icon && icon.noLabel ? props.label : undefined;
 
   return (
     <button
@@ -93,7 +95,7 @@ function buttonClass(props: Props) {
     (props.destructive && styles.destructive) ||
     (props.primary && styles.primary) ||
     (props.secondary && styles.secondary) ||
-    (props.tertiary && styles.tertiary);
+    (props.icon && props.icon.noLabel && styles.tertiary);
 
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
@@ -108,21 +110,18 @@ function buttonClass(props: Props) {
 }
 
 function renderContent(props: Props) {
+  const { icon, label } = props;
   return (
     <span className={styles.content}>
-      {iconForPosition(props, 'start')}
-      {!props.tertiary &&
-        <span className={styles.label}>{props.label}</span>}
-      {iconForPosition(props, 'end')}
+      {icon && icon.position !== 'end' && renderIcon(props.icon)}
+      {(!icon || !icon.noLabel) && (
+        <span className={styles.label}>{label}</span>
+      )}
+      {icon && icon.position === 'end' && renderIcon(props.icon)}
     </span>
   );
 }
 
-function iconForPosition(
-  { icon, iconPosition }: Props,
-  position: IconPosition
-) {
-  if (icon && position === iconPosition) {
-    return <Icon icon={icon} role="presentation" />;
-  }
+function renderIcon(icon: IconButton) {
+  return <Icon icon={icon.glyph} role="presentation" />;
 }
