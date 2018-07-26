@@ -45,7 +45,7 @@ export default function Button(props: Props) {
 
 function renderButton(props: Props) {
   const { disabled, onClick } = props;
-  const label = props.tertiary && props.label;
+  const label = props.tertiary && props.label ? props.label : undefined;
 
   return (
     <button
