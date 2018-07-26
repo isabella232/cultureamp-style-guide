@@ -16,8 +16,8 @@
   @extend %caButtonSecondary;
 }
 
-.tertiary {
-  @extend %caButtonTertiary;
+.iconNoLabel {
+  @extend %caButtonIconNoLabel;
 }
 
 .destructive {

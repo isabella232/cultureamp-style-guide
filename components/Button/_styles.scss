@@ -153,7 +153,7 @@ $caButton-focus-border-width: 2px;
   }
 }
 
-%caButtonTertiary {
+%caButtonIconNoLabel {
   @extend %caButton;
 
   &:disabled {
@@ -325,7 +325,7 @@ $caButton-focus-border-width: 2px;
       calc(#{$ca-grid * 1} - #{$caButton-border-width});
   }
 
-  %caButtonTertiary & {
+  %caButtonIconNoLabel & {
     padding: .625rem;;
   }
 
