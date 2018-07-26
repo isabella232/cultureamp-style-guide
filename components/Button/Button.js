@@ -113,11 +113,11 @@ function renderContent(props: Props) {
   const { icon, label } = props;
   return (
     <span className={styles.content}>
-      {icon && icon.position !== 'end' && renderIcon(props.icon)}
+      {icon && icon.position !== 'end' && renderIcon(icon)}
       {(!icon || !icon.noLabel) && (
         <span className={styles.label}>{label}</span>
       )}
-      {icon && icon.position === 'end' && renderIcon(props.icon)}
+      {icon && icon.position === 'end' && renderIcon(icon)}
     </span>
   );
 }
