@@ -45,6 +45,7 @@ export default function Button(props: Props) {
 
 function renderButton(props: Props) {
   const { disabled, onClick } = props;
+  const label = props.tertiary && props.label;
 
   return (
     <button
@@ -57,7 +58,8 @@ function renderButton(props: Props) {
         }
       }}
       data-automation-id={props.automationId}
-      title={props.tertiary && props.label}
+      title={label}
+      aria-label={label}
     >
       {renderContent(props)}
     </button>
