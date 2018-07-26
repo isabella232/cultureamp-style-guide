@@ -27,8 +27,8 @@ type Props = {
   icon: IconInternalType,
   inheritSize?: boolean,
   role?: RolesType,
-  title?: void | false | string,
-  desc?: void | false | string,
+  title?: string,
+  desc?: string,
 };
 
 export default class Icon extends React.Component<Props> {

@@ -42,7 +42,7 @@ const Link = ({
           <Icon
             icon={icon}
             role={iconOnly ? 'img' : 'presentation'}
-            title={iconOnly && text}
+            title={iconOnly ? text : undefined}
           />
         </span>
       )}
