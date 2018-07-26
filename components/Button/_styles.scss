@@ -154,12 +154,16 @@ $caButton-focus-border-width: 2px;
 }
 
 %caButtonTertiary {
-  @extend %caButtonSecondary;
+  @extend %caButton;
 
+  &:disabled,
   &:not(:disabled) {
+    background: none;
+    border: none;
+
     &:hover,
     &:active {
-      background: transparent;
+      background: none;
     }
   }
 }
@@ -311,7 +315,7 @@ $caButton-focus-border-width: 2px;
   }
 
   %caButtonTertiary & {
-    padding: calc(.75rem - 1px);
+    padding: .625rem;;
   }
 
   @supports (mix-blend-mode: screen) {
