@@ -95,7 +95,7 @@ function buttonClass(props: Props) {
     (props.destructive && styles.destructive) ||
     (props.primary && styles.primary) ||
     (props.secondary && styles.secondary) ||
-    (props.icon && props.icon.noLabel && styles.tertiary);
+    (props.icon && props.icon.noLabel && styles.iconNoLabel);
 
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,

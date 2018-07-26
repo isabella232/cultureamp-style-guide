@@ -34,7 +34,7 @@ const buttonPresets = [
   },
   {
     name: 'Icon w/ no label',
-    node: <Button label="Configure" tertiary icon={{glyph: configureIcon, noLabel: true}} />,
+    node: <Button label="Configure" icon={{glyph: configureIcon, noLabel: true}} />,
   },
   {
     name: 'Disabled',
