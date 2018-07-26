@@ -4,12 +4,12 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
+
+type IconPosition = 'start' | 'end';
+
 type Props = {|
   label: string,
-  icon?: {
-    id: string,
-    viewBox: string,
-  },
+  icon?: string,
   iconPosition: IconPosition,
   primary: boolean,
   secondary: boolean,
@@ -23,8 +23,6 @@ type Props = {|
   href?: string,
   automationId?: string,
 |};
-
-type IconPosition = 'start' | 'end';
 
 Button.defaultProps = {
   iconPosition: 'start',
