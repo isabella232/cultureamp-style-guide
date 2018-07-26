@@ -156,13 +156,24 @@ $caButton-focus-border-width: 2px;
 %caButtonTertiary {
   @extend %caButton;
 
-  &:disabled,
+  &:disabled {
+    color: add-tint($ca-palette-ink, 70%);
+    background: none;
+    border: none;
+  }
+
   &:not(:disabled) {
+    color: add-tint($ca-palette-ink, 50%);
     background: none;
     border: none;
 
-    &:hover,
+    &:hover {
+      color: add-tint($ca-palette-ink, 30%);
+      background: none;
+    }
+
     &:active {
+      color: $ca-palette-ink;
       background: none;
     }
   }
