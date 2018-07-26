@@ -22,6 +22,7 @@ module Button.Button
 
 import Html exposing (Html, text, span, button, a)
 import Html.Attributes
+import Html.Attributes.Aria
 import Html.Events as Events exposing (onWithOptions, defaultOptions)
 import Json.Decode as Json
 import CssModules exposing (css)
@@ -81,7 +82,9 @@ view (Config config) label =
 
         title =
             if config.variant == Tertiary then
-                [ Html.Attributes.title label ]
+                [ Html.Attributes.title label
+                , Html.Attributes.Aria.ariaLabel label
+                ]
             else
                 []
 
