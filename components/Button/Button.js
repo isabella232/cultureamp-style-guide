@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
-
 type IconPosition = 'start' | 'end';
 
 type Props = {|
