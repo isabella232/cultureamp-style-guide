@@ -8,12 +8,13 @@ import defaultIcon from '../../icons/ellipsis.svg';
 import chevronDown from '../../icons/chevron-down.svg';
 import DropdownMenu from './DropdownMenu';
 
+
 type DropdownState = {
   isMenuVisible: boolean,
 };
 
 type DropdownProps = {
-  icon?: {},
+  icon?: string,
   label?: React.Node,
   children: React.Node,
   menuVisible?: boolean,

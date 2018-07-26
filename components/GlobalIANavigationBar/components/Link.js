@@ -6,8 +6,9 @@ import styles from './Link.module.scss';
 import Icon from '../../Icon';
 import iconStyles from '../../Icon/Icon.module.scss';
 
+
 type Props = {|
-  icon?: { id: string, viewBox: string },
+  icon?: string,
   text: string,
   iconOnly: boolean,
   href: string,
