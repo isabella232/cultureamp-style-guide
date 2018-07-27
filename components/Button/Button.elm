@@ -4,10 +4,10 @@ module Button.Button
         , default
         , primary
         , secondary
-        , tertiary
         , destructive
         , disabled
         , icon
+        , Icon
         , iconPosition
         , IconPosition(..)
         , form
@@ -47,7 +47,7 @@ view (Config config) label =
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
-                , ( .tertiary, config.variant == Tertiary )
+                , ( .iconNoLabel, hasNoLabel config.icon)
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -81,7 +81,7 @@ view (Config config) label =
                     []
 
         title =
-            if config.variant == Tertiary then
+            if hasNoLabel config.icon then
                 [ Html.Attributes.title label
                 , Html.Attributes.Aria.ariaLabel label
                 ]
@@ -103,34 +103,37 @@ view (Config config) label =
             ]
 
 
+viewLabel : String -> Maybe Icon -> Html Never
+viewLabel label icon =
+    if hasNoLabel icon then
+        text ""
+    else
+        span [ class .label ]
+            [ text label ]
+
+
 viewContent : Config msg -> String -> Html Never
 viewContent (Config config) label =
-    let
-        labelOutput =
-            if config.variant == Tertiary then
-                text ""
-            else
-                span [ class .label ]
-                    [ text label ]
-    in
-        span [ class .content ]
-            [ viewIconFor (Config config) Start
-            , labelOutput
-            , viewIconFor (Config config) End
-            ]
+    span [ class .content ]
+        [ viewIconFor (Config config) Start
+        , viewLabel label config.icon
+        , viewIconFor (Config config) End
+        ]
 
 
 viewIconFor : Config msg -> IconPosition -> Html Never
-viewIconFor (Config { icon, iconPosition }) forPosition =
-    if iconPosition == forPosition then
-        case icon of
-            Just svgAsset ->
-                Icon.view Icon.presentation svgAsset
-
-            Nothing ->
+viewIconFor (Config config) forPosition =
+    case config.icon of
+        Just iconRecord ->
+            if iconRecord.position == forPosition then
+                Icon.view Icon.presentation iconRecord.glyph
+            else
                 text ""
-    else
-        text ""
+
+        Nothing ->
+            text ""
+
+
 
 
 { class, classList } =
@@ -139,7 +142,7 @@ viewIconFor (Config { icon, iconPosition }) forPosition =
         , button = ""
         , primary = ""
         , secondary = ""
-        , tertiary = ""
+        , iconNoLabel = ""
         , destructive = ""
         , form = ""
         , reversed = ""
@@ -154,6 +157,16 @@ viewIconFor (Config { icon, iconPosition }) forPosition =
         }
 
 
+-- UTILS
+
+hasNoLabel : Maybe Icon -> Bool
+hasNoLabel icon =
+    case icon of
+        Just iconRecord ->
+            iconRecord.noLabel == True
+        Nothing ->
+            False
+
 
 -- VARIANTS
 
@@ -164,8 +177,7 @@ type Config msg
 
 type alias ConfigValue msg =
     { variant : Variant
-    , icon : Maybe SvgAsset
-    , iconPosition : IconPosition
+    , icon : Maybe Icon
     , disabled : Bool
     , form : Bool
     , reversed : Bool
@@ -180,8 +192,15 @@ type Variant
     = Default
     | Primary
     | Secondary
-    | Tertiary
     | Destructive
+
+
+
+type alias Icon =
+    { glyph : SvgAsset
+    , position : IconPosition
+    , noLabel : Bool
+    }
 
 
 type IconPosition
@@ -207,7 +226,6 @@ defaults : ConfigValue msg
 defaults =
     { variant = Default
     , icon = Nothing
-    , iconPosition = Start
     , disabled = False
     , form = False
     , reversed = False
@@ -228,11 +246,6 @@ secondary =
     Config { defaults | variant = Secondary }
 
 
-tertiary : Config msg
-tertiary =
-    Config { defaults | variant = Tertiary }
-
-
 destructive : Config msg
 destructive =
     Config { defaults | variant = Destructive }
@@ -247,14 +260,24 @@ disabled value (Config config) =
     Config { config | disabled = value }
 
 
-icon : SvgAsset -> Config msg -> Config msg
-icon value (Config config) =
-    Config { config | icon = Just value }
+icon : Icon -> Config msg -> Config msg
+icon icon (Config config) =
+    Config { config | icon = Just icon }
 
 
-iconPosition : IconPosition -> Config msg -> Config msg
-iconPosition value (Config config) =
-    Config { config | iconPosition = value }
+iconAsset : SvgAsset -> Config msg -> Config msg
+iconAsset glyph (Config config) =
+    Config { config | icon = Just (Icon glyph Start False) }
+
+
+iconPosition : SvgAsset -> IconPosition -> Config msg -> Config msg
+iconPosition glyph position (Config config) =
+    Config { config | icon = Just (Icon glyph position False) }
+
+
+iconNoLabel : SvgAsset -> Config msg -> Config msg
+iconNoLabel glyph (Config config) =
+    Config { config | icon = Just (Icon glyph Start True) }
 
 
 form : Bool -> Config msg -> Config msg

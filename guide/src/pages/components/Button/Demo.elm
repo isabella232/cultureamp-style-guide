@@ -57,6 +57,32 @@ decode props =
                 , ( "end", End )
                 ]
 
+        iconDecoder : Json.Decoder Icon
+        iconDecoder =
+            let
+                decodeIcon glyph maybePosition maybeNoLabel =
+                    let
+                        position =
+                            case maybePosition of
+                                Just pos ->
+                                    pos
+                                Nothing ->
+                                    Start
+
+                        noLabel =
+                            case maybeNoLabel of
+                                Just lab ->
+                                    lab
+                                Nothing ->
+                                    False
+                    in
+                        Icon glyph position noLabel
+            in
+                Json.map3 decodeIcon
+                    (Json.field "glyph" SvgAsset.decoder)
+                    (Json.maybe (Json.field "position" iconPositionDecoder))
+                    (Json.maybe (Json.field "noLabel" Json.bool))
+
         brandColorDecoder : Json.Decoder BrandColor
         brandColorDecoder =
             stringEnum
@@ -73,12 +99,10 @@ decode props =
             -- variants
             |> decodeField "primary" Json.bool (variantFlag primary) props
             |> decodeField "secondary" Json.bool (variantFlag secondary) props
-            |> decodeField "tertiary" Json.bool (variantFlag tertiary) props
             |> decodeField "destructive" Json.bool (variantFlag destructive) props
             -- modifiers
             |> decodeField "disabled" Json.bool disabled props
-            |> decodeOptionalField "icon" SvgAsset.decoder icon props
-            |> decodeField "iconPosition" iconPositionDecoder iconPosition props
+            |> decodeOptionalField "icon" iconDecoder icon props
             |> decodeField "form" Json.bool form props
             |> decodeField "reversed" Json.bool reversed props
             |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
