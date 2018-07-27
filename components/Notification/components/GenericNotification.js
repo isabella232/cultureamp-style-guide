@@ -84,11 +84,7 @@ class GenericNotification extends React.Component<Props, State> {
 
   marginTop(): ?string {
     if (this.state.hidden && this.container) {
-      const container = this.container,
-        height = container.getBoundingClientRect().height,
-        style = getComputedStyle(container),
-        bottomMargin = parseInt(style.marginBottom, 10);
-      return -(height + bottomMargin) + 'px';
+      return -this.container.clientHeight + 'px';
     }
   }
 

@@ -12,9 +12,11 @@ $ca-notification-vertical-padding: calc(
 $ca-notification-inline-horizontal-padding: 20px;
 $ca-notification-toast-horizontal-padding: 10px;
 $ca-notification-fade-out: opacity $ca-duration-slow ease;
-$ca-notification-collapse-height: margin-top $ca-duration-slow ease;
+$ca-notification-collapse-height: margin-top $ca-duration-slow ease,
+  margin-bottom $ca-duration-slow ease;
 $ca-notification-collapse-height-delayed: margin-top $ca-duration-fast
-  $ca-duration-slow ease;
+    $ca-duration-slow ease,
+  margin-bottom $ca-duration-fast $ca-duration-slow ease;
 $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
 %ca-notification {
@@ -106,6 +108,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
   &%ca-notification---hidden {
     opacity: 0;
+    margin-bottom: 0;
 
     &%ca-notification---toast {
       // When entering we use "ease-out", but when transitioning to hidden we want to use "ease-in".
