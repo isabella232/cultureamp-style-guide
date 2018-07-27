@@ -5,16 +5,17 @@ module Notification.Notification
         , toast
         , global
         , notificationType
-        , hidden
-        , onHide
+        , state
+        , onStateChange
         , automationId
         , Config
         , NotificationType(..)
+        , NotificationState(..)
         )
 
 import Html exposing (Html, text, div, span, h6, p, button)
 import Html.Attributes
-import Html.Events as Events exposing (onWithOptions, defaultOptions)
+import Html.Events as Events exposing (on, onWithOptions, defaultOptions)
 import Json.Decode as Json
 import CssModules exposing (css)
 import Icon.Icon as Icon
@@ -37,9 +38,17 @@ view (Config config) =
                 , ( .informative, config.notificationType == Informative )
                 , ( .cautionary, config.notificationType == Cautionary )
                 , ( .negative, config.notificationType == Negative )
-                , ( .hidden, config.hidden )
+                , ( .hidden, config.state /= Visible )
                 ]
             ]
+
+        style =
+            case config.state of
+                Disappearing height ->
+                    [ Html.Attributes.style [ ( "marginTop", toString (-height) ++ "px" ) ] ]
+
+                _ ->
+                    []
 
         automationId =
             case config.automationId of
@@ -48,15 +57,39 @@ view (Config config) =
 
                 Nothing ->
                     []
+
+        onTransitionEnd =
+            case ( config.state, config.onStateChange ) of
+                ( Disappearing _, Just stateChangeMsg ) ->
+                    [ on
+                        "transitionend"
+                        (Json.field "propertyName" Json.string
+                            |> Json.andThen
+                                (\propertyName ->
+                                    if propertyName == "margin-top" then
+                                        Json.succeed (stateChangeMsg Hidden)
+                                    else
+                                        Json.fail "ignore"
+                                )
+                        )
+                    ]
+
+                _ ->
+                    []
     in
-        div notificationClass
-            [ viewIcon (Config config)
-            , div [ class .textContainer ]
-                [ viewTitle (Config config)
-                , p [ class .text ] config.content
-                ]
-            , viewCancelButton (Config config)
-            ]
+        case config.state of
+            Hidden ->
+                text ""
+
+            _ ->
+                div (notificationClass ++ style ++ onTransitionEnd)
+                    [ viewIcon (Config config)
+                    , div [ class .textContainer ]
+                        [ viewTitle (Config config)
+                        , p [ class .text ] config.content
+                        ]
+                    , viewCancelButton (Config config)
+                    ]
 
 
 viewIcon : Config msg -> Html msg
@@ -100,15 +133,17 @@ viewTitle (Config { title }) =
 
 
 viewCancelButton : Config msg -> Html msg
-viewCancelButton (Config { persistent, onHide }) =
+viewCancelButton (Config { persistent, onStateChange }) =
     let
         onClickCancel =
-            case onHide of
-                Just msg ->
+            case onStateChange of
+                Just stateChangeMsg ->
                     [ onWithOptions
                         "click"
                         { defaultOptions | preventDefault = True }
-                        (Json.succeed msg)
+                        (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
+                            |> Json.andThen (\height -> Json.succeed (stateChangeMsg (Disappearing height)))
+                        )
                     ]
 
                 Nothing ->
@@ -166,9 +201,9 @@ type alias ConfigValue msg =
     , title : Maybe String
     , content : List (Html msg)
     , persistent : Bool
-    , hidden : Bool
+    , state : NotificationState
     , autohide : Bool
-    , onHide : Maybe msg
+    , onStateChange : Maybe (NotificationState -> msg)
     , automationId : Maybe String
     }
 
@@ -186,6 +221,13 @@ type NotificationType
     | Negative
 
 
+type NotificationState
+    = Appearing
+    | Visible
+    | Disappearing Int
+    | Hidden
+
+
 defaults : ConfigValue msg
 defaults =
     { variant = Inline
@@ -193,9 +235,9 @@ defaults =
     , title = Nothing
     , content = []
     , persistent = False
-    , hidden = False
+    , state = Appearing
     , autohide = False
-    , onHide = Nothing
+    , onStateChange = Nothing
     , automationId = Nothing
     }
 
@@ -228,14 +270,14 @@ notificationType value (Config config) =
     Config { config | notificationType = value }
 
 
-hidden : Bool -> Config msg -> Config msg
-hidden value (Config config) =
-    Config { config | hidden = value }
+state : NotificationState -> Config msg -> Config msg
+state value (Config config) =
+    Config { config | state = value }
 
 
-onHide : msg -> Config msg -> Config msg
-onHide value (Config config) =
-    Config { config | onHide = Just value }
+onStateChange : (NotificationState -> msg) -> Config msg -> Config msg
+onStateChange value (Config config) =
+    Config { config | onStateChange = Just value }
 
 
 
