@@ -5,6 +5,7 @@ import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
 import Notification.Notification as Notification exposing (..)
+import Dict exposing (Dict)
 
 
 port onHide : () -> Cmd msg
@@ -12,12 +13,12 @@ port onHide : () -> Cmd msg
 
 type alias Model =
     { node : Json.Value
-    , hiddenNotifications : List String
+    , notificationStates : Dict String NotificationState
     }
 
 
 type Msg
-    = HideNotification String
+    = SetNotificationState String NotificationState
 
 
 main : Program Json.Encode.Value Model Msg
@@ -32,15 +33,22 @@ main =
 
 init : Json.Encode.Value -> ( Model, Cmd Msg )
 init flags =
-    ( { node = flags, hiddenNotifications = [] }, Cmd.none )
+    ( { node = flags
+      , notificationStates = Dict.fromList []
+      }
+    , Cmd.none
+    )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update (HideNotification notificationTitle) model =
-    ( { model
-        | hiddenNotifications = notificationTitle :: model.hiddenNotifications
-      }
-    , onHide ()
+update (SetNotificationState title state) model =
+    ( { model | notificationStates = Dict.insert title state model.notificationStates }
+    , case state of
+        Hidden ->
+            onHide ()
+
+        _ ->
+            Cmd.none
     )
 
 
@@ -55,15 +63,15 @@ typeDecoder =
         ]
 
 
-setHideModifiers : List String -> String -> Config Msg -> Config Msg
-setHideModifiers hiddenNotifications title oldConfig =
+setStateModifiers : Dict String NotificationState -> String -> Config Msg -> Config Msg
+setStateModifiers notificationStates title oldConfig =
     oldConfig
-        |> Notification.hidden (List.member title hiddenNotifications)
-        |> Notification.onHide (HideNotification title)
+        |> Notification.state (Maybe.withDefault Visible (Dict.get title notificationStates))
+        |> Notification.onStateChange (SetNotificationState title)
 
 
-decodeInlineNotification : List String -> Json.Decoder (List (Html Msg))
-decodeInlineNotification hiddenNotifications =
+decodeInlineNotification : Dict String NotificationState -> Json.Decoder (List (Html Msg))
+decodeInlineNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
@@ -75,14 +83,14 @@ decodeInlineNotification hiddenNotifications =
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
-                    |> decodeField "title" Json.string (setHideModifiers hiddenNotifications) props
+                    |> decodeField "title" Json.string (setStateModifiers notificationStates) props
                     -- view
                     |> viewFromDecodeResult
             )
 
 
-decodeToastNotification : List String -> Json.Decoder (List (Html Msg))
-decodeToastNotification hiddenNotifications =
+decodeToastNotification : Dict String NotificationState -> Json.Decoder (List (Html Msg))
+decodeToastNotification notificationState =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
@@ -93,14 +101,14 @@ decodeToastNotification hiddenNotifications =
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
-                    |> decodeField "title" Json.string (setHideModifiers hiddenNotifications) props
+                    |> decodeField "title" Json.string (setStateModifiers notificationState) props
                     -- view
                     |> viewFromDecodeResult
             )
 
 
-decodeGlobalNotification : List String -> Json.Decoder (List (Html Msg))
-decodeGlobalNotification hiddenNotifications =
+decodeGlobalNotification : Dict String NotificationState -> Json.Decoder (List (Html Msg))
+decodeGlobalNotification notificationState =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
@@ -111,7 +119,7 @@ decodeGlobalNotification hiddenNotifications =
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
                     --- Note: I'm using automationId here for our onHide ID. This means that field is required in our GlobalNotification presets.
-                    |> decodeField "automationId" Json.string (setHideModifiers hiddenNotifications) props
+                    |> decodeField "automationId" Json.string (setStateModifiers notificationState) props
                     -- view
                     |> viewFromDecodeResult
             )
@@ -134,9 +142,9 @@ view model =
         result =
             Json.decodeValue
                 (jsxChildren
-                    [ ( "InlineNotification", decodeInlineNotification model.hiddenNotifications )
-                    , ( "ToastNotification", decodeToastNotification model.hiddenNotifications )
-                    , ( "GlobalNotification", decodeGlobalNotification model.hiddenNotifications )
+                    [ ( "InlineNotification", decodeInlineNotification model.notificationStates )
+                    , ( "ToastNotification", decodeToastNotification model.notificationStates )
+                    , ( "GlobalNotification", decodeGlobalNotification model.notificationStates )
                     ]
                 )
                 model.node
