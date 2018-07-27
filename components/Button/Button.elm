@@ -25,6 +25,7 @@ import Html.Attributes
 import Html.Attributes.Aria
 import Html.Events as Events exposing (onWithOptions, defaultOptions)
 import Json.Decode as Json
+import Maybe
 import CssModules exposing (css)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (SvgAsset)
@@ -115,25 +116,23 @@ viewLabel label icon =
 viewContent : Config msg -> String -> Html Never
 viewContent (Config config) label =
     span [ class .content ]
-        [ viewIconFor (Config config) Start
+        [ viewIconFor Start config.icon
         , viewLabel label config.icon
-        , viewIconFor (Config config) End
+        , viewIconFor End config.icon
         ]
 
 
-viewIconFor : Config msg -> IconPosition -> Html Never
-viewIconFor (Config config) forPosition =
-    case config.icon of
+viewIconFor : IconPosition -> Maybe Icon -> Html Never
+viewIconFor position icon =
+    case icon of
         Just iconRecord ->
-            if iconRecord.position == forPosition then
+            if iconRecord.position == position then
                 Icon.view Icon.presentation iconRecord.glyph
             else
                 text ""
 
         Nothing ->
             text ""
-
-
 
 
 { class, classList } =
@@ -158,6 +157,7 @@ viewIconFor (Config config) forPosition =
 
 
 -- UTILS
+
 
 hasNoLabel : Maybe Icon -> Bool
 hasNoLabel icon =

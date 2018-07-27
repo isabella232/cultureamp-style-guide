@@ -2,6 +2,7 @@ port module Button.Demo exposing (..)
 
 import Dict exposing (Dict)
 import Html exposing (Html, text)
+import Maybe
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
@@ -62,19 +63,8 @@ decode props =
             let
                 decodeIcon glyph maybePosition maybeNoLabel =
                     let
-                        position =
-                            case maybePosition of
-                                Just pos ->
-                                    pos
-                                Nothing ->
-                                    Start
-
-                        noLabel =
-                            case maybeNoLabel of
-                                Just lab ->
-                                    lab
-                                Nothing ->
-                                    False
+                        position = Maybe.withDefault Start maybePosition
+                        noLabel =  Maybe.withDefault False maybeNoLabel
                     in
                         Icon glyph position noLabel
             in
