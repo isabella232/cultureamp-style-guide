@@ -83,7 +83,7 @@ export default class Demo extends React.Component {
       [ELM]: presetComponent => (
         <ElmWithRefreshingProps
           src={this.props.elm}
-          flags={this.elmFlagsFromProps(presetComponent.props)}
+          flags={this.convertNodeToFlags(presetComponent)}
           ports={this.elmPortsFromProps(presetComponent.props)}
         />
       ),
@@ -91,14 +91,35 @@ export default class Demo extends React.Component {
     }[this.state.platform](this.selectedPreset().node);
   }
 
-  elmFlagsFromProps(props) {
-    return Object.keys(props).reduce(
-      (flags, key) =>
-        typeof props[key] !== 'function'
-          ? Object.assign(flags, { [key]: props[key] })
-          : flags,
-      {}
-    );
+  convertNodeToFlags(node) {
+    if (!node || typeof node !== 'object') {
+      return node;
+    }
+
+    return {
+      props: this.convertPropsToFlags(node.props),
+      type: node.type.displayName || node.type,
+    };
+  }
+
+  convertPropsToFlags(props) {
+    return Object.keys(props).reduce((flags, key) => {
+      let value = props[key];
+
+      if (typeof value === 'function') {
+        // All callback functions are handled by ports.
+        return flags;
+      } else if (key === 'children') {
+        value = Array.isArray(value)
+          ? value.map(child => this.convertNodeToFlags(child))
+          : this.convertNodeToFlags(value);
+      } else if (value && value.constructor.name === 'BrowserSpriteSymbol') {
+        // Only pass through the necessary data, otherwise Elm will choke on the SVG `<symbol>` node.
+        value = { id: value.id, viewBox: value.viewBox };
+      }
+
+      return { ...flags, [key]: value };
+    }, {});
   }
 
   elmPortsFromProps(props) {
