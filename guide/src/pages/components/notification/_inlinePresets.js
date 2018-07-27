@@ -115,14 +115,6 @@ const presets = [
     ),
   },
   {
-    name: 'Slim, Persistent',
-    node: (
-      <InlineNotification type="affirmative" title="Success!" persistent>
-        <a href="/">Manage users is now available</a>
-      </InlineNotification>
-    ),
-  },
-  {
     name: 'Multiple notifications',
     node: (
       <div style={{ width: '100%' }}>

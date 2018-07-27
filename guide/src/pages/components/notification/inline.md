@@ -1,6 +1,7 @@
 ---
 imports:
   Demo: components/Demo.js
+  Elm: ./Demo.elm
   IntroParagraph: components/IntroParagraph.js
   presets: ./_inlinePresets.js
 ---
@@ -15,4 +16,4 @@ Available for both Elm and React.
 
 </IntroParagraph>
 
-<Demo presets={presets} />
+<Demo presets={presets} elm={Elm.Notification.Demo} />
