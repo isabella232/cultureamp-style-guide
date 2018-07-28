@@ -1,6 +1,6 @@
 port module Button.Demo exposing (..)
 
-import Html exposing (Html, pre, text)
+import Html exposing (Html, div, pre, text)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
@@ -46,7 +46,7 @@ update Click model =
     ( model, onClick () )
 
 
-buttonDecoder : Json.Decoder (Html Msg)
+buttonDecoder : JsxDecoder Msg
 buttonDecoder =
     let
         iconPositionDecoder : Json.Decoder IconPosition
@@ -94,7 +94,7 @@ buttonDecoder =
                         |> (\result ->
                                 case result of
                                     Ok { config, label } ->
-                                        Json.succeed (Button.view config label)
+                                        Json.succeed ([ Button.view config label ])
 
                                     Err msg ->
                                         Json.fail msg
@@ -106,8 +106,8 @@ buttonDecoder =
 view : Model -> Html Msg
 view model =
     case Json.decodeValue buttonDecoder model.node of
-        Ok html ->
-            html
+        Ok buttonHtml ->
+            div [] buttonHtml
 
         Err msg ->
             pre [] [ text ("Error decoding Button props: " ++ msg) ]

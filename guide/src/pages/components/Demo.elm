@@ -30,40 +30,91 @@ stringEnum error stringToValueMappings =
 type alias JsxNodeInfo msg =
     { name : String
     , attributes : List (Html.Attribute msg)
-    , children : List (Html msg)
+    , children : NodesAndMessages msg
     }
 
 
-jsxChildren : List ( String, Json.Decoder (List (Html msg)) ) -> Json.Decoder (List (Html msg))
-jsxChildren componentDecoders =
-    Json.oneOf
-        ([ Json.list
-            (Json.lazy (\_ -> (jsxChildren componentDecoders)))
-            |> Json.andThen
-                (\list ->
-                    Json.succeed (List.concat list)
-                )
-         , Json.map3 JsxNodeInfo
-            (Json.field "type" Json.string)
-            jsxAttributes
-            (Json.at [ "props", "children" ] (Json.lazy (\_ -> (jsxChildren componentDecoders))))
-            |> Json.andThen
-                (\nodeInfo ->
-                    case Dict.get nodeInfo.name (Dict.fromList componentDecoders) of
-                        Just componentDecoder ->
-                            componentDecoder
+type alias NodesAndMessages msg =
+    ( List (Html msg), List msg )
 
-                        Nothing ->
-                            if startsWithUpper nodeInfo.name then
-                                Json.fail ("No decoder was provided for the component " ++ nodeInfo.name)
-                            else
-                                Json.succeed ([ node nodeInfo.name nodeInfo.attributes nodeInfo.children ])
-                )
-         , Json.string
-            |> Json.andThen (\string -> Json.succeed [ text string ])
-         , Json.null [ (text "") ]
-         ]
-        )
+
+type alias JsxDecoder msg =
+    Json.Decoder (List (Html msg))
+
+
+type alias JsxWithMessageDecoder msg =
+    Json.Decoder (NodesAndMessages msg)
+
+
+jsxChildren : List ( String, JsxDecoder msg ) -> JsxDecoder msg
+jsxChildren simpleComponentDecoders =
+    let
+        transformDecoder : JsxDecoder msg -> JsxWithMessageDecoder msg
+        transformDecoder decoder =
+            decoder
+                |> Json.andThen (\childList -> Json.succeed ( childList, [] ))
+
+        componentDecoders : List ( String, JsxWithMessageDecoder msg )
+        componentDecoders =
+            List.map (\( name, decoder ) -> ( name, transformDecoder decoder )) simpleComponentDecoders
+
+        simplifyResult : NodesAndMessages msg -> JsxDecoder msg
+        simplifyResult nodesAndMessages =
+            Json.succeed (Tuple.first nodesAndMessages)
+    in
+        jsxChildrenWithMessages componentDecoders
+            |> Json.andThen simplifyResult
+
+
+jsxChildrenWithMessages : List ( String, JsxWithMessageDecoder msg ) -> JsxWithMessageDecoder msg
+jsxChildrenWithMessages componentDecoders =
+    let
+        lazilyRecurse : JsxWithMessageDecoder msg
+        lazilyRecurse =
+            (Json.lazy (\_ -> jsxChildrenWithMessages componentDecoders))
+
+        flattenChildrenList : List (NodesAndMessages msg) -> JsxWithMessageDecoder msg
+        flattenChildrenList list =
+            let
+                childNodes : List (Html msg)
+                childNodes =
+                    List.concat (List.map (\item -> Tuple.first item) list)
+
+                childMessages : List msg
+                childMessages =
+                    List.concat (List.map (\item -> Tuple.second item) list)
+            in
+                Json.succeed ( childNodes, childMessages )
+
+        createChildNode : JsxNodeInfo msg -> JsxWithMessageDecoder msg
+        createChildNode { name, attributes, children } =
+            let
+                ( childNodes, childMessages ) =
+                    children
+            in
+                case Dict.get name (Dict.fromList componentDecoders) of
+                    Just componentDecoder ->
+                        componentDecoder
+
+                    Nothing ->
+                        if startsWithUpper name then
+                            Json.fail ("No decoder was provided for the component " ++ name)
+                        else
+                            Json.succeed ( [ node name attributes childNodes ], childMessages )
+    in
+        Json.oneOf
+            ([ (Json.list lazilyRecurse)
+                |> Json.andThen flattenChildrenList
+             , Json.map3 JsxNodeInfo
+                (Json.field "type" Json.string)
+                jsxAttributes
+                (Json.at [ "props", "children" ] lazilyRecurse)
+                |> Json.andThen createChildNode
+             , Json.string
+                |> Json.andThen (\string -> Json.succeed ( [ text string ], [] ))
+             , Json.null ( [ text "" ], [] )
+             ]
+            )
 
 
 jsxAttributes : Json.Decoder (List (Html.Attribute msg))
