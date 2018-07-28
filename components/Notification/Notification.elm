@@ -11,6 +11,8 @@ module Notification.Notification
         , Config
         , NotificationType(..)
         , NotificationState(..)
+        , getAutomationId
+        , subscriptions
         )
 
 import Html exposing (Html, text, div, span, h6, p, button)
@@ -20,6 +22,8 @@ import Json.Decode as Json
 import CssModules exposing (css)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
+import Platform.Sub
+import AnimationFrame
 
 
 -- VIEW
@@ -287,3 +291,35 @@ onStateChange value (Config config) =
 automationId : String -> Config msg -> Config msg
 automationId value (Config config) =
     Config { config | automationId = Just value }
+
+
+
+-- HELPERS
+
+
+getAutomationId : Config msg -> Maybe String
+getAutomationId config =
+    -- In our Notification.Demo component we need to access the automationId as a way of tracking component states.
+    case config of
+        Config { automationId } ->
+            automationId
+
+
+
+-- SUBSCRIPTION
+
+
+subscriptions : List ( NotificationState, NotificationState -> msg ) -> Sub msg
+subscriptions allNotifications =
+    Sub.batch
+        (List.filterMap
+            (\( state, setter ) ->
+                case state of
+                    Appearing ->
+                        Just (AnimationFrame.times (\_ -> setter Visible))
+
+                    _ ->
+                        Nothing
+            )
+            allNotifications
+        )
