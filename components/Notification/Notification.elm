@@ -163,8 +163,9 @@ viewCancelButton (Config { persistent, onStateChange }) =
                 [ span
                     [ class .cancelInner
                     ]
-                    -- TODO: how do we make sure this ID is unique if multiple notifications are visible? Painful.
-                    [ Icon.view (Icon.img "notification-close" "close notification")
+                    [ -- We are using a hidden span and Icon.presentation rather than the usual Icon.img to avoid this components API requiring a unique ID.
+                      span [ class .cancelLabel ] [ text "close notification" ]
+                    , Icon.view Icon.presentation
                         (svgAsset "cultureamp-style-guide/icons/close.svg")
                         |> Html.map never
                     ]
@@ -180,6 +181,7 @@ viewCancelButton (Config { persistent, onStateChange }) =
         , text = ""
         , cancel = ""
         , cancelInner = ""
+        , cancelLabel = ""
         , hidden = ""
         , inline = ""
         , toast = ""
@@ -282,10 +284,6 @@ state value (Config config) =
 onStateChange : (NotificationState -> msg) -> Config msg -> Config msg
 onStateChange value (Config config) =
     Config { config | onStateChange = Just value }
-
-
-
--- TODO: See if we can set up autohide using a timer
 
 
 automationId : String -> Config msg -> Config msg
