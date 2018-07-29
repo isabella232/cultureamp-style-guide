@@ -12,6 +12,7 @@ module Notification.Notification
         , NotificationType(..)
         , NotificationState(..)
         , getAutomationId
+        , getState
         , subscriptions
         )
 
@@ -24,6 +25,7 @@ import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
 import Platform.Sub
 import AnimationFrame
+import Time exposing (every, second)
 
 
 -- VIEW
@@ -42,7 +44,7 @@ view (Config config) =
                 , ( .informative, config.notificationType == Informative )
                 , ( .cautionary, config.notificationType == Cautionary )
                 , ( .negative, config.notificationType == Negative )
-                , ( .hidden, config.state /= Visible )
+                , ( .hidden, config.state /= Visible && config.state /= (Autohide Visible) )
                 ]
             ]
 
@@ -137,8 +139,20 @@ viewTitle (Config { title }) =
 
 
 viewCancelButton : Config msg -> Html msg
-viewCancelButton (Config { persistent, onStateChange }) =
+viewCancelButton (Config { persistent, state, variant, onStateChange }) =
     let
+        -- With Toast Notifications, we only allow hiding the close button if the notification will autohide.
+        hideCloseButton =
+            case ( variant, state ) of
+                ( Toast, Autohide _ ) ->
+                    persistent
+
+                ( Toast, _ ) ->
+                    False
+
+                ( _, _ ) ->
+                    False
+
         onClickCancel =
             case onStateChange of
                 Just stateChangeMsg ->
@@ -153,7 +167,7 @@ viewCancelButton (Config { persistent, onStateChange }) =
                 Nothing ->
                     []
     in
-        if persistent then
+        if hideCloseButton then
             text ""
         else
             button
@@ -232,6 +246,7 @@ type NotificationState
     | Visible
     | Disappearing Int
     | Hidden
+    | Autohide NotificationState
 
 
 defaults : ConfigValue msg
@@ -257,9 +272,9 @@ inline title content persistent =
     Config { defaults | title = Just title, content = content, persistent = persistent }
 
 
-toast : String -> List (Html msg) -> Config msg
-toast title content =
-    Config { defaults | variant = Toast, title = Just title, content = content }
+toast : String -> List (Html msg) -> Bool -> Config msg
+toast title content hideCloseIcon =
+    Config { defaults | variant = Toast, title = Just title, content = content, persistent = hideCloseIcon }
 
 
 global : List (Html msg) -> Config msg
@@ -297,10 +312,18 @@ automationId value (Config config) =
 
 getAutomationId : Config msg -> Maybe String
 getAutomationId config =
-    -- In our Notification.Demo component we need to access the automationId as a way of tracking component states.
+    -- In our Notification.Demo app we need to access the automationId as a way of tracking component states.
     case config of
         Config { automationId } ->
             automationId
+
+
+getState : Config msg -> NotificationState
+getState config =
+    -- In our Notification.Demo app we need to access the current state so we can correctly initialise Autohide states
+    case config of
+        Config { state } ->
+            state
 
 
 
@@ -315,6 +338,13 @@ subscriptions allNotifications =
                 case state of
                     Appearing ->
                         Just (AnimationFrame.times (\_ -> setter Visible))
+
+                    Autohide Appearing ->
+                        Just (AnimationFrame.times (\_ -> setter (Autohide Visible)))
+
+                    Autohide Visible ->
+                        -- TODO: onTransitionStart
+                        Just (every (5 * second) (\_ -> setter (Autohide (Disappearing 15))))
 
                     _ ->
                         Nothing
