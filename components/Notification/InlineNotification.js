@@ -9,6 +9,7 @@ type Props = {|
   children: React.Node,
   persistent: boolean,
   onHide?: () => void,
+  automationId?: string,
 |};
 
 const InlineNotification = (props: Props) => (

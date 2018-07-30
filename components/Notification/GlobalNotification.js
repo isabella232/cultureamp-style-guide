@@ -7,6 +7,7 @@ type Props = {|
   type: NotificationType,
   children: React.Node,
   onHide?: () => void,
+  automationId?: string,
 |};
 
 const GlobalNotification = (props: Props) => (

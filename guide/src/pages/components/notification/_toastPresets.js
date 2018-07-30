@@ -48,9 +48,9 @@ const presets = [
     ),
   },
   {
-    name: 'Warning',
+    name: 'Cautionary',
     node: (
-      <ToastNotification type="warning" title="Warning">
+      <ToastNotification type="cautionary" title="Warning">
         New user data, imported by mackenzie@hooli.com has uploaded with some
         minor issues. <a href="/">View issues</a>
       </ToastNotification>
@@ -77,7 +77,7 @@ const presets = [
           New user data is currently being processed. We'll let you know when
           the process is completed. <a href="/">Manage users</a>
         </ToastNotification>
-        <ToastNotification type="warning" title="Warning">
+        <ToastNotification type="cautionary" title="Warning">
           New user data, imported by mackenzie@hooli.com has uploaded with some
           minor issues. <a href="/">View issues</a>
         </ToastNotification>
