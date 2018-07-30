@@ -107,7 +107,7 @@ exports[`The cancel button hides the notification and triggers the onHide callba
     onTransitionEnd={[Function]}
     style={
       Object {
-        "marginTop": "NaNpx",
+        "marginTop": "0px",
       }
     }
   >
