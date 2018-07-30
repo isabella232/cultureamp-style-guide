@@ -137,20 +137,35 @@ decodeInlineNotification notificationStates =
 
 decodeToastNotification : NotificationStates -> JsxWithMessageDecoder Msg
 decodeToastNotification notificationStates =
-    Json.field "props" Json.value
-        |> Json.andThen
-            (\props ->
-                Ok (toast)
-                    -- arguments
-                    |> decodeField "title" Json.string (|>) props
-                    |> decodeField "children" (jsxChildren []) (|>) props
-                    -- modifiers
-                    |> decodeField "type" typeDecoder notificationType props
-                    |> decodeOptionalField "automationId" Json.string automationId props
-                    |> setStateModifiers notificationStates
-                    --  view
-                    |> jsxDecoderForConfig
-            )
+    let
+        setAutohide : Bool -> Config Msg -> Config Msg
+        setAutohide autohide config =
+            let
+                currentState =
+                    Notification.getState config
+            in
+                if autohide && (currentState == Appearing) then
+                    config |> Notification.state (Autohide Appearing)
+                else
+                    config
+    in
+        Json.field "props" Json.value
+            |> Json.andThen
+                (\props ->
+                    Ok (toast)
+                        -- arguments
+                        |> decodeField "title" Json.string (|>) props
+                        |> decodeField "children" (jsxChildren []) (|>) props
+                        -- Note: changing the next line to "decodeOptionalField" crashes elm-make. TODO: submit a bug report.
+                        |> decodeField "hideCloseIcon" Json.bool (|>) props
+                        -- modifiers
+                        |> decodeField "type" typeDecoder notificationType props
+                        |> decodeOptionalField "automationId" Json.string automationId props
+                        |> setStateModifiers notificationStates
+                        |> decodeField "autohide" Json.bool setAutohide props
+                        --  view
+                        |> jsxDecoderForConfig
+                )
 
 
 decodeGlobalNotification : NotificationStates -> JsxWithMessageDecoder Msg
@@ -204,11 +219,14 @@ jsxDecoderForConfig result =
     case result of
         Ok config ->
             let
+                initialState =
+                    Notification.getState config
+
                 -- On the first pass of our JSX we trigger a message so that the notification state is set to Appearing in our model.
                 messages =
                     case Notification.getAutomationId config of
                         Just automationId ->
-                            [ SetNotificationState automationId Appearing ]
+                            [ SetNotificationState automationId initialState ]
 
                         Nothing ->
                             []
