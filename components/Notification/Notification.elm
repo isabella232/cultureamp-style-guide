@@ -48,10 +48,16 @@ view (Config config) =
                 ]
             ]
 
+        marginTopAttr height =
+            [ Html.Attributes.style [ ( "marginTop", toString (-height) ++ "px" ) ] ]
+
         style =
             case config.state of
                 Disappearing height ->
-                    [ Html.Attributes.style [ ( "marginTop", toString (-height) ++ "px" ) ] ]
+                    marginTopAttr height
+
+                Autohide (Disappearing height) ->
+                    marginTopAttr height
 
                 _ ->
                     []
