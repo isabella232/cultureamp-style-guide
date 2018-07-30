@@ -29,7 +29,7 @@ function loader(source, inputSourceMap) {
     moduleNameCapture = "'([a-zA-Z-./]+)'",
     regexp = regexpForFunctionCall(escapedTaggerName, [moduleNameCapture]);
 
-  return source.replace(regexp, "require('$1').default");
+  return source.replace(regexp, "require('$1')");
 }
 
 /**
