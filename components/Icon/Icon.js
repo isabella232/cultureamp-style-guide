@@ -106,10 +106,7 @@ export default class Icon extends React.Component<Props> {
     }
   }
 
-  getUniqueId(val: string): string {
-    (this: any).getUniqueId = this.getUniqueId.bind(this);
-    return this.getUniqueId(val);
-  }
+  getUniqueId: string => string;
 
   static defaultProps = {
     inheritSize: false,
