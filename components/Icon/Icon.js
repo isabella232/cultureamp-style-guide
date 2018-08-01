@@ -6,7 +6,6 @@ import styles from './Icon.module.scss';
 import { warn } from '../../util/error';
 import { enableUniqueIds } from 'react-html-id';
 
-
 export type IconType = {
   id: string,
   viewBox: string,
@@ -16,8 +15,8 @@ const IMG = 'img';
 const PRESENTATION = 'presentation';
 
 type RolesType =
-  | 'img'             // meaningful, title should be read aloud to users who can't see it
-  | 'presentation';   // decorative, should be silent to users who can't see it
+  | 'img' // meaningful, title should be read aloud to users who can't see it
+  | 'presentation'; // decorative, should be silent to users who can't see it
 
 type Props = {
   icon: IconType,

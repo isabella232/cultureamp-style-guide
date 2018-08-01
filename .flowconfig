@@ -13,5 +13,6 @@
 [options]
 module.name_mapper='.*\.s?css$' -> 'css-module-flow'
 module.name_mapper.extension='svg' -> 'empty/object'
+module.name_mapper.extension='svg' -> './util/svg-loader-stub'
 
 [strict]

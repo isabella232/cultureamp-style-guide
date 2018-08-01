@@ -4,8 +4,7 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
-
-import type IconType from '../Icon/Icon.js';
+import type { IconType } from '../Icon/Icon.js';
 
 type IconPosition = 'start' | 'end';
 
@@ -21,7 +20,7 @@ type IconOnly = {
   noLabel: void,
 };
 
-type IconNoLabel =  {
+type IconNoLabel = {
   icon: IconType,
   iconPosition: void,
   noLabel: true,
@@ -42,9 +41,9 @@ type ButtonCore = {
 };
 
 type Props =
-  | ButtonCore & IconOff
-  | ButtonCore & IconOnly
-  | ButtonCore & IconNoLabel;
+  | (ButtonCore & IconOff)
+  | (ButtonCore & IconOnly)
+  | (ButtonCore & IconNoLabel);
 
 Button.defaultProps = {
   form: false,
@@ -117,7 +116,6 @@ function buttonClass(props: Props) {
     (props.primary && styles.primary) ||
     (props.secondary && styles.secondary);
 
-
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
@@ -134,10 +132,11 @@ function buttonClass(props: Props) {
 function renderContent(props: Props) {
   return (
     <span className={styles.content}>
-      {(props.icon && props.iconPosition !== 'end') && renderIcon(props.icon)}
-      {(!props.icon || !props.noLabel) &&
-        <span className={styles.label}>{props.label}</span>}
-      {(props.icon && props.iconPosition === 'end') && renderIcon(props.icon)}
+      {props.icon && props.iconPosition !== 'end' && renderIcon(props.icon)}
+      {(!props.icon || !props.noLabel) && (
+        <span className={styles.label}>{props.label}</span>
+      )}
+      {props.icon && props.iconPosition === 'end' && renderIcon(props.icon)}
     </span>
   );
 }
