@@ -3,12 +3,13 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
+import type IconType from '../Icon/Icon.js';
 
 type IconPosition = 'start' | 'end';
 
-type Props = {|
+type Props = {
   label: string,
-  icon?: string,
+  icon?: IconType,
   iconPosition: IconPosition,
   primary: boolean,
   secondary: boolean,
@@ -20,7 +21,7 @@ type Props = {|
   onClick?: MouseEvent => void,
   href?: string,
   automationId?: string,
-|};
+};
 
 Button.defaultProps = {
   iconPosition: 'start',
@@ -30,6 +31,8 @@ Button.defaultProps = {
   destructive: false,
   disabled: false,
   reversed: false,
+  icon: undefined,
+  iconPosition: undefined,
 };
 
 export default function Button(props: Props) {
