@@ -26,15 +26,15 @@ const buttonPresets = [
   },
   {
     name: 'Icon + Label',
-    node: <Button label="Configure" icon={{glyph: configureIcon}} />,
+    node: <Button label="Configure" icon={configureIcon} />,
   },
   {
     name: 'Label + Icon',
-    node: <Button label="Configure" icon={{glyph: configureIcon, position: 'end'}} />,
+    node: <Button label="Configure" icon={configureIcon} iconPosition="end" />,
   },
   {
     name: 'Icon w/ no label',
-    node: <Button label="Configure" icon={{glyph: configureIcon, noLabel: true}} />,
+    node: <Button label="Configure" icon={configureIcon} noLabel={'string'} />,
   },
   {
     name: 'Disabled',
@@ -62,11 +62,11 @@ const buttonPresets = [
   },
   {
     name: 'Secondary w/ Icon',
-    node: <Button label="Configure" icon={{glyph: configureIcon}} secondary />,
+    node: <Button label="Configure" icon={configureIcon} secondary />,
   },
   {
     name: 'Secondary Disabled w/ Icon',
-    node: <Button label="Configure" icon={{glyph: configureIcon}} secondary disabled />,
+    node: <Button label="Configure" icon={configureIcon} secondary disabled />,
   },
   {
     name: 'Destructive',

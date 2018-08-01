@@ -4,17 +4,31 @@ import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 
-type IconButtonPosition = 'start' | 'end';
 
-type IconButton = {
-  glyph: string,
-  position?: IconButtonPosition,
-  noLabel?: boolean,
+import type IconType from '../Icon/Icon.js';
+
+type IconPosition = 'start' | 'end';
+
+type IconOff = {
+  icon: void,
+  iconPosition: void,
+  noLabel: void,
 };
 
-type Props = {|
+type IconOnly = {
+  icon: IconType,
+  iconPosition: IconPosition,
+  noLabel: void,
+};
+
+type IconNoLabel =  {
+  icon: IconType,
+  iconPosition: void,
+  noLabel: true,
+};
+
+type ButtonCore = {
   label: string,
-  icon?: IconButton,
   primary: boolean,
   secondary: boolean,
   destructive: boolean,
@@ -25,7 +39,12 @@ type Props = {|
   onClick?: MouseEvent => void,
   href?: string,
   automationId?: string,
-|};
+};
+
+type Props =
+  | ButtonCore & IconOff
+  | ButtonCore & IconOnly
+  | ButtonCore & IconNoLabel;
 
 Button.defaultProps = {
   form: false,
@@ -34,6 +53,9 @@ Button.defaultProps = {
   destructive: false,
   disabled: false,
   reversed: false,
+  icon: undefined,
+  iconPosition: undefined,
+  noLabel: undefined,
 };
 
 export default function Button(props: Props) {
@@ -45,8 +67,8 @@ export default function Button(props: Props) {
 }
 
 function renderButton(props: Props) {
-  const { icon, disabled, onClick } = props;
-  const label = icon && icon.noLabel ? props.label : undefined;
+  const { disabled, onClick } = props;
+  const label = props.icon && props.noLabel ? props.label : undefined;
 
   return (
     <button
@@ -95,10 +117,11 @@ function buttonClass(props: Props) {
     (props.primary && styles.primary) ||
     (props.secondary && styles.secondary);
 
+
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
-    [styles.iconNoLabel]: props.icon && props.icon.noLabel,
+    [styles.iconNoLabel]: props.icon && props.noLabel,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',
     [styles.reverseColorOcean]: props.reverseColor === 'ocean',
     [styles.reverseColorPeach]: props.reverseColor === 'peach',
@@ -109,17 +132,16 @@ function buttonClass(props: Props) {
 }
 
 function renderContent(props: Props) {
-  const { icon, label } = props;
   return (
     <span className={styles.content}>
-      {(icon && icon.position !== 'end') && renderIcon(icon)}
-      {(!icon || !icon.noLabel) &&
-        <span className={styles.label}>{label}</span>}
-      {(icon && icon.position === 'end') && renderIcon(icon)}
+      {(props.icon && props.iconPosition !== 'end') && renderIcon(props.icon)}
+      {(!props.icon || !props.noLabel) &&
+        <span className={styles.label}>{props.label}</span>}
+      {(props.icon && props.iconPosition === 'end') && renderIcon(props.icon)}
     </span>
   );
 }
 
-function renderIcon(icon: IconButton) {
-  return <Icon icon={icon.glyph} role="presentation" />;
+function renderIcon(icon: IconType) {
+  return <Icon icon={icon} role="presentation" />;
 }

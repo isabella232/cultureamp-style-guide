@@ -7,14 +7,10 @@ import { warn } from '../../util/error';
 import { enableUniqueIds } from 'react-html-id';
 
 
-export type IconType = string;
-
-type IconLoadedType = {
+export type IconType = {
   id: string,
   viewBox: string,
 };
-
-type IconInternalType = IconType | IconLoadedType;
 
 const IMG = 'img';
 const PRESENTATION = 'presentation';
@@ -24,7 +20,7 @@ type RolesType =
   | 'presentation';   // decorative, should be silent to users who can't see it
 
 type Props = {
-  icon: IconInternalType,
+  icon: IconType,
   inheritSize?: boolean,
   role?: RolesType,
   title?: string,
@@ -49,13 +45,13 @@ export default class Icon extends React.Component<Props> {
     return (
       <svg
         className={classes}
-        viewBox={typeof icon === 'string' ? '0 0 20 20' : icon.viewBox}
+        viewBox={icon.viewBox}
         focusable="false" // Work around IE11 making all SVGs focusable. See http://simplyaccessible.com/article/7-solutions-svgs/#acc-heading-4
         {...this.accessibilityProps()}
       >
         {this.renderTitle()}
         {this.renderDesc()}
-        <use xlinkHref={`#${typeof icon === 'string' ? icon : icon.id}`} />
+        <use xlinkHref={`#${icon.id}`} />
       </svg>
     );
   }
