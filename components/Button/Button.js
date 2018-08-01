@@ -93,12 +93,12 @@ function buttonClass(props: Props) {
   const variantClass =
     (props.destructive && styles.destructive) ||
     (props.primary && styles.primary) ||
-    (props.secondary && styles.secondary) ||
-    (props.icon && props.icon.noLabel && styles.iconNoLabel);
+    (props.secondary && styles.secondary);
 
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
+    [styles.iconNoLabel]: props.icon && props.icon.noLabel,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',
     [styles.reverseColorOcean]: props.reverseColor === 'ocean',
     [styles.reverseColorPeach]: props.reverseColor === 'peach',
