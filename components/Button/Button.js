@@ -14,7 +14,7 @@ type IconOff = {
   noLabel: void,
 };
 
-type IconOnly = {
+type IconWithLabel = {
   icon: IconType,
   iconPosition: IconPosition,
   noLabel: void,
@@ -42,7 +42,7 @@ type ButtonCore = {
 
 type Props =
   | (ButtonCore & IconOff)
-  | (ButtonCore & IconOnly)
+  | (ButtonCore & IconWithLabel)
   | (ButtonCore & IconNoLabel);
 
 Button.defaultProps = {
