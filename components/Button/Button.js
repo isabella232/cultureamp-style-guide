@@ -5,17 +5,28 @@ import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
 import type { SvgAsset } from '../Icon/Icon.js';
 
-type IconButtonPosition = 'start' | 'end';
+type IconPosition = 'start' | 'end';
 
-type IconButton = {
-  glyph: SvgAsset,
-  position?: IconButtonPosition,
-  noLabel?: boolean,
+type IconOff = {
+  icon: void,
+  iconPosition: void,
+  noLabel: void,
 };
 
-type Props = {
+type IconOnly = {
+  icon: SvgAsset,
+  iconPosition: IconPosition,
+  noLabel: void,
+};
+
+type IconNoLabel = {
+  icon: SvgAsset,
+  iconPosition: void,
+  noLabel: true,
+};
+
+type ButtonCore = {
   label: string,
-  icon?: IconButton,
   primary: boolean,
   secondary: boolean,
   destructive: boolean,
@@ -28,6 +39,11 @@ type Props = {
   automationId?: string,
 };
 
+type Props =
+  | (ButtonCore & IconOff)
+  | (ButtonCore & IconOnly)
+  | (ButtonCore & IconNoLabel);
+
 Button.defaultProps = {
   form: false,
   primary: false,
@@ -35,6 +51,9 @@ Button.defaultProps = {
   destructive: false,
   disabled: false,
   reversed: false,
+  icon: undefined,
+  iconPosition: undefined,
+  noLabel: undefined,
 };
 
 export default function Button(props: Props) {
@@ -46,8 +65,8 @@ export default function Button(props: Props) {
 }
 
 function renderButton(props: Props) {
-  const { icon, disabled, onClick } = props;
-  const label = icon && icon.noLabel ? props.label : undefined;
+  const { disabled, onClick } = props;
+  const label = props.icon && props.noLabel ? props.label : undefined;
 
   return (
     <button
@@ -99,7 +118,7 @@ function buttonClass(props: Props) {
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
-    [styles.iconNoLabel]: props.icon && props.icon.noLabel,
+    [styles.iconNoLabel]: props.icon && props.noLabel,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',
     [styles.reverseColorOcean]: props.reverseColor === 'ocean',
     [styles.reverseColorPeach]: props.reverseColor === 'peach',
@@ -110,18 +129,17 @@ function buttonClass(props: Props) {
 }
 
 function renderContent(props: Props) {
-  const { icon, label } = props;
   return (
     <span className={styles.content}>
-      {icon && icon.position !== 'end' && renderIcon(icon)}
-      {(!icon || !icon.noLabel) && (
-        <span className={styles.label}>{label}</span>
+      {props.icon && props.iconPosition !== 'end' && renderIcon(props.icon)}
+      {(!props.icon || !props.noLabel) && (
+        <span className={styles.label}>{props.label}</span>
       )}
-      {icon && icon.position === 'end' && renderIcon(icon)}
+      {props.icon && props.iconPosition === 'end' && renderIcon(props.icon)}
     </span>
   );
 }
 
-function renderIcon(icon: IconButton) {
-  return <Icon icon={icon.glyph} role="presentation" />;
+function renderIcon(icon: SvgAsset) {
+  return <Icon icon={icon} role="presentation" />;
 }
