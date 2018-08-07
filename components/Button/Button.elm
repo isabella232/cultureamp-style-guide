@@ -136,7 +136,7 @@ viewIconFor position icon =
 
 
 { class, classList } =
-    css "cultureamp-style-guide/components/Button/Button.module.scss"
+    css "cultureamp-style-guide/components/Button/components/GenericButton.module.scss"
         { container = ""
         , button = ""
         , primary = ""

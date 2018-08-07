@@ -1,19 +1,9 @@
 ---
 imports:
-  Demo: components/Demo.js
-  Elm: ./Demo.elm
-  IntroParagraph: components/IntroParagraph.js
-  buttonPresets: ./_buttonPresets.js
+  Link: components/Link.js
 ---
 
-# Button
+# Buttons
 
-<IntroParagraph>
-
-A button!
-
-Available for both Elm and React.
-
-</IntroParagraph>
-
-<Demo presets={buttonPresets} elm={Elm.Button.Demo} />
+* <Link to="/components/button/button">Button</Link>
+* <Link to="/components/button/icon-button">Icon Button</Link>

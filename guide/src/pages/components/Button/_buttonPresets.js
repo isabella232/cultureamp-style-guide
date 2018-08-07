@@ -33,10 +33,6 @@ const buttonPresets = [
     node: <Button label="Configure" icon={configureIcon} iconPosition="end" />,
   },
   {
-    name: 'Icon w/ no label',
-    node: <Button label="Configure" icon={configureIcon} noLabel />,
-  },
-  {
     name: 'Disabled',
     node: <Button label="Label" disabled />,
   },
