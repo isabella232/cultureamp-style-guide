@@ -48,7 +48,7 @@ view (Config config) label =
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
-                , ( .iconNoLabel, hasNoLabel config.icon)
+                , ( .iconButton, hasNoLabel config.icon )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -141,7 +141,7 @@ viewIconFor position icon =
         , button = ""
         , primary = ""
         , secondary = ""
-        , iconNoLabel = ""
+        , iconButton = ""
         , destructive = ""
         , form = ""
         , reversed = ""
@@ -156,6 +156,7 @@ viewIconFor position icon =
         }
 
 
+
 -- UTILS
 
 
@@ -164,8 +165,10 @@ hasNoLabel icon =
     case icon of
         Just iconRecord ->
             iconRecord.noLabel == True
+
         Nothing ->
             False
+
 
 
 -- VARIANTS
@@ -193,7 +196,6 @@ type Variant
     | Primary
     | Secondary
     | Destructive
-
 
 
 type alias Icon =
