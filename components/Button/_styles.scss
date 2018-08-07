@@ -25,6 +25,8 @@ $caButton-focus-border-width: 2px;
   @include ca-type-ideal-button;
 
   display: inline-block;
+  box-sizing: border-box;
+  height: $ca-grid * 2;
   border: $caButton-border-width solid;
   border-radius: $ca-border-radius;
   // looking for padding? See %caButtonContent
@@ -77,6 +79,10 @@ $caButton-focus-border-width: 2px;
     border-color: add-tint($ca-palette-ink, 80%);
     color: add-tint($ca-palette-ink, 70%);
   }
+}
+
+%caButtonForm {
+  height: $ca-grid * 5/3;
 }
 
 %caButtonPrimary,
@@ -312,41 +318,22 @@ $caButton-focus-border-width: 2px;
 }
 
 %caButtonContent {
+  height: 100%;
   display: flex;
   align-items: center;
 
   // Padding applied to button content and not button so that mix-blend-mode
   // effects can be applied to the button content but not the button border
-  padding: calc(#{$ca-grid / 2} - #{$caButton-border-width})
-    calc(#{$ca-grid * 1} - #{$caButton-border-width});
-
-  %caButtonForm & {
-    padding: calc(#{$ca-grid / 3} - #{$caButton-border-width})
-      calc(#{$ca-grid * 1} - #{$caButton-border-width});
-  }
-
-  %caButtonIconButton & {
-    padding: 0.625rem;
-  }
+  padding: 0 calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
   @supports (mix-blend-mode: screen) {
     %caButtonReversed%caButtonPrimary & {
-      padding: ($ca-grid / 2) ($ca-grid * 1);
-    }
-
-    %caButtonForm%caButtonReversed%caButtonPrimary & {
-      padding: ($ca-grid / 3) ($ca-grid * 1);
+      padding: 0 ($ca-grid * 1);
     }
   }
 
   :global(.js-focus-visible) %caButton:global(.focus-visible) & {
-    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
-      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
-  }
-
-  :global(.js-focus-visible) %caButtonForm:global(.focus-visible) & {
-    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
-      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+    padding: 0 calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
   }
 }
 
