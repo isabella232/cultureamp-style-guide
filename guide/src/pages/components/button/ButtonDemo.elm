@@ -1,4 +1,4 @@
-port module Button.Demo exposing (..)
+port module Button.ButtonDemo exposing (..)
 
 import Html exposing (Html, text)
 import Json.Encode
