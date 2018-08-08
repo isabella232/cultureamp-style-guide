@@ -58,21 +58,6 @@ decode props =
                 , ( "end", End )
                 ]
 
-        iconDecoder : Json.Decoder Icon
-        iconDecoder =
-            let
-                decodeIcon glyph maybePosition maybeNoLabel =
-                    let
-                        position = Maybe.withDefault Start maybePosition
-                        noLabel =  Maybe.withDefault False maybeNoLabel
-                    in
-                        Icon glyph position noLabel
-            in
-                Json.map3 decodeIcon
-                    (Json.field "glyph" SvgAsset.decoder)
-                    (Json.maybe (Json.field "position" iconPositionDecoder))
-                    (Json.maybe (Json.field "noLabel" Json.bool))
-
         brandColorDecoder : Json.Decoder BrandColor
         brandColorDecoder =
             stringEnum
@@ -92,7 +77,8 @@ decode props =
             |> decodeField "destructive" Json.bool (variantFlag destructive) props
             -- modifiers
             |> decodeField "disabled" Json.bool disabled props
-            |> decodeOptionalField "icon" iconDecoder icon props
+            |> decodeOptionalField "icon" SvgAsset.decoder icon props
+            |> decodeField "iconPosition" iconPositionDecoder iconPosition props
             |> decodeField "form" Json.bool form props
             |> decodeField "reversed" Json.bool reversed props
             |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
