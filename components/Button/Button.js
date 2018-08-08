@@ -3,7 +3,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
-import type IconType from '../Icon/Icon.js';
+import type { IconType } from '../Icon/Icon.js';
 
 type IconPosition = 'start' | 'end';
 
@@ -31,8 +31,6 @@ Button.defaultProps = {
   destructive: false,
   disabled: false,
   reversed: false,
-  icon: undefined,
-  iconPosition: undefined,
 };
 
 export default function Button(props: Props) {
