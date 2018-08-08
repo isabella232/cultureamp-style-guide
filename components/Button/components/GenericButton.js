@@ -3,7 +3,6 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './GenericButton.module.scss';
 import Icon from '../../Icon/Icon.js';
-import iconStyles from '../../Icon/Icon.module.scss';
 import type { SvgAsset } from '../../Icon/Icon.js';
 
 type GenericProps = {|
@@ -113,9 +112,7 @@ function buttonClass(props: Props) {
     [styles.reverseColorSeedling]: props.reverseColor === 'seedling',
     [styles.reverseColorWisteria]: props.reverseColor === 'wisteria',
     [styles.reverseColorYuzu]: props.reverseColor === 'yuzu',
-    [iconStyles.interactiveIconWrapper]: props.iconButton && !props.reversed,
-    [iconStyles.reversedInteractiveIconWrapper]:
-      props.iconButton && props.reversed,
+    [styles.reversedIconButton]: props.iconButton && props.reversed,
   });
 }
 

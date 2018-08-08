@@ -50,6 +50,7 @@ view (Config config) label =
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
                 , ( .iconButton, config.iconButton )
+                , ( .reversedIconButton, config.iconButton && config.reversed )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -143,6 +144,7 @@ viewIconFor { icon, iconPosition } forPosition =
         , primary = ""
         , secondary = ""
         , iconButton = ""
+        , reversedIconButton = ""
         , destructive = ""
         , form = ""
         , reversed = ""
