@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './GenericButton.module.scss';
 import Icon from '../../Icon/Icon.js';
 import iconStyles from '../../Icon/Icon.module.scss';
-import type { IconType } from '../../Icon/Icon.js';
+import type { SvgAsset } from '../../Icon/Icon.js';
 
 type GenericProps = {|
   label: string,
@@ -12,7 +12,7 @@ type GenericProps = {|
   disabled: boolean,
   form: boolean,
   reversed: boolean,
-  icon?: IconType,
+  icon?: SvgAsset,
   onClick?: MouseEvent => void,
   href?: string,
   automationId?: string,
@@ -131,6 +131,6 @@ function renderContent(props: Props) {
   );
 }
 
-function renderIcon(icon: IconType) {
+function renderIcon(icon: SvgAsset) {
   return <Icon icon={icon} role="presentation" />;
 }

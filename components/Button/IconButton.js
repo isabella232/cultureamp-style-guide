@@ -2,7 +2,6 @@
 import * as React from 'react';
 import GenericButton from './components/GenericButton.js';
 import type { IconButtonProps } from './components/GenericButton.js';
-import type { IconType } from '../Icon/Icon.js';
 
 IconButton.defaultProps = {
   form: false,
