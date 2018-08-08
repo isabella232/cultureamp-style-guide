@@ -3,13 +3,13 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './Button.module.scss';
 import Icon from '../Icon/Icon.js';
-import type { IconType } from '../Icon/Icon.js';
+import type { SvgAsset } from '../Icon/Icon.js';
 
 type IconPosition = 'start' | 'end';
 
 type Props = {
   label: string,
-  icon?: IconType,
+  icon?: SvgAsset,
   iconPosition: IconPosition,
   primary: boolean,
   secondary: boolean,

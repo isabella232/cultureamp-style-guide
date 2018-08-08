@@ -6,7 +6,7 @@ import styles from './Icon.module.scss';
 import { warn } from '../../util/error';
 import { enableUniqueIds } from 'react-html-id';
 
-export type IconType = {
+export type SvgAsset = {
   id: string,
   viewBox: string,
 };
@@ -19,7 +19,7 @@ type RolesType =
   | 'presentation'; // decorative, should be silent to users who can't see it
 
 type Props = {
-  icon: IconType,
+  icon: SvgAsset,
   inheritSize?: boolean,
   role?: RolesType,
   title?: void | false | string,

@@ -7,14 +7,14 @@ import Icon from '../Icon/Icon';
 import defaultIcon from '../../icons/ellipsis.svg';
 import chevronDown from '../../icons/chevron-down.svg';
 import DropdownMenu from './DropdownMenu';
-import type { IconType } from '../Icon/Icon.js';
+import type { SvgAsset } from '../Icon/Icon.js';
 
 type DropdownState = {
   isMenuVisible: boolean,
 };
 
 type DropdownProps = {
-  icon?: IconType,
+  icon?: SvgAsset,
   label?: React.Node,
   children: React.Node,
   menuVisible?: boolean,
