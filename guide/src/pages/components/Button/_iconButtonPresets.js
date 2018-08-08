@@ -42,15 +42,6 @@ const buttonPresets = [
     name: 'Form',
     node: <IconButton icon={configureIcon} label="Label" form />,
   },
-  // TODO DELETE THESE PRESETS
-  {
-    name: 'Primary',
-    node: <IconButton icon={configureIcon} label="Label" primary />,
-  },
-  {
-    name: 'Secondary',
-    node: <IconButton icon={configureIcon} label="Label" secondary />,
-  },
   {
     name: 'Destructive',
     node: <IconButton icon={trashIcon} label="Label" destructive />,
@@ -67,32 +58,6 @@ const buttonPresets = [
   {
     name: 'Reversed Disabled',
     node: <IconButton icon={logoutIcon} label="Label" reversed disabled />,
-    darkBackground: true,
-  },
-  {
-    name: 'Primary Reversed',
-    node: (
-      <IconButton
-        icon={configureIcon}
-        label="Label"
-        primary
-        reversed
-        reverseColor="ocean"
-      />
-    ),
-    darkBackground: true,
-  },
-  {
-    name: 'Primary Reversed Disabled',
-    node: (
-      <IconButton
-        icon={configureIcon}
-        label="Label"
-        primary
-        reversed
-        disabled
-      />
-    ),
     darkBackground: true,
   },
 ];

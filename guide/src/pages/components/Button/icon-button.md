@@ -10,7 +10,7 @@ imports:
 
 <IntroParagraph>
 
-An icon only button!
+A button with an icon but no label.
 
 Available for both Elm and React.
 

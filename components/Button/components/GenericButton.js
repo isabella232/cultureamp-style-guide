@@ -3,18 +3,16 @@ import * as React from 'react';
 import classNames from 'classnames';
 import styles from './GenericButton.module.scss';
 import Icon from '../../Icon/Icon.js';
+import iconStyles from '../../Icon/Icon.module.scss';
 import type { IconType } from '../../Icon/Icon.js';
 
 type GenericProps = {|
   label: string,
-  primary: boolean,
-  secondary: boolean,
   destructive: boolean,
   disabled: boolean,
   form: boolean,
   reversed: boolean,
   icon?: IconType,
-  reverseColor?: 'lapis' | 'ocean' | 'peach' | 'seedling' | 'wisteria' | 'yuzu',
   onClick?: MouseEvent => void,
   href?: string,
   automationId?: string,
@@ -22,6 +20,9 @@ type GenericProps = {|
 
 type LabelProps = {|
   iconPosition: 'start' | 'end',
+  primary: boolean,
+  secondary: boolean,
+  reverseColor?: 'lapis' | 'ocean' | 'peach' | 'seedling' | 'wisteria' | 'yuzu',
 |};
 
 export type IconButtonProps = {|
@@ -40,6 +41,9 @@ type Props = {|
 
 GenericButton.defaultProps = {
   iconPosition: 'start',
+  iconButton: false,
+  primary: false,
+  secondary: false,
 };
 
 export default function GenericButton(props: Props) {
@@ -102,13 +106,16 @@ function buttonClass(props: Props) {
   return classNames(styles.button, variantClass, {
     [styles.form]: props.form,
     [styles.reversed]: props.reversed,
-    [styles.iconButton]: props.icon && props.iconButton,
+    [styles.iconButton]: props.iconButton,
     [styles.reverseColorLapis]: props.reverseColor === 'lapis',
     [styles.reverseColorOcean]: props.reverseColor === 'ocean',
     [styles.reverseColorPeach]: props.reverseColor === 'peach',
     [styles.reverseColorSeedling]: props.reverseColor === 'seedling',
     [styles.reverseColorWisteria]: props.reverseColor === 'wisteria',
     [styles.reverseColorYuzu]: props.reverseColor === 'yuzu',
+    [iconStyles.interactiveIconWrapper]: props.iconButton && !props.reversed,
+    [iconStyles.reversedInteractiveIconWrapper]:
+      props.iconButton && props.reversed,
   });
 }
 

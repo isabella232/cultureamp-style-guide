@@ -6,15 +6,13 @@ import type { IconType } from '../Icon/Icon.js';
 
 IconButton.defaultProps = {
   form: false,
-  primary: false,
-  secondary: false,
   destructive: false,
   disabled: false,
   reversed: false,
 };
 
 export default function IconButton(props: IconButtonProps) {
-  return <GenericButton iconButton={true} {...props} />;
+  return <GenericButton iconButton {...props} />;
 }
 
 IconButton.displayName = 'IconButton';

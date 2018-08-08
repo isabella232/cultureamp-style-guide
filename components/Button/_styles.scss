@@ -4,6 +4,8 @@
 
 $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
+$caButton-height: $ca-grid * 2;
+$caButton-formHeight: $ca-grid * 5/3;
 
 // reset user agent syles for button elment type
 @mixin button-reset {
@@ -26,7 +28,7 @@ $caButton-focus-border-width: 2px;
 
   display: inline-block;
   box-sizing: border-box;
-  height: $ca-grid * 2;
+  height: $caButton-height;
   border: $caButton-border-width solid;
   border-radius: $ca-border-radius;
   // looking for padding? See %caButtonContent
@@ -82,7 +84,7 @@ $caButton-focus-border-width: 2px;
 }
 
 %caButtonForm {
-  height: $ca-grid * 5/3;
+  height: $caButton-formHeight;
 }
 
 %caButtonPrimary,
@@ -156,32 +158,6 @@ $caButton-focus-border-width: 2px;
     background: transparent;
     border-color: transparent;
     color: add-tint($ca-palette-ink, 70%);
-  }
-}
-
-%caButtonIconButton {
-  @extend %caButton;
-
-  &:disabled {
-    color: add-tint($ca-palette-ink, 70%);
-    background: none;
-    border: none;
-  }
-
-  &:not(:disabled) {
-    color: add-tint($ca-palette-ink, 50%);
-    background: none;
-    border: none;
-
-    &:hover {
-      color: add-tint($ca-palette-ink, 30%);
-      background: none;
-    }
-
-    &:active {
-      color: $ca-palette-ink;
-      background: none;
-    }
   }
 }
 
@@ -348,5 +324,57 @@ $caButton-focus-border-width: 2px;
 
   &:not(:last-child) {
     margin-right: 0.5em;
+  }
+}
+
+%caButtonIconButton {
+  width: $caButton-height;
+
+  // Reset for various states and variants
+  &:not(:disabled),
+  &:disabled {
+    &,
+    &:hover,
+    &:active,
+    &%caButtonPrimary,
+    &%caButtonSecondary {
+      color: $ca-palette-ink;
+      background: none;
+      border-color: transparent;
+
+      &%caButtonReversed {
+        color: white;
+        &%caButtonPrimary {
+          %caButtonContent {
+            color: white;
+            background: none;
+            mix-blend-mode: initial;
+          }
+        }
+      }
+    }
+  }
+  &%caButtonReversed,
+  :global(.js-focus-visible) &:global(.focus-visible) {
+    %caButtonContent {
+      padding: 0;
+    }
+  }
+
+  %caButtonContent {
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+  }
+
+  &%caButtonForm {
+    width: $caButton-formHeight;
+  }
+
+  &%caButtonDestructive:not(:disabled) {
+    &:hover,
+    &:active {
+      color: $ca-palette-coral;
+    }
   }
 }

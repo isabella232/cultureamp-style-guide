@@ -14,7 +14,7 @@ Button.defaultProps = {
 };
 
 export default function Button(props: ButtonProps) {
-  return <GenericButton iconButton={false} {...props} />;
+  return <GenericButton {...props} />;
 }
 
 Button.displayName = 'Button';
