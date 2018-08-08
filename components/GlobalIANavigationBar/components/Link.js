@@ -6,8 +6,10 @@ import styles from './Link.module.scss';
 import Icon from '../../Icon';
 import iconStyles from '../../Icon/Icon.module.scss';
 
+import type { SvgAsset } from '../../Icon/Icon.js';
+
 type Props = {|
-  icon?: { id: string, viewBox: string },
+  icon?: SvgAsset,
   text: string,
   iconOnly: boolean,
   href: string,

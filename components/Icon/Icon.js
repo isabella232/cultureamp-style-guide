@@ -1,18 +1,32 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './Icon.module.scss';
 import { warn } from '../../util/error';
 import { enableUniqueIds } from 'react-html-id';
 
+export type SvgAsset = {
+  id: string,
+  viewBox: string,
+};
+
 const IMG = 'img';
 const PRESENTATION = 'presentation';
-const roles = [
-  IMG, // meaningful, title should be read aloud to users who can't see it
-  PRESENTATION, // decorative, should be silent to users who can't see it
-];
 
-export default class Icon extends React.Component {
+type RolesType =
+  | 'img' // meaningful, title should be read aloud to users who can't see it
+  | 'presentation'; // decorative, should be silent to users who can't see it
+
+type Props = {
+  icon: SvgAsset,
+  inheritSize?: boolean,
+  role?: RolesType,
+  title?: void | false | string,
+  desc?: void | false | string,
+};
+
+export default class Icon extends React.Component<Props> {
   static displayName = 'Icon';
 
   constructor() {
@@ -63,7 +77,7 @@ export default class Icon extends React.Component {
 
   renderDesc() {
     if (this.isMeaningfulImg() && this.props.desc)
-      return <desc id={this.getUniqueId('desc')}>{desc}</desc>;
+      return <desc id={this.getUniqueId('desc')}>{this.props.desc}</desc>;
   }
 
   isMeaningfulImg() {
@@ -87,16 +101,7 @@ export default class Icon extends React.Component {
     }
   }
 
-  static propTypes = {
-    icon: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      viewBox: PropTypes.string.isRequired,
-    }).isRequired,
-    inheritSize: PropTypes.bool,
-    role: PropTypes.oneOf(roles),
-    title: PropTypes.string,
-    desc: PropTypes.string,
-  };
+  getUniqueId: string => string;
 
   static defaultProps = {
     inheritSize: false,
