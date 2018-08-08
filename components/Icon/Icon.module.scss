@@ -24,17 +24,36 @@
       opacity: 0.3;
     }
   }
-  &:hover,
-  &:focus,
-  &.hover {
-    .icon {
-      opacity: 0.7;
+  &:not(:disabled, .disabled) {
+    &:hover,
+    &:focus,
+    &.hover {
+      .icon {
+        opacity: 0.7;
+      }
+    }
+    &:active,
+    &.active {
+      .icon {
+        opacity: 1;
+      }
     }
   }
-  &:active,
-  &.active {
-    .icon {
-      opacity: 1;
+}
+
+// On dark backgrounds, icons are fully opaque by default and half opacity when active.
+// Hover and disabled states are the same.
+.reversedInteractiveIconWrapper {
+  composes: interactiveIconWrapper;
+  .icon {
+    opacity: 1;
+  }
+  &:not(:disabled, .disabled) {
+    &:active,
+    &.active {
+      .icon {
+        opacity: 0.5;
+      }
     }
   }
 }
