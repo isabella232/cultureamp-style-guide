@@ -1,8 +1,6 @@
 port module Button.Demo exposing (..)
 
-import Dict exposing (Dict)
 import Html exposing (Html, text)
-import Maybe
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)

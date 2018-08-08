@@ -5,9 +5,10 @@ module Button.Button
         , primary
         , secondary
         , destructive
+        , iconButton
+        , destructiveIconButton
         , disabled
         , icon
-        , Icon
         , iconPosition
         , IconPosition(..)
         , form
@@ -48,7 +49,7 @@ view (Config config) label =
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
-                , ( .iconButton, hasNoLabel config.icon )
+                , ( .iconButton, config.iconButton )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -82,7 +83,7 @@ view (Config config) label =
                     []
 
         title =
-            if hasNoLabel config.icon then
+            if config.iconButton then
                 [ Html.Attributes.title label
                 , Html.Attributes.Aria.ariaLabel label
                 ]
@@ -104,35 +105,35 @@ view (Config config) label =
             ]
 
 
-viewLabel : String -> Maybe Icon -> Html Never
-viewLabel label icon =
-    if hasNoLabel icon then
+viewContent : Config msg -> String -> Html Never
+viewContent (Config config) label =
+    span [ class .content ]
+        [ viewIconFor config Start
+        , viewLabel label config.iconButton
+        , viewIconFor config End
+        ]
+
+
+viewLabel : String -> Bool -> Html Never
+viewLabel label iconButton =
+    if iconButton then
         text ""
     else
         span [ class .label ]
             [ text label ]
 
 
-viewContent : Config msg -> String -> Html Never
-viewContent (Config config) label =
-    span [ class .content ]
-        [ viewIconFor Start config.icon
-        , viewLabel label config.icon
-        , viewIconFor End config.icon
-        ]
+viewIconFor : ConfigValue msg -> IconPosition -> Html Never
+viewIconFor { icon, iconPosition } forPosition =
+    if iconPosition == forPosition then
+        case icon of
+            Just svgAsset ->
+                Icon.view Icon.presentation svgAsset
 
-
-viewIconFor : IconPosition -> Maybe Icon -> Html Never
-viewIconFor position icon =
-    case icon of
-        Just iconRecord ->
-            if iconRecord.position == position then
-                Icon.view Icon.presentation iconRecord.glyph
-            else
+            Nothing ->
                 text ""
-
-        Nothing ->
-            text ""
+    else
+        text ""
 
 
 { class, classList } =
@@ -157,20 +158,6 @@ viewIconFor position icon =
 
 
 
--- UTILS
-
-
-hasNoLabel : Maybe Icon -> Bool
-hasNoLabel icon =
-    case icon of
-        Just iconRecord ->
-            iconRecord.noLabel == True
-
-        Nothing ->
-            False
-
-
-
 -- VARIANTS
 
 
@@ -180,7 +167,9 @@ type Config msg
 
 type alias ConfigValue msg =
     { variant : Variant
-    , icon : Maybe Icon
+    , icon : Maybe SvgAsset
+    , iconPosition : IconPosition
+    , iconButton : Bool
     , disabled : Bool
     , form : Bool
     , reversed : Bool
@@ -196,13 +185,6 @@ type Variant
     | Primary
     | Secondary
     | Destructive
-
-
-type alias Icon =
-    { glyph : SvgAsset
-    , position : IconPosition
-    , noLabel : Bool
-    }
 
 
 type IconPosition
@@ -228,6 +210,8 @@ defaults : ConfigValue msg
 defaults =
     { variant = Default
     , icon = Nothing
+    , iconPosition = End
+    , iconButton = False
     , disabled = False
     , form = False
     , reversed = False
@@ -253,6 +237,16 @@ destructive =
     Config { defaults | variant = Destructive }
 
 
+iconButton : SvgAsset -> Config msg
+iconButton svgAsset =
+    Config { defaults | icon = Just svgAsset, iconButton = True }
+
+
+destructiveIconButton : SvgAsset -> Config msg
+destructiveIconButton svgAsset =
+    Config { defaults | icon = Just svgAsset, variant = Destructive, iconButton = True }
+
+
 
 -- MODIFIERS
 
@@ -262,24 +256,14 @@ disabled value (Config config) =
     Config { config | disabled = value }
 
 
-icon : Icon -> Config msg -> Config msg
+icon : SvgAsset -> Config msg -> Config msg
 icon icon (Config config) =
     Config { config | icon = Just icon }
 
 
-iconAsset : SvgAsset -> Config msg -> Config msg
-iconAsset glyph (Config config) =
-    Config { config | icon = Just (Icon glyph Start False) }
-
-
-iconPosition : SvgAsset -> IconPosition -> Config msg -> Config msg
-iconPosition glyph position (Config config) =
-    Config { config | icon = Just (Icon glyph position False) }
-
-
-iconNoLabel : SvgAsset -> Config msg -> Config msg
-iconNoLabel glyph (Config config) =
-    Config { config | icon = Just (Icon glyph Start True) }
+iconPosition : IconPosition -> Config msg -> Config msg
+iconPosition position (Config config) =
+    Config { config | iconPosition = position }
 
 
 form : Bool -> Config msg -> Config msg
