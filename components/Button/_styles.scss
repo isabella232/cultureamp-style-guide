@@ -376,5 +376,9 @@ $caButton-formHeight: $ca-grid * 5/3;
     &:active {
       color: $ca-palette-coral;
     }
+
+    :global(.js-focus-visible) &:global(.focus-visible) {
+      border-color: $ca-palette-ocean;
+    }
   }
 }
