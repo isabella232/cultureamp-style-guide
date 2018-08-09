@@ -5,14 +5,12 @@ module Notification.Notification
         , toast
         , global
         , notificationType
-        , state
         , onStateChange
         , automationId
         , Config
         , NotificationType(..)
         , NotificationState(..)
         , getAutomationId
-        , getState
         , subscriptions
         )
 
@@ -28,11 +26,24 @@ import AnimationFrame
 import Time exposing (every, second)
 
 
+type NotificationState
+    = Manual NotificationStage
+    | Autohide NotificationStage
+
+
+type NotificationStage
+    = Appearing
+    | Visible
+    | Disappearing Int
+    | Hidden
+
+
+
 -- VIEW
 
 
-view : Config msg -> Html msg
-view (Config config) =
+view : Config msg -> NotificationState -> Html msg
+view (Config config) state =
     let
         notificationClass =
             [ classList
@@ -44,7 +55,7 @@ view (Config config) =
                 , ( .informative, config.notificationType == Informative )
                 , ( .cautionary, config.notificationType == Cautionary )
                 , ( .negative, config.notificationType == Negative )
-                , ( .hidden, config.state /= Visible && config.state /= (Autohide Visible) )
+                , ( .hidden, (notificationStage state) /= Visible )
                 ]
             ]
 
@@ -52,11 +63,8 @@ view (Config config) =
             [ Html.Attributes.style [ ( "marginTop", toString (-height) ++ "px" ) ] ]
 
         style =
-            case config.state of
+            case notificationStage state of
                 Disappearing height ->
-                    marginTopAttr height
-
-                Autohide (Disappearing height) ->
                     marginTopAttr height
 
                 _ ->
@@ -72,7 +80,7 @@ view (Config config) =
 
         -- Fetch the correct height for Autohide Disappearing state to animate correctly.
         onTransitionStart =
-            case ( config.state, config.onStateChange ) of
+            case ( state, config.onStateChange ) of
                 ( Autohide (Disappearing oldHeight), Just stateChangeMsg ) ->
                     [ on
                         "transitionstart"
@@ -90,38 +98,27 @@ view (Config config) =
                 _ ->
                     []
 
-        onTransitionEndMsg : List (Html.Attribute msg)
-        onTransitionEndMsg =
-            case config.onStateChange of
-                Just stateChangeMsg ->
+        onTransitionEnd : List (Html.Attribute msg)
+        onTransitionEnd =
+            case ( config.onStateChange, notificationStage state ) of
+                ( Just stateChangeMsg, Disappearing _ ) ->
                     [ on
                         "transitionend"
                         (Json.field "propertyName" Json.string
                             |> Json.andThen
                                 (\propertyName ->
                                     if propertyName == "margin-top" then
-                                        Json.succeed (stateChangeMsg Hidden)
+                                        Json.succeed (stateChangeMsg (Manual Hidden))
                                     else
                                         Json.fail "ignore"
                                 )
                         )
                     ]
 
-                Nothing ->
-                    []
-
-        onTransitionEnd =
-            case config.state of
-                Disappearing _ ->
-                    onTransitionEndMsg
-
-                Autohide (Disappearing _) ->
-                    onTransitionEndMsg
-
-                _ ->
+                ( _, _ ) ->
                     []
     in
-        case config.state of
+        case notificationStage state of
             Hidden ->
                 text ""
 
@@ -132,7 +129,7 @@ view (Config config) =
                         [ viewTitle (Config config)
                         , p [ class .text ] config.content
                         ]
-                    , viewCancelButton (Config config)
+                    , viewCancelButton (Config config) state
                     ]
 
 
@@ -176,8 +173,8 @@ viewTitle (Config { title }) =
             text ""
 
 
-viewCancelButton : Config msg -> Html msg
-viewCancelButton (Config { persistent, state, variant, onStateChange }) =
+viewCancelButton : Config msg -> NotificationState -> Html msg
+viewCancelButton (Config { persistent, variant, onStateChange }) state =
     let
         -- With Toast Notifications, we only allow hiding the close button if the notification will autohide.
         hideCloseButton =
@@ -198,7 +195,7 @@ viewCancelButton (Config { persistent, state, variant, onStateChange }) =
                         "click"
                         { defaultOptions | preventDefault = True }
                         (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
-                            |> Json.andThen (\height -> Json.succeed (stateChangeMsg (Disappearing height)))
+                            |> Json.andThen (\height -> Json.succeed (stateChangeMsg (Manual (Disappearing height))))
                         )
                     ]
 
@@ -259,7 +256,6 @@ type alias ConfigValue msg =
     , title : Maybe String
     , content : List (Html msg)
     , persistent : Bool
-    , state : NotificationState
     , autohide : Bool
     , onStateChange : Maybe (NotificationState -> msg)
     , automationId : Maybe String
@@ -279,14 +275,6 @@ type NotificationType
     | Negative
 
 
-type NotificationState
-    = Appearing
-    | Visible
-    | Disappearing Int
-    | Hidden
-    | Autohide NotificationState
-
-
 defaults : ConfigValue msg
 defaults =
     { variant = Inline
@@ -294,7 +282,6 @@ defaults =
     , title = Nothing
     , content = []
     , persistent = False
-    , state = Appearing
     , autohide = False
     , onStateChange = Nothing
     , automationId = Nothing
@@ -312,21 +299,13 @@ inline title content persistent =
 
 toast : String -> List (Html msg) -> Bool -> Config msg
 toast title content hideCloseIcon =
-    let
-        initialState =
-            if hideCloseIcon then
-                Autohide Appearing
-            else
-                Appearing
-    in
-        Config
-            { defaults
-                | variant = Toast
-                , title = Just title
-                , content = content
-                , persistent = hideCloseIcon
-                , state = initialState
-            }
+    Config
+        { defaults
+            | variant = Toast
+            , title = Just title
+            , content = content
+            , persistent = hideCloseIcon
+        }
 
 
 global : List (Html msg) -> Config msg
@@ -341,11 +320,6 @@ global content =
 notificationType : NotificationType -> Config msg -> Config msg
 notificationType value (Config config) =
     Config { config | notificationType = value }
-
-
-state : NotificationState -> Config msg -> Config msg
-state value (Config config) =
-    Config { config | state = value }
 
 
 onStateChange : (NotificationState -> msg) -> Config msg -> Config msg
@@ -370,12 +344,14 @@ getAutomationId config =
             automationId
 
 
-getState : Config msg -> NotificationState
-getState config =
-    -- In our Notification.Demo app we need to access the current state so we can correctly initialise Autohide states
-    case config of
-        Config { state } ->
-            state
+notificationStage : NotificationState -> NotificationStage
+notificationStage state =
+    case state of
+        Autohide stage ->
+            stage
+
+        Manual stage ->
+            stage
 
 
 
@@ -388,8 +364,8 @@ subscriptions allNotifications =
         (List.filterMap
             (\( state, setter ) ->
                 case state of
-                    Appearing ->
-                        Just (AnimationFrame.times (\_ -> setter Visible))
+                    Manual Appearing ->
+                        Just (AnimationFrame.times (\_ -> setter (Manual Visible)))
 
                     Autohide Appearing ->
                         Just (AnimationFrame.times (\_ -> setter (Autohide Visible)))
