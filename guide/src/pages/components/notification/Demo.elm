@@ -94,9 +94,8 @@ subscriptions model =
     let
         allNotifications : List ( NotificationState, NotificationState -> Msg )
         allNotifications =
-            List.map
-                (\( automationId, state ) -> ( state, SetNotificationState automationId ))
-                (Dict.toList model.notificationStates)
+            Dict.toList model.notificationStates
+                |> List.map (\( automationId, state ) -> ( state, SetNotificationState automationId ))
     in
         Notification.subscriptions allNotifications
 
@@ -201,7 +200,7 @@ renderView props notificationStates configResult =
                     case Notification.getAutomationId config of
                         Just automationId ->
                             ( Notification.onStateChange (SetNotificationState automationId) config
-                            , Maybe.withDefault initialState (Dict.get automationId notificationStates)
+                            , Maybe.withDefault initialState <| Dict.get automationId notificationStates
                             )
 
                         Nothing ->

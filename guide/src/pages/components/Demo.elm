@@ -24,7 +24,68 @@ stringEnum error stringToValueMappings =
 
 
 
+-- CONFIG UPDATERS
+
+
+variantFlag : config -> Bool -> config -> config
+variantFlag config flag previousConfig =
+    if flag then
+        config
+    else
+        previousConfig
+
+
+
+-- PROP DECODER PIPELINE
+-- Pattern for easier to understand JSON decoder pipeline from https://medium.com/@eeue56/json-decoding-in-elm-is-still-difficult-cad2d1fb39ae
+
+
+decodeField : String -> Json.Decoder typeOfField -> (typeOfField -> previousType -> nextType) -> Json.Value -> Result String previousType -> Result String nextType
+decodeField fieldName decoder =
+    decodeAndUpdate (Json.field fieldName decoder)
+
+
+decodeOptionalField : String -> Json.Decoder typeOfField -> (typeOfField -> nextType -> nextType) -> Json.Value -> Result String nextType -> Result String nextType
+decodeOptionalField fieldName decoder update =
+    let
+        optionalFieldDecoder =
+            (Json.maybe << Json.field fieldName) decoder
+
+        maybeUpdate maybeValue =
+            case maybeValue of
+                Just value ->
+                    update value
+
+                Nothing ->
+                    identity
+    in
+        decodeAndUpdate optionalFieldDecoder maybeUpdate
+
+
+decodeAndUpdate : Json.Decoder typeOfField -> (typeOfField -> previousType -> nextType) -> Json.Value -> Result String previousType -> Result String nextType
+decodeAndUpdate decoder update json previousResult =
+    let
+        decoded =
+            Json.decodeValue decoder json
+    in
+        case decoded of
+            Ok value ->
+                Result.map (update value) previousResult
+
+            Err message ->
+                case previousResult of
+                    Ok previousValue ->
+                        Err message
+
+                    Err previousMessage ->
+                        Err (previousMessage ++ "\nAnd " ++ message)
+
+
+
 -- JSX DECODERS
+-- Because we demo our Elm components using the same props as our React components,
+-- and because some demos contain arbitrary HTML/JSX nodes, we have a JSON Decoder
+-- that turns JSX nodes into Elm Html - using specified component decoders as needed.
 
 
 type alias JsxNodeInfo msg =
@@ -44,6 +105,11 @@ type alias JsxDecoder msg =
 
 type alias JsxWithMessageDecoder msg =
     Json.Decoder (NodesAndMessages msg)
+
+
+
+-- TODO
+-- Give up on this "with Message" pattern, and have an init function that gives a model instead.
 
 
 jsxChildren : List ( String, JsxDecoder msg ) -> JsxDecoder msg
@@ -71,18 +137,22 @@ jsxChildrenWithMessages componentDecoders =
     let
         lazilyRecurse : JsxWithMessageDecoder msg
         lazilyRecurse =
-            (Json.lazy (\_ -> jsxChildrenWithMessages componentDecoders))
+            Json.lazy <| always <| jsxChildrenWithMessages componentDecoders
 
         flattenChildrenList : List (NodesAndMessages msg) -> JsxWithMessageDecoder msg
         flattenChildrenList list =
             let
                 childNodes : List (Html msg)
                 childNodes =
-                    List.concat (List.map (\item -> Tuple.first item) list)
+                    list
+                        |> List.map (\item -> Tuple.first item)
+                        |> List.concat
 
                 childMessages : List msg
                 childMessages =
-                    List.concat (List.map (\item -> Tuple.second item) list)
+                    list
+                        |> List.map (\item -> Tuple.second item)
+                        |> List.concat
             in
                 Json.succeed ( childNodes, childMessages )
 
@@ -147,61 +217,3 @@ jsxAttributes =
 startsWithUpper : String -> Bool
 startsWithUpper string =
     String.toUpper (String.left 1 string) == String.left 1 string
-
-
-
--- CONFIG UPDATERS
-
-
-variantFlag : config -> Bool -> config -> config
-variantFlag config flag previousConfig =
-    if flag then
-        config
-    else
-        previousConfig
-
-
-
--- PROP DECODER PIPELINE
--- Pattern for easier to understand JSON decoder pipeline from https://medium.com/@eeue56/json-decoding-in-elm-is-still-difficult-cad2d1fb39ae
-
-
-decodeField : String -> Json.Decoder typeOfField -> (typeOfField -> previousType -> nextType) -> Json.Value -> Result String previousType -> Result String nextType
-decodeField fieldName decoder =
-    decodeAndUpdate (Json.field fieldName decoder)
-
-
-decodeOptionalField : String -> Json.Decoder typeOfField -> (typeOfField -> nextType -> nextType) -> Json.Value -> Result String nextType -> Result String nextType
-decodeOptionalField fieldName decoder update =
-    let
-        optionalFieldDecoder =
-            (Json.maybe << Json.field fieldName) decoder
-
-        maybeUpdate maybeValue =
-            case maybeValue of
-                Just value ->
-                    update value
-
-                Nothing ->
-                    identity
-    in
-        decodeAndUpdate optionalFieldDecoder maybeUpdate
-
-
-decodeAndUpdate : Json.Decoder typeOfField -> (typeOfField -> previousType -> nextType) -> Json.Value -> Result String previousType -> Result String nextType
-decodeAndUpdate decoder update json previousResult =
-    let
-        decoded =
-            Json.decodeValue decoder json
-    in
-        case decoded of
-            Ok value ->
-                Result.map (update value) previousResult
-
-            Err message ->
-                case previousResult of
-                    Ok previousValue ->
-                        Err message
-
-                    Err previousMessage ->
-                        Err (previousMessage ++ "\nAnd " ++ message)

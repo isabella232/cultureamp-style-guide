@@ -134,7 +134,7 @@ view (Config config) state =
                             |> Json.andThen
                                 (\height ->
                                     if height /= oldHeight then
-                                        Json.succeed (stateChangeMsg (Autohide (Disappearing height)))
+                                        Json.succeed <| stateChangeMsg <| Autohide (Disappearing height)
                                     else
                                         Json.fail "ignore"
                                 )
@@ -156,7 +156,7 @@ view (Config config) state =
                             |> Json.andThen
                                 (\propertyName ->
                                     if propertyName == "margin-top" then
-                                        Json.succeed (stateChangeMsg (Manual Hidden))
+                                        Json.succeed <| stateChangeMsg <| Manual Hidden
                                     else
                                         Json.fail "ignore"
                                 )
@@ -259,7 +259,7 @@ viewCancelButton (Config { persistent, variant, onStateChange }) state =
                         "click"
                         { defaultOptions | preventDefault = True }
                         (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
-                            |> Json.andThen (\height -> Json.succeed (stateChangeMsg (Manual (Disappearing height))))
+                            |> Json.andThen (\height -> Json.succeed <| stateChangeMsg <| Manual (Disappearing height))
                         )
                     ]
 
@@ -404,15 +404,15 @@ subscriptions allNotifications =
             (\( state, setter ) ->
                 case state of
                     Manual Appearing ->
-                        Just (AnimationFrame.times (\_ -> setter (Manual Visible)))
+                        Just <| AnimationFrame.times <| always <| setter <| Manual Visible
 
                     Autohide Appearing ->
-                        Just (AnimationFrame.times (\_ -> setter (Autohide Visible)))
+                        Just <| AnimationFrame.times <| always <| setter <| Autohide Visible
 
                     Autohide Visible ->
                         -- Note: we do not know the height of the notification here, so cannot animate margin-top.
                         -- We have a "transitionstart" event listener that will read the clientHeight and correct this value.
-                        Just (every (5 * second) (\_ -> setter (Autohide (Disappearing 0))))
+                        Just <| every (5 * second) <| always <| setter <| Autohide (Disappearing 0)
 
                     _ ->
                         Nothing
