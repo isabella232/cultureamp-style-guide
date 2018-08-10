@@ -10,7 +10,9 @@ module Notification.Notification
         , Config
         , NotificationType(..)
         , NotificationState(..)
+        , NotificationStage(..)
         , getAutomationId
+        , notificationStage
         , subscriptions
         )
 
@@ -24,6 +26,60 @@ import Icon.SvgAsset exposing (svgAsset)
 import Platform.Sub
 import AnimationFrame
 import Time exposing (every, second)
+
+
+{-| A notification component for Culture Amp projects.
+
+The notification view requires two properties, a config, and a state.
+
+The config begins by choosing of our 3 variants (`inline`, `toast`, and
+`global`). These can then be changed using the modifiers (`notificationType`,
+`onStateChange`, `automationId`).
+
+The state is a single value that describe the animation's enter and exit states.
+It will be include whether the notification requires Manual dismissal or is set
+to Autohide, and what the current `NotificationStage` is.
+
+Your page will need to use `Notification.subscriptions` to subscribe to events
+so all state transitions animate correctly.
+
+-}
+
+
+
+-- CONFIG
+
+
+type Config msg
+    = Config (ConfigValue msg)
+
+
+type alias ConfigValue msg =
+    { variant : Variant
+    , notificationType : NotificationType
+    , title : Maybe String
+    , content : List (Html msg)
+    , persistent : Bool
+    , onStateChange : Maybe (NotificationState -> msg)
+    , automationId : Maybe String
+    }
+
+
+type Variant
+    = Inline
+    | Toast
+    | Global
+
+
+type NotificationType
+    = Affirmative
+    | Informative
+    | Cautionary
+    | Negative
+
+
+
+-- STATE
 
 
 type NotificationState
@@ -45,27 +101,16 @@ type NotificationStage
 view : Config msg -> NotificationState -> Html msg
 view (Config config) state =
     let
-        notificationClass =
-            [ classList
-                [ ( .notification, True )
-                , ( .inline, config.variant == Inline )
-                , ( .toast, config.variant == Toast )
-                , ( .global, config.variant == Global )
-                , ( .affirmative, config.notificationType == Affirmative )
-                , ( .informative, config.notificationType == Informative )
-                , ( .cautionary, config.notificationType == Cautionary )
-                , ( .negative, config.notificationType == Negative )
-                , ( .hidden, (notificationStage state) /= Visible )
-                ]
-            ]
-
-        marginTopAttr height =
-            [ Html.Attributes.style [ ( "marginTop", toString (-height) ++ "px" ) ] ]
+        className =
+            notificationClassName config state
 
         style =
             case notificationStage state of
                 Disappearing height ->
-                    marginTopAttr height
+                    [ Html.Attributes.style
+                        [ ( "marginTop", toString (-height) ++ "px" )
+                        ]
+                    ]
 
                 _ ->
                     []
@@ -78,13 +123,14 @@ view (Config config) state =
                 Nothing ->
                     []
 
-        -- Fetch the correct height for Autohide Disappearing state to animate correctly.
+        -- When using Autohide, we use a "transitionstart" event to retrieve the height of the notification, so we can animate the exit correctly.
         onTransitionStart =
             case ( state, config.onStateChange ) of
                 ( Autohide (Disappearing oldHeight), Just stateChangeMsg ) ->
                     [ on
                         "transitionstart"
-                        (Json.at [ "target", "clientHeight" ] Json.int
+                        (Json.at [ "target", "clientHeight" ]
+                            Json.int
                             |> Json.andThen
                                 (\height ->
                                     if height /= oldHeight then
@@ -98,6 +144,8 @@ view (Config config) state =
                 _ ->
                     []
 
+        -- Each of our CSS transitions finishes with "margin-top" being animated so that our height is collapsed.
+        -- After this is finished, the state is set to "Hidden" and the notification is removed from the DOM.
         onTransitionEnd : List (Html.Attribute msg)
         onTransitionEnd =
             case ( config.onStateChange, notificationStage state ) of
@@ -123,7 +171,7 @@ view (Config config) state =
                 text ""
 
             _ ->
-                div (notificationClass ++ style ++ onTransitionStart ++ onTransitionEnd)
+                div (className ++ style ++ automationId ++ onTransitionStart ++ onTransitionEnd)
                     [ viewIcon (Config config)
                     , div [ class .textContainer ]
                         [ viewTitle (Config config)
@@ -131,6 +179,22 @@ view (Config config) state =
                         ]
                     , viewCancelButton (Config config) state
                     ]
+
+
+notificationClassName : ConfigValue msg -> NotificationState -> List (Html.Attribute msg)
+notificationClassName config state =
+    [ classList
+        [ ( .notification, True )
+        , ( .inline, config.variant == Inline )
+        , ( .toast, config.variant == Toast )
+        , ( .global, config.variant == Global )
+        , ( .affirmative, config.notificationType == Affirmative )
+        , ( .informative, config.notificationType == Informative )
+        , ( .cautionary, config.notificationType == Cautionary )
+        , ( .negative, config.notificationType == Negative )
+        , ( .hidden, (notificationStage state) /= Visible )
+        ]
+    ]
 
 
 viewIcon : Config msg -> Html msg
@@ -243,36 +307,7 @@ viewCancelButton (Config { persistent, variant, onStateChange }) state =
 
 
 
--- CONFIG
-
-
-type Config msg
-    = Config (ConfigValue msg)
-
-
-type alias ConfigValue msg =
-    { variant : Variant
-    , notificationType : NotificationType
-    , title : Maybe String
-    , content : List (Html msg)
-    , persistent : Bool
-    , autohide : Bool
-    , onStateChange : Maybe (NotificationState -> msg)
-    , automationId : Maybe String
-    }
-
-
-type Variant
-    = Inline
-    | Toast
-    | Global
-
-
-type NotificationType
-    = Affirmative
-    | Informative
-    | Cautionary
-    | Negative
+-- VARIANTS
 
 
 defaults : ConfigValue msg
@@ -282,14 +317,9 @@ defaults =
     , title = Nothing
     , content = []
     , persistent = False
-    , autohide = False
     , onStateChange = Nothing
     , automationId = Nothing
     }
-
-
-
--- VARIANTS
 
 
 inline : String -> List (Html msg) -> Bool -> Config msg
@@ -355,9 +385,18 @@ notificationStage state =
 
 
 
--- SUBSCRIPTION
+-- SUBSCRIPTIONS
 
 
+{-| Get a subscription that advances the state of all notifications on the page.
+
+We use subscriptions to change from "Appearing" to "Visible" on the first
+animation frame, and to hide "Autohide" toast notifications after 5 seconds.
+
+To set up a subscription, provide a list of all notifications on the page, for
+each providing the current state, and a message we can use to update the state.
+
+-}
 subscriptions : List ( NotificationState, NotificationState -> msg ) -> Sub msg
 subscriptions allNotifications =
     Sub.batch
