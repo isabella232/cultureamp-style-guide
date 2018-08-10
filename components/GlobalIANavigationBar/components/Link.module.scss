@@ -1,6 +1,10 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
 
+$navEase: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$navTiming: 100ms;
+$indicatorHeight: 2px;
+
 .link {
   // fill parent
   display: flex;
@@ -19,17 +23,34 @@
   color: add-tint($ca-palette-ink, 70%);
   padding: 0;
 
+  // active indicator
+  &::before {
+    content: '';
+    display: block;
+    transform: translateY(calc(-#{$ca-grid / 4} - 100%));
+    height: $indicatorHeight;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    background-color: #fff;
+    transition: transform $navEase $navTiming;
+  }
+
   &:hover,
   &:focus {
-    background-color: rgba(#fff, 0.1);
     color: #fff; // override hyperlink hover color
     outline: none; // override native focus styles
     text-decoration: none;
+
+    &::before {
+      transform: translateY(#{-($ca-grid / 4)});
+    }
   }
 
   @include ca-type-ideal-heading;
   @include ca-inherit-baseline;
   top: 0;
+  position: relative;
 
   &.secondary {
     @include ca-type-ideal-body;
@@ -50,5 +71,11 @@
 }
 
 .active {
-  composes: active from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+    color: #fff; // override hyperlink hover color
+    outline: none; // override native focus styles
+    text-decoration: none;
+
+    &::before {
+      transform: translateY(#{-($ca-grid / 4)});
+    }
 }

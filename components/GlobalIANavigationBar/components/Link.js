@@ -32,7 +32,7 @@ const Link = ({
   return (
     <a
       className={classNames(styles.link, {
-        [iconStyles.active]: active,
+        [styles.active]: active,
         [styles.containsText]: typeof text != 'undefined',
         [styles.secondary]: secondary,
       })}
