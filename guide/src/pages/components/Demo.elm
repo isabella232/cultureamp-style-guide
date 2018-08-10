@@ -2,8 +2,18 @@ module Demo exposing (..)
 
 import Dict
 import Json.Decode as Json
-import Html exposing (Html, node, text)
+import Html exposing (Html, node, div, pre, text)
 import Html.Attributes exposing (property)
+
+
+{-| Utilities for Kaizen Demo components
+
+Our Kaizen demos re-use the same prop-types for React and Elm components.
+We do this by passing React JSX objects in as flags, and using these utilities
+to write decoders that translate React components into Elm Html.
+
+-}
+
 
 
 -- JSON DECODERS
@@ -83,63 +93,102 @@ decodeAndUpdate decoder update json previousResult =
 
 
 -- JSX DECODERS
--- Because we demo our Elm components using the same props as our React components,
--- and because some demos contain arbitrary HTML/JSX nodes, we have a JSON Decoder
--- that turns JSX nodes into Elm Html - using specified component decoders as needed.
+
+
+{-| A decoder for React JSX nodes that returns stateless Elm Html
+-}
+type alias JsxDecoder msg =
+    Json.Decoder (List (Html msg))
+
+
+{-| A decoder for React JSX nodes that returns Elm Html as well as messages
+we can use to initialise state for the component.
+-}
+type alias JsxDecoderWithInitMessages msg =
+    Json.Decoder (NodesAndInitMessages msg)
+
+
+{-| A list of component decoders matched to their React display names
+-}
+type alias ComponentDecoders msg =
+    List ( String, JsxDecoderWithInitMessages msg )
+
+
+type alias NodesAndInitMessages msg =
+    ( List (Html msg), List msg )
 
 
 type alias JsxNodeInfo msg =
     { name : String
     , attributes : List (Html.Attribute msg)
-    , children : NodesAndMessages msg
+    , children : NodesAndInitMessages msg
     }
 
 
-type alias NodesAndMessages msg =
-    ( List (Html msg), List msg )
-
-
-type alias JsxDecoder msg =
-    Json.Decoder (List (Html msg))
-
-
-type alias JsxWithMessageDecoder msg =
-    Json.Decoder (NodesAndMessages msg)
-
-
-
--- TODO
--- Give up on this "with Message" pattern, and have an init function that gives a model instead.
-
-
-jsxChildren : List ( String, JsxDecoder msg ) -> JsxDecoder msg
-jsxChildren simpleComponentDecoders =
+{-| Prepare your initial state by parsing a JSX node and applying the init messages
+-}
+initModelFromJsx : Json.Value -> ComponentDecoders msg -> model -> (msg -> model -> model) -> model
+initModelFromJsx jsxNode componentDecoders initialModel update =
     let
-        transformDecoder : JsxDecoder msg -> JsxWithMessageDecoder msg
-        transformDecoder decoder =
-            decoder
-                |> Json.andThen (\childList -> Json.succeed ( childList, [] ))
+        result =
+            Json.decodeValue (jsxChildren componentDecoders) jsxNode
 
-        componentDecoders : List ( String, JsxWithMessageDecoder msg )
-        componentDecoders =
-            List.map (\( name, decoder ) -> ( name, transformDecoder decoder )) simpleComponentDecoders
+        messages =
+            case result of
+                Ok ( nodes, messages ) ->
+                    messages
 
-        simplifyResult : NodesAndMessages msg -> JsxDecoder msg
-        simplifyResult nodesAndMessages =
-            Json.succeed (Tuple.first nodesAndMessages)
+                Err str ->
+                    -- Question: should we introduce some kind of error handling here?
+                    []
     in
-        jsxChildrenWithMessages componentDecoders
-            |> Json.andThen simplifyResult
+        List.foldl update initialModel messages
 
 
-jsxChildrenWithMessages : List ( String, JsxWithMessageDecoder msg ) -> JsxWithMessageDecoder msg
-jsxChildrenWithMessages componentDecoders =
+{-| Parse a JSX node and view the resulting Html.
+If an error is encountered, it will be displayed as HTML.
+-}
+viewJsxNodes : Json.Value -> ComponentDecoders msg -> Html msg
+viewJsxNodes jsxNode componentDecoders =
     let
-        lazilyRecurse : JsxWithMessageDecoder msg
-        lazilyRecurse =
-            Json.lazy <| always <| jsxChildrenWithMessages componentDecoders
+        result =
+            Json.decodeValue (jsxChildren componentDecoders) jsxNode
+    in
+        case result of
+            Ok ( nodes, messages ) ->
+                div [] nodes
 
-        flattenChildrenList : List (NodesAndMessages msg) -> JsxWithMessageDecoder msg
+            Err str ->
+                pre [] [ text <| "Error decoding JSX node: " ++ str ]
+
+
+{-| Create a JsxDecoder (with init messages for initialising state)
+
+This will recursively decode a JSX DOM tree, decoding HTML, text nodes, and
+even custom components (using the given component decoders).
+
+This attempts to handle all common forms of React.Node:
+
+  - Null values will be converted to empty text nodes ("")
+  - Strings will be converted to text nodes
+  - Elements whose name begins with a lowercase character will be treated as
+    plain HTML elements
+  - Elements whose name begins with an uppercase character will be treated as
+    a component. If a component decoder with that name was provided, it will be
+    used, otherwise the JSON decoding will fail.
+
+Generally you should use `initModelFromJsx` and `viewJsxNodes` rather
+than using this decoder directly.
+
+-}
+jsxChildren : ComponentDecoders msg -> JsxDecoderWithInitMessages msg
+jsxChildren componentDecoders =
+    let
+        lazilyRecurse : JsxDecoderWithInitMessages msg
+        lazilyRecurse =
+            Json.lazy <| (\_ -> jsxChildren componentDecoders)
+
+        flattenChildrenList : List (NodesAndInitMessages msg) -> JsxDecoderWithInitMessages msg
         flattenChildrenList list =
             let
                 childNodes : List (Html msg)
@@ -156,13 +205,13 @@ jsxChildrenWithMessages componentDecoders =
             in
                 Json.succeed ( childNodes, childMessages )
 
-        createChildNode : JsxNodeInfo msg -> JsxWithMessageDecoder msg
+        createChildNode : JsxNodeInfo msg -> JsxDecoderWithInitMessages msg
         createChildNode { name, attributes, children } =
             let
                 ( childNodes, childMessages ) =
                     children
             in
-                case Dict.get name (Dict.fromList componentDecoders) of
+                case Dict.fromList componentDecoders |> Dict.get name of
                     Just componentDecoder ->
                         componentDecoder
 
@@ -187,28 +236,37 @@ jsxChildrenWithMessages componentDecoders =
             )
 
 
+{-| A simple decoder for decoding JSX that contains only plain HTML, no custom components
+
+You can use this directly in your custom component decoders:
+
+    decodePipeline
+    |> decodeField "children" htmlJsxChildren (|>) props
+
+-}
+htmlJsxChildren : JsxDecoder msg
+htmlJsxChildren =
+    let
+        simplifyResult : NodesAndInitMessages msg -> JsxDecoder msg
+        simplifyResult nodesAndInitMessages =
+            Json.succeed <| Tuple.first nodesAndInitMessages
+    in
+        jsxChildren []
+            |> Json.andThen simplifyResult
+
+
+{-| Decode the attributes of a Html node from JSX props.
+-}
 jsxAttributes : Json.Decoder (List (Html.Attribute msg))
 jsxAttributes =
     (Json.field "props"
         (Json.keyValuePairs Json.value
             |> Json.andThen
-                (\pairs ->
-                    Json.succeed
-                        (List.filterMap
-                            (\pair ->
-                                let
-                                    ( attrName, attrValue ) =
-                                        pair
-                                in
-                                    case attrName of
-                                        "children" ->
-                                            Nothing
-
-                                        _ ->
-                                            Just (property attrName attrValue)
-                            )
-                            pairs
-                        )
+                (\attrs ->
+                    attrs
+                        |> List.filter (\( name, _ ) -> name /= "children")
+                        |> List.map (\( name, value ) -> property name value)
+                        |> Json.succeed
                 )
         )
     )

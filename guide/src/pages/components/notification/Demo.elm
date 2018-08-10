@@ -1,6 +1,6 @@
 port module Notification.Demo exposing (..)
 
-import Html exposing (Html, text, div, pre)
+import Html exposing (Html)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
@@ -44,21 +44,19 @@ init flags =
         -- Because our notifications are read through flags, we don't know which notifications will exist at compile time.
         -- In order to correctly initialise our state management for all notifications, we do an initial pass of the JSX tree.
         -- The second value in the resulting Tuple is a List of messages we can use to initialise our state for each notification.
-        initMessages : List Msg
-        initMessages =
-            Tuple.second (Result.withDefault ( [], [] ) (decode Dict.empty flags))
-
         initialModel : Model
         initialModel =
             { node = flags
             , notificationStates = Dict.empty
             }
 
-        updateModel : Msg -> Model -> Model
-        updateModel msg model =
-            Tuple.first (update msg model)
+        decoders =
+            notificationDecoders initialModel.notificationStates
+
+        updateFn =
+            (\msg model -> update msg model |> Tuple.first)
     in
-        ( List.foldl updateModel initialModel initMessages
+        ( initModelFromJsx flags decoders initialModel updateFn
         , Cmd.none
         )
 
@@ -66,15 +64,10 @@ init flags =
 view : Model -> Html Msg
 view model =
     let
-        result =
-            decode model.notificationStates model.node
+        decoders =
+            notificationDecoders model.notificationStates
     in
-        case result of
-            Ok ( view, messages ) ->
-                div [] view
-
-            Err message ->
-                pre [] [ text ("Props decoding error: " ++ message) ]
+        viewJsxNodes model.node decoders
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -104,18 +97,15 @@ subscriptions model =
 -- DECODERS
 
 
-decode : NotificationStates -> Json.Value -> Result String (NodesAndMessages Msg)
-decode notificationStates =
-    Json.decodeValue
-        (jsxChildrenWithMessages
-            [ ( "InlineNotification", decodeInlineNotification notificationStates )
-            , ( "ToastNotification", decodeToastNotification notificationStates )
-            , ( "GlobalNotification", decodeGlobalNotification notificationStates )
-            ]
-        )
+notificationDecoders : NotificationStates -> ComponentDecoders Msg
+notificationDecoders notificationStates =
+    [ ( "InlineNotification", decodeInlineNotification notificationStates )
+    , ( "ToastNotification", decodeToastNotification notificationStates )
+    , ( "GlobalNotification", decodeGlobalNotification notificationStates )
+    ]
 
 
-decodeInlineNotification : NotificationStates -> JsxWithMessageDecoder Msg
+decodeInlineNotification : NotificationStates -> JsxDecoderWithInitMessages Msg
 decodeInlineNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
@@ -123,7 +113,7 @@ decodeInlineNotification notificationStates =
                 Ok (inline)
                     -- variant arguments
                     |> decodeField "title" Json.string (|>) props
-                    |> decodeField "children" (jsxChildren []) (|>) props
+                    |> decodeField "children" htmlJsxChildren (|>) props
                     |> decodeField "persistent" Json.bool (|>) props
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
@@ -133,7 +123,7 @@ decodeInlineNotification notificationStates =
             )
 
 
-decodeToastNotification : NotificationStates -> JsxWithMessageDecoder Msg
+decodeToastNotification : NotificationStates -> JsxDecoderWithInitMessages Msg
 decodeToastNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
@@ -141,7 +131,7 @@ decodeToastNotification notificationStates =
                 Ok (toast)
                     -- variant arguments
                     |> decodeField "title" Json.string (|>) props
-                    |> decodeField "children" (jsxChildren []) (|>) props
+                    |> decodeField "children" htmlJsxChildren (|>) props
                     -- Note: changing the next line to "decodeOptionalField" crashes elm-make. TODO: submit a bug report.
                     |> decodeField "hideCloseIcon" Json.bool (|>) props
                     -- modifiers
@@ -152,14 +142,14 @@ decodeToastNotification notificationStates =
             )
 
 
-decodeGlobalNotification : NotificationStates -> JsxWithMessageDecoder Msg
+decodeGlobalNotification : NotificationStates -> JsxDecoderWithInitMessages Msg
 decodeGlobalNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
                 Ok (global)
                     -- variant arguments
-                    |> decodeField "children" (jsxChildren []) (|>) props
+                    |> decodeField "children" htmlJsxChildren (|>) props
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
@@ -179,7 +169,7 @@ typeDecoder =
         ]
 
 
-renderView : Json.Value -> NotificationStates -> Result String (Config Msg) -> JsxWithMessageDecoder Msg
+renderView : Json.Value -> NotificationStates -> Result String (Config Msg) -> JsxDecoderWithInitMessages Msg
 renderView props notificationStates configResult =
     let
         initialState : NotificationState
@@ -208,7 +198,7 @@ renderView props notificationStates configResult =
                 )
                 configResult
 
-        jsxDecoder : Result String ( Config Msg, NotificationState ) -> JsxWithMessageDecoder Msg
+        jsxDecoder : Result String ( Config Msg, NotificationState ) -> JsxDecoderWithInitMessages Msg
         jsxDecoder result =
             case result of
                 Ok ( config, currentState ) ->
