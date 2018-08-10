@@ -78,9 +78,9 @@ view model =
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
-update (SetNotificationState title state) model =
-    ( { model | notificationStates = Dict.insert title state model.notificationStates }
-    , case state of
+update (SetNotificationState automationId state) model =
+    ( { model | notificationStates = Dict.insert automationId state model.notificationStates }
+    , case notificationStage state of
         Hidden ->
             onHide ()
 
@@ -95,7 +95,7 @@ subscriptions model =
         allNotifications : List ( NotificationState, NotificationState -> Msg )
         allNotifications =
             List.map
-                (\( key, state ) -> ( state, SetNotificationState key ))
+                (\( automationId, state ) -> ( state, SetNotificationState automationId ))
                 (Dict.toList model.notificationStates)
     in
         Notification.subscriptions allNotifications
@@ -122,50 +122,35 @@ decodeInlineNotification notificationStates =
         |> Json.andThen
             (\props ->
                 Ok (inline)
-                    -- arguments
+                    -- variant arguments
                     |> decodeField "title" Json.string (|>) props
                     |> decodeField "children" (jsxChildren []) (|>) props
                     |> decodeField "persistent" Json.bool (|>) props
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
-                    |> setStateModifiers notificationStates
-                    --  view
-                    |> jsxDecoderForConfig
+                    -- view
+                    |> renderView props notificationStates
             )
 
 
 decodeToastNotification : NotificationStates -> JsxWithMessageDecoder Msg
 decodeToastNotification notificationStates =
-    let
-        setAutohide : Bool -> Config Msg -> Config Msg
-        setAutohide autohide config =
-            let
-                currentState =
-                    Notification.getState config
-            in
-                if autohide && (currentState == Appearing) then
-                    config |> Notification.state (Autohide Appearing)
-                else
-                    config
-    in
-        Json.field "props" Json.value
-            |> Json.andThen
-                (\props ->
-                    Ok (toast)
-                        -- arguments
-                        |> decodeField "title" Json.string (|>) props
-                        |> decodeField "children" (jsxChildren []) (|>) props
-                        -- Note: changing the next line to "decodeOptionalField" crashes elm-make. TODO: submit a bug report.
-                        |> decodeField "hideCloseIcon" Json.bool (|>) props
-                        -- modifiers
-                        |> decodeField "type" typeDecoder notificationType props
-                        |> decodeOptionalField "automationId" Json.string automationId props
-                        |> setStateModifiers notificationStates
-                        |> decodeField "autohide" Json.bool setAutohide props
-                        --  view
-                        |> jsxDecoderForConfig
-                )
+    Json.field "props" Json.value
+        |> Json.andThen
+            (\props ->
+                Ok (toast)
+                    -- variant arguments
+                    |> decodeField "title" Json.string (|>) props
+                    |> decodeField "children" (jsxChildren []) (|>) props
+                    -- Note: changing the next line to "decodeOptionalField" crashes elm-make. TODO: submit a bug report.
+                    |> decodeField "hideCloseIcon" Json.bool (|>) props
+                    -- modifiers
+                    |> decodeField "type" typeDecoder notificationType props
+                    |> decodeOptionalField "automationId" Json.string automationId props
+                    -- view
+                    |> renderView props notificationStates
+            )
 
 
 decodeGlobalNotification : NotificationStates -> JsxWithMessageDecoder Msg
@@ -174,14 +159,13 @@ decodeGlobalNotification notificationStates =
         |> Json.andThen
             (\props ->
                 Ok (global)
-                    -- arguments
+                    -- variant arguments
                     |> decodeField "children" (jsxChildren []) (|>) props
                     -- modifiers
                     |> decodeField "type" typeDecoder notificationType props
                     |> decodeOptionalField "automationId" Json.string automationId props
-                    |> setStateModifiers notificationStates
                     -- view
-                    |> jsxDecoderForConfig
+                    |> renderView props notificationStates
             )
 
 
@@ -196,43 +180,58 @@ typeDecoder =
         ]
 
 
-setStateModifiers : NotificationStates -> Result String (Config Msg) -> Result String (Config Msg)
-setStateModifiers notificationStates configResult =
-    Result.map
-        (\config ->
-            case Notification.getAutomationId config of
-                Just automationId ->
+renderView : Json.Value -> NotificationStates -> Result String (Config Msg) -> JsxWithMessageDecoder Msg
+renderView props notificationStates configResult =
+    let
+        initialState : NotificationState
+        initialState =
+            case Json.decodeValue (Json.field "autohide" Json.bool) props of
+                Ok True ->
+                    Autohide Appearing
+
+                _ ->
+                    Manual Appearing
+
+        getStateAndConfig : Result String (Config Msg) -> Result String ( Config Msg, NotificationState )
+        getStateAndConfig configResult =
+            Result.map
+                (\config ->
                     -- Use the automationId as a unique key for each notification on the page.
                     -- This means automationId is required in our demo presets, though it is not required normally.
-                    config
-                        |> Notification.state (Maybe.withDefault Appearing (Dict.get automationId notificationStates))
-                        |> Notification.onStateChange (SetNotificationState automationId)
-
-                Nothing ->
-                    config
-        )
-        configResult
-
-
-jsxDecoderForConfig : Result String (Config Msg) -> JsxWithMessageDecoder Msg
-jsxDecoderForConfig result =
-    case result of
-        Ok config ->
-            let
-                initialState =
-                    Notification.getState config
-
-                -- On the first pass of our JSX we trigger a message so that the notification state is set to Appearing in our model.
-                messages =
                     case Notification.getAutomationId config of
                         Just automationId ->
-                            [ SetNotificationState automationId initialState ]
+                            ( Notification.onStateChange (SetNotificationState automationId) config
+                            , Maybe.withDefault initialState (Dict.get automationId notificationStates)
+                            )
 
                         Nothing ->
-                            []
-            in
-                Json.succeed
-                    ( [ Notification.view config ], messages )
+                            ( config, initialState )
+                )
+                configResult
 
-        Err msg ->
-            Json.fail msg
+        jsxDecoder : Result String ( Config Msg, NotificationState ) -> JsxWithMessageDecoder Msg
+        jsxDecoder result =
+            case result of
+                Ok ( config, currentState ) ->
+                    let
+                        view =
+                            Notification.view config currentState
+
+                        initialMessages =
+                            -- On the first pass of our JSX we trigger a message so that the notification state is set to Appearing in our model.
+                            case Notification.getAutomationId config of
+                                Just automationId ->
+                                    [ SetNotificationState automationId initialState ]
+
+                                Nothing ->
+                                    []
+                    in
+                        Json.succeed
+                            ( [ view ], initialMessages )
+
+                Err msg ->
+                    Json.fail msg
+    in
+        configResult
+            |> getStateAndConfig
+            |> jsxDecoder
