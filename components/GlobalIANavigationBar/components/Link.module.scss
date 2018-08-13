@@ -18,8 +18,6 @@ $indicator-height: 3px;
 
   border-radius: $ca-border-radius;
 
-  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
-
   color: add-tint($ca-palette-ink, 70%);
   padding: 0;
 
@@ -66,8 +64,8 @@ $indicator-height: 3px;
     &:focus {
       background-color: rgba(#fff, 0.1);
 
-      svg {
-        opacity: 0.7; // override default icon svg opacity
+      .linkIcon {
+        opacity: 0.7;
       }
     }
 
@@ -75,8 +73,8 @@ $indicator-height: 3px;
       background-color: rgba(#fff, 0.2);
       transform: translateY(1px);
 
-      svg {
-        opacity: 1; // override default Icon svg opacity
+      .linkIcon {
+        opacity: 1;
       }
     }
   }
@@ -84,8 +82,7 @@ $indicator-height: 3px;
 
 .linkIcon {
   display: inline-flex;
-  // override default icon hover behaviour
-  pointer-events: none;
+  opacity: 0.5;
 }
 
 .linkIcon + .linkText {
