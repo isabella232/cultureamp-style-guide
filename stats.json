@@ -56,6 +56,10 @@
       "path---components-a0e39f21c11f6a62c5ab.js",
       "path---components-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-components-button-icon-button-md": [
+      "component---src-pages-components-button-icon-button-md-a7908d8b79c2f9796237.js",
+      "component---src-pages-components-button-icon-button-md-a7908d8b79c2f9796237.js.map"
+    ],
     "path---components-navigationbar": [
       "path---components-navigationbar-a0e39f21c11f6a62c5ab.js",
       "path---components-navigationbar-a0e39f21c11f6a62c5ab.js.map"
@@ -80,13 +84,25 @@
       "path---components-notification-a0e39f21c11f6a62c5ab.js",
       "path---components-notification-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-components-button-button-md": [
+      "component---src-pages-components-button-button-md-b8b73126314afb0e911a.js",
+      "component---src-pages-components-button-button-md-b8b73126314afb0e911a.js.map"
+    ],
     "component---src-pages-styles-icons-index-md": [
-      "component---src-pages-styles-icons-index-md-829325cc0707f9aacf33.js",
-      "component---src-pages-styles-icons-index-md-829325cc0707f9aacf33.js.map"
+      "component---src-pages-styles-icons-index-md-cb7b6ef27c64d6ad194e.js",
+      "component---src-pages-styles-icons-index-md-cb7b6ef27c64d6ad194e.js.map"
+    ],
+    "path---components-button-icon-button": [
+      "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js",
+      "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
       "component---src-layouts-index-js-24e3ccdabaa5efcbf27c.js",
       "component---src-layouts-index-js-24e3ccdabaa5efcbf27c.js.map"
+    ],
+    "path---components-button-button": [
+      "path---components-button-button-a0e39f21c11f6a62c5ab.js",
+      "path---components-button-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---index": [
       "path---index-a0e39f21c11f6a62c5ab.js",
@@ -109,9 +125,9 @@
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-564762d273bd62a59a2f.js",
+      "commons-d4cfffc67b1d345b3b98.js",
       "build-js-styles.css",
-      "commons-564762d273bd62a59a2f.js.map",
+      "commons-d4cfffc67b1d345b3b98.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
@@ -119,8 +135,8 @@
       "component---src-pages-components-notification-inline-md-71c0c9be3aca57f2680b.js.map"
     ],
     "component---src-pages-components-button-index-md": [
-      "component---src-pages-components-button-index-md-360629fd41ccfb7d7cc5.js",
-      "component---src-pages-components-button-index-md-360629fd41ccfb7d7cc5.js.map"
+      "component---src-pages-components-button-index-md-13f81e61fd5d7da82b3b.js",
+      "component---src-pages-components-button-index-md-13f81e61fd5d7da82b3b.js.map"
     ],
     "path---404-html": [
       "path---404-html-a0e39f21c11f6a62c5ab.js",
@@ -159,9 +175,9 @@
       "component---src-pages-components-index-md-446b0690842536e459ce.js.map"
     ],
     "app": [
-      "app-21a5a335ab021ed68797.js",
+      "app-45d78d65f08c4505f71a.js",
       "build-js-styles.css",
-      "app-21a5a335ab021ed68797.js.map",
+      "app-45d78d65f08c4505f71a.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -189,8 +205,8 @@
       "path---components-layout-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-icon-index-md": [
-      "component---src-pages-components-icon-index-md-a2fdf04fa097aca9390e.js",
-      "component---src-pages-components-icon-index-md-a2fdf04fa097aca9390e.js.map"
+      "component---src-pages-components-icon-index-md-10455c26b01b80832dfa.js",
+      "component---src-pages-components-icon-index-md-10455c26b01b80832dfa.js.map"
     ],
     "component---src-pages-components-layout-index-md": [
       "component---src-pages-components-layout-index-md-daa2d18baf7f152d5098.js",
