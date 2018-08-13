@@ -1,9 +1,9 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
 
-$navEase: cubic-bezier(0.55, 0.085, 0.68, 0.53);
-$navTiming: 100ms;
-$indicatorHeight: 2px;
+$nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$nav-timing: 150ms;
+$indicator-height: 3px;
 
 .link {
   // fill parent
@@ -24,16 +24,16 @@ $indicatorHeight: 2px;
   padding: 0;
 
   // active indicator
-  &::before {
+  .linkText::before {
     content: '';
     display: block;
     transform: translateY(calc(-#{$ca-grid / 4} - 100%));
-    height: $indicatorHeight;
+    height: $indicator-height;
     width: 100%;
     position: absolute;
     top: 0;
     background-color: #fff;
-    transition: transform $navEase $navTiming;
+    transition: transform $nav-ease $nav-timing;
   }
 
   &:hover,
@@ -42,7 +42,7 @@ $indicatorHeight: 2px;
     outline: none; // override native focus styles
     text-decoration: none;
 
-    &::before {
+    .linkText::before {
       transform: translateY(#{-($ca-grid / 4)});
     }
   }
@@ -50,24 +50,57 @@ $indicatorHeight: 2px;
   @include ca-type-ideal-heading;
   @include ca-inherit-baseline;
   top: 0;
-  position: relative;
 
   &.secondary {
     @include ca-type-ideal-body;
     @include ca-inherit-baseline;
+
+    padding: 0 $ca-grid / 2;
+    margin-right: $ca-grid / 2;
+
+    .linkText::before {
+      display: none;
+    }
+
+    &:hover,
+    &:focus {
+      background-color: rgba(#fff, 0.1);
+
+      svg {
+        opacity: 0.7; // override default icon svg opacity
+      }
+    }
+
+    &:active {
+      background-color: rgba(#fff, 0.2);
+      transform: translateY(1px);
+
+      svg {
+        opacity: 1; // override default Icon svg opacity
+      }
+    }
   }
 }
 
 .linkIcon {
   display: inline-flex;
+  // override default icon hover behaviour
+  pointer-events: none;
 }
 
 .linkIcon + .linkText {
   margin-left: $ca-grid / 4;
 }
 
+.linkText {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
 .containsText {
-  padding: 0 ($ca-grid / 2);
+  padding: 0 $ca-grid;
 }
 
 .active {
@@ -75,7 +108,7 @@ $indicatorHeight: 2px;
     outline: none; // override native focus styles
     text-decoration: none;
 
-    &::before {
+    .linkText::before {
       transform: translateY(#{-($ca-grid / 4)});
     }
 }
