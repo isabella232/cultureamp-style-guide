@@ -1,6 +1,5 @@
-port module Button.Demo exposing (..)
+port module Button.ButtonDemo exposing (..)
 
-import Dict exposing (Dict)
 import Html exposing (Html, text)
 import Json.Encode
 import Json.Decode as Json
@@ -71,8 +70,8 @@ decode props =
     in
         Ok default
             -- variants
-            |> decodeField "secondary" Json.bool (variantFlag secondary) props
             |> decodeField "primary" Json.bool (variantFlag primary) props
+            |> decodeField "secondary" Json.bool (variantFlag secondary) props
             |> decodeField "destructive" Json.bool (variantFlag destructive) props
             -- modifiers
             |> decodeField "disabled" Json.bool disabled props
