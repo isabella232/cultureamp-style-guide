@@ -12,8 +12,6 @@ imports:
 
 A button!
 
-Available for both Elm and React.
-
 </IntroParagraph>
 
 <Demo presets={buttonPresets} elm={Elm.Button.ButtonDemo} />

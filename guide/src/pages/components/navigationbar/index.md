@@ -11,8 +11,6 @@ imports:
 
 The standard left-hand-side navigation bar used by Culture Amp applications.
 
-Currently available for React.
-
 </IntroParagraph>
 
 <Demo presets={presets} />

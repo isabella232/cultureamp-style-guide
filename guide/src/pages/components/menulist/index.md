@@ -11,8 +11,6 @@ imports:
 
 A generic list of items or actions, to be used with dropdown menus etc.
 
-Currently available for React.
-
 </IntroParagraph>
 
 <Demo presets={presets} />
