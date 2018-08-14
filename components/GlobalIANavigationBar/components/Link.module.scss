@@ -4,6 +4,7 @@
 $nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 $nav-timing: 150ms;
 $indicator-height: 3px;
+$link-margin: $ca-grid / 4;
 
 .link {
   // fill parent
@@ -25,7 +26,7 @@ $indicator-height: 3px;
   .linkText::before {
     content: '';
     display: block;
-    transform: translateY(calc(-#{$ca-grid / 4} - 100%));
+    transform: translateY(-#{$link-margin}) translateY(-100%);
     height: $indicator-height;
     width: 100%;
     position: absolute;
@@ -41,7 +42,7 @@ $indicator-height: 3px;
     text-decoration: none;
 
     .linkText::before {
-      transform: translateY(#{-($ca-grid / 4)});
+      transform: translateY(-#{$link-margin});
     }
   }
 
@@ -86,7 +87,7 @@ $indicator-height: 3px;
 }
 
 .linkIcon + .linkText {
-  margin-left: $ca-grid / 4;
+  margin-left: $link-margin;
 }
 
 .linkText {
@@ -106,6 +107,6 @@ $indicator-height: 3px;
     text-decoration: none;
 
     .linkText::before {
-      transform: translateY(#{-($ca-grid / 4)});
+      transform: translateY(-#{$link-margin});
     }
 }
