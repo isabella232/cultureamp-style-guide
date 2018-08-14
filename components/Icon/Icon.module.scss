@@ -24,7 +24,7 @@
       opacity: 0.3;
     }
   }
-  &:not(:disabled, .disabled) {
+  &:not(:disabled):not(.disabled) {
     &:hover,
     &:focus,
     &.hover {
