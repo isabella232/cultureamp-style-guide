@@ -11,8 +11,6 @@ imports:
 
 A toast notification!
 
-Available for both Elm and React.
-
 </IntroParagraph>
 
 <Demo presets={presets} />

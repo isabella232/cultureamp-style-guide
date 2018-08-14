@@ -12,8 +12,6 @@ imports:
 
 A button with an icon but no label.
 
-Available for both Elm and React.
-
 </IntroParagraph>
 
 <Demo presets={buttonPresets} elm={Elm.Button.IconButtonDemo} />
