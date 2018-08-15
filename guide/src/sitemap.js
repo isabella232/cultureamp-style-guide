@@ -1,5 +1,13 @@
+// @flow
 import enso from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import home from 'cultureamp-style-guide/icons/home.svg';
+
+export type Page = {
+  title: String,
+  href: String,
+  icon: any, // TODO
+  children: Array<>,
+};
 
 const sitemap = {
   title: 'Kaizen',
