@@ -68,11 +68,25 @@ view (Config config) label =
         onClick =
             case config.onClick of
                 Just msg ->
-                    [ onWithOptions
-                        "click"
-                        { defaultOptions | preventDefault = True }
-                        (Json.succeed msg)
-                    ]
+                    let
+                        preventDefault =
+                            case config.buttonType of
+                                Just buttonType ->
+                                    case buttonType of
+                                        Submit ->
+                                            False
+
+                                        Reset ->
+                                            False
+
+                                Nothing ->
+                                    True
+                    in
+                        [ onWithOptions
+                            "click"
+                            { defaultOptions | preventDefault = preventDefault }
+                            (Json.succeed msg)
+                        ]
 
                 Nothing ->
                     []
