@@ -5,12 +5,12 @@ module Notification.Notification
         , toast
         , global
         , notificationType
-        , onStateChange
         , automationId
         , Config
         , NotificationType(..)
         , NotificationState(..)
         , NotificationStage(..)
+        , NotificationStateSetter
         , getAutomationId
         , notificationStage
         , subscriptions
@@ -60,7 +60,6 @@ type alias ConfigValue msg =
     , title : Maybe String
     , content : List (Html msg)
     , persistent : Bool
-    , onStateChange : Maybe (NotificationState -> msg)
     , automationId : Maybe String
     }
 
@@ -94,12 +93,16 @@ type NotificationStage
     | Hidden
 
 
+type alias NotificationStateSetter msg =
+    NotificationState -> msg
+
+
 
 -- VIEW
 
 
-view : Config msg -> NotificationState -> Html msg
-view (Config config) state =
+view : Config msg -> NotificationState -> NotificationStateSetter msg -> Html msg
+view (Config config) state onStateChange =
     let
         className =
             notificationClassName config state
@@ -125,8 +128,8 @@ view (Config config) state =
 
         -- When using Autohide, we use a "transitionstart" event to retrieve the height of the notification, so we can animate the exit correctly.
         onTransitionStart =
-            case ( state, config.onStateChange ) of
-                ( Autohide (Disappearing oldHeight), Just stateChangeMsg ) ->
+            case state of
+                Autohide (Disappearing oldHeight) ->
                     [ on
                         "transitionstart"
                         (Json.at [ "target", "clientHeight" ]
@@ -134,7 +137,7 @@ view (Config config) state =
                             |> Json.andThen
                                 (\height ->
                                     if height /= oldHeight then
-                                        Json.succeed <| stateChangeMsg <| Autohide (Disappearing height)
+                                        Json.succeed <| onStateChange <| Autohide (Disappearing height)
                                     else
                                         Json.fail "ignore"
                                 )
@@ -148,22 +151,22 @@ view (Config config) state =
         -- After this is finished, the state is set to "Hidden" and the notification is removed from the DOM.
         onTransitionEnd : List (Html.Attribute msg)
         onTransitionEnd =
-            case ( config.onStateChange, notificationStage state ) of
-                ( Just stateChangeMsg, Disappearing _ ) ->
+            case notificationStage state of
+                Disappearing _ ->
                     [ on
                         "transitionend"
                         (Json.field "propertyName" Json.string
                             |> Json.andThen
                                 (\propertyName ->
                                     if propertyName == "margin-top" then
-                                        Json.succeed <| stateChangeMsg <| Manual Hidden
+                                        Json.succeed <| onStateChange <| Manual Hidden
                                     else
                                         Json.fail "ignore"
                                 )
                         )
                     ]
 
-                ( _, _ ) ->
+                _ ->
                     []
     in
         case notificationStage state of
@@ -177,7 +180,7 @@ view (Config config) state =
                         [ viewTitle (Config config)
                         , p [ class .text ] config.content
                         ]
-                    , viewCancelButton (Config config) state
+                    , viewCancelButton (Config config) state onStateChange
                     ]
 
 
@@ -237,8 +240,8 @@ viewTitle (Config { title }) =
             text ""
 
 
-viewCancelButton : Config msg -> NotificationState -> Html msg
-viewCancelButton (Config { persistent, variant, onStateChange }) state =
+viewCancelButton : Config msg -> NotificationState -> NotificationStateSetter msg -> Html msg
+viewCancelButton (Config { persistent, variant }) state onStateChange =
     let
         -- With Toast Notifications, we only allow hiding the close button if the notification will autohide.
         hideCloseButton =
@@ -253,18 +256,13 @@ viewCancelButton (Config { persistent, variant, onStateChange }) state =
                     persistent
 
         onClickCancel =
-            case onStateChange of
-                Just stateChangeMsg ->
-                    [ onWithOptions
-                        "click"
-                        { defaultOptions | preventDefault = True }
-                        (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
-                            |> Json.andThen (\height -> Json.succeed <| stateChangeMsg <| Manual (Disappearing height))
-                        )
-                    ]
-
-                Nothing ->
-                    []
+            [ onWithOptions
+                "click"
+                { defaultOptions | preventDefault = True }
+                (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
+                    |> Json.andThen (\height -> Json.succeed <| onStateChange <| Manual (Disappearing height))
+                )
+            ]
     in
         if hideCloseButton then
             text ""
@@ -317,7 +315,6 @@ defaults =
     , title = Nothing
     , content = []
     , persistent = False
-    , onStateChange = Nothing
     , automationId = Nothing
     }
 
@@ -350,11 +347,6 @@ global content =
 notificationType : NotificationType -> Config msg -> Config msg
 notificationType value (Config config) =
     Config { config | notificationType = value }
-
-
-onStateChange : (NotificationState -> msg) -> Config msg -> Config msg
-onStateChange value (Config config) =
-    Config { config | onStateChange = Just value }
 
 
 automationId : String -> Config msg -> Config msg

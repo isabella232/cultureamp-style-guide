@@ -181,30 +181,28 @@ renderView props notificationStates configResult =
                 _ ->
                     Manual Appearing
 
-        getStateAndConfig : Result String (Config Msg) -> Result String ( Config Msg, NotificationState )
+        getStateAndConfig : Result String (Config Msg) -> Result String ( Config Msg, NotificationState, NotificationStateSetter Msg )
         getStateAndConfig configResult =
             Result.map
                 (\config ->
-                    -- Use the automationId as a unique key for each notification on the page.
-                    -- This means automationId is required in our demo presets, though it is not required normally.
-                    case Notification.getAutomationId config of
-                        Just automationId ->
-                            ( Notification.onStateChange (SetNotificationState automationId) config
-                            , Maybe.withDefault initialState <| Dict.get automationId notificationStates
-                            )
-
-                        Nothing ->
-                            ( config, initialState )
+                    let
+                        automationId =
+                            Maybe.withDefault "unknown-notification-id" (Notification.getAutomationId config)
+                    in
+                        ( config
+                        , Maybe.withDefault initialState <| Dict.get automationId notificationStates
+                        , SetNotificationState automationId
+                        )
                 )
                 configResult
 
-        jsxDecoder : Result String ( Config Msg, NotificationState ) -> JsxDecoderWithInitMessages Msg
+        jsxDecoder : Result String ( Config Msg, NotificationState, NotificationStateSetter Msg ) -> JsxDecoderWithInitMessages Msg
         jsxDecoder result =
             case result of
-                Ok ( config, currentState ) ->
+                Ok ( config, currentState, notificationStateSetter ) ->
                     let
                         view =
-                            Notification.view config currentState
+                            Notification.view config currentState notificationStateSetter
 
                         initialMessages =
                             -- On the first pass of our JSX we trigger a message so that the notification state is set to Appearing in our model.
