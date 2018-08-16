@@ -19,6 +19,8 @@ module Button.Button
         , href
         , automationId
         , Config
+        , buttonType
+        , ButtonType(..)
         )
 
 import Html exposing (Html, text, span, button, a)
@@ -91,8 +93,25 @@ view (Config config) label =
             else
                 []
 
+        buttonTypeAttrib =
+            case config.buttonType of
+                Just buttonType ->
+                    let
+                        encodedButtonType =
+                            case buttonType of
+                                Submit ->
+                                    "submit"
+
+                                Reset ->
+                                    "reset"
+                    in
+                        [ Html.Attributes.type_ encodedButtonType ]
+
+                Nothing ->
+                    []
+
         attribs =
-            buttonClass ++ onClick ++ automationId ++ title
+            buttonClass ++ onClick ++ automationId ++ title ++ buttonTypeAttrib
     in
         span [ class .container ]
             [ case config.href of
@@ -179,6 +198,7 @@ type alias ConfigValue msg =
     , onClick : Maybe msg
     , href : Maybe String
     , automationId : Maybe String
+    , buttonType : Maybe ButtonType
     }
 
 
@@ -221,6 +241,7 @@ defaults =
     , onClick = Nothing
     , href = Nothing
     , automationId = Nothing
+    , buttonType = Nothing
     }
 
 
@@ -296,3 +317,13 @@ href value (Config config) =
 automationId : String -> Config msg -> Config msg
 automationId value (Config config) =
     Config { config | automationId = Just value }
+
+
+type ButtonType
+    = Submit
+    | Reset
+
+
+buttonType : ButtonType -> Config msg -> Config msg
+buttonType value (Config config) =
+    Config { config | buttonType = Just value }
