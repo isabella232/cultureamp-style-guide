@@ -1,6 +1,6 @@
 port module Button.ButtonDemo exposing (..)
 
-import Html exposing (Html, text)
+import Html exposing (Html, div, pre, text)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
@@ -12,7 +12,8 @@ port onClick : () -> Cmd msg
 
 
 type alias Model =
-    Result String ViewArguments
+    { node : Json.Value
+    }
 
 
 type alias ViewArguments =
@@ -36,8 +37,8 @@ main =
 
 
 init : Json.Encode.Value -> ( Model, Cmd Msg )
-init props =
-    ( decode props, Cmd.none )
+init flags =
+    ( { node = flags }, Cmd.none )
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -45,8 +46,8 @@ update Click model =
     ( model, onClick () )
 
 
-decode : Json.Value -> Model
-decode props =
+buttonDecoder : JsxDecoder Msg
+buttonDecoder =
     let
         iconPositionDecoder : Json.Decoder IconPosition
         iconPositionDecoder =
@@ -68,31 +69,45 @@ decode props =
                 , ( "yuzu", Yuzu )
                 ]
     in
-        Ok default
-            -- variants
-            |> decodeField "primary" Json.bool (variantFlag primary) props
-            |> decodeField "secondary" Json.bool (variantFlag secondary) props
-            |> decodeField "destructive" Json.bool (variantFlag destructive) props
-            -- modifiers
-            |> decodeField "disabled" Json.bool disabled props
-            |> decodeOptionalField "icon" SvgAsset.decoder icon props
-            |> decodeField "iconPosition" iconPositionDecoder iconPosition props
-            |> decodeField "form" Json.bool form props
-            |> decodeField "reversed" Json.bool reversed props
-            |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
-            |> decodeOptionalField "href" Json.string href props
-            |> decodeOptionalField "automationId" Json.string automationId props
-            |> Result.map (Button.onClick Click)
-            -- arguments
-            |> Result.map ViewArguments
-            |> decodeField "label" Json.string (|>) props
+        Json.field "props" Json.value
+            |> Json.andThen
+                (\props ->
+                    (Ok (default)
+                        -- variants
+                        |> decodeField "secondary" Json.bool (variantFlag secondary) props
+                        |> decodeField "primary" Json.bool (variantFlag primary) props
+                        |> decodeField "destructive" Json.bool (variantFlag destructive) props
+                        -- modifiers
+                        |> decodeField "disabled" Json.bool disabled props
+                        |> decodeOptionalField "icon" SvgAsset.decoder icon props
+                        |> decodeField "iconPosition" iconPositionDecoder iconPosition props
+                        |> decodeField "form" Json.bool form props
+                        |> decodeField "reversed" Json.bool reversed props
+                        |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
+                        |> decodeOptionalField "href" Json.string href props
+                        |> decodeOptionalField "automationId" Json.string automationId props
+                        |> Result.map (Button.onClick Click)
+                        -- arguments
+                        |> Result.map ViewArguments
+                        |> decodeField "label" Json.string (|>) props
+                        -- view
+                        |> (\result ->
+                                case result of
+                                    Ok { config, label } ->
+                                        Json.succeed ([ Button.view config label ])
+
+                                    Err msg ->
+                                        Json.fail msg
+                           )
+                    )
+                )
 
 
 view : Model -> Html Msg
-view result =
-    case result of
-        Ok { config, label } ->
-            Button.view config label
+view model =
+    case Json.decodeValue buttonDecoder model.node of
+        Ok buttonHtml ->
+            div [] buttonHtml
 
-        Err message ->
-            text ("Props decoding error: " ++ message)
+        Err msg ->
+            pre [] [ text ("Error decoding Button props: " ++ msg) ]

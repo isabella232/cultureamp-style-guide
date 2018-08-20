@@ -12,9 +12,11 @@ $ca-notification-vertical-padding: calc(
 $ca-notification-inline-horizontal-padding: 20px;
 $ca-notification-toast-horizontal-padding: 10px;
 $ca-notification-fade-out: opacity $ca-duration-slow ease;
-$ca-notification-collapse-height: margin-top $ca-duration-slow ease;
+$ca-notification-collapse-height: margin-top $ca-duration-slow ease,
+  margin-bottom $ca-duration-slow ease;
 $ca-notification-collapse-height-delayed: margin-top $ca-duration-fast
-  $ca-duration-slow ease;
+    $ca-duration-slow ease,
+  margin-bottom $ca-duration-fast $ca-duration-slow ease;
 $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
 %ca-notification {
@@ -106,6 +108,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
   &%ca-notification---hidden {
     opacity: 0;
+    margin-bottom: 0;
 
     &%ca-notification---toast {
       // When entering we use "ease-out", but when transitioning to hidden we want to use "ease-in".
@@ -260,4 +263,15 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   line-height: 0;
   float: right;
   margin-right: 10px;
+}
+
+%ca-notification__cancel__label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
