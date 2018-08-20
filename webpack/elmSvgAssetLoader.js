@@ -29,7 +29,10 @@ function loader(source, inputSourceMap) {
     moduleNameCapture = "'([a-zA-Z-./]+)'",
     regexp = regexpForFunctionCall(escapedTaggerName, [moduleNameCapture]);
 
-  return source.replace(regexp, "require('$1')");
+  // Gatsby uses Webpack v1, and so how we require the SVG asset is different.
+  const replacement =
+    this.version === 1 ? "require('$1')" : "require('$1').default";
+  return source.replace(regexp, replacement);
 }
 
 /**
