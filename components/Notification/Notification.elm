@@ -32,12 +32,12 @@ import Time exposing (every, second)
 
 The notification view requires two properties, a config, and a state.
 
-The config begins by choosing of our 3 variants (`inline`, `toast`, and
+The config begins by choosing one of our 3 variants (`inline`, `toast`, and
 `global`). These can then be changed using the modifiers (`notificationType`,
-`onStateChange`, `automationId`).
+`automationId`).
 
-The state is a single value that describe the animation's enter and exit states.
-It will be include whether the notification requires Manual dismissal or is set
+The state is a single value that describes the animation's enter and exit states.
+It includes whether the notification requires Manual dismissal or is set
 to Autohide, and what the current `NotificationStage` is.
 
 Your page will need to use `Notification.subscriptions` to subscribe to events
