@@ -1,4 +1,4 @@
-@import 'styles';
+@import '../styles';
 
 .container {
   @extend %caButtonContainer;
@@ -14,6 +14,15 @@
 
 .secondary {
   @extend %caButtonSecondary;
+}
+
+.iconButton {
+  @extend %caButtonIconButton;
+  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+}
+
+.reversedIconButton {
+  composes: reversedInteractiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
 }
 
 .destructive {

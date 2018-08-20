@@ -5,6 +5,8 @@ module Button.Button
         , primary
         , secondary
         , destructive
+        , iconButton
+        , destructiveIconButton
         , disabled
         , icon
         , iconPosition
@@ -21,8 +23,10 @@ module Button.Button
 
 import Html exposing (Html, text, span, button, a)
 import Html.Attributes
+import Html.Attributes.Aria
 import Html.Events as Events exposing (onWithOptions, defaultOptions)
 import Json.Decode as Json
+import Maybe
 import CssModules exposing (css)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (SvgAsset)
@@ -45,6 +49,8 @@ view (Config config) label =
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
+                , ( .iconButton, config.iconButton )
+                , ( .reversedIconButton, config.iconButton && config.reversed )
                 , ( .destructive, config.variant == Destructive )
                 , ( .form, config.form )
                 , ( .reversed, config.reversed )
@@ -76,31 +82,50 @@ view (Config config) label =
 
                 Nothing ->
                     []
+
+        title =
+            if config.iconButton then
+                [ Html.Attributes.title label
+                , Html.Attributes.Aria.ariaLabel label
+                ]
+            else
+                []
+
+        attribs =
+            buttonClass ++ onClick ++ automationId ++ title
     in
         span [ class .container ]
             [ case config.href of
                 Just href ->
-                    a ([ Html.Attributes.href href ] ++ buttonClass ++ onClick ++ automationId)
+                    a (attribs ++ [ Html.Attributes.href href ])
                         [ viewContent (Config config) label |> Html.map never ]
 
                 Nothing ->
-                    button (disabled ++ buttonClass ++ onClick ++ automationId)
+                    button (attribs ++ disabled)
                         [ viewContent (Config config) label |> Html.map never ]
             ]
 
 
 viewContent : Config msg -> String -> Html Never
-viewContent config label =
+viewContent (Config config) label =
     span [ class .content ]
         [ viewIconFor config Start
-        , span [ class .label ]
-            [ text label ]
+        , viewLabel label config.iconButton
         , viewIconFor config End
         ]
 
 
-viewIconFor : Config msg -> IconPosition -> Html Never
-viewIconFor (Config { icon, iconPosition }) forPosition =
+viewLabel : String -> Bool -> Html Never
+viewLabel label iconButton =
+    if iconButton then
+        text ""
+    else
+        span [ class .label ]
+            [ text label ]
+
+
+viewIconFor : ConfigValue msg -> IconPosition -> Html Never
+viewIconFor { icon, iconPosition } forPosition =
     if iconPosition == forPosition then
         case icon of
             Just svgAsset ->
@@ -113,11 +138,13 @@ viewIconFor (Config { icon, iconPosition }) forPosition =
 
 
 { class, classList } =
-    css "cultureamp-style-guide/components/Button/Button.module.scss"
+    css "cultureamp-style-guide/components/Button/components/GenericButton.module.scss"
         { container = ""
         , button = ""
         , primary = ""
         , secondary = ""
+        , iconButton = ""
+        , reversedIconButton = ""
         , destructive = ""
         , form = ""
         , reversed = ""
@@ -144,6 +171,7 @@ type alias ConfigValue msg =
     { variant : Variant
     , icon : Maybe SvgAsset
     , iconPosition : IconPosition
+    , iconButton : Bool
     , disabled : Bool
     , form : Bool
     , reversed : Bool
@@ -184,7 +212,8 @@ defaults : ConfigValue msg
 defaults =
     { variant = Default
     , icon = Nothing
-    , iconPosition = Start
+    , iconPosition = End
+    , iconButton = False
     , disabled = False
     , form = False
     , reversed = False
@@ -210,6 +239,16 @@ destructive =
     Config { defaults | variant = Destructive }
 
 
+iconButton : SvgAsset -> Config msg
+iconButton svgAsset =
+    Config { defaults | icon = Just svgAsset, iconButton = True }
+
+
+destructiveIconButton : SvgAsset -> Config msg
+destructiveIconButton svgAsset =
+    Config { defaults | icon = Just svgAsset, variant = Destructive, iconButton = True }
+
+
 
 -- MODIFIERS
 
@@ -220,13 +259,13 @@ disabled value (Config config) =
 
 
 icon : SvgAsset -> Config msg -> Config msg
-icon value (Config config) =
-    Config { config | icon = Just value }
+icon icon (Config config) =
+    Config { config | icon = Just icon }
 
 
 iconPosition : IconPosition -> Config msg -> Config msg
-iconPosition value (Config config) =
-    Config { config | iconPosition = value }
+iconPosition position (Config config) =
+    Config { config | iconPosition = position }
 
 
 form : Bool -> Config msg -> Config msg

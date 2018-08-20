@@ -32,8 +32,15 @@ export default class Demo extends React.Component {
   render() {
     return (
       <div className={styles.root}>
+        <p className={styles.p}>
+          { this.props.elm ?
+              "Available for both Elm and React." :
+              "Currently available for React." }
+        </p>
+
         {this.renderPresetList()}
         {this.renderCanvas()}
+
         <div className={styles.controls}>{this.renderSizePresets()}</div>
         <div className={styles.controls}>
           {this.renderOptions()}

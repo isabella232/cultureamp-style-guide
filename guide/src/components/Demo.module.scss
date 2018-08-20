@@ -37,7 +37,7 @@
 .selectPreset {
   position: absolute;
   right: 0;
-  bottom: calc(100% + 1em);
+  top: 0;
   select {
     @include ca-type-ideal-body;
   }
@@ -61,4 +61,9 @@
 
 .renderOptions > *:not(:first-child) {
   margin-left: $ca-grid;
+}
+
+.p {
+  margin: $ca-grid 0;
+  @include ca-type-ideal-body;
 }

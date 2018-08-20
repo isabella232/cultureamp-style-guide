@@ -11,8 +11,6 @@ imports:
 
 A standard Culture Amp layout with left-hand-side navigation bar, sidebar, and optional headers / footers.
 
-Currently available for React.
-
 </IntroParagraph>
 
 <Demo presets={presets} />
