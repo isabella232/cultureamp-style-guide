@@ -225,3 +225,10 @@ $ca-ideal-sans-font-descender-height: 0.14;
     z-index: $ca-z-index-popover;
   }
 }
+
+@mixin ca-type-rtl() {
+  [dir="rtl"] & {
+    text-align: right; // fallback for IE and Edge
+    text-align: start;
+  }
+}
