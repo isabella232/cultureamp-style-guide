@@ -227,6 +227,10 @@ $ca-ideal-sans-font-descender-height: 0.14;
 }
 
 @mixin ca-type-rtl() {
+  text-align: left; // fallback for IE and Edge
+  text-align: start;
+
+  &[dir="rtl"],
   [dir="rtl"] & {
     text-align: right; // fallback for IE and Edge
     text-align: start;
