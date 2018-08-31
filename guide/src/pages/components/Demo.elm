@@ -125,6 +125,31 @@ type alias JsxNodeInfo msg =
     }
 
 
+{-| Transform a simple JsxDecoder so you can use it where a JsxDecoderWithInitMessages is expected
+-}
+simpleDecoder : JsxDecoder msg -> JsxDecoderWithInitMessages msg
+simpleDecoder decoder =
+    Json.map (\nodes -> ( nodes, [] )) decoder
+
+
+{-| Use a JSON decoding pipeline (see `decodeField` etc) and turn it into a JsxDecoder
+-}
+createPropsToHtmlDecoder : (Json.Value -> Result String (Html msg)) -> JsxDecoder msg
+createPropsToHtmlDecoder decodePropsPipeline =
+    let
+        mapResultToJson result =
+            case result of
+                Ok element ->
+                    Json.succeed ([ element ])
+
+                Err msg ->
+                    Json.fail msg
+    in
+        Json.field "props" Json.value
+            |> Json.map decodePropsPipeline
+            |> Json.andThen mapResultToJson
+
+
 {-| Prepare your initial state by parsing a JSX node and applying the init messages
 -}
 initModelFromJsx : Json.Value -> ComponentDecoders msg -> model -> (msg -> model -> model) -> model
@@ -188,6 +213,12 @@ jsxChildren componentDecoders =
         lazilyRecurse =
             Json.lazy <| (\_ -> jsxChildren componentDecoders)
 
+        childrenDecoder : JsxDecoderWithInitMessages msg
+        childrenDecoder =
+            Json.at [ "props", "children" ] lazilyRecurse
+                |> Json.maybe
+                |> Json.map (Maybe.withDefault ( [], [] ))
+
         flattenChildrenList : List (NodesAndInitMessages msg) -> JsxDecoderWithInitMessages msg
         flattenChildrenList list =
             let
@@ -227,7 +258,7 @@ jsxChildren componentDecoders =
              , Json.map3 JsxNodeInfo
                 (Json.field "type" Json.string)
                 jsxAttributes
-                (Json.at [ "props", "children" ] lazilyRecurse)
+                childrenDecoder
                 |> Json.andThen createChildNode
              , Json.string
                 |> Json.andThen (\string -> Json.succeed ( [ text string ], [] ))

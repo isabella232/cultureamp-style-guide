@@ -69,38 +69,30 @@ buttonDecoder =
                 , ( "yuzu", Yuzu )
                 ]
     in
-        Json.field "props" Json.value
-            |> Json.andThen
-                (\props ->
-                    (Ok (default)
-                        -- variants
-                        |> decodeField "secondary" Json.bool (variantFlag secondary) props
-                        |> decodeField "primary" Json.bool (variantFlag primary) props
-                        |> decodeField "destructive" Json.bool (variantFlag destructive) props
-                        -- modifiers
-                        |> decodeField "disabled" Json.bool disabled props
-                        |> decodeOptionalField "icon" SvgAsset.decoder icon props
-                        |> decodeField "iconPosition" iconPositionDecoder iconPosition props
-                        |> decodeField "form" Json.bool form props
-                        |> decodeField "reversed" Json.bool reversed props
-                        |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
-                        |> decodeOptionalField "href" Json.string href props
-                        |> decodeOptionalField "automationId" Json.string automationId props
-                        |> Result.map (Button.onClick Click)
-                        -- arguments
-                        |> Result.map ViewArguments
-                        |> decodeField "label" Json.string (|>) props
-                        -- view
-                        |> (\result ->
-                                case result of
-                                    Ok { config, label } ->
-                                        Json.succeed ([ Button.view config label ])
-
-                                    Err msg ->
-                                        Json.fail msg
-                           )
-                    )
+        createPropsToHtmlDecoder
+            (\props ->
+                (Ok (default)
+                    -- variants
+                    |> decodeField "secondary" Json.bool (variantFlag secondary) props
+                    |> decodeField "primary" Json.bool (variantFlag primary) props
+                    |> decodeField "destructive" Json.bool (variantFlag destructive) props
+                    -- modifiers
+                    |> decodeField "disabled" Json.bool disabled props
+                    |> decodeOptionalField "icon" SvgAsset.decoder icon props
+                    |> decodeField "iconPosition" iconPositionDecoder iconPosition props
+                    |> decodeField "form" Json.bool form props
+                    |> decodeField "reversed" Json.bool reversed props
+                    |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
+                    |> decodeOptionalField "href" Json.string href props
+                    |> decodeOptionalField "automationId" Json.string automationId props
+                    |> Result.map (Button.onClick Click)
+                    -- arguments
+                    |> Result.map ViewArguments
+                    |> decodeField "label" Json.string (|>) props
+                    -- view
+                    |> Result.map (\{ config, label } -> Button.view config label)
                 )
+            )
 
 
 view : Model -> Html Msg
