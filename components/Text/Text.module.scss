@@ -89,6 +89,19 @@ p.default-style {
   @include ca-inherit-baseline;
 }
 
-.inheritBaseline {
-  @include ca-inherit-baseline;
+// Alias classes for Elm CSS modules
+.defaultStyle {
+  composes: default-style;
+}
+.pageTitle {
+  composes: page-title;
+}
+.bodyBold {
+  composes: body-bold;
+}
+.smallBold {
+  composes: small-bold;
+}
+.controlAction {
+  composes: control-action;
 }
