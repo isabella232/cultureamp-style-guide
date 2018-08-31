@@ -1,24 +1,30 @@
 @import '../../styles/type';
 
-.page-title {
+.page-title,
+h1.default-style {
   @include ca-type-ideal-page-title;
   margin-top: 0;
   margin-bottom: $ca-grid;
 }
 
-.title {
+.title,
+h2.default-style {
   @include ca-type-ideal-title;
   margin-top: 0;
   margin-bottom: $ca-grid;
 }
 
-.display {
+.display,
+h3.default-style {
   @include ca-type-ideal-display;
   margin-top: 0;
   margin-bottom: $ca-grid;
 }
 
-.heading {
+.heading,
+h4.default-style,
+h5.default-style,
+h6.default-style {
   @include ca-type-ideal-heading;
   margin-top: 0;
   margin-bottom: $ca-grid;
@@ -30,12 +36,22 @@
   margin-bottom: $ca-grid;
 }
 
-.body {
+.paragraph,
+p.default-style {
   @include ca-type-ideal-body;
+  margin-top: 0;
+  margin-bottom: $ca-grid;
+}
+
+.body,
+.default-style {
+  @include ca-type-ideal-body;
+  margin: 0;
 }
 
 .body-bold {
   @include ca-type-ideal-body-bold;
+  margin: 0;
 }
 
 .small {
@@ -68,9 +84,9 @@
   margin: 0;
 }
 
-.paragraph {
-  margin-top: 0;
-  margin-bottom: $ca-grid;
+// We double the class selector to increase specificity above rules like `h1.default-style`
+.inheritBaseline.inheritBaseline {
+  @include ca-inherit-baseline;
 }
 
 .inheritBaseline {
