@@ -185,6 +185,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   @include ca-type-ideal-heading;
   margin: 0;
   padding-right: $ca-grid / 2;
+  text-transform: none;
 }
 
 %ca-notification__text {
