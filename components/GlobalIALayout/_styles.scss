@@ -3,10 +3,6 @@
 @import '../../styles/type';
 @import '../GlobalIANavigationBar/styles';
 
-$global-ia-layout__max-width: 1400px;
-$global-ia-layout__side-padding: 25px;
-$global-ia-layout__content-width: 1080px;
-
 %global-ia-root {
   display: flex;
   flex-direction: column;
