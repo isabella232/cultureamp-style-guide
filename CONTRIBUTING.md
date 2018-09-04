@@ -2,6 +2,14 @@
 
 This library is maintained by Culture Amp's Front End Capability Team, but contributions are welcome from anyone.
 
+Feel free to file issues, or open pull requests on this project, or ask questions on #front_end_practice in Slack.
+
+### Expectations
+
+While the Front End Capability Team will try respond quickly to issues and pull requests, we can't promise to fix issues or merge code in a timeline that suits your team's deadlines - we would rather take time to implement a fix or feature carefully, and so there may be some back-and-forth, or we may choose not to add a new feature.
+
+For this reason - if you're working on a component that you need for a feature you're currently building, we'd encourage you to host that component within your project, where you have control over it, and we can work to bring it to cultureamp-style-guide after the time pressure has passed.
+
 ### Releasing updates to the NPM package
 
 Releases are triggered by commit messages that follow the [Semantic Release][] format.
