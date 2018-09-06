@@ -27,11 +27,10 @@ If you wish to use a custom element or to cancel the baseline grid shift, use `t
 
 <Code>
 
-h1 DefaultStyle [text "This is a h1, styled with page-title (the default)"]
-h1 PageTitle [text "This is a h1, styled with page-title"]
-h1 Display [text "This is a h1, styled with display"]
-p PageTitle [text "This is a p, styled with page-title"]
-textView Html.aside Lede [text "This is an aside, styled with lede"]
-textViewInheritBaseline Html.p DefaultStyle [text "This is an aside, styled as lede"]
+Text.view h1 [text "This is a h1, styled with page-title (the default)"]
+Text.view (h1 |> style PageTitle) [text "This is a h1, styled with page-title"]
+Text.view (h1 |> style Display) [text "This is a h1, styled with display"]
+Text.view (p |> style PageTitle) [text "This is a p, styled with page-title"]
+Text.view (p |> inheritBaseline True) [text "This text inherits the baseline"]
 
 </Code>

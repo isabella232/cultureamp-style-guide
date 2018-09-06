@@ -50,40 +50,51 @@ update msg model =
 -- DECODERS
 
 
+type alias ViewArguments =
+    { config : Config Never
+    , children : List (Html Never)
+    }
+
+
 decodeText : JsxDecoder Msg
 decodeText =
     createPropsToHtmlDecoder
         (\props ->
-            Ok (textView)
-                -- variant arguments
-                |> decodeField "inheritBaseline" Json.bool (variantFlag textViewInheritBaseline) props
-                -- view arguments
-                |> decodeField "tag" tagDecoder (|>) props
-                |> decodeField "style" styleDecoder (|>) props
+            Ok (div)
+                -- variants
+                |> decodeField "tag" tagDecoder (\newConfig prevConfig -> newConfig) props
+                -- modifiers
+                |> decodeField "style" styleDecoder style props
+                |> decodeField "inheritBaseline" Json.bool inheritBaseline props
+                -- arguments
+                |> Result.map ViewArguments
                 |> decodeField "children" htmlJsxChildren (|>) props
+                -- view
+                |> Result.map (\{ config, children } -> Text.view config children)
+         -- view arguments
         )
 
 
-tagDecoder : Json.Decoder (List (Html.Attribute Msg) -> List (Html.Html Msg) -> Html Msg)
+tagDecoder : Json.Decoder (Config Msg)
 tagDecoder =
     stringEnum
         "not a valid HTML text tag"
-        [ ( "h1", Html.h1 )
-        , ( "h2", Html.h2 )
-        , ( "h3", Html.h3 )
-        , ( "h4", Html.h4 )
-        , ( "h5", Html.h5 )
-        , ( "h6", Html.h6 )
-        , ( "p", Html.p )
-        , ( "div", Html.div )
-        , ( "label", Html.label )
+        [ ( "h1", h1 )
+        , ( "h2", h2 )
+        , ( "h3", h3 )
+        , ( "h4", h4 )
+        , ( "h5", h5 )
+        , ( "h6", h6 )
+        , ( "p", p )
+        , ( "div", div )
+        , ( "label", label )
         ]
 
 
 styleDecoder : Json.Decoder TypeStyle
 styleDecoder =
     stringEnum
-        "not a valid ty pe style"
+        "not a valid type style"
         [ ( "default-style", DefaultStyle )
         , ( "page-title", PageTitle )
         , ( "title", Title )
