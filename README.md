@@ -1,27 +1,14 @@
-# Kaizen<br><sub>_Culture Amp’s Component Library and Living Style Guide_</sub>
+# Kaizen
 
-## Viewing the Living Style Guide
+**_Culture Amp’s Component Library and Living Style Guide_**
 
 Visit the living style guide at <http://www.cultureamp.design>.
 
-Alternatively, build it yourself:
+## Contributing
 
-### Build Instructions
+This library is maintained by Culture Amp's Front End Capability Team, but contributions are welcome from anyone.
 
-To start the local development server:
-
-1.  Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
-    installed.
-2.  Install the dependencies: `bin/setup`
-3.  Run Gatsby local development server: `bin/gatsby`
-4.  View the site at http://localhost:8000
-
-To deploy the site to Github pages:
-
-1.  Ensure you have NodeJS<sup id="fn1">[1](#nodejs)</sup> and [Yarn][yarn]
-    installed.
-2.  Install the dependencies: `bin/setup`
-3.  Run the Gatsby deploy script: `bin/deploySite`
+See [CONTRIBUTING.md][contributing] for more information.
 
 ## Using components in your project
 
@@ -118,6 +105,7 @@ automatically the version of NodeJS specified in `.nvmrc`, and consider using
 [nvm-auto][nvm-auto] to switch to it automatically when working in this
 project.</small>
 
+[contributing]: ./CONTRIBUTING.md
 [bundler]: https://bundler.io/
 [css-modules]: https://github.com/css-modules/css-modules
 [nvm]: http://nvm.sh/
