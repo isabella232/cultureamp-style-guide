@@ -92,6 +92,14 @@ const buttonPresets = [
     node: <Button label="Label" primary reversed disabled />,
     darkBackground: true,
   },
+  {
+    name: 'Type Submit',
+    node: <Button label="Label" type="submit" />,
+  },
+  {
+    name: 'Type Reset',
+    node: <Button label="Label" type="reset" />,
+  },
 ];
 
 export default buttonPresets;

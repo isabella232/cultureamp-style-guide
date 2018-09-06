@@ -14,6 +14,7 @@ type GenericProps = {|
   icon?: SvgAsset,
   onClick?: MouseEvent => void,
   href?: string,
+  type?: 'submit' | 'reset',
   automationId?: string,
 |};
 
@@ -54,7 +55,7 @@ export default function GenericButton(props: Props) {
 }
 
 function renderButton(props: Props) {
-  const { disabled, onClick } = props;
+  const { disabled, onClick, type } = props;
   const label = props.icon && props.iconButton ? props.label : undefined;
 
   return (
@@ -67,6 +68,7 @@ function renderButton(props: Props) {
           onClick && onClick(e);
         }
       }}
+      type={type}
       data-automation-id={props.automationId}
       title={label}
       aria-label={label}
