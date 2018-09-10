@@ -5,11 +5,13 @@ import classNames from 'classnames';
 
 type TextProps = {
   tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div' | 'label',
-  style?:
+  style:
+    | 'default-style'
     | 'page-title'
     | 'title'
     | 'display'
     | 'heading'
+    | 'paragraph'
     | 'lede'
     | 'body'
     | 'body-bold'
@@ -19,36 +21,28 @@ type TextProps = {
     | 'label'
     | 'control-action'
     | 'button',
-  inheritBaseline?: boolean,
+  inheritBaseline: boolean,
   children: React.Node,
-};
-
-const defaultStyles = {
-  h1: 'page-title',
-  h2: 'title',
-  h3: 'display',
-  h4: 'heading',
-  h5: 'heading',
-  h6: 'heading',
-  p: 'body',
-  div: 'body',
-  label: 'body',
 };
 
 const Text = (props: TextProps) => {
   const Tag = props.tag;
-  const style = props.style || defaultStyles[Tag];
   return (
     <Tag
-      className={classNames(styles[style], {
+      className={classNames(styles[props.style], {
         [styles.inheritBaseline]: props.inheritBaseline,
-        [styles.paragraph]: Tag === 'p',
       })}
     >
       {props.children}
     </Tag>
   );
 };
+
+Text.defaultProps = {
+  style: 'default-style',
+  inheritBaseline: false,
+};
+
 Text.displayName = 'Text';
 
 export default Text;

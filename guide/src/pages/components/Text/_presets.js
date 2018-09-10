@@ -49,6 +49,19 @@ const presets = [
     ),
   },
   {
+    name: 'Paragraph (no margins)',
+    node: (
+      <Text tag="p" style="body">
+        Dr. Brené Brown, author of Daring Greatly, is a research professor from
+        the University of Houston who studies human emotions, including shame
+        and vulnerability. In a March 2012 TED talk, she said, “Vulnerability is
+        not weakness, and that myth is profoundly dangerous.” She went on to say
+        that after 12 years of research, she has actually determined that
+        vulnerability is “our most accurate measurement of courage.”
+      </Text>
+    ),
+  },
+  {
     name: 'Lede Paragraph',
     node: (
       <Text tag="p" style="lede">
@@ -111,6 +124,7 @@ const presets = [
     node: (
       <Text tag="div" style="notification">
         Div with "Notification" styles
+        <br />that have a smaller line-height
       </Text>
     ),
   },

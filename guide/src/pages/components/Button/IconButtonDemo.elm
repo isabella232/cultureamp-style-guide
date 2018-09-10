@@ -53,35 +53,27 @@ iconButtonDecoder =
         setAssetOnIconVariant svgAsset iconVariant =
             iconVariant svgAsset
     in
-        Json.field "props" Json.value
-            |> Json.andThen
-                (\props ->
-                    (Ok iconButton
-                        -- variants
-                        |> decodeField "destructive" Json.bool (variantFlag destructiveIconButton) props
-                        -- add asset to variant
-                        |> decodeField "icon" SvgAsset.decoder setAssetOnIconVariant props
-                        -- modifiers
-                        |> decodeField "disabled" Json.bool disabled props
-                        |> decodeField "form" Json.bool form props
-                        |> decodeField "reversed" Json.bool reversed props
-                        |> decodeOptionalField "href" Json.string href props
-                        |> decodeOptionalField "automationId" Json.string automationId props
-                        |> Result.map (Button.onClick Click)
-                        -- arguments
-                        |> Result.map ViewArguments
-                        |> decodeField "label" Json.string (|>) props
-                        -- view
-                        |> (\result ->
-                                case result of
-                                    Ok { config, label } ->
-                                        Json.succeed ([ Button.view config label ])
-
-                                    Err msg ->
-                                        Json.fail msg
-                           )
-                    )
+        createPropsToHtmlDecoder
+            (\props ->
+                (Ok iconButton
+                    -- variants
+                    |> decodeField "destructive" Json.bool (variantFlag destructiveIconButton) props
+                    -- add asset to variant
+                    |> decodeField "icon" SvgAsset.decoder setAssetOnIconVariant props
+                    -- modifiers
+                    |> decodeField "disabled" Json.bool disabled props
+                    |> decodeField "form" Json.bool form props
+                    |> decodeField "reversed" Json.bool reversed props
+                    |> decodeOptionalField "href" Json.string href props
+                    |> decodeOptionalField "automationId" Json.string automationId props
+                    |> Result.map (Button.onClick Click)
+                    -- arguments
+                    |> Result.map ViewArguments
+                    |> decodeField "label" Json.string (|>) props
+                    -- view
+                    |> Result.map (\{ config, label } -> Button.view config label)
                 )
+            )
 
 
 view : Model -> Html Msg
