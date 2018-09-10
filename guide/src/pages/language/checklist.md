@@ -34,4 +34,4 @@ Need more info on any of these points? See the Writing Advice section in the <Li
 
 <CheckListItem label="Check the text’s readability score — aim for Grade 7." />
 
-<CheckListItem label="Show your text to a friend in design for a sanity check (have the courage to be vulnerable!" />
+<CheckListItem label="Show your text to a friend in design for a sanity check (have the courage to be vulnerable!)" />
