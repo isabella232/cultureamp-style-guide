@@ -302,6 +302,10 @@ $caButton-formHeight: $ca-grid * 5/3;
   // effects can be applied to the button content but not the button border
   padding: 0 calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
+  %caButtonSecondary & {
+    padding: 0 calc(#{$ca-grid * 0.25} - #{$caButton-border-width});
+  }
+
   @supports (mix-blend-mode: screen) {
     %caButtonReversed%caButtonPrimary & {
       padding: 0 ($ca-grid * 1);
