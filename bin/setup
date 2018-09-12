@@ -3,6 +3,14 @@ set -e
 set -o pipefail
 set -u
 
+if [[ $* == *--reset* ]];
+then
+    echo "== Deleting existing node_modules =="
+    rm -Rf node_modules
+    rm -Rf guide/node_modules
+fi
+
+
 echo "== Installing dependencies for cultureamp-style-guide NPM package =="
 yarn install
 yarn link
