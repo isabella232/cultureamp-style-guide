@@ -3,6 +3,7 @@
 .*node_modules/find-elm-dependencies/.*
 .*node_modules/relay-compiler/.*
 .*node_modules/relay-runtime/.*
+.*node_modules/npm/.*
 
 [include]
 
