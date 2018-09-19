@@ -3,11 +3,21 @@ set -e
 set -o pipefail
 set -u
 
+die() { echo "$*" 1>&2 ; exit 1; }
+
+if [[ $* == *--reset* ]];
+then
+    echo "== Deleting existing node_modules =="
+    rm -Rf node_modules
+    rm -Rf guide/node_modules
+fi
+
+
 echo "== Installing dependencies for cultureamp-style-guide NPM package =="
-yarn install
+yarn install || die "Failed to run yarn install"
 yarn link
 
 echo "== Installing dependencies for cultureamp-style-guide/guide gatsby site =="
 cd guide
-yarn install
+yarn install || die "Failed to run yarn install on the guide"
 yarn link cultureamp-style-guide
