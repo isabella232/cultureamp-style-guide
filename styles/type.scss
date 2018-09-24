@@ -20,6 +20,10 @@ $ca-ideal-sans-font-family: 'Ideal Sans A', 'Ideal Sans B',
 $ca-ideal-sans-font-base-size: 1rem; /* 16px */
 $ca-ideal-sans-font-descender-height: 0.14;
 
+// Locale-specific fonts
+$ca-locale-he-font-family: 'Open Sans', Tahoma, sans-serif;
+$ca-locale-ar-font-family: 'Open Sans', Tahoma, sans-serif;
+
 // Inspired by Basekick from SEEK: https://github.com/michaeltaranto/basekick
 @mixin ca-type(
   $family: $ca-default-font-family,
@@ -230,8 +234,8 @@ $ca-ideal-sans-font-descender-height: 0.14;
   text-align: left; // fallback for IE and Edge
   text-align: start;
 
-  &[dir="rtl"],
-  [dir="rtl"] & {
+  &[dir='rtl'],
+  [dir='rtl'] & {
     text-align: right; // fallback for IE and Edge
     text-align: start;
   }
