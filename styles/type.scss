@@ -23,6 +23,10 @@ $ca-ideal-sans-font-descender-height: 0.14;
 // Locale-specific fonts
 $ca-locale-he-font-family: 'Open Sans', Tahoma, sans-serif;
 $ca-locale-ar-font-family: 'Open Sans', Tahoma, sans-serif;
+$ca-ideal-locale-ar-font-family: 'Ideal Sans A', 'Ideal Sans B', Tahoma,
+  sans-serif;
+$ca-ideal-locale-he-font-family: 'Ideal Sans A', 'Ideal Sans B', Tahoma,
+  sans-serif;
 
 // Inspired by Basekick from SEEK: https://github.com/michaeltaranto/basekick
 @mixin ca-type(
@@ -35,6 +39,12 @@ $ca-locale-ar-font-family: 'Open Sans', Tahoma, sans-serif;
   $letter-spacing: normal
 ) {
   font-family: $family;
+  html:lang(he) & {
+    font-family: $ca-locale-he-font-family;
+  }
+  html:lang(ar) & {
+    font-family: $ca-locale-ar-font-family;
+  }
   font-weight: $weight;
   letter-spacing: $letter-spacing;
 
@@ -127,6 +137,12 @@ $ca-locale-ar-font-family: 'Open Sans', Tahoma, sans-serif;
     $weight: $weight,
     $args...
   );
+  html:lang(he) & {
+    font-family: $ca-ideal-locale-he-font-family;
+  }
+  html:lang(ar) & {
+    font-family: $ca-ideal-locale-ar-font-family;
+  }
 }
 
 @mixin ca-type-ideal-page-title($size: 32, $args...) {
