@@ -12,9 +12,7 @@ script:
 - yarn flow
 - yarn jest
 - bin/buildSite
-after_success:
-- yarn global add travis-deploy-once
-- travis-deploy-once "yarn semantic-release"
+- yarn semantic-release
 deploy:
   provider: pages
   local-dir: guide/public
