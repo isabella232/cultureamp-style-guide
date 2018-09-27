@@ -77,7 +77,7 @@ export default class Menu extends React.Component<Props, State> {
         <Tooltip
           hideTooltip={false}
           tabIndex={null} // link inside takes focus instead
-          tooltip="Opens in a new window"
+          tooltip="Opens in a new tab"
           key={index}
           setDisplayBlock={true}
         >

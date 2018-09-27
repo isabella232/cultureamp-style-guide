@@ -10,11 +10,23 @@ type Props = {|
   tooltip: string,
   hideTooltip: boolean,
   onMenuChange?: (open: boolean) => void,
+  setDisplayBlock?: boolean,
 |};
 
-const Tooltip = ({ children, tabIndex, tooltip, hideTooltip }: Props) => {
+const Tooltip = ({
+  children,
+  tabIndex,
+  tooltip,
+  hideTooltip,
+  setDisplayBlock,
+}: Props) => {
   return (
-    <div className={styles.root} tabIndex={tabIndex}>
+    <div
+      className={classNames(styles.root, {
+        [styles.setDisplayBlock]: setDisplayBlock,
+      })}
+      tabIndex={tabIndex}
+    >
       {children}
       <div
         className={classNames(styles.tooltip, {

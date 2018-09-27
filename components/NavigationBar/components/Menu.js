@@ -7,6 +7,7 @@ import Tooltip from './Tooltip.js';
 type MenuItem = {
   label: string,
   link: string,
+  target: '_self' | '_blank' | '_parent' | '_top',
   data?: { [key: string]: string },
 };
 
@@ -80,8 +81,32 @@ export default class Menu extends React.Component<Props, State> {
     );
   }
 
-  renderMenuItem(item: MenuItem, index: number) {
-    const { label, link, data = {} } = item;
+  renderMenuItem = (item: MenuItem, index: number) => {
+    const { target } = item;
+
+    if (target === '_blank') {
+      return (
+        <Tooltip
+          hideTooltip={false}
+          tabIndex={null} // link inside takes focus instead
+          tooltip="Opens in a new tab"
+          key={index}
+          setDisplayBlock={true}
+        >
+          {this.renderMenuItemLink(item)}
+        </Tooltip>
+      );
+    }
+
+    return (
+      <React.Fragment key={index}>
+        {this.renderMenuItemLink(item)}
+      </React.Fragment>
+    );
+  };
+
+  renderMenuItemLink = item => {
+    const { label, link, target, data = {} } = item;
 
     const dataAttributes = {};
     Object.keys(data).forEach(key => {
@@ -90,15 +115,15 @@ export default class Menu extends React.Component<Props, State> {
 
     return (
       <a
-        key={index}
         href={link}
         className={styles.menuItem}
+        target={target}
         {...dataAttributes}
       >
         {label}
       </a>
     );
-  }
+  };
 
   componentDidMount() {
     document.addEventListener('click', this.clickDocument);
