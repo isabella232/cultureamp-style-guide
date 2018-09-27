@@ -50,6 +50,11 @@ $width: 248px;
 
 .dropdownIcon + .dropdownLabel {
   margin-left: calc(#{$ca-grid} / 2 - 2px);
+
+  [dir='rtl'] & {
+    margin-left: 0;
+    margin-right: calc(#{$ca-grid} / 2 - 2px);
+  }
 }
 
 // If you would like the dropdown icon to only be visible when a certain area is hovered,
@@ -77,4 +82,10 @@ $width: 248px;
   position: absolute;
   width: $width;
   z-index: $ca-z-index-dropdown;
+  right: 0;
+
+  [dir='rtl'] & {
+    right: auto;
+    left: 0;
+  }
 }

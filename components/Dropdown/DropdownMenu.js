@@ -31,13 +31,16 @@ export default class DropdownMenu extends React.Component<DropdownMenuProps> {
 
   positionMenu() {
     const menu = this.menu;
+    
     if (!this.props.position || !menu) {
       return;
     }
+    
     const pos = this.props.position;
     const heightBetweenTopOfRowAndDropdownIcon = (pos.bottom - pos.top) / 2;
     const { innerHeight } = window;
     const rect = menu.getBoundingClientRect();
+
     if (pos.bottom > innerHeight - rect.height) {
       menu.style.bottom = '24px';
       menu.style.top = 'auto';
@@ -45,7 +48,6 @@ export default class DropdownMenu extends React.Component<DropdownMenuProps> {
       menu.style.top = '24px';
       menu.style.bottom = 'auto';
     }
-    menu.style.right = '0px';
   }
 
   handleDocumentClick = (e: MouseEvent) => {
