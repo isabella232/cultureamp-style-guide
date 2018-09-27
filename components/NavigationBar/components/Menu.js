@@ -7,7 +7,7 @@ import Tooltip from './Tooltip.js';
 type MenuItem = {
   label: string,
   link: string,
-  target: '_self' | '_blank' | '_parent' | '_top',
+  target?: '_self' | '_blank' | '_parent' | '_top',
   data?: { [key: string]: string },
 };
 
@@ -105,7 +105,7 @@ export default class Menu extends React.Component<Props, State> {
     );
   };
 
-  renderMenuItemLink = item => {
+  renderMenuItemLink = (item: MenuItem) => {
     const { label, link, target, data = {} } = item;
 
     const dataAttributes = {};

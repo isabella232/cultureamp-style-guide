@@ -93,7 +93,7 @@ export default class Menu extends React.Component<Props, State> {
     );
   };
 
-  renderMenuItemLink = item => {
+  renderMenuItemLink = (item: MenuItem) => {
     const { label, link, target, data = {} } = item;
 
     const dataAttributes = {};
