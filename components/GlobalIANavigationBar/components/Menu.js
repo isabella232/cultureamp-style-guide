@@ -7,7 +7,7 @@ import Tooltip from './Tooltip.js';
 type MenuItem = {
   label: string,
   link: string,
-  target: '_self' | '_blank' | '_parent' | '_top',
+  target?: '_self' | '_blank' | '_parent' | '_top',
   data?: { [key: string]: string },
 };
 
