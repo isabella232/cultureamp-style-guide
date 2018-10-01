@@ -246,7 +246,7 @@ $ca-ideal-locale-he-font-family: 'Ideal Sans A', 'Ideal Sans B', Tahoma,
   }
 }
 
-@mixin ca-type-rtl() {
+@mixin ca-type-align-start() {
   text-align: left; // fallback for IE and Edge
   text-align: start;
 
@@ -254,5 +254,16 @@ $ca-ideal-locale-he-font-family: 'Ideal Sans A', 'Ideal Sans B', Tahoma,
   [dir='rtl'] & {
     text-align: right; // fallback for IE and Edge
     text-align: start;
+  }
+}
+
+@mixin ca-type-align-end() {
+  text-align: right; // fallback for IE and Edge
+  text-align: end;
+
+  &[dir='rtl'],
+  [dir='rtl'] & {
+    text-align: left; // fallback for IE and Edge
+    text-align: end;
   }
 }
