@@ -5,9 +5,16 @@
     "license": "MIT",
     "source-directories": [
         "components",
+        "elm-components",
         "guide/src/pages/components"
     ],
-    "exposed-modules": [],
+    "exposed-modules": [
+        "CultureAmp.Button",
+        "CultureAmp.Icon",
+        "CultureAmp.SvgAsset",
+        "CultureAmp.Notification",
+        "CultureAmp.Text"
+    ],
     "dependencies": {
         "NoRedInk/elm-decode-pipeline": "3.0.0 <= v < 4.0.0",
         "cultureamp/elm-css-modules-loader": "2.0.0 <= v < 3.0.0",

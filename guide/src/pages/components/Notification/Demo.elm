@@ -4,7 +4,7 @@ import Html exposing (Html)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
-import Notification.Notification as Notification exposing (..)
+import CultureAmp.Notification as Notification exposing (..)
 import Dict exposing (Dict)
 
 

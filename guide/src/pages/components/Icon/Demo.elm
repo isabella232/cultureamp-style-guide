@@ -4,8 +4,8 @@ import Html exposing (Html, text)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
-import Icon.Icon as Icon exposing (..)
-import Icon.SvgAsset as SvgAsset exposing (SvgAsset)
+import CultureAmp.Icon as Icon exposing (..)
+import CultureAmp.SvgAsset as SvgAsset exposing (SvgAsset)
 
 
 type alias Model =

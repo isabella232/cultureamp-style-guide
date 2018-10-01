@@ -4,7 +4,7 @@ import Html exposing (Html)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
-import Text.Text as Text exposing (..)
+import CultureAmp.Text as Text exposing (..)
 
 
 -- DEMO APP

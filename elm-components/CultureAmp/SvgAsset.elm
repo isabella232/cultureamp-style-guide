@@ -1,8 +1,22 @@
-module Icon.SvgAsset exposing (SvgAsset, svgAsset, decoder)
+module CultureAmp.SvgAsset exposing
+    ( SvgAsset
+    , svgAsset
+    , decoder
+    )
+
+{-| ...
+
+@docs SvgAsset
+@docs svgAsset
+@docs decoder
+
+-}
 
 import Json.Decode as Json
 
 
+{-| ...
+-}
 svgAsset : String -> SvgAsset
 svgAsset path =
     -- these placeholder values are replaced by Webpack at build time
@@ -11,12 +25,16 @@ svgAsset path =
     }
 
 
+{-| ...
+-}
 type alias SvgAsset =
     { id : String
     , viewBox : String
     }
 
 
+{-| ...
+-}
 decoder : Json.Decoder SvgAsset
 decoder =
     Json.map2 SvgAsset

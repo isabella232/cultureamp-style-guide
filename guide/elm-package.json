@@ -4,7 +4,7 @@
     "repository": "https://github.com/user/project.git",
     "license": "MIT",
     "source-directories": [
-        "../components",
+        "../elm-components",
         "src/pages/components"
     ],
     "exposed-modules": [],

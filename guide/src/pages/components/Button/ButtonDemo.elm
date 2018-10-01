@@ -4,8 +4,8 @@ import Html exposing (Html, div, pre, text)
 import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
-import Button.Button as Button exposing (..)
-import Icon.SvgAsset as SvgAsset
+import CultureAmp.Button as Button exposing (..)
+import CultureAmp.SvgAsset as SvgAsset
 
 
 port onClick : () -> Cmd msg

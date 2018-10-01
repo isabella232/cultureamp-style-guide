@@ -1,37 +1,37 @@
-module Button.Button
-    exposing
-        ( view
-        , default
-        , primary
-        , secondary
-        , destructive
-        , iconButton
-        , destructiveIconButton
-        , disabled
-        , icon
-        , iconPosition
-        , IconPosition(..)
-        , form
-        , reversed
-        , reverseColor
-        , BrandColor(..)
-        , onClick
-        , href
-        , automationId
-        , Config
-        , buttonType
-        , ButtonType(..)
-        )
+module CultureAmp.Button exposing
+    ( BrandColor(..)
+    , ButtonType(..)
+    , Config
+    , IconPosition(..)
+    , automationId
+    , buttonType
+    , default
+    , destructive
+    , destructiveIconButton
+    , disabled
+    , form
+    , href
+    , icon
+    , iconButton
+    , iconPosition
+    , onClick
+    , primary
+    , reverseColor
+    , reversed
+    , secondary
+    , view
+    )
 
-import Html exposing (Html, text, span, button, a)
+import CssModules exposing (css)
+import CultureAmp.Icon as Icon
+import CultureAmp.SvgAsset exposing (SvgAsset)
+import Html exposing (Html, a, button, span, text)
 import Html.Attributes
 import Html.Attributes.Aria
-import Html.Events as Events exposing (onWithOptions, defaultOptions)
+import Html.Events as Events exposing (defaultOptions, onWithOptions)
 import Json.Decode as Json
 import Maybe
-import CssModules exposing (css)
-import Icon.Icon as Icon
-import Icon.SvgAsset exposing (SvgAsset)
+
 
 
 -- VIEW
@@ -43,6 +43,7 @@ view (Config config) label =
         disabled =
             if config.disabled then
                 [ Html.Attributes.disabled True ]
+
             else
                 []
 
@@ -78,6 +79,7 @@ view (Config config) label =
                 [ Html.Attributes.title label
                 , Html.Attributes.Aria.ariaLabel label
                 ]
+
             else
                 []
 
@@ -88,16 +90,16 @@ view (Config config) label =
                 ++ title
                 ++ buttonTypeAttribs (Config config)
     in
-        span [ class .container ]
-            [ case config.href of
-                Just href ->
-                    a (attribs ++ [ Html.Attributes.href href ])
-                        [ viewContent (Config config) label |> Html.map never ]
+    span [ class .container ]
+        [ case config.href of
+            Just href ->
+                a (attribs ++ [ Html.Attributes.href href ])
+                    [ viewContent (Config config) label |> Html.map never ]
 
-                Nothing ->
-                    button (attribs ++ disabled)
-                        [ viewContent (Config config) label |> Html.map never ]
-            ]
+            Nothing ->
+                button (attribs ++ disabled)
+                    [ viewContent (Config config) label |> Html.map never ]
+        ]
 
 
 onClickAttribs : Config msg -> List (Html.Attribute msg)
@@ -118,11 +120,11 @@ onClickAttribs (Config config) =
                         Nothing ->
                             True
             in
-                [ onWithOptions
-                    "click"
-                    { defaultOptions | preventDefault = preventDefault }
-                    (Json.succeed msg)
-                ]
+            [ onWithOptions
+                "click"
+                { defaultOptions | preventDefault = preventDefault }
+                (Json.succeed msg)
+            ]
 
         Nothing ->
             []
@@ -146,7 +148,7 @@ buttonTypeAttribs (Config config) =
                                 Reset ->
                                     "reset"
                     in
-                        [ Html.Attributes.type_ encodedButtonType ]
+                    [ Html.Attributes.type_ encodedButtonType ]
 
                 Nothing ->
                     []
@@ -165,6 +167,7 @@ viewLabel : String -> Bool -> Html Never
 viewLabel label iconButton =
     if iconButton then
         text ""
+
     else
         span [ class .label ]
             [ text label ]
@@ -179,6 +182,7 @@ viewIconFor { icon, iconPosition } forPosition =
 
             Nothing ->
                 text ""
+
     else
         text ""
 

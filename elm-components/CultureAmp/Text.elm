@@ -1,20 +1,19 @@
-module Text.Text
-    exposing
-        ( view
-        , Config
-        , TypeStyle(..)
-        , h1
-        , h2
-        , h3
-        , h4
-        , h5
-        , h6
-        , p
-        , div
-        , label
-        , style
-        , inheritBaseline
-        )
+module CultureAmp.Text exposing
+    ( Config
+    , TypeStyle(..)
+    , div
+    , h1
+    , h2
+    , h3
+    , h4
+    , h5
+    , h6
+    , inheritBaseline
+    , label
+    , p
+    , style
+    , view
+    )
 
 {--
 Create a text element using the correct semantic HTML tag and the appropriate visual style.
@@ -37,8 +36,9 @@ If you want to inherit the baseline of the parent (no relative positioning), use
     view (p |> inheritBaseline True) [text "This text inherits the baseline"]
 --}
 
-import Html exposing (Html)
 import CssModules exposing (css)
+import Html exposing (Html)
+
 
 
 -- VIEW
@@ -99,10 +99,10 @@ className tag typeStyle inheritBaseline =
                 Button ->
                     .button
     in
-        classList
-            [ ( styleClass, True )
-            , ( .inheritBaseline, inheritBaseline )
-            ]
+    classList
+        [ ( styleClass, True )
+        , ( .inheritBaseline, inheritBaseline )
+        ]
 
 
 { classList } =
