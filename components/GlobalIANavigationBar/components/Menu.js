@@ -2,10 +2,12 @@
 import * as React from 'react';
 
 import styles from './Menu.module.scss';
+import Tooltip from './Tooltip.js';
 
 type MenuItem = {
   label: string,
   link: string,
+  newWindow?: boolean,
   data?: { [key: string]: string },
 };
 
@@ -67,8 +69,32 @@ export default class Menu extends React.Component<Props, State> {
     );
   }
 
-  renderMenuItem(item: MenuItem, index: number) {
-    const { label, link, data = {} } = item;
+  renderMenuItem = (item: MenuItem, index: number) => {
+    const { newWindow } = item;
+
+    if (newWindow) {
+      return (
+        <div key={index}>
+          <Tooltip
+            hideTooltip={false}
+            tabIndex={null} // link inside takes focus instead
+            tooltip="Opens in a new tab"
+          >
+            {this.renderMenuItemLink(item)}
+          </Tooltip>
+        </div>
+      );
+    }
+
+    return (
+      <React.Fragment key={index}>
+        {this.renderMenuItemLink(item)}
+      </React.Fragment>
+    );
+  };
+
+  renderMenuItemLink = (item: MenuItem) => {
+    const { label, link, newWindow, data = {} } = item;
 
     const dataAttributes = {};
     Object.keys(data).forEach(key => {
@@ -77,15 +103,15 @@ export default class Menu extends React.Component<Props, State> {
 
     return (
       <a
-        key={index}
         href={link}
         className={styles.menuItem}
+        target={newWindow ? '_blank' : '_self'}
         {...dataAttributes}
       >
         {label}
       </a>
     );
-  }
+  };
 
   componentDidMount() {
     document.addEventListener('click', this.clickDocument);
