@@ -7,7 +7,7 @@ import Tooltip from './Tooltip.js';
 type MenuItem = {
   label: string,
   link: string,
-  target?: '_self' | '_blank' | '_parent' | '_top',
+  newWindow?: boolean,
   data?: { [key: string]: string },
 };
 
@@ -70,19 +70,19 @@ export default class Menu extends React.Component<Props, State> {
   }
 
   renderMenuItem = (item: MenuItem, index: number) => {
-    const { target } = item;
+    const { newWindow } = item;
 
-    if (target === '_blank') {
+    if (newWindow) {
       return (
-        <Tooltip
-          hideTooltip={false}
-          tabIndex={null} // link inside takes focus instead
-          tooltip="Opens in a new tab"
-          key={index}
-          setDisplayBlock={true}
-        >
-          {this.renderMenuItemLink(item)}
-        </Tooltip>
+        <div key={index}>
+          <Tooltip
+            hideTooltip={false}
+            tabIndex={null} // link inside takes focus instead
+            tooltip="Opens in a new tab"
+          >
+            {this.renderMenuItemLink(item)}
+          </Tooltip>
+        </div>
       );
     }
 
