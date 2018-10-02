@@ -94,7 +94,7 @@ export default class Menu extends React.Component<Props, State> {
   };
 
   renderMenuItemLink = (item: MenuItem) => {
-    const { label, link, target, data = {} } = item;
+    const { label, link, newWindow, data = {} } = item;
 
     const dataAttributes = {};
     Object.keys(data).forEach(key => {
@@ -105,7 +105,7 @@ export default class Menu extends React.Component<Props, State> {
       <a
         href={link}
         className={styles.menuItem}
-        target={target}
+        target={newWindow ? '_blank' : '_self'}
         {...dataAttributes}
       >
         {label}
