@@ -4,7 +4,7 @@ import * as React from 'react';
 import styles from './Menu.module.scss';
 import Tooltip from './Tooltip.js';
 
-type MenuItem = {
+export type MenuItem = {
   label: string,
   link: string,
   newWindow?: boolean,
