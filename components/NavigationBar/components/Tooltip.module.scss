@@ -1,6 +1,7 @@
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layout';
 
 .root {
   position: relative;
@@ -18,21 +19,20 @@
 
 .tooltip {
   $tooltip__arrow-size: $ca-grid * 0.25;
-
   display: flex;
   align-items: center;
-
   position: absolute;
   height: 100%;
   top: 0;
-
   left: -1000em;
   &:not(.suppressed) {
     :hover > &,
     :focus > &,
     :focus + &,
     &.visible {
-      left: calc(100% + #{$ca-grid - $tooltip__arrow-size});
+      @include ca-position-start(
+        calc(100% + #{$ca-grid - $tooltip__arrow-size})
+      );
     }
   }
 
@@ -40,12 +40,23 @@
   &::before {
     content: '';
     position: absolute;
-    left: -$tooltip__arrow-size;
     top: calc(50% - #{$tooltip__arrow-size});
-
     border: $tooltip__arrow-size solid transparent;
     border-left-width: 0;
     border-right-color: $ca-palette-ink;
+    left: -$tooltip__arrow-size;
+  }
+
+  &[dir='rtl'],
+  [dir='rtl'] & {
+    &::before {
+      border-left-width: $tooltip__arrow-size;
+      border-right-width: 0;
+      border-right-color: transparent;
+      border-left-color: $ca-palette-ink;
+      left: auto;
+      right: -$tooltip__arrow-size;
+    }
   }
 
   > * {
