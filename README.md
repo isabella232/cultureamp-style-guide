@@ -60,6 +60,8 @@ module.exports = decorateWithStyleGuide(webpackConfig, {
 });
 ```
 
+You will also need to add `focus-visible` to your build - by requiring it in your JavaScript or adding it to your webpack entrypoints.
+
 ### Importing React Components
 
 React components may be imported from the cultureamp-style-guide module, and
