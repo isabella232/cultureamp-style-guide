@@ -303,7 +303,7 @@ $caButton-formHeight: $ca-grid * 5/3;
   padding: 0 calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
   %caButtonSecondary & {
-    padding: 0 calc(#{$ca-grid * 0.25} - #{$caButton-border-width});
+    padding: 0 calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
   }
 
   @supports (mix-blend-mode: screen) {
@@ -315,11 +315,19 @@ $caButton-formHeight: $ca-grid * 5/3;
   :global(.js-focus-visible) %caButton:global(.focus-visible) & {
     padding: 0 calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
   }
+
+  :global(.js-focus-visible) %caButtonSecondary:global(.focus-visible) & {
+    padding: 0 calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
+  }
 }
 
 %caButtonLabel {
   &:only-child {
     margin: 0 $ca-grid / 2;
+
+    %caButtonSecondary & {
+      margin: 0;
+    }
   }
 
   &:not(:first-child) {
