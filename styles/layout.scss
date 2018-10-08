@@ -1,10 +1,10 @@
 @import 'type';
 
-$ca-layout-max-width: 1400px;
-$ca-layout-side-padding: 25px;
+$ca-layout-max-width: 1416px;
+$ca-layout-side-padding: 24px;
 $ca-layout-content-width: 1080px;
 $ca-layout-title-block-height: 5 * $ca-grid;
-$ca-layout-sidebar-width: 12 * $ca-grid;
+$ca-layout-sidebar-width: 10 * $ca-grid;
 
 @mixin ca-margin-start($size: 0) {
   margin-left: $size;
