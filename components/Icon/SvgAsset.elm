@@ -1,4 +1,4 @@
-module Icon.SvgAsset exposing (SvgAsset, svgAsset, decoder)
+module Icon.SvgAsset exposing (SvgAsset, decoder, svgAsset)
 
 import Json.Decode as Json
 

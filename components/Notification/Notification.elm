@@ -1,30 +1,29 @@
-module Notification.Notification
-    exposing
-        ( view
-        , inline
-        , toast
-        , global
-        , notificationType
-        , automationId
-        , Config
-        , NotificationType(..)
-        , NotificationState(..)
-        , NotificationStage(..)
-        , NotificationStateSetter
-        , getAutomationId
-        , notificationStage
-        , subscriptions
-        )
+module Notification.Notification exposing
+    ( Config
+    , NotificationStage(..)
+    , NotificationState(..)
+    , NotificationStateSetter
+    , NotificationType(..)
+    , automationId
+    , getAutomationId
+    , global
+    , inline
+    , notificationStage
+    , notificationType
+    , subscriptions
+    , toast
+    , view
+    )
 
-import Html exposing (Html, text, div, span, h6, p, button)
-import Html.Attributes
-import Html.Events as Events exposing (on, onWithOptions, defaultOptions)
-import Json.Decode as Json
+import AnimationFrame
 import CssModules exposing (css)
+import Html exposing (Html, button, div, h6, p, span, text)
+import Html.Attributes
+import Html.Events as Events exposing (defaultOptions, on, onWithOptions)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
+import Json.Decode as Json
 import Platform.Sub
-import AnimationFrame
 import Time exposing (every, second)
 
 
@@ -111,7 +110,7 @@ view (Config config) state onStateChange =
             case notificationStage state of
                 Disappearing height ->
                     [ Html.Attributes.style
-                        [ ( "marginTop", toString (-height) ++ "px" )
+                        [ ( "marginTop", toString -height ++ "px" )
                         ]
                     ]
 
@@ -138,6 +137,7 @@ view (Config config) state onStateChange =
                                 (\height ->
                                     if height /= oldHeight then
                                         Json.succeed <| onStateChange <| Autohide (Disappearing height)
+
                                     else
                                         Json.fail "ignore"
                                 )
@@ -160,6 +160,7 @@ view (Config config) state onStateChange =
                                 (\propertyName ->
                                     if propertyName == "margin-top" then
                                         Json.succeed <| onStateChange <| Manual Hidden
+
                                     else
                                         Json.fail "ignore"
                                 )
@@ -169,19 +170,19 @@ view (Config config) state onStateChange =
                 _ ->
                     []
     in
-        case notificationStage state of
-            Hidden ->
-                text ""
+    case notificationStage state of
+        Hidden ->
+            text ""
 
-            _ ->
-                div (className ++ style ++ automationId ++ onTransitionStart ++ onTransitionEnd)
-                    [ viewIcon (Config config)
-                    , div [ class .textContainer ]
-                        [ viewTitle (Config config)
-                        , p [ class .text ] config.content
-                        ]
-                    , viewCancelButton (Config config) state onStateChange
+        _ ->
+            div (className ++ style ++ automationId ++ onTransitionStart ++ onTransitionEnd)
+                [ viewIcon (Config config)
+                , div [ class .textContainer ]
+                    [ viewTitle (Config config)
+                    , p [ class .text ] config.content
                     ]
+                , viewCancelButton (Config config) state onStateChange
+                ]
 
 
 notificationClassName : ConfigValue msg -> NotificationState -> List (Html.Attribute msg)
@@ -195,7 +196,7 @@ notificationClassName config state =
         , ( .informative, config.notificationType == Informative )
         , ( .cautionary, config.notificationType == Cautionary )
         , ( .negative, config.notificationType == Negative )
-        , ( .hidden, (notificationStage state) /= Visible )
+        , ( .hidden, notificationStage state /= Visible )
         ]
     ]
 
@@ -206,12 +207,12 @@ viewIcon (Config { notificationType }) =
         iconAsset =
             icon notificationType
     in
-        div [ class .icon ]
-            [ Icon.view
-                (Icon.presentation |> Icon.inheritSize True)
-                iconAsset
-                |> Html.map never
-            ]
+    div [ class .icon ]
+        [ Icon.view
+            (Icon.presentation |> Icon.inheritSize True)
+            iconAsset
+            |> Html.map never
+        ]
 
 
 icon : NotificationType -> Icon.SvgAsset.SvgAsset
@@ -264,23 +265,24 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
                 )
             ]
     in
-        if hideCloseButton then
-            text ""
-        else
-            button
-                ([ class .cancel ]
-                    ++ onClickCancel
-                )
-                [ span
-                    [ class .cancelInner
-                    ]
-                    [ -- We are using a hidden span and Icon.presentation rather than the usual Icon.img to avoid this components API requiring a unique ID.
-                      span [ class .cancelLabel ] [ text "close notification" ]
-                    , Icon.view Icon.presentation
-                        (svgAsset "cultureamp-style-guide/icons/close.svg")
-                        |> Html.map never
-                    ]
+    if hideCloseButton then
+        text ""
+
+    else
+        button
+            ([ class .cancel ]
+                ++ onClickCancel
+            )
+            [ span
+                [ class .cancelInner
                 ]
+                [ -- We are using a hidden span and Icon.presentation rather than the usual Icon.img to avoid this components API requiring a unique ID.
+                  span [ class .cancelLabel ] [ text "close notification" ]
+                , Icon.view Icon.presentation
+                    (svgAsset "cultureamp-style-guide/icons/close.svg")
+                    |> Html.map never
+                ]
+            ]
 
 
 { class, classList } =
