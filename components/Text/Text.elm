@@ -50,7 +50,7 @@ view (Config config) children =
 
 
 className : Element msg -> TypeStyle -> Bool -> Html.Attribute msg
-className tag typeStyle inheritBaseline =
+className tag typeStyle poorlyNamed_inheritBaseline =
     let
         styleClass =
             case typeStyle of
@@ -99,13 +99,13 @@ className tag typeStyle inheritBaseline =
                 Button ->
                     .button
     in
-    classList
+    styles.classList
         [ ( styleClass, True )
-        , ( .inheritBaseline, inheritBaseline )
+        , ( .inheritBaseline, poorlyNamed_inheritBaseline )
         ]
 
 
-{ classList } =
+styles =
     css "cultureamp-style-guide/components/Text/Text.module.scss"
         { defaultStyle = ""
         , pageTitle = ""

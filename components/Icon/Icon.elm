@@ -21,7 +21,7 @@ import Svg.Attributes exposing (class, viewBox, xlinkHref)
 
 
 view : Config -> SvgAsset -> Html Never
-view ((Config { inheritSize, role }) as config) svgAsset =
+view ((Config configValue) as config) svgAsset =
     let
         { toString } =
             css "cultureamp-style-guide/components/Icon/Icon.module.scss"
@@ -34,7 +34,7 @@ view ((Config { inheritSize, role }) as config) svgAsset =
             [ class
                 -- cannot use Html.Attributes.classList for svg :(
                 ([ ( .icon, True )
-                 , ( .inheritSize, inheritSize )
+                 , ( .inheritSize, configValue.inheritSize )
                  ]
                     |> List.filter Tuple.second
                     |> List.map Tuple.first

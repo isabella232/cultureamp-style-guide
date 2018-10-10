@@ -48,7 +48,7 @@ view (Config config) label =
                 []
 
         buttonClass =
-            [ classList
+            [ styles.classList
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
@@ -90,7 +90,7 @@ view (Config config) label =
                 ++ title
                 ++ buttonTypeAttribs (Config config)
     in
-    span [ class .container ]
+    span [ styles.class .container ]
         [ case config.href of
             Just href ->
                 a (attribs ++ [ Html.Attributes.href href ])
@@ -156,7 +156,7 @@ buttonTypeAttribs (Config config) =
 
 viewContent : Config msg -> String -> Html Never
 viewContent (Config config) label =
-    span [ class .content ]
+    span [ styles.class .content ]
         [ viewIconFor config Start
         , viewLabel label config.iconButton
         , viewIconFor config End
@@ -169,7 +169,7 @@ viewLabel label iconButton =
         text ""
 
     else
-        span [ class .label ]
+        span [ styles.class .label ]
             [ text label ]
 
 
@@ -187,7 +187,7 @@ viewIconFor { icon, iconPosition } forPosition =
         text ""
 
 
-{ class, classList } =
+styles =
     css "cultureamp-style-guide/components/Button/components/GenericButton.module.scss"
         { container = ""
         , button = ""

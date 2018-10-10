@@ -15,16 +15,19 @@ module Notification.Notification exposing
     , view
     )
 
-import AnimationFrame
+-- import Html.Events as Events exposing (defaultOptions, on, onWithOptions)
+-- import Time exposing (every, second)
+
+import Browser.Events exposing (onAnimationFrame)
 import CssModules exposing (css)
 import Html exposing (Html, button, div, h6, p, span, text)
 import Html.Attributes
-import Html.Events as Events exposing (defaultOptions, on, onWithOptions)
+import Html.Events as Events exposing (on, onClick, preventDefaultOn)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
-import Json.Decode as Json
+import Json.Decode
 import Platform.Sub
-import Time exposing (every, second)
+import Time exposing (every, millisToPosix)
 
 
 {-| A notification component for Culture Amp projects.
@@ -110,14 +113,14 @@ view (Config config) state onStateChange =
             case notificationStage state of
                 Disappearing height ->
                     [ Html.Attributes.style
-                        [ ( "marginTop", toString -height ++ "px" )
-                        ]
+                        "marginTop"
+                        (String.fromInt -height ++ "px")
                     ]
 
                 _ ->
                     []
 
-        automationId =
+        poorlyNamed_automationId =
             case config.automationId of
                 Just id ->
                     [ Html.Attributes.attribute "data-automation-id" id ]
@@ -131,15 +134,15 @@ view (Config config) state onStateChange =
                 Autohide (Disappearing oldHeight) ->
                     [ on
                         "transitionstart"
-                        (Json.at [ "target", "clientHeight" ]
-                            Json.int
-                            |> Json.andThen
+                        (Json.Decode.at [ "target", "clientHeight" ]
+                            Json.Decode.int
+                            |> Json.Decode.andThen
                                 (\height ->
                                     if height /= oldHeight then
-                                        Json.succeed <| onStateChange <| Autohide (Disappearing height)
+                                        Json.Decode.succeed <| onStateChange <| Autohide (Disappearing height)
 
                                     else
-                                        Json.fail "ignore"
+                                        Json.Decode.fail "ignore"
                                 )
                         )
                     ]
@@ -155,14 +158,14 @@ view (Config config) state onStateChange =
                 Disappearing _ ->
                     [ on
                         "transitionend"
-                        (Json.field "propertyName" Json.string
-                            |> Json.andThen
+                        (Json.Decode.field "propertyName" Json.Decode.string
+                            |> Json.Decode.andThen
                                 (\propertyName ->
                                     if propertyName == "margin-top" then
-                                        Json.succeed <| onStateChange <| Manual Hidden
+                                        Json.Decode.succeed <| onStateChange <| Manual Hidden
 
                                     else
-                                        Json.fail "ignore"
+                                        Json.Decode.fail "ignore"
                                 )
                         )
                     ]
@@ -175,11 +178,11 @@ view (Config config) state onStateChange =
             text ""
 
         _ ->
-            div (className ++ style ++ automationId ++ onTransitionStart ++ onTransitionEnd)
+            div (className ++ style ++ poorlyNamed_automationId ++ onTransitionStart ++ onTransitionEnd)
                 [ viewIcon (Config config)
-                , div [ class .textContainer ]
+                , div [ styles.class .textContainer ]
                     [ viewTitle (Config config)
-                    , p [ class .text ] config.content
+                    , p [ styles.class .text ] config.content
                     ]
                 , viewCancelButton (Config config) state onStateChange
                 ]
@@ -187,7 +190,7 @@ view (Config config) state onStateChange =
 
 notificationClassName : ConfigValue msg -> NotificationState -> List (Html.Attribute msg)
 notificationClassName config state =
-    [ classList
+    [ styles.classList
         [ ( .notification, True )
         , ( .inline, config.variant == Inline )
         , ( .toast, config.variant == Toast )
@@ -202,12 +205,12 @@ notificationClassName config state =
 
 
 viewIcon : Config msg -> Html msg
-viewIcon (Config { notificationType }) =
+viewIcon (Config configValue) =
     let
         iconAsset =
-            icon notificationType
+            icon configValue.notificationType
     in
-    div [ class .icon ]
+    div [ styles.class .icon ]
         [ Icon.view
             (Icon.presentation |> Icon.inheritSize True)
             iconAsset
@@ -235,7 +238,7 @@ viewTitle : Config msg -> Html msg
 viewTitle (Config { title }) =
     case title of
         Just titleText ->
-            h6 [ class .title ] [ text titleText ]
+            h6 [ styles.class .title ] [ text titleText ]
 
         Nothing ->
             text ""
@@ -256,12 +259,16 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
                 ( _, _ ) ->
                     persistent
 
+        alwaysPreventDefault msg =
+            ( msg, True )
+
         onClickCancel =
-            [ onWithOptions
+            [ preventDefaultOn
                 "click"
-                { defaultOptions | preventDefault = True }
-                (Json.at [ "target", "parentNode", "clientHeight" ] Json.int
-                    |> Json.andThen (\height -> Json.succeed <| onStateChange <| Manual (Disappearing height))
+                (Json.Decode.map alwaysPreventDefault
+                    (Json.Decode.at [ "target", "parentNode", "clientHeight" ] Json.Decode.int
+                        |> Json.Decode.andThen (\height -> Json.Decode.succeed <| onStateChange <| Manual (Disappearing height))
+                    )
                 )
             ]
     in
@@ -270,14 +277,14 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
 
     else
         button
-            ([ class .cancel ]
+            ([ styles.class .cancel ]
                 ++ onClickCancel
             )
             [ span
-                [ class .cancelInner
+                [ styles.class .cancelInner
                 ]
                 [ -- We are using a hidden span and Icon.presentation rather than the usual Icon.img to avoid this components API requiring a unique ID.
-                  span [ class .cancelLabel ] [ text "close notification" ]
+                  span [ styles.class .cancelLabel ] [ text "close notification" ]
                 , Icon.view Icon.presentation
                     (svgAsset "cultureamp-style-guide/icons/close.svg")
                     |> Html.map never
@@ -285,7 +292,7 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
             ]
 
 
-{ class, classList } =
+styles =
     css "cultureamp-style-guide/components/Notification/components/GenericNotification.module.scss"
         { notification = ""
         , icon = ""
@@ -364,8 +371,8 @@ getAutomationId : Config msg -> Maybe String
 getAutomationId config =
     -- In our Notification.Demo app we need to access the automationId as a way of tracking component states.
     case config of
-        Config { automationId } ->
-            automationId
+        Config configValue ->
+            configValue.automationId
 
 
 notificationStage : NotificationState -> NotificationStage
@@ -398,15 +405,15 @@ subscriptions allNotifications =
             (\( state, setter ) ->
                 case state of
                     Manual Appearing ->
-                        Just <| AnimationFrame.times <| always <| setter <| Manual Visible
+                        Just <| onAnimationFrame <| always <| setter <| Manual Visible
 
                     Autohide Appearing ->
-                        Just <| AnimationFrame.times <| always <| setter <| Autohide Visible
+                        Just <| onAnimationFrame <| always <| setter <| Autohide Visible
 
                     Autohide Visible ->
                         -- Note: we do not know the height of the notification here, so cannot animate margin-top.
                         -- We have a "transitionstart" event listener that will read the clientHeight and correct this value.
-                        Just <| every (5 * second) <| always <| setter <| Autohide (Disappearing 0)
+                        Just <| every 5000 <| always <| setter <| Autohide (Disappearing 0)
 
                     _ ->
                         Nothing
