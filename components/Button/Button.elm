@@ -26,7 +26,7 @@ import CssModules exposing (css)
 import Html exposing (Html, a, button, span, text)
 import Html.Attributes
 import Html.Attributes.Aria
-import Html.Events as Events exposing (defaultOptions, onWithOptions)
+import Html.Events as Events exposing (preventDefaultOn)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (SvgAsset)
 import Json.Decode as Json
@@ -40,7 +40,7 @@ import Maybe
 view : Config msg -> String -> Html msg
 view (Config config) label =
     let
-        disabled =
+        poorlyNamed_disabled =
             if config.disabled then
                 [ Html.Attributes.disabled True ]
 
@@ -66,7 +66,7 @@ view (Config config) label =
                 ]
             ]
 
-        automationId =
+        poorlyNamed_automationId =
             case config.automationId of
                 Just id ->
                     [ Html.Attributes.attribute "data-automation-id" id ]
@@ -86,18 +86,18 @@ view (Config config) label =
         attribs =
             buttonClass
                 ++ onClickAttribs (Config config)
-                ++ automationId
+                ++ poorlyNamed_automationId
                 ++ title
                 ++ buttonTypeAttribs (Config config)
     in
     span [ styles.class .container ]
         [ case config.href of
-            Just href ->
-                a (attribs ++ [ Html.Attributes.href href ])
+            Just poorlyNamed_href ->
+                a (attribs ++ [ Html.Attributes.href poorlyNamed_href ])
                     [ viewContent (Config config) label |> Html.map never ]
 
             Nothing ->
-                button (attribs ++ disabled)
+                button (attribs ++ poorlyNamed_disabled)
                     [ viewContent (Config config) label |> Html.map never ]
         ]
 
@@ -107,23 +107,22 @@ onClickAttribs (Config config) =
     case config.onClick of
         Just msg ->
             let
-                preventDefault =
+                preventDefault tagger =
                     case config.buttonType of
-                        Just buttonType ->
-                            case buttonType of
+                        Just poorlyNamed_buttonType ->
+                            case poorlyNamed_buttonType of
                                 Submit ->
-                                    False
+                                    ( tagger, False )
 
                                 Reset ->
-                                    False
+                                    ( tagger, False )
 
                         Nothing ->
-                            True
+                            ( tagger, True )
             in
-            [ onWithOptions
+            [ preventDefaultOn
                 "click"
-                { defaultOptions | preventDefault = preventDefault }
-                (Json.succeed msg)
+                (Json.succeed (preventDefault msg))
             ]
 
         Nothing ->
@@ -138,10 +137,10 @@ buttonTypeAttribs (Config config) =
 
         Nothing ->
             case config.buttonType of
-                Just buttonType ->
+                Just poorlyNamed_buttonType ->
                     let
                         encodedButtonType =
-                            case buttonType of
+                            case poorlyNamed_buttonType of
                                 Submit ->
                                     "submit"
 
@@ -164,8 +163,8 @@ viewContent (Config config) label =
 
 
 viewLabel : String -> Bool -> Html Never
-viewLabel label iconButton =
-    if iconButton then
+viewLabel label poorlyNamed_iconButton =
+    if poorlyNamed_iconButton then
         text ""
 
     else
@@ -174,9 +173,9 @@ viewLabel label iconButton =
 
 
 viewIconFor : ConfigValue msg -> IconPosition -> Html Never
-viewIconFor { icon, iconPosition } forPosition =
-    if iconPosition == forPosition then
-        case icon of
+viewIconFor configValue forPosition =
+    if configValue.iconPosition == forPosition then
+        case configValue.icon of
             Just svgAsset ->
                 Icon.view Icon.presentation svgAsset
 
@@ -311,8 +310,8 @@ disabled value (Config config) =
 
 
 icon : SvgAsset -> Config msg -> Config msg
-icon icon (Config config) =
-    Config { config | icon = Just icon }
+icon poorlyNamed_icon (Config config) =
+    Config { config | icon = Just poorlyNamed_icon }
 
 
 iconPosition : IconPosition -> Config msg -> Config msg
