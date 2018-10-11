@@ -14,4 +14,4 @@ A button!
 
 </IntroParagraph>
 
-<Demo presets={buttonPresets} elm={Elm.Button.ButtonDemo} />
+<Demo presets={buttonPresets} elm={Elm.Elm.Button.ButtonDemo} />

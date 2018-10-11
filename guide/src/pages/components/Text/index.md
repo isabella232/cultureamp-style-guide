@@ -17,7 +17,7 @@ You can use the default type styles for the semantic element you choose, or choo
 
 </IntroParagraph>
 
-<Demo presets={presets} elm={Elm.Text.Demo} />
+<Demo presets={presets} elm={Elm.Elm.Text.Demo} />
 
 ## Elm
 

@@ -1,11 +1,12 @@
-module Icon.Demo exposing (..)
+module Icon.Demo exposing (Model, Msg, ViewArguments, decode, init, main, view)
 
-import Html exposing (Html, text)
-import Json.Encode
-import Json.Decode as Json
+import Browser
 import Demo exposing (..)
+import Html exposing (Html, text)
 import Icon.Icon as Icon exposing (..)
 import Icon.SvgAsset as SvgAsset exposing (SvgAsset)
+import Json.Decode as Json
+import Json.Encode
 
 
 type alias Model =
@@ -24,7 +25,7 @@ type alias Msg =
 
 main : Program Json.Encode.Value Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init
         , view = view
         , update = \_ model -> ( model, Cmd.none )
@@ -66,14 +67,14 @@ decode props =
                                 Json.fail ("Error decoding '" ++ string ++ "': not a valid icon role")
                     )
     in
-        Ok presentation
-            -- variants
-            |> decodeAndUpdate iconVariantDecoder always props
-            -- -- modifiers
-            |> decodeField "inheritSize" Json.bool inheritSize props
-            -- arguments
-            |> Result.map ViewArguments
-            |> decodeField "icon" SvgAsset.decoder (|>) props
+    Ok presentation
+        -- variants
+        |> decodeAndUpdate iconVariantDecoder always props
+        -- -- modifiers
+        |> decodeField "inheritSize" Json.bool inheritSize props
+        -- arguments
+        |> Result.map ViewArguments
+        |> decodeField "icon" SvgAsset.decoder (|>) props
 
 
 view : Model -> Html Msg

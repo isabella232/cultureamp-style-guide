@@ -1,10 +1,12 @@
-module Text.Demo exposing (..)
+module Text.Demo exposing (Model, Msg, ViewArguments, decodeText, init, main, styleDecoder, tagDecoder, update, view)
 
-import Html exposing (Html)
-import Json.Encode
-import Json.Decode as Json
+import Browser
 import Demo exposing (..)
+import Html exposing (Html)
+import Json.Decode as Json
+import Json.Encode
 import Text.Text as Text exposing (..)
+
 
 
 -- DEMO APP
@@ -21,7 +23,7 @@ type alias Msg =
 
 main : Program Json.Encode.Value Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init
         , view = view
         , update = update
@@ -60,7 +62,7 @@ decodeText : JsxDecoder Msg
 decodeText =
     createPropsToHtmlDecoder
         (\props ->
-            Ok (div)
+            Ok div
                 -- variants
                 |> decodeField "tag" tagDecoder (\newConfig prevConfig -> newConfig) props
                 -- modifiers

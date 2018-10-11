@@ -8,6 +8,7 @@
     "color": "^3.0.0",
     "color-string": "1.5.2",
     "cultureamp-style-guide": "^10.1.0",
+    "elm": "^0.19.0-bugfix2",
     "gatsby": "^1.9.238",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
@@ -36,7 +37,7 @@
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
   },
   "devDependencies": {
-    "elm-webpack-loader": "^4.5.0",
+    "elm-webpack-loader": "^5.0.0",
     "prettier": "^1.11.1"
   }
 }

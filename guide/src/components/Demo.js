@@ -16,6 +16,9 @@ const FULL = Symbol('full');
 const REACT = Symbol('react');
 const ELM = Symbol('elm');
 
+// import Elm from '../pages/components/Button/ButtonDemo.elm';
+// console.log(Elm);
+
 export default class Demo extends React.Component {
   state = {
     selectedPreset: 0,
@@ -373,7 +376,10 @@ class ElmWithRefreshingProps extends React.Component {
 
   mountElm() {
     this.node.innerHTML = '';
-    const app = this.props.src.embed(this.node, this.props.flags);
+    const app = this.props.src.init({
+      node: this.node,
+      flags: this.props.flags,
+    });
 
     if (typeof this.props.ports !== 'undefined') {
       this.props.ports(app.ports);

@@ -14,4 +14,4 @@ A button with an icon but no label.
 
 </IntroParagraph>
 
-<Demo presets={buttonPresets} elm={Elm.Button.IconButtonDemo} />
+<Demo presets={buttonPresets} elm={Elm.Elm.Button.IconButtonDemo} />

@@ -15,7 +15,7 @@ An icon! To control its color, set color on a parent element, and it will be inh
 
 </IntroParagraph>
 
-<Demo presets={iconPresets} elm={Elm.Icon.Demo} />
+<Demo presets={iconPresets} elm={Elm.Elm.Icon.Demo} />
 
 ### Interaction States
 
