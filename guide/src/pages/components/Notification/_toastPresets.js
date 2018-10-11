@@ -79,11 +79,10 @@ const presets = [
     node: (
       <ToastNotification
         type="negative"
-        title="Error"
+        title="No network connection"
         automationId="notification1"
       >
-        Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
-        as possible. For assistance, please <a href="/">contact support</a>
+        Check your connection and try again. <a href="/">Refresh</a>.
       </ToastNotification>
     ),
   },
@@ -120,12 +119,10 @@ const presets = [
         </ToastNotification>
         <ToastNotification
           type="negative"
-          title="Error"
+          title="No network connection"
           automationId="notification4"
         >
-          Oh, snap! Some shit's just gone down. We're trying to fix it as
-          quickly as possible. For assistance, please{' '}
-          <a href="/">contact support</a>
+          Check your connection and try again. <a href="/">Refresh</a>.
         </ToastNotification>
       </div>
     ),
