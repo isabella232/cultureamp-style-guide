@@ -33,9 +33,9 @@ export default class Demo extends React.Component {
     return (
       <div className={styles.root}>
         <p className={styles.p}>
-          { this.props.elm ?
-              "Available for both Elm and React." :
-              "Currently available for React." }
+          {this.props.elm
+            ? 'Available for both Elm and React.'
+            : 'Currently available for React.'}
         </p>
 
         {this.renderPresetList()}
