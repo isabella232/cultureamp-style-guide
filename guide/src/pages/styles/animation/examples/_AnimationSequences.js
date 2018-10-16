@@ -25,20 +25,22 @@ class AnimationPresets extends React.PureComponent {
       <React.Fragment>
         <Grid className={classnames({ ['is-animating']: isAnimating })}>
           <Drop classes="spin-1" color="#43E699" onClick={this.replay} />
-          <Drop classes="spin-2" color="#7BEEB8" onClick={this.replay} />
-          <Drop classes="spin-3" color="#C7F8E0" onClick={this.replay} />
+          <Drop classes="spin-2" color="#43E699" onClick={this.replay} />
+          <Drop classes="spin-3" color="#43E699" onClick={this.replay} />
         </Grid>
         <div>
-          <Code>{`$duration: $deliberate, $delay: 400ms
+          <Code>{`$duration: $deliberate;
+$delay: -$slow;
+
 @include mui-series {
   .spin-1 {
-    @include mui-queue($deliberate, -$slow, spin);
+    @include mui-queue($duration, $delay, spin, fade($from: 0.75));
   }
   .spin-2 {
-    @include mui-queue($deliberate, -$slow, spin);
+    @include mui-queue($duration, $delay, spin, fade($from: 0.5));
   }
   .spin-3 {
-    @include mui-queue($deliberate, 0s, spin);
+    @include mui-queue($duration, 0, spin, fade($from: 0.25));
   }
 }`}</Code>
         </div>

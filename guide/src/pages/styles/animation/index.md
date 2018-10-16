@@ -34,27 +34,27 @@ From the studies cited in the book, most people first notice/perceive an animati
 
 Sizing and spacing (e.g. distance to travel) can influence the durations needed, so 200ms might be more appropriate than 300ms for some elements.
 
-| CSS class                 | Duration |
-| ------------------------- | -------- |
-| `.ca-duration-immediate`  | 100ms    |
-| `.ca-duration-fast`       | 300ms    |
-| `.ca-duration-slow`       | 400ms    |
-| `.ca-duration-deliberate` | 700ms    |
+| Class                   | Duration |
+| ----------------------- | -------- |
+| .ca-duration-immediate  | 100ms    |
+| .ca-duration-fast       | 300ms    |
+| .ca-duration-slow       | 400ms    |
+| .ca-duration-deliberate | 700ms    |
 
 ## Transitions
 
 ### Presets
 
-Below are examples of pre-defined css transitions that are ready to use. Please be aware that all transitions have accompanying mixins that allow you to define customised transition in respect to `duration`, `delay`, `direction`...
+Below are examples of pre-defined css transitions that are ready to use. Please be aware that all transitions have accompanying mixins that allow you to define customised transition in respect to _duration_, _delay_, _direction_...
 
 <TransitionPresets />
 
-| Type  | CSS class                       |
-| ----- | ------------------------------- |
-| Fade  | `.ca-transition-fade-[in|out]`  |
-| Slide | `.ca-transition-slide-[in|out]` |
-| Zoom  | `.ca-transition-zoom-[in|out]`  |
-| Spin  | `.ca-transition-spin-[in|out]`  |
+| Type  | Class                            |
+| ----- | -------------------------------- |
+| Fade  | .ca-transition-fade-{direction}  |
+| Slide | .ca-transition-slide-{direction} |
+| Zoom  | .ca-transition-zoom-{direction}  |
+| Spin  | .ca-transition-spin-{direction}  |
 
 ## Animations
 
@@ -62,10 +62,10 @@ Below are examples of pre-defined css transitions that are ready to use. Please 
 
 <AnimationPresets />
 
-| Type   | CSS class              |
-| ------ | ---------------------- |
-| Shake  | `.ca-transition-shake` |
-| Wiggle | `.ca-animation-wiggle` |
+| Type   | Class                |
+| ------ | -------------------- |
+| Shake  | .ca-transition-shake |
+| Wiggle | .ca-animation-wiggle |
 
 ## Sequencing Animations
 
