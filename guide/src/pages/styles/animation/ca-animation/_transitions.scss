@@ -1,0 +1,34 @@
+///////////////////////////////////////////////
+// TRANSITION PRESETS                        //
+///////////////////////////////////////////////
+.ca-transition-fade-in {
+  @include mui-fade(in);
+}
+
+.ca-transition-fade-out {
+  @include mui-fade(out);
+}
+
+.ca-transition-slide-in {
+  @include mui-slide($direction: up, $timing: $bounce-in);
+}
+
+.ca-transition-slide-out {
+  @include mui-slide($direction: down, $timing: $bounce-out);
+}
+
+.ca-transition-spin-in {
+  @include mui-spin($direction: cw);
+}
+
+.ca-transition-spin-out {
+  @include mui-spin($direction: ccw);
+}
+
+.ca-transition-zoom-in {
+  @include mui-zoom(in, $timing: $bounce-in);
+}
+
+.ca-transition-zoom-out {
+  @include mui-zoom(out, $timing: $bounce-out);
+}

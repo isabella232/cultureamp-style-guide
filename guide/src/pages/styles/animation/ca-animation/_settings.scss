@@ -1,0 +1,28 @@
+// CLASSES
+$motion-ui-classes: (
+  chain: true,
+  prefix: 'ca-',
+  active: '-active'
+);
+
+// TIMING FUNCTIONS
+$motion-ui-delays: (
+  default: $instant,
+  short: $slow,
+  long: $deliberate
+);
+
+// DEFAULT DURATIONS
+$motion-ui-easings: (
+  default: $linear,
+  linear: $linear,
+  ease: $ease,
+  ease-in: $ease-in,
+  ease-out: $ease-out,
+  ease-in-out: $ease-in-out,
+  bounce-in: $bounce-in,
+  bounce-out: $bounce-out,
+  bounce-in-out: $bounce-in-out
+);
+
+@import '~motion-ui/src/motion-ui';

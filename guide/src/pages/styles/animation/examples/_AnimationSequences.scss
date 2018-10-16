@@ -1,0 +1,13 @@
+@import './../ca-animation/ca-animation.scss';
+
+@include mui-series {
+  .spin-1 {
+    @include mui-queue($deliberate, -$slow, spin);
+  }
+  .spin-2 {
+    @include mui-queue($deliberate, -$slow, spin);
+  }
+  .spin-3 {
+    @include mui-queue($deliberate, 0s, spin);
+  }
+}

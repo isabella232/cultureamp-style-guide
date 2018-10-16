@@ -1,0 +1,12 @@
+///////////////////////////////////////////////
+// EASING PRESETS                            //
+///////////////////////////////////////////////
+$default: linear;
+$linear: linear;
+$ease: ease;
+$ease-in: ease-in;
+$ease-out: ease-out;
+$ease-in-out: ease-in-out;
+$bounce-in: cubic-bezier(0.485, 0.155, 0.24, 1.245);
+$bounce-out: cubic-bezier(0.485, 0.155, 0.515, 0.845);
+$bounce-in-out: cubic-bezier(0.76, -0.245, 0.24, 1.245);

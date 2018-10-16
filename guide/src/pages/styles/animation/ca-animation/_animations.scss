@@ -1,0 +1,7 @@
+.ca-animation-wiggle {
+  @include mui-animation(wiggle());
+}
+
+.ca-animation-shake {
+  @include mui-animation(shake());
+}
