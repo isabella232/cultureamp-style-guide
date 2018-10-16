@@ -25,8 +25,8 @@ view ((Config configValue) as config) svgAsset =
     let
         { toString } =
             css "cultureamp-style-guide/components/Icon/Icon.module.scss"
-                { icon = ""
-                , inheritSize = ""
+                { icon = "icon"
+                , inheritSize = "inheritSize"
                 }
     in
     svg
