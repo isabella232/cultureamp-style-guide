@@ -14,11 +14,12 @@ class TransitionDrop extends React.PureComponent {
   state = {
     isAnimating: false,
     direction: 'out',
-    duration: 400,
-    preset: 'slow',
+    duration: 300,
+    preset: 'fast',
   };
   presets = [
     { preset: 'immediate', duration: 100 },
+    { preset: 'rapid', duration: 200 },
     { preset: 'fast', duration: 300 },
     { preset: 'slow', duration: 400 },
     { preset: 'deliberate', duration: 700 },
@@ -75,7 +76,7 @@ class TransitionDrop extends React.PureComponent {
 
     const classes = classnames(
       `ca-duration-${preset}`,
-      `ca-transition-${name}-${direction}`,
+      `ca-animation-${name}-${direction}`,
       `ca-${state}`,
       {
         [`ca-${state}-active`]: isAnimating,

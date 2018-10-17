@@ -1,34 +1,37 @@
 ///////////////////////////////////////////////
 // TRANSITION PRESETS                        //
 ///////////////////////////////////////////////
-.ca-transition-fade-in {
+.ca-animation-fade-in {
   @include mui-fade(in);
 }
 
-.ca-transition-fade-out {
+.ca-animation-fade-out {
   @include mui-fade(out);
 }
 
-.ca-transition-slide-in {
-  @include mui-slide($direction: up, $timing: $bounce-in);
+.ca-animation-slide-fade-in {
+  // @include mui-slide($direction: up, $timing: $ca-bounce-in);
+  @include mui-animation(fade, slide($direction: up, $amount: 120%));
 }
 
-.ca-transition-slide-out {
-  @include mui-slide($direction: down, $timing: $bounce-out);
+.ca-animation-slide-fade-out {
+  // @include mui-slide($direction: down, $timing: $ca-bounce-out);
+  @include mui-animation(fade, slide($direction: down, $amount: 120%));
 }
 
-.ca-transition-spin-in {
+.ca-animation-spin-in {
   @include mui-spin($direction: cw);
 }
 
-.ca-transition-spin-out {
+.ca-animation-spin-out {
   @include mui-spin($direction: ccw);
 }
 
-.ca-transition-zoom-in {
-  @include mui-zoom(in, $timing: $bounce-in);
+.ca-animation-scale-fade-in {
+  @include mui-zoom(in, $timing: $ca-bounce-in);
 }
 
-.ca-transition-zoom-out {
-  @include mui-zoom(out, $timing: $bounce-out);
+.ca-animation-scale-fade-out {
+  @include mui-zoom(out, $timing: $ca-bounce-out);
 }
+

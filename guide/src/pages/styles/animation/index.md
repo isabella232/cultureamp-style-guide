@@ -146,7 +146,25 @@ Choreographed entrances are reserved for “red carpet” or “grand unveiling�
 
 
 
-## Durations and delays
+### Easing timing functions
+
+When we talk about “ease in”, “ease out”, or “ease-in-out”, we do NOT mean the standard keyword CSS values. We use Culture Amp branded timing function e.g. $ca-ease-in: cubic-bezier(…).
+
+Here are some extremely loose guidelines:
+
+- Ease in (acceleration) for system-initiated animation (e.g. modal pop up).
+- Ease out (deceleration) for user-initiated animation (e.g. page transitions).
+- Ease in and out (speed up and slow down) when moving a thing from one place to another.
+- Linear (constant) for fades and color changes (no movement).
+- Bounce for fun and attention (e.g. jiggling errors).
+
+
+
+### Durations and delays
+
+Entrances can be faster than exits.
+
+Use delays to “sequence” multiple animations.
 
 Most people first notice or perceive an animation at about the 250ms mark, so we only use the "Immediate" option for the most subtle animations (color changes etc).
 
@@ -164,31 +182,29 @@ Sizing and spacing (e.g. distance to travel) can influence durations needed, so 
 
 
 
-## Transitions
+## Effects and styles
 
 ### Presets
 
-Here are examples of pre-defined CSS transitions that are ready to use. All transition styles have accompanying mixins that allow you to define customized transitions in respect to _duration_, _delay_, and _direction_.
+Here are examples of pre-defined CSS transitions and animations that are ready to use. All transition styles have accompanying mixins that allow you to define customized behavior in respect to _duration_, _delay_, and _direction_.
 
 <TransitionPresets />
-
-| Type  | Class                            |
-| ----- | -------------------------------- |
-| Fade  | .ca-transition-fade-{direction}  |
-| Slide | .ca-transition-slide-{direction} |
-| Zoom  | .ca-transition-zoom-{direction}  |
-| Spin  | .ca-transition-spin-{direction}  |
-
-## Animations
-
-### Presets
-
 <AnimationPresets />
 
-| Type   | Class                |
-| ------ | -------------------- |
-| Shake  | .ca-transition-shake |
-| Wiggle | .ca-animation-wiggle |
+We use **Slide and Fade** for revealing or moving existing content whereas we use **Scale and Fade** for creating content, such as new items in a list.
+
+| Type           | Class                                |
+| ----------     | ------------------------------------ |
+| Fade           | .ca-animation-fade-{direction}       |
+| Slide and Fade | .ca-animation-slide-fade-{direction} |
+| Scale and Fade | .ca-animation-scale-fade-{direction} |
+| Spin           | .ca-animation-spin-{direction}       |
+| Shake          | .ca-animation-shake                  |
+| Wiggle         | .ca-animation-wiggle                 |
+
+
+
+
 
 ## Sequencing Animations
 
@@ -197,23 +213,33 @@ Here are examples of pre-defined CSS transitions that are ready to use. All tran
 [List sequence animation example](https://codesandbox.io/s/z35w3zzmom)
 [List sequence transition example](https://codesandbox.io/s/o72wwooq0y)
 
-## Technical Considerations
 
-* Achieving 60 fps
-* Collapsing height
-* ...
 
-### Do’s and Dont’s
 
-<TipContainer>
-<TipCard title="Try to…" type="tip">
 
-* use CSS animations.
+## Technical considerations
 
-</TipCard>
-<TipCard title="Avoid…" type="warning">
+### Rendering performance
 
-* animating width, height... properties where possible
+For fast 60&nbsp;frames per second animations, you can cheaply animate:
 
-</TipCard>
-</TipContainer>
+- Opacity
+- Translate (move the position)
+- Scale (pixel scaling)
+- Rotate
+
+Note: none of these affect the “box” the item takes up on the page. You can use “transform: scale” or “transform: translate” but the content will still take up the same space on the page as if no transform happened.
+
+For animating other properties, you might use “will-change” so the browser can set up appropriate optimizations ahead of time before the element is actually changed.
+
+
+
+### Animate collapsing height
+
+There are trade-offs to the different approaches to Expand and Collapse animations.
+
+- “transform: scaleY()” - fast, but items below do not move up
+- “transform: translateY()” - fast, but items below do not move up
+- “height: 0” - the box shrinks height, so content inside is reflowed (can look awkward, or generate scrollbars, etc.)
+- “margin-top:” - the box stays the same size, but shifts up and consumes less space, so items below shift up. (This can result in overlapping content above if you are not careful!) Useful if you want to “slide behind” another element or if you time it so the shift up happens in conjunction with a fade out such that it has mostly faded out by the time it would overlap with other content.
+
