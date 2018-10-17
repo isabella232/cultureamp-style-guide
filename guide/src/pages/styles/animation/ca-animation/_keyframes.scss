@@ -1,0 +1,18 @@
+/// Creates a pulsing animation.
+/// @return {Map} A keyframes map that can be used with the `generate-keyframes()` mixin.
+@function pulse() {
+  $keyframes: ();
+
+  $keyframes: (
+    name: -mui-string-safe('pulse'),
+    0: (transform: scale3d(1, 1, 1), animation-timing-function: $ca-ease-in),
+    50:
+      (
+        transform: scale3d(1.05, 1.05, 1.05),
+        animation-timing-function: $ca-ease-in
+      ),
+    100: (transform: scale3d(1, 1, 1), animation-timing-function: $ca-ease-in)
+  );
+
+  @return $keyframes;
+}

@@ -1,7 +1,7 @@
 @import './../ca-animation/ca-animation.scss';
 
-$duration: $deliberate;
-$delay: -$slow;
+$duration: $deliberate; // 700ms
+$delay: -$slow; // -400ms (stagger effect)
 
 @include mui-series {
   .spin-1 {

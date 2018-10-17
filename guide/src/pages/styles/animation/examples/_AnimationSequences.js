@@ -29,8 +29,8 @@ class AnimationPresets extends React.PureComponent {
           <Drop classes="spin-3" color="#43E699" onClick={this.replay} />
         </Grid>
         <div>
-          <Code>{`$duration: $deliberate;
-$delay: -$slow;
+          <Code>{`$duration: $deliberate; // 700ms
+$delay: -$slow; // -400ms (stagger effect)
 
 @include mui-series {
   .spin-1 {

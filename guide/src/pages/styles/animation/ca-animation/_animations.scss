@@ -1,10 +1,6 @@
 ///////////////////////////////////////////////
 // ANIMATION PRESETS                         //
 ///////////////////////////////////////////////
-.ca-animation-wiggle {
-  @include mui-animation(wiggle());
-}
-
-.ca-animation-shake {
-  @include mui-animation(shake());
+.ca-animation-pulse {
+  @include mui-animation(pulse());
 }

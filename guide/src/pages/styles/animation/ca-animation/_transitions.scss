@@ -10,13 +10,11 @@
 }
 
 .ca-animation-slide-fade-in {
-  // @include mui-slide($direction: up, $timing: $ca-bounce-in);
-  @include mui-animation(fade, slide($direction: up, $amount: 120%));
+  @include mui-slide($direction: up, $fade: true, $timing: $ca-bounce-in);
 }
 
 .ca-animation-slide-fade-out {
-  // @include mui-slide($direction: down, $timing: $ca-bounce-out);
-  @include mui-animation(fade, slide($direction: down, $amount: 120%));
+  @include mui-slide($direction: down, $fade: true, $timing: $ca-bounce-out);
 }
 
 .ca-animation-spin-in {
@@ -34,4 +32,3 @@
 .ca-animation-scale-fade-out {
   @include mui-zoom(out, $timing: $ca-bounce-out);
 }
-
