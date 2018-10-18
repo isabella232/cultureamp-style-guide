@@ -199,6 +199,7 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
     // When the title and text are on different lines this ensures the baselines of the first lines are exactly 1 grid unit apart.
     // When they are both on a single line it ensures both are 1 grid unit tall.
     margin-top: $ca-grid / 4;
+    flex: 0 1 auto;
   }
 
   %ca-notification---global & {
