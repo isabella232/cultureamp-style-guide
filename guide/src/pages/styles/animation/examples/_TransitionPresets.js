@@ -10,7 +10,6 @@ class TransitionPresets extends React.PureComponent {
         <TransitionDrop name="fade" color="#45AD8F" />
         <TransitionDrop name="slide-fade" color="#1B7688" />
         <TransitionDrop name="scale-fade" color="#253C64" />
-        <TransitionDrop name="spin" color="#727193" />
       </Grid>
     );
   }

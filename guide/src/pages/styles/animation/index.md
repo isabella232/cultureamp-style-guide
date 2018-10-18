@@ -165,9 +165,8 @@ We use **Slide and Fade** for revealing or moving existing content whereas we us
 | Fade           | .ca-animation-fade-{direction}       |
 | Slide and Fade | .ca-animation-slide-fade-{direction} |
 | Scale and Fade | .ca-animation-scale-fade-{direction} |
-| Spin           | .ca-animation-spin-{direction}       |
-| Pop          | .ca-animation-pop                  |
-| Pulsate          | .ca-animation-pulsate                  |
+| Pop            | .ca-animation-pop                    |
+| Pulsate        | .ca-animation-pulsate                |
 
 ## Sequencing Animations
 

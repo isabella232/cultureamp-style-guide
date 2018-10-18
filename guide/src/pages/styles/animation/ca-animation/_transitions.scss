@@ -17,14 +17,6 @@
   @include mui-slide($direction: down, $fade: true, $timing: $ca-bounce-out);
 }
 
-.ca-animation-spin-in {
-  @include mui-spin($direction: cw);
-}
-
-.ca-animation-spin-out {
-  @include mui-spin($direction: ccw);
-}
-
 .ca-animation-scale-fade-in {
   @include mui-zoom(in, $timing: $ca-bounce-in);
 }
