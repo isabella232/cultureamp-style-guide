@@ -32,15 +32,15 @@ class AnimationPresets extends React.PureComponent {
           <Code>{`$duration: $deliberate; // 700ms
 $delay: -$slow; // -400ms (stagger effect)
 
-@include mui-series {
+@include ca-series {
   .spin-1 {
-    @include mui-queue($duration, $delay, spin, fade($from: 0.75));
+    @include ca-queue($duration, $delay, spin, fade($from: 0.75));
   }
   .spin-2 {
-    @include mui-queue($duration, $delay, spin, fade($from: 0.5));
+    @include ca-queue($duration, $delay, spin, fade($from: 0.5));
   }
   .spin-3 {
-    @include mui-queue($duration, 0, spin, fade($from: 0.25));
+    @include ca-queue($duration, 0, spin, fade($from: 0.25));
   }
 }`}</Code>
         </div>

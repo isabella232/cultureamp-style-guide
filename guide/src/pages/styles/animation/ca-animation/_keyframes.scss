@@ -1,5 +1,5 @@
-/// Creates a pulsing animation.
-/// @return {Map} A keyframes map that can be used with the `generate-keyframes()` mixin.
+// Creates a pop animation.
+// @return {Map} A keyframes map that can be used with the `generate-keyframes()` mixin.
 @function pop() {
   $keyframes: ();
 
@@ -17,6 +17,8 @@
   @return $keyframes;
 }
 
+// Creates a pulsing animation.
+// @return {Map} A keyframes map that can be used with the `generate-keyframes()` mixin.
 @function pulsate() {
   $keyframes: ();
 

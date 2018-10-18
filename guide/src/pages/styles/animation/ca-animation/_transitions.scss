@@ -2,25 +2,25 @@
 // TRANSITION PRESETS                        //
 ///////////////////////////////////////////////
 .ca-animation-fade-in {
-  @include mui-fade(in);
+  @include ca-fade(in);
 }
 
 .ca-animation-fade-out {
-  @include mui-fade(out);
+  @include ca-fade(out);
 }
 
 .ca-animation-slide-fade-in {
-  @include mui-slide($direction: up, $fade: true, $timing: $ca-bounce-in);
+  @include ca-slide($direction: up, $fade: true, $timing: $ca-bounce-in);
 }
 
 .ca-animation-slide-fade-out {
-  @include mui-slide($direction: down, $fade: true, $timing: $ca-bounce-out);
+  @include ca-slide($direction: down, $fade: true, $timing: $ca-bounce-out);
 }
 
 .ca-animation-scale-fade-in {
-  @include mui-zoom(in, $timing: $ca-bounce-in);
+  @include ca-zoom(in, $timing: $ca-bounce-in);
 }
 
 .ca-animation-scale-fade-out {
-  @include mui-zoom(out, $timing: $ca-bounce-out);
+  @include ca-zoom(out, $timing: $ca-bounce-out);
 }
