@@ -1,4 +1,5 @@
-import React from 'react';
+// @flow
+import * as React from 'react';
 import reactElementToJSXString from 'react-element-to-jsx-string';
 import Text from 'cultureamp-style-guide/components/Text';
 import Button from 'cultureamp-style-guide/components/Button';
@@ -8,18 +9,45 @@ import styles from './Demo.module.scss';
 
 const MIN_CANVAS_WIDTH = 240;
 
-const SMALL = Symbol('small');
-const MEDIUM = Symbol('medium');
-const LARGE = Symbol('large');
-const RANDOM = Symbol('random');
-const FULL = Symbol('full');
-const REACT = Symbol('react');
-const ELM = Symbol('elm');
+type CanvasSize = 'small' | 'medium' | 'large' | 'random' | 'full';
+const SMALL = 'small';
+const MEDIUM = 'medium';
+const LARGE = 'large';
+const RANDOM = 'random';
+const FULL = 'full';
 
-// import Elm from '../pages/components/Button/ButtonDemo.elm';
-// console.log(Elm);
+type Platform = 'react' | 'elm';
+const REACT = 'react';
+const ELM = 'elm';
 
-export default class Demo extends React.Component {
+type Preset = {
+  name: string,
+  node: React.Node,
+  darkBackground?: boolean,
+};
+
+type DemoProps = {
+  presets: Array<Preset>,
+  elm?: ElmApp,
+};
+
+type DemoState = {
+  selectedPreset: number,
+  assignedCanvasWidth: ?number,
+  actualCanvasDimensions: {
+    width: ?number,
+    height: ?number,
+  },
+  showGridOverlay: boolean,
+  darkBackground: boolean,
+  platform: 'react' | 'elm',
+};
+
+export default class Demo extends React.Component<DemoProps, DemoState> {
+  canvas: ?Element;
+  frame: ?Element;
+  resizing: boolean = false;
+
   state = {
     selectedPreset: 0,
     assignedCanvasWidth: null,
@@ -90,29 +118,34 @@ export default class Demo extends React.Component {
 
   renderComponent() {
     return {
-      [ELM]: presetComponent => (
-        <ElmWithRefreshingProps
-          src={this.props.elm}
-          flags={this.convertNodeToFlags(presetComponent)}
-          ports={this.elmPortsFromProps(presetComponent.props)}
-        />
-      ),
+      [ELM]: (presetComponent: React.Node) => {
+        const elmApp = this.props.elm;
+        if (!elmApp) {
+          return 'Failed to load elm demo';
+        }
+        return (
+          <ElmComponent
+            src={elmApp}
+            flags={this.convertNodeToFlags(presetComponent)}
+          />
+        );
+      },
       [REACT]: presetComponent => presetComponent,
     }[this.state.platform](this.selectedPreset().node);
   }
 
-  convertNodeToFlags(node) {
+  convertNodeToFlags(node: any): { type: any, props: {} } {
     if (!node || typeof node !== 'object') {
       return node;
     }
 
     return {
-      props: this.convertPropsToFlags(node.props),
       type: node.type.displayName || node.type,
+      props: this.convertPropsToFlags(node.props),
     };
   }
 
-  convertPropsToFlags(props) {
+  convertPropsToFlags(props: {}) {
     return Object.keys(props).reduce((flags, key) => {
       let value = props[key];
 
@@ -132,8 +165,8 @@ export default class Demo extends React.Component {
     }, {});
   }
 
-  elmPortsFromProps(props) {
-    return (ports = {}) => {
+  elmPortsFromProps(props: {}) {
+    return (ports: {} = {}) => {
       const listeners = Object.keys(props).reduce(
         (listeners, key) =>
           typeof props[key] === 'function'
@@ -149,7 +182,7 @@ export default class Demo extends React.Component {
     };
   }
 
-  selectedPreset() {
+  selectedPreset(): Preset {
     return this.props.presets[this.state.selectedPreset];
   }
 
@@ -215,6 +248,7 @@ export default class Demo extends React.Component {
   }
 
   renderReactCode() {
+    // $FlowFixMe: reactElementToJSXString can take a React.Node, not just a React.Element
     let jsxCode = reactElementToJSXString(this.selectedPreset().node, {
       showDefaultProps: false,
       sortProps: false,
@@ -241,22 +275,22 @@ export default class Demo extends React.Component {
     window.removeEventListener('resize', this.onResize);
   }
 
-  onChangeGridOverlay = e => {
+  onChangeGridOverlay = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const showGridOverlay = e.target.checked;
     this.setState({ showGridOverlay });
   };
 
-  onChangeDarkBackground = e => {
+  onChangeDarkBackground = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const darkBackground = e.target.checked;
     this.setState({ darkBackground });
   };
 
-  onChangeElm = e => {
+  onChangeElm = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const elm = e.target.checked;
     this.setState({ platform: elm ? ELM : REACT });
   };
 
-  onSelectPreset = e => {
+  onSelectPreset = (e: SyntheticInputEvent<HTMLSelectElement>) => {
     const selectedPreset = parseInt(e.target.value);
     this.setState({
       ...this.state,
@@ -266,11 +300,11 @@ export default class Demo extends React.Component {
     });
   };
 
-  onClickResizeTo(size) {
-    return e => this.resizeToSize(size);
+  onClickResizeTo(size: CanvasSize) {
+    return () => this.resizeToSize(size);
   }
 
-  resizeToSize(size) {
+  resizeToSize(size: CanvasSize) {
     switch (size) {
       case FULL:
         this.resizeTo();
@@ -290,7 +324,7 @@ export default class Demo extends React.Component {
     }
   }
 
-  resizeTo(assignedCanvasWidth = null) {
+  resizeTo(assignedCanvasWidth: ?number = null) {
     assignedCanvasWidth =
       assignedCanvasWidth &&
       Math.min(assignedCanvasWidth, this.maxCanvasWidth());
@@ -305,13 +339,13 @@ export default class Demo extends React.Component {
     });
   }
 
-  setAssignedCanvasWidth(assignedCanvasWidth) {
+  setAssignedCanvasWidth(assignedCanvasWidth: ?number) {
     this.setState({ ...this.state, assignedCanvasWidth });
     this.onResize();
   }
 
-  maxCanvasWidth() {
-    return this.frame.clientWidth;
+  maxCanvasWidth(): number {
+    return this.frame ? this.frame.clientWidth : 0;
   }
 
   onResize = () => {
@@ -324,6 +358,10 @@ export default class Demo extends React.Component {
   onResizeFrame = () => {
     if (this.isResizeComplete()) {
       this.resizing = false;
+      return;
+    }
+
+    if (!this.canvas) {
       return;
     }
 
@@ -340,6 +378,9 @@ export default class Demo extends React.Component {
   };
 
   isResizeComplete() {
+    if (!this.canvas) {
+      return false;
+    }
     const { clientWidth, clientHeight } = this.canvas;
     const {
       assignedCanvasWidth,
@@ -358,31 +399,32 @@ function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-// We are not using react-elm-components because they do not update the Elm app when props change.
-class ElmWithRefreshingProps extends React.Component {
+// Note: we can't use elm-react-components because we need to update flags when presets change
+// (also it does not have an Elm 0.19 update)
+
+type ElmApp = {
+  init: ({ node: Element, flags?: {} }) => { ports: ({}) => void },
+};
+
+class ElmComponent extends React.Component<{ src: ElmApp, flags: {} }> {
   render() {
-    return <div ref={node => (this.node = node)} />;
+    return <div ref={node => this.initialize(node)} />;
   }
 
-  componentDidMount() {
-    this.mountElm();
-  }
-
-  componentDidUpdate(prevProps) {
-    if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
-      this.mountElm();
-    }
-  }
-
-  mountElm() {
-    this.node.innerHTML = '';
-    const app = this.props.src.init({
-      node: this.node,
-      flags: this.props.flags,
-    });
-
-    if (typeof this.props.ports !== 'undefined') {
-      this.props.ports(app.ports);
+  initialize(container) {
+    if (container != null) {
+      // Unlike react-elm-components, which makes `shouldComponentUpdate()` return false, we allow updating the component.
+      // For our style-guide demos, this means removing the existing Elm app from the DOM, and instantiating a new one.
+      container.innerHTML = '';
+      // Elm 0.19 doesn't place itself inside the container node, it *replaces* the container node.
+      // This can cause runtime errors if the container node - which React rendered - suddenly is removed by Elm, and React goes to update or remove it, only to find it is now gone.
+      // The workaround is to create an extra <div>, which React doesn't control, and allow Elm to replace that node.
+      const elmPlaceholder = document.createElement('div');
+      container.appendChild(elmPlaceholder);
+      const app = this.props.src.init({
+        node: elmPlaceholder,
+        flags: this.props.flags,
+      });
     }
   }
 }
