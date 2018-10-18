@@ -133,7 +133,7 @@ Here are some extremely loose guidelines:
 
 ### Durations and delays
 
-Entrances can be faster than exits.
+Exits can be faster than entrances.
 
 Use delays to “sequence” multiple animations.
 
