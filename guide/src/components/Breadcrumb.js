@@ -17,7 +17,7 @@ const Breadcrumb = ({}, context) => {
     if (index < parts.length - 1) {
       href = part != '/' ? `${href}/${part}` : '';
       return (
-        <Link to={href} key={part}>
+        <Link to={href} key={part + index}>
           {title}
         </Link>
       );
