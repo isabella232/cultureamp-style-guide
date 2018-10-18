@@ -8,6 +8,7 @@ class AnimationPresets extends React.PureComponent {
     return (
       <Grid>
         <AnimationDrop name="pop" color="#F3786D" />
+        <AnimationDrop name="pulsate" color="#FFCE1E" />
       </Grid>
     );
   }

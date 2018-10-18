@@ -2,5 +2,9 @@
 // ANIMATION PRESETS                         //
 ///////////////////////////////////////////////
 .ca-animation-pop {
-  @include mui-animation(pulse());
+  @include mui-animation(pop());
+}
+
+.ca-animation-pulsate {
+  @include mui-animation(pulsate());
 }
