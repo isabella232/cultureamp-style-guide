@@ -33,7 +33,6 @@ $menu__square-size: $ca-grid * 2;
 .menu {
   $menu__arrow-size: $ca-grid / 4;
 
-  display: flex;
   align-items: center;
 
   position: absolute;
@@ -47,7 +46,7 @@ $menu__square-size: $ca-grid * 2;
     content: '';
     position: absolute;
     right: calc(#{$menu__square-size / 2} - #{$menu__arrow-size});
-    top: -0.4rem;
+    top: -0.3rem;
 
     border: $menu__arrow-size solid transparent;
     border-top-width: 0;
