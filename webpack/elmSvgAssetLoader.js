@@ -1,4 +1,5 @@
 const loaderUtils = require('loader-utils');
+const elmPackageInfo = require('elm/package.json');
 
 /**
  * A webpack loader to transform SVG assets in Elm to Webpack require() calls.
@@ -8,26 +9,34 @@ const loaderUtils = require('loader-utils');
  *
  * Which is compiled as JS code:
  *   _user$project$Icon_SvgAsset$svgAsset('cultureamp-style-guide/icons/exclamation.svg')
+ * Or in Elm 0.19:
+ *   author$project$Icon$SvgAsset$svgAsset('cultureamp-style-guide/icons/exclamation.svg');
  *
  * We replace this with:
  *   require('cultureamp-style-guide/icons/exclamation.svg').default
+ *
+ * In future we should replace this with a babel plugin similar to https://github.com/cultureamp/elm-css-modules-plugin
  */
 function loader(source, inputSourceMap) {
   const config = loaderUtils.getOptions(this) || {};
+  const isElm18 = elmPackageInfo.version === '0.18.0';
   config.module = config['module'] || 'Icon.SvgAsset';
   config.tagger = config['tagger'] || 'svgAsset';
 
-  const packageName = config['package'] || 'user/project',
-    taggerName =
-      '_' +
-      [
-        packageName.replace(/-/g, '_').replace(/\//g, '$'),
-        config.module.replace(/\./g, '_'),
-        config.tagger,
-      ].join('$'),
-    escapedTaggerName = taggerName.replace(/\$/g, '\\$'),
-    moduleNameCapture = "'([a-zA-Z-./]+)'",
-    regexp = regexpForFunctionCall(escapedTaggerName, [moduleNameCapture]);
+  const packageName =
+    config['package'] || (isElm18 ? 'user/project' : 'author/project');
+  const prefix = isElm18 ? '_' : '';
+  const moduleSeparator = isElm18 ? '_' : '$';
+  const taggerName =
+    prefix +
+    [
+      packageName.replace(/-/g, '_').replace(/\//g, '$'),
+      config.module.replace(/\./g, moduleSeparator),
+      config.tagger,
+    ].join('$');
+  const escapedTaggerName = taggerName.replace(/\$/g, '\\$');
+  const moduleNameCapture = "'([a-zA-Z-./]+)'";
+  const regexp = regexpForFunctionCall(escapedTaggerName, [moduleNameCapture]);
 
   // Gatsby uses Webpack v1, and so how we require the SVG asset is different.
   const replacement =
