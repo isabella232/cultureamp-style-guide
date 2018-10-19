@@ -22,6 +22,7 @@ import Html.Events as Events exposing (on, onWithOptions, defaultOptions)
 import Json.Decode as Json
 import CssModules exposing (css)
 import Icon.Icon as Icon
+import Icon.Svg as Svg
 import Icon.SvgAsset exposing (svgAsset)
 import Platform.Sub
 import AnimationFrame
@@ -214,20 +215,20 @@ viewIcon (Config { notificationType }) =
             ]
 
 
-icon : NotificationType -> Icon.SvgAsset.SvgAsset
+icon : NotificationType -> Svg.Icon
 icon type_ =
     case type_ of
         Affirmative ->
-            svgAsset "cultureamp-style-guide/icons/success.svg"
+            Svg.Success
 
         Cautionary ->
-            svgAsset "cultureamp-style-guide/icons/exclamation.svg"
+            Svg.Exclamation
 
         Negative ->
-            svgAsset "cultureamp-style-guide/icons/exclamation.svg"
+            Svg.Exclamation
 
         Informative ->
-            svgAsset "cultureamp-style-guide/icons/information.svg"
+            Svg.Information
 
 
 viewTitle : Config msg -> Html msg

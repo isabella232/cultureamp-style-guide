@@ -13,21 +13,24 @@ import Html.Attributes exposing (attribute)
 import Html.Attributes.Aria as Aria exposing (ariaHidden, ariaLabelledby)
 import Svg exposing (svg, use)
 import Svg.Attributes exposing (class, viewBox, xlinkHref)
-import Icon.SvgAsset exposing (SvgAsset, svgAsset)
+import Icon.Svg exposing (Icon, toAsset)
 import CssModules exposing (css)
 
 
 -- VIEW
 
 
-view : Config -> SvgAsset -> Html Never
-view ((Config { inheritSize, role }) as config) svgAsset =
+view : Config -> Icon -> Html Never
+view ((Config { inheritSize, role }) as config) icon =
     let
         { toString } =
             css "cultureamp-style-guide/components/Icon/Icon.module.scss"
                 { icon = ""
                 , inheritSize = ""
                 }
+
+        svgAsset =
+            toAsset icon
     in
         svg
             (List.append
