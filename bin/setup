@@ -7,9 +7,12 @@ die() { echo "$*" 1>&2 ; exit 1; }
 
 if [[ $* == *--reset* ]];
 then
-    echo "== Deleting existing node_modules =="
+    echo "== Deleting node_modules =="
     rm -Rf node_modules
     rm -Rf guide/node_modules
+
+    echo "== Deleting elm-stuff =="
+    rm -Rf guide/elm-stuff
 fi
 
 
