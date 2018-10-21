@@ -47,6 +47,7 @@ view (Config config) label =
                 []
 
         buttonClass =
+
             [ classList
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
@@ -85,6 +86,7 @@ view (Config config) label =
             buttonClass
                 ++ onClickAttribs (Config config)
                 ++ automationId
+                ++ buttonIdAttribs (Config config)
                 ++ title
                 ++ buttonTypeAttribs (Config config)
     in
@@ -124,6 +126,15 @@ onClickAttribs (Config config) =
                     (Json.succeed msg)
                 ]
 
+        Nothing ->
+            []
+
+
+buttonIdAttribs : Config msg -> List (Html.Attribute msg)
+buttonIdAttribs (Config config) =
+    case config.id of 
+        Just id ->
+            [Html.Attributes.id id]
         Nothing ->
             []
 
@@ -226,6 +237,7 @@ type alias ConfigValue msg =
     , href : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
+    , id : Maybe String
     }
 
 
@@ -269,6 +281,7 @@ defaults =
     , href = Nothing
     , automationId = Nothing
     , buttonType = Nothing
+    , id = Nothing
     }
 
 
@@ -339,6 +352,11 @@ onClick value (Config config) =
 href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
+
+
+setId : String -> Config msg -> Config msg
+setId  id (Config config) =
+    Config { config | id = Just id }
 
 
 automationId : String -> Config msg -> Config msg
