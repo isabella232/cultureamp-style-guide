@@ -1,4 +1,4 @@
-module Icon.Svg exposing (Icon, toAsset)
+module Icon.Svg exposing (Icon(..), fromAsset, toAsset)
 
 import Icon.SvgAsset exposing (SvgAsset, svgAsset)
 
@@ -7,6 +7,7 @@ type Icon
     | Information
     | Success
     | Trash
+    | Close
 
 pathLookUp : Icon -> String
 pathLookUp icon =
@@ -28,10 +29,25 @@ pathLookUp icon =
                 Information ->
                     "information.svg"
 
+                Close ->
+                    "close.svg"
+
     in
         path ++ file
+
+
+fromAsset : SvgAsset -> Icon
+fromAsset svgAsset =
+    Trash
 
 
 toAsset : Icon -> SvgAsset
 toAsset icon =
     svgAsset <| pathLookUp icon
+
+
+decoder : Json.Decoder Icon
+decoder =
+    Json.map2 SvgAsset
+        (Json.field "id" Json.string)
+        (Json.field "viewBox" Json.string)

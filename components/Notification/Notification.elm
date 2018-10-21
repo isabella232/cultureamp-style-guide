@@ -277,9 +277,7 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
                     ]
                     [ -- We are using a hidden span and Icon.presentation rather than the usual Icon.img to avoid this components API requiring a unique ID.
                       span [ class .cancelLabel ] [ text "close notification" ]
-                    , Icon.view Icon.presentation
-                        (svgAsset "cultureamp-style-guide/icons/close.svg")
-                        |> Html.map never
+                    , Icon.view Icon.presentation Svg.Close |> Html.map never
                     ]
                 ]
 

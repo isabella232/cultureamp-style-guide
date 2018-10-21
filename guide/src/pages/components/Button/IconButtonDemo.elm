@@ -59,7 +59,7 @@ iconButtonDecoder =
                     -- variants
                     |> decodeField "destructive" Json.bool (variantFlag destructiveIconButton) props
                     -- add asset to variant
-                    |> decodeField "icon" SvgAsset.decoder setAssetOnIconVariant props
+                    |> decodeField "icon" Svg.decoder setAssetOnIconVariant props
                     -- modifiers
                     |> decodeField "disabled" Json.bool disabled props
                     |> decodeField "form" Json.bool form props

@@ -5,6 +5,7 @@ import Json.Encode
 import Json.Decode as Json
 import Demo exposing (..)
 import Icon.Icon as Icon exposing (..)
+import Icon.Svg as Svg
 import Icon.SvgAsset as SvgAsset exposing (SvgAsset)
 
 
@@ -14,7 +15,7 @@ type alias Model =
 
 type alias ViewArguments =
     { config : Config
-    , svgAsset : SvgAsset
+    , svgIcon : Svg.Icon
     }
 
 
@@ -69,18 +70,18 @@ decode props =
         Ok presentation
             -- variants
             |> decodeAndUpdate iconVariantDecoder always props
-            -- -- modifiers
+            -- modifiers
             |> decodeField "inheritSize" Json.bool inheritSize props
             -- arguments
             |> Result.map ViewArguments
-            |> decodeField "icon" SvgAsset.decoder (|>) props
+            |> decodeField "icon" Svg.decoder (|>) props
 
 
 view : Model -> Html Msg
 view result =
     case result of
-        Ok { config, svgAsset } ->
-            Icon.view config svgAsset
+        Ok { config, svgIcon } ->
+            Icon.view config svgIcon
 
         Err message ->
             text ("Props decoding error: " ++ message)

@@ -78,7 +78,7 @@ buttonDecoder =
                     |> decodeField "destructive" Json.bool (variantFlag destructive) props
                     -- modifiers
                     |> decodeField "disabled" Json.bool disabled props
-                    |> decodeOptionalField "icon" SvgAsset.decoder icon props
+                    |> decodeOptionalField "icon" Svg.decoder icon) (|>) props
                     |> decodeField "iconPosition" iconPositionDecoder iconPosition props
                     |> decodeField "form" Json.bool form props
                     |> decodeField "reversed" Json.bool reversed props

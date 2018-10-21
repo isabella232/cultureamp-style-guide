@@ -31,7 +31,7 @@ import Json.Decode as Json
 import Maybe
 import CssModules exposing (css)
 import Icon.Icon as Icon
-import Icon.SvgAsset exposing (SvgAsset)
+import Icon.Svg as Svg
 
 
 -- VIEW
@@ -174,8 +174,8 @@ viewIconFor : ConfigValue msg -> IconPosition -> Html Never
 viewIconFor { icon, iconPosition } forPosition =
     if iconPosition == forPosition then
         case icon of
-            Just svgAsset ->
-                Icon.view Icon.presentation svgAsset
+            Just svgIcon ->
+                Icon.view Icon.presentation svgIcon
 
             Nothing ->
                 text ""
@@ -215,7 +215,7 @@ type Config msg
 
 type alias ConfigValue msg =
     { variant : Variant
-    , icon : Maybe SvgAsset
+    , icon : Maybe Svg.Icon
     , iconPosition : IconPosition
     , iconButton : Bool
     , disabled : Bool
@@ -287,14 +287,14 @@ destructive =
     Config { defaults | variant = Destructive }
 
 
-iconButton : SvgAsset -> Config msg
-iconButton svgAsset =
-    Config { defaults | icon = Just svgAsset, iconButton = True }
+iconButton : Svg.Icon -> Config msg
+iconButton svgIcon =
+    Config { defaults | icon = Just svgIcon, iconButton = True }
 
 
-destructiveIconButton : SvgAsset -> Config msg
-destructiveIconButton svgAsset =
-    Config { defaults | icon = Just svgAsset, variant = Destructive, iconButton = True }
+destructiveIconButton : Svg.Icon -> Config msg
+destructiveIconButton svgIcon =
+    Config { defaults | icon = Just svgIcon, variant = Destructive, iconButton = True }
 
 
 
@@ -306,9 +306,9 @@ disabled value (Config config) =
     Config { config | disabled = value }
 
 
-icon : SvgAsset -> Config msg -> Config msg
-icon icon (Config config) =
-    Config { config | icon = Just icon }
+icon : Svg.Icon -> Config msg -> Config msg
+icon svgIcon (Config config) =
+    Config { config | icon = Just svgIcon }
 
 
 iconPosition : IconPosition -> Config msg -> Config msg
