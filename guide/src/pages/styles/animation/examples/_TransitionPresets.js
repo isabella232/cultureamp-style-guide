@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '../components/_Grid';
 import TransitionDrop from '../components/_TransitionDrop';
-import './../ca-animation/ca-animation.scss';
+import 'cultureamp-style-guide/styles/animation.scss';
 
 class TransitionPresets extends React.PureComponent {
   render() {

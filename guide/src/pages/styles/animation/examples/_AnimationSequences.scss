@@ -1,7 +1,7 @@
-@import './../ca-animation/ca-animation.scss';
+@import '~cultureamp-style-guide/styles/animation';
 
-$duration: $deliberate; // 700ms
-$delay: -$slow; // -400ms (stagger effect)
+$duration: $ca-duration-deliberate; // 700ms
+$delay: -$ca-duration-slow; // -400ms (stagger effect)
 
 @include ca-series {
   .spin-1 {

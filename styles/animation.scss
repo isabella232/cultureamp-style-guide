@@ -1,8 +1,7 @@
-// Timing variables
-// These timing values are designed to snap together. 100+300=400. 300+400=700 etc.
-
-$ca-duration-instant: 0ms;
-$ca-duration-immediate: 100ms;
-$ca-duration-fast: 300ms;
-$ca-duration-slow: 400ms;
-$ca-duration-deliberate: 700ms;
+@import './animations/durations';
+@import './animations/easings';
+@import './animations/settings';
+@import './animations/aliases';
+@import './animations/keyframes';
+@import './animations/transitions';
+@import './animations/animations';
