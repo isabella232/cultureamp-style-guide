@@ -332,10 +332,20 @@ $caButton-formHeight: $ca-grid * 5/3;
 
   &:not(:first-child) {
     margin-left: 0.5em;
+
+    [dir='rtl'] & {
+      margin-right: 0.5em;
+      margin-left: 0;
+    }
   }
 
   &:not(:last-child) {
     margin-right: 0.5em;
+
+    [dir='rtl'] & {
+      margin-left: 0.5em;
+      margin-right: 0;
+    }
   }
 }
 
