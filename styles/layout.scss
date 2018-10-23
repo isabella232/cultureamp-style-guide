@@ -6,62 +6,41 @@ $ca-layout-content-width: 1080px;
 $ca-layout-title-block-height: 5 * $ca-grid;
 $ca-layout-sidebar-width: 10 * $ca-grid;
 
-@mixin ca-margin-start($size: 0) {
-  margin-left: $size;
+@mixin ca-margin($start: 0, $end: 0, $top: 0, $bottom: 0) {
+  margin-top: $top;
+  margin-bottom: $bottom;
+  margin-right: $end;
+  margin-left: $start;
 
   &[dir='rtl'],
   [dir='rtl'] & {
-    margin-left: 0;
-    margin-right: $size;
+    margin-right: $start;
+    margin-left: $end;
   }
 }
 
-@mixin ca-margin-end($size: 0) {
-  margin-right: $size;
+@mixin ca-padding($start: 0, $end: 0, $top: 0, $bottom: 0) {
+  padding-top: $top;
+  padding-bottom: $bottom;
+  padding-right: $end;
+  padding-left: $start;
 
   &[dir='rtl'],
   [dir='rtl'] & {
-    margin-right: 0;
-    margin-left: $size;
+    padding-right: $start;
+    padding-left: $end;
   }
 }
 
-@mixin ca-padding-start($size: 0) {
-  padding-left: $size;
+@mixin ca-position($start: auto, $end: auto, $top: auto, $bottom: auto) {
+  top: $top;
+  bottom: $bottom;
+  right: $end;
+  left: $start;
 
   &[dir='rtl'],
   [dir='rtl'] & {
-    padding-left: 0;
-    padding-right: $size;
-  }
-}
-
-@mixin ca-padding-end($size: 0) {
-  padding-right: $size;
-
-  &[dir='rtl'],
-  [dir='rtl'] & {
-    padding-right: 0;
-    padding-left: $size;
-  }
-}
-
-@mixin ca-position-start($size: 0) {
-  left: $size;
-
-  &[dir='rtl'],
-  [dir='rtl'] & {
-    left: auto;
-    right: $size;
-  }
-}
-
-@mixin ca-position-end($size: 0) {
-  right: $size;
-
-  &[dir='rtl'],
-  [dir='rtl'] & {
-    right: auto;
-    left: $size;
+    right: $start;
+    left: $end;
   }
 }

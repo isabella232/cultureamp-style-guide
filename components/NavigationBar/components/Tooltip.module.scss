@@ -30,8 +30,8 @@
     :focus > &,
     :focus + &,
     &.visible {
-      @include ca-position-start(
-        calc(100% + #{$ca-grid - $tooltip__arrow-size})
+      @include ca-position(
+        $start: calc(100% + #{$ca-grid - $tooltip__arrow-size})
       );
     }
   }
