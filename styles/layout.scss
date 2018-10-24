@@ -6,7 +6,7 @@ $ca-layout-content-width: 1080px;
 $ca-layout-title-block-height: 5 * $ca-grid;
 $ca-layout-sidebar-width: 10 * $ca-grid;
 
-@mixin ca-margin($start: 0, $end: 0, $top: 0, $bottom: 0) {
+@mixin ca-margin($start: 0, $end: 0, $top: null, $bottom: null) {
   margin-top: $top;
   margin-bottom: $bottom;
   margin-right: $end;
@@ -19,7 +19,7 @@ $ca-layout-sidebar-width: 10 * $ca-grid;
   }
 }
 
-@mixin ca-padding($start: 0, $end: 0, $top: 0, $bottom: 0) {
+@mixin ca-padding($start: 0, $end: 0, $top: null, $bottom: null) {
   padding-top: $top;
   padding-bottom: $bottom;
   padding-right: $end;
@@ -32,7 +32,7 @@ $ca-layout-sidebar-width: 10 * $ca-grid;
   }
 }
 
-@mixin ca-position($start: auto, $end: auto, $top: auto, $bottom: auto) {
+@mixin ca-position($start: auto, $end: auto, $top: null, $bottom: null) {
   top: $top;
   bottom: $bottom;
   right: $end;
