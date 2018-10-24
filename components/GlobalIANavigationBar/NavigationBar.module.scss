@@ -11,7 +11,7 @@
 }
 
 .links {
-  flex: 1 0 0px;
+  flex: 1 0 0;
   margin-left: 2 * $ca-grid;
 
   > ul {
@@ -19,6 +19,14 @@
     padding: 0;
     list-style-type: none;
     display: flex;
+
+    li {
+      margin: 0 ($ca-grid / 3);
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
   }
 }
 
@@ -35,4 +43,8 @@
 .otherChildren {
   display: flex;
   margin-left: -1px;
+}
+
+.active {
+  background-color: add-alpha($ca-palette-ink, 90%);
 }
