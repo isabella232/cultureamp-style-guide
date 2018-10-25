@@ -34,6 +34,8 @@ $link-margin: $ca-grid / 4;
     width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: #fff;
     transition: transform $nav-ease $nav-timing;
   }
@@ -100,7 +102,7 @@ $link-margin: $ca-grid / 4;
   display: flex;
   align-items: center;
   height: 100%;
-  padding: 20px;
+  padding: $ca-grid;
   justify-content: center;
 }
 
