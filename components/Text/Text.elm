@@ -50,7 +50,7 @@ view (Config config) children =
 
 
 className : Element msg -> TypeStyle -> Bool -> Html.Attribute msg
-className tag typeStyle poorlyNamed_inheritBaseline =
+className tag typeStyle shouldInheritBaseline =
     let
         styleClass =
             case typeStyle of
@@ -101,7 +101,7 @@ className tag typeStyle poorlyNamed_inheritBaseline =
     in
     styles.classList
         [ ( styleClass, True )
-        , ( .inheritBaseline, poorlyNamed_inheritBaseline )
+        , ( .inheritBaseline, shouldInheritBaseline )
         ]
 
 

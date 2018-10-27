@@ -40,7 +40,7 @@ import Maybe
 view : Config msg -> String -> Html msg
 view (Config config) label =
     let
-        poorlyNamed_disabled =
+        disabledAttr =
             if config.disabled then
                 [ Html.Attributes.disabled True ]
 
@@ -66,7 +66,7 @@ view (Config config) label =
                 ]
             ]
 
-        poorlyNamed_automationId =
+        automationIdAttr =
             case config.automationId of
                 Just id ->
                     [ Html.Attributes.attribute "data-automation-id" id ]
@@ -74,7 +74,7 @@ view (Config config) label =
                 Nothing ->
                     []
 
-        title =
+        titleAttr =
             if config.iconButton then
                 [ Html.Attributes.title label
                 , Html.Attributes.Aria.ariaLabel label
@@ -86,18 +86,18 @@ view (Config config) label =
         attribs =
             buttonClass
                 ++ onClickAttribs (Config config)
-                ++ poorlyNamed_automationId
-                ++ title
+                ++ automationIdAttr
+                ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
     in
     span [ styles.class .container ]
         [ case config.href of
-            Just poorlyNamed_href ->
-                a (attribs ++ [ Html.Attributes.href poorlyNamed_href ])
+            Just hrefValue ->
+                a (attribs ++ [ Html.Attributes.href hrefValue ])
                     [ viewContent (Config config) label |> Html.map never ]
 
             Nothing ->
-                button (attribs ++ poorlyNamed_disabled)
+                button (attribs ++ disabledAttr)
                     [ viewContent (Config config) label |> Html.map never ]
         ]
 
@@ -109,8 +109,8 @@ onClickAttribs (Config config) =
             let
                 preventDefault tagger =
                     case config.buttonType of
-                        Just poorlyNamed_buttonType ->
-                            case poorlyNamed_buttonType of
+                        Just buttonTypeValue ->
+                            case buttonTypeValue of
                                 Submit ->
                                     ( tagger, False )
 
@@ -137,10 +137,10 @@ buttonTypeAttribs (Config config) =
 
         Nothing ->
             case config.buttonType of
-                Just poorlyNamed_buttonType ->
+                Just buttonTypeValue ->
                     let
                         encodedButtonType =
-                            case poorlyNamed_buttonType of
+                            case buttonTypeValue of
                                 Submit ->
                                     "submit"
 
@@ -163,8 +163,8 @@ viewContent (Config config) label =
 
 
 viewLabel : String -> Bool -> Html Never
-viewLabel label poorlyNamed_iconButton =
-    if poorlyNamed_iconButton then
+viewLabel label isIconButton =
+    if isIconButton then
         text ""
 
     else
@@ -310,8 +310,8 @@ disabled value (Config config) =
 
 
 icon : SvgAsset -> Config msg -> Config msg
-icon poorlyNamed_icon (Config config) =
-    Config { config | icon = Just poorlyNamed_icon }
+icon svgAsset (Config config) =
+    Config { config | icon = Just svgAsset }
 
 
 iconPosition : IconPosition -> Config msg -> Config msg

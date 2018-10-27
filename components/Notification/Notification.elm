@@ -109,7 +109,7 @@ view (Config config) state onStateChange =
         className =
             notificationClassName config state
 
-        style =
+        styleAttr =
             case notificationStage state of
                 Disappearing height ->
                     [ Html.Attributes.style
@@ -120,7 +120,7 @@ view (Config config) state onStateChange =
                 _ ->
                     []
 
-        poorlyNamed_automationId =
+        automationIdAttr =
             case config.automationId of
                 Just id ->
                     [ Html.Attributes.attribute "data-automation-id" id ]
@@ -178,7 +178,7 @@ view (Config config) state onStateChange =
             text ""
 
         _ ->
-            div (className ++ style ++ poorlyNamed_automationId ++ onTransitionStart ++ onTransitionEnd)
+            div (className ++ styleAttr ++ automationIdAttr ++ onTransitionStart ++ onTransitionEnd)
                 [ viewIcon (Config config)
                 , div [ styles.class .textContainer ]
                     [ viewTitle (Config config)
