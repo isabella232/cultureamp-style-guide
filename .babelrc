@@ -1,9 +1,12 @@
 {
   "babelrc": false,
-  "presets": [["es2015", { "modules": "commonjs" }], "react", "flow"],
+  "presets": [["@babel/env", { "modules": "commonjs" }], "@babel/react", "@babel/flow"],
   "plugins": [
     "add-react-displayname",
-    "transform-class-properties",
-    "transform-object-rest-spread"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-syntax-import-meta",
+    ["@babel/plugin-proposal-class-properties", { "loose": false }],
+    "@babel/plugin-proposal-json-strings"
   ]
 }

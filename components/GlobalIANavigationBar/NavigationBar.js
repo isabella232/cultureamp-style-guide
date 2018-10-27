@@ -30,10 +30,16 @@ export default class NavigationBar extends React.Component<Props> {
     const links = [];
     const otherChildren = [];
     React.Children.toArray(children).forEach(child => {
-      if (child === false) return;
-      else if (child.type.name == Link.name)
+      if (child === false) {
+        return;
+      }
+      // Because react-hot-loader wraps the type, and uglify changes the type name,
+      // we compare the displayName rather than comparing the type of name directly.
+      if (child.type.displayName == Link.displayName) {
         links.push(((child: any): React.Element<typeof Link>));
-      else otherChildren.push(child);
+      } else {
+        otherChildren.push(child);
+      }
     });
 
     return (
