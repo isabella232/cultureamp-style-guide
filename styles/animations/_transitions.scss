@@ -1,0 +1,19 @@
+///////////////////////////////////////////////
+// TRANSITION PRESETS                        //
+///////////////////////////////////////////////
+@mixin ca-animation-fade($state: in) {
+  @include ca-fade($state);
+}
+
+@mixin ca-animation-slide-fade($state: in) {
+  $direction: if ($state == in, up, down);
+  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
+
+  @include ca-slide($direction: $direction, $fade: true, $timing: $timing);
+}
+
+@mixin ca-animation-scale-fade($state: in) {
+  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
+
+  @include ca-zoom($state, $timing: $timing);
+}

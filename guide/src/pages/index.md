@@ -7,7 +7,9 @@ imports:
 
 Product:
 
-* <Link to="/styles/">Visual Styles</Link>
+* <Link to="/styles/">Foundational Styles</Link>
+
+  * <Link to="/styles/animation/">Animation</Link>
 
   * <Link to="/styles/colors/">Colors</Link>
 

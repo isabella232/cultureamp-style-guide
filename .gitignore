@@ -6,3 +6,5 @@ elm-stuff
 .sass-cache
 npm-debug.log
 .vs
+.idea
+.DS_Store

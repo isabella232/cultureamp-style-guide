@@ -1,0 +1,10 @@
+///////////////////////////////////////////////
+// ANIMATION PRESETS                         //
+///////////////////////////////////////////////
+@mixin ca-animation-pop() {
+  @include ca-animation(pop());
+}
+
+@mixin ca-animation-pulsate() {
+  @include ca-animation(pulsate());
+}
