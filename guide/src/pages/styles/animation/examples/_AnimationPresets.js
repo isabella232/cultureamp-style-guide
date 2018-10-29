@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '../components/_Grid';
 import AnimationDrop from '../components/_AnimationDrop';
 import 'cultureamp-style-guide/styles/animation.scss';
+import './_AnimationExamples.scss';
 
 class AnimationPresets extends React.PureComponent {
   render() {
