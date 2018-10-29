@@ -10,7 +10,7 @@ class Drop extends React.PureComponent {
       <div className={styles.droplet}>
         <div className={styles.container} onClick={onClick}>
           <div
-            className={classnames(classes, styles.hero)}
+            className={classnames(classes, styles.example)}
             style={{ background: color }}
           />
         </div>

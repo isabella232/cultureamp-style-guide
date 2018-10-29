@@ -25,6 +25,7 @@
 .child {
   display: flex;
   flex: 0 0 auto;
+  text-decoration: none;
 
   &.secondary.first {
     margin-left: auto;

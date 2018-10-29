@@ -37,8 +37,8 @@ const presets = [
     name: 'Negative',
     node: (
       <GlobalNotification type="negative" automationId="notification1">
-        Oh, snap! Some shit's just gone down. We're trying to fix it as quickly
-        as possible. For assistance, please <a href="/">contact support</a>
+        No network connection. Check your connection and try again.{' '}
+        <a href="/">Refresh</a>.
       </GlobalNotification>
     ),
   },
@@ -59,9 +59,8 @@ const presets = [
           minor issues. <a href="/">View issues</a>
         </GlobalNotification>
         <GlobalNotification type="negative" automationId="notification4">
-          Oh, snap! Some shit's just gone down. We're trying to fix it as
-          quickly as possible. For assistance, please{' '}
-          <a href="/">contact support</a>
+          No network connection. Check your connection and try again.{' '}
+          <a href="/">Refresh</a>.
         </GlobalNotification>
       </div>
     ),

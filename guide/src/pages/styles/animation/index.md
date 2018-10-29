@@ -15,8 +15,6 @@ Meaningful motion helps make our product easy for everyone and tells our brand's
 
 </IntroParagraph>
 
-## Table of Contents
-
 [[toc]]
 
 ## Meaningful motion

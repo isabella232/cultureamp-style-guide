@@ -58,7 +58,7 @@ class AnimationDrop extends React.PureComponent {
   };
 
   render() {
-    const { color = '#333', render, name } = this.props;
+    const { color = '#3E4543', render, name } = this.props;
     const { isAnimating, preset } = this.state;
 
     const classes = classnames(`ca-duration-${preset}`, {

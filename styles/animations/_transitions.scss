@@ -1,26 +1,19 @@
 ///////////////////////////////////////////////
 // TRANSITION PRESETS                        //
 ///////////////////////////////////////////////
-.ca-animation-fade-in {
-  @include ca-fade(in);
+@mixin ca-animation-fade($state: in) {
+  @include ca-fade($state);
 }
 
-.ca-animation-fade-out {
-  @include ca-fade(out);
+@mixin ca-animation-slide-fade($state: in) {
+  $direction: if ($state == in, up, down);
+  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
+
+  @include ca-slide($direction: $direction, $fade: true, $timing: $timing);
 }
 
-.ca-animation-slide-fade-in {
-  @include ca-slide($direction: up, $fade: true, $timing: $ca-bounce-in);
-}
+@mixin ca-animation-scale-fade($state: in) {
+  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
 
-.ca-animation-slide-fade-out {
-  @include ca-slide($direction: down, $fade: true, $timing: $ca-bounce-out);
-}
-
-.ca-animation-scale-fade-in {
-  @include ca-zoom(in, $timing: $ca-bounce-in);
-}
-
-.ca-animation-scale-fade-out {
-  @include ca-zoom(out, $timing: $ca-bounce-out);
+  @include ca-zoom($state, $timing: $timing);
 }
