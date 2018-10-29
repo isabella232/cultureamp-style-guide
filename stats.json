@@ -1,20 +1,20 @@
 {
   "assetsByChunkName": {
     "component---src-pages-styles-colors-index-md": [
-      "component---src-pages-styles-colors-index-md-a845ad2cf96a8e82f964.js",
-      "component---src-pages-styles-colors-index-md-a845ad2cf96a8e82f964.js.map"
+      "component---src-pages-styles-colors-index-md-769fa3463048cc15bfc8.js",
+      "component---src-pages-styles-colors-index-md-769fa3463048cc15bfc8.js.map"
     ],
     "component---src-pages-styles-index-md": [
-      "component---src-pages-styles-index-md-3b0fdb67289ad9aa7f7b.js",
-      "component---src-pages-styles-index-md-3b0fdb67289ad9aa7f7b.js.map"
+      "component---src-pages-styles-index-md-61bf8cf526ed02654841.js",
+      "component---src-pages-styles-index-md-61bf8cf526ed02654841.js.map"
     ],
     "component---src-pages-components-layout-layout-demo-js": [
       "component---src-pages-components-layout-layout-demo-js-ea75d5dc6c7a4f1a0033.js",
       "component---src-pages-components-layout-layout-demo-js-ea75d5dc6c7a4f1a0033.js.map"
     ],
     "component---src-pages-components-dropdown-index-md": [
-      "component---src-pages-components-dropdown-index-md-38a039bbcf58eaf79158.js",
-      "component---src-pages-components-dropdown-index-md-38a039bbcf58eaf79158.js.map"
+      "component---src-pages-components-dropdown-index-md-fe030f6722ca2b89233f.js",
+      "component---src-pages-components-dropdown-index-md-fe030f6722ca2b89233f.js.map"
     ],
     "path---language": [
       "path---language-a0e39f21c11f6a62c5ab.js",
@@ -77,16 +77,16 @@
       "component---src-pages-components-button-button-md-ddeb6399f45d61f7a05c.js.map"
     ],
     "component---src-pages-styles-icons-index-md": [
-      "component---src-pages-styles-icons-index-md-51b3fcea5a902420ea0d.js",
-      "component---src-pages-styles-icons-index-md-51b3fcea5a902420ea0d.js.map"
+      "component---src-pages-styles-icons-index-md-1968a85511d9c7b06635.js",
+      "component---src-pages-styles-icons-index-md-1968a85511d9c7b06635.js.map"
     ],
     "path---components-button-icon-button": [
       "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js",
       "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-86bcf659103a1fc1f8e1.js",
-      "component---src-layouts-index-js-86bcf659103a1fc1f8e1.js.map"
+      "component---src-layouts-index-js-dd5bede982176c13eb3e.js",
+      "component---src-layouts-index-js-dd5bede982176c13eb3e.js.map"
     ],
     "path---components-button-button": [
       "path---components-button-button-a0e39f21c11f6a62c5ab.js",
@@ -117,9 +117,9 @@
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-3ba0835d090003b8316f.js",
+      "commons-db8b9bfcb8d78dbdeae7.js",
       "build-js-styles.css",
-      "commons-3ba0835d090003b8316f.js.map",
+      "commons-db8b9bfcb8d78dbdeae7.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
@@ -166,14 +166,18 @@
       "path---components-notification-global-a0e39f21c11f6a62c5ab.js",
       "path---components-notification-global-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---styles-animation": [
+      "path---styles-animation-a0e39f21c11f6a62c5ab.js",
+      "path---styles-animation-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-pages-components-index-md": [
       "component---src-pages-components-index-md-446b0690842536e459ce.js",
       "component---src-pages-components-index-md-446b0690842536e459ce.js.map"
     ],
     "app": [
-      "app-3b9ac5ec76e986167640.js",
+      "app-bb23302257aa7068e5f7.js",
       "build-js-styles.css",
-      "app-3b9ac5ec76e986167640.js.map",
+      "app-bb23302257aa7068e5f7.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -181,16 +185,16 @@
       "component---src-pages-language-index-md-4fca8dd20e5fdf5f8f55.js.map"
     ],
     "component---src-pages-index-md": [
-      "component---src-pages-index-md-d71077516a29b04491b0.js",
-      "component---src-pages-index-md-d71077516a29b04491b0.js.map"
+      "component---src-pages-index-md-168ea413bf79ac6c3713.js",
+      "component---src-pages-index-md-168ea413bf79ac6c3713.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-menu-list-index-md": [
-      "component---src-pages-components-menu-list-index-md-1e08b3a786a85ea4453a.js",
-      "component---src-pages-components-menu-list-index-md-1e08b3a786a85ea4453a.js.map"
+      "component---src-pages-components-menu-list-index-md-950c620b383275087180.js",
+      "component---src-pages-components-menu-list-index-md-950c620b383275087180.js.map"
     ],
     "component---src-pages-language-checklist-md": [
       "component---src-pages-language-checklist-md-dab1a521bf44e59fb960.js",
@@ -204,6 +208,10 @@
       "path---components-layout-a0e39f21c11f6a62c5ab.js",
       "path---components-layout-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-styles-animation-index-md": [
+      "component---src-pages-styles-animation-index-md-0198d5ded4478e19cb00.js",
+      "component---src-pages-styles-animation-index-md-0198d5ded4478e19cb00.js.map"
+    ],
     "component---src-pages-components-icon-index-md": [
       "component---src-pages-components-icon-index-md-7a53a64a4cee936637ef.js",
       "component---src-pages-components-icon-index-md-7a53a64a4cee936637ef.js.map"
@@ -213,8 +221,8 @@
       "component---src-pages-components-layout-index-md-e013defb8bfe3be07aea.js.map"
     ],
     "component---src-pages-styles-typography-md": [
-      "component---src-pages-styles-typography-md-708ef8e5ce84481b9d55.js",
-      "component---src-pages-styles-typography-md-708ef8e5ce84481b9d55.js.map"
+      "component---src-pages-styles-typography-md-9f63be3be0a84ec4c022.js",
+      "component---src-pages-styles-typography-md-9f63be3be0a84ec4c022.js.map"
     ]
   }
 }
