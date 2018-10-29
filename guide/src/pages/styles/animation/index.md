@@ -139,13 +139,14 @@ Most people first notice or perceive an animation at about the 250ms mark, so we
 
 Sizing and spacing (e.g. distance to travel) can influence durations needed, so 200ms might be more appropriate than 300ms for some elements.
 
-| Class                   | Duration |
+| Variable                | Duration |
 | ----------------------- | -------- |
-| .ca-duration-immediate  | 100ms    |
-| .ca-duration-rapid      | 200ms    |
-| .ca-duration-fast       | 300ms    |
-| .ca-duration-slow       | 400ms    |
-| .ca-duration-deliberate | 700ms    |
+| $ca-duration-instant    | 0ms      |
+| $ca-duration-immediate  | 100ms    |
+| $ca-duration-rapid      | 200ms    |
+| $ca-duration-fast       | 300ms    |
+| $ca-duration-slow       | 400ms    |
+| $ca-duration-deliberate | 700ms    |
 
 ## Effects and styles
 
@@ -158,13 +159,13 @@ Here are examples of pre-defined CSS transitions and animations that are ready t
 
 We use **Slide and Fade** for revealing or moving existing content whereas we use **Scale and Fade** for creating content, such as new items in a list.
 
-| Type           | Class                                |
-| -------------- | ------------------------------------ |
-| Fade           | .ca-animation-fade-{direction}       |
-| Slide and Fade | .ca-animation-slide-fade-{direction} |
-| Scale and Fade | .ca-animation-scale-fade-{direction} |
-| Pop            | .ca-animation-pop                    |
-| Pulsate        | .ca-animation-pulsate                |
+| Type    | Mixin                                                |
+| ------- | ---------------------------------------------------- |
+| Fade    | @include ca-animation-fade($state: `in | out`)       |
+| Fade    | @include ca-animation-slide-fade($state: `in | out`) |
+| Fade    | @include ca-animation-scale-fade($state: `in | out`) |
+| Pop     | @include ca-animation-pop                            |
+| Pulsate | @include ca-animation-pulsate                        |
 
 ## Sequencing Animations
 
