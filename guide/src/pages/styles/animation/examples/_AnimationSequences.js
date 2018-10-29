@@ -5,7 +5,6 @@ import Drop from '../components/_Drop';
 import Code from '../../../../components/Code';
 import './_AnimationExamples.scss';
 import './_AnimationSequences.scss';
-// import styles from './_AnimationSequences.module.scss';
 import scssCode from '!raw-loader!./_AnimationSequences.scss';
 
 class AnimationPresets extends React.PureComponent {
