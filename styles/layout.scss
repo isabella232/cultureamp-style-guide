@@ -32,7 +32,15 @@ $ca-layout-sidebar-width: 10 * $ca-grid;
   }
 }
 
-@mixin ca-position($start: auto, $end: auto, $top: null, $bottom: null) {
+@mixin ca-position($start: null, $end: null, $top: null, $bottom: null) {
+  @if ($start == null && $end == null) {
+    @warn "If you're not passing in a specific $start or $end value (e.g. you're just passing $top and/or $bottom), you probably don't need the ca-position mixin.";
+  } @else if ($start == null) {
+    $start: auto;
+  } @else if ($end == null) {
+    $end: auto;
+  }
+
   top: $top;
   bottom: $bottom;
   right: $end;
