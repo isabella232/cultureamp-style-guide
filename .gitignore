@@ -7,3 +7,4 @@ elm-stuff
 npm-debug.log
 .vs
 .idea
+.DS_Store
