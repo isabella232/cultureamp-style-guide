@@ -1,6 +1,9 @@
 {
-  "babelrc": false,
-  "presets": [["@babel/env", { "modules": "commonjs" }], "@babel/react", "@babel/flow"],
+  "presets": [
+    ["@babel/env", { "modules": "commonjs" }],
+    "@babel/react",
+    "@babel/flow"
+  ],
   "plugins": [
     "add-react-displayname",
     "@babel/plugin-proposal-object-rest-spread",
