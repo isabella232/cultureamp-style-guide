@@ -68,6 +68,25 @@ export default class Dropdown extends React.Component<
     );
   }
 
+<<<<<<< HEAD
+=======
+  renderIcon = (icon: SvgAsset) => (
+      <span className={styles.dropdownIcon}>
+        <Icon icon={icon} role="img" title="Open menu"/>
+      </span>
+  );
+
+  renderDownArrow = () => {
+    const { label, controlAction } = this.props;
+    if (!label || !controlAction) return;
+
+    return (<span className={styles.chevronIcon}>
+        <Icon icon={chevronDown} role="img" title="Open menu"/>
+      </span>
+    );
+  };
+
+>>>>>>> fix(Adds RTL styling to GenericButton component):
   render() {
     let { icon, label, controlAction, automationId, reversed } = this.props;
     if (!icon && !label) {
