@@ -1,3 +1,4 @@
+@import '../styles';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
 
@@ -7,11 +8,13 @@ $indicator-height: 3px;
 $link-margin: $ca-grid / 4;
 
 .link {
+  @extend %ca-global-ia-navigation-bar__menu-item-focus;
+
   // fill parent
   display: flex;
   min-width: 2 * $ca-grid;
   height: 2 * $ca-grid;
-  margin: $ca-grid / 4;
+  margin: ($ca-grid / 4) 0;
 
   // center child
   align-items: center;
@@ -31,14 +34,14 @@ $link-margin: $ca-grid / 4;
     width: 100%;
     position: absolute;
     top: 0;
+    left: 0;
+    right: 0;
     background-color: #fff;
     transition: transform $nav-ease $nav-timing;
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     color: #fff; // override hyperlink hover color
-    outline: none; // override native focus styles
     text-decoration: none;
 
     .linkText::before {
@@ -57,8 +60,12 @@ $link-margin: $ca-grid / 4;
     padding: 0 $ca-grid / 2;
     margin-right: $ca-grid / 2;
 
-    .linkText::before {
-      display: none;
+    .linkText {
+      padding: 0;
+
+      &::before {
+        display: none;
+      }
     }
 
     &:hover,
@@ -95,18 +102,20 @@ $link-margin: $ca-grid / 4;
   display: flex;
   align-items: center;
   height: 100%;
+  padding: $ca-grid;
+  justify-content: center;
 }
 
 .containsText {
-  padding: 0 $ca-grid;
+  padding: 0;
 }
 
 .active {
-    color: #fff; // override hyperlink hover color
-    outline: none; // override native focus styles
-    text-decoration: none;
+  color: #fff; // override hyperlink hover color
+  outline: none; // override native focus styles
+  text-decoration: none;
 
-    .linkText::before {
-      transform: translateY(-#{$link-margin});
-    }
+  .linkText::before {
+    transform: translateY(-#{$link-margin});
+  }
 }

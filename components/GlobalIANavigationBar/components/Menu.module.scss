@@ -1,3 +1,4 @@
+@import '../styles';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/type';
@@ -13,6 +14,8 @@ $menu__square-size: $ca-grid * 2;
 }
 
 .button {
+  @extend %ca-global-ia-navigation-bar__menu-item-focus;
+
   // reset button styles
   appearance: none;
   background: transparent;

@@ -81,6 +81,7 @@ export default class NavigationBar extends React.Component<Props> {
             <li
               key={link.key}
               className={classNames(styles.child, {
+                [styles.active]: link.props.active,
                 [styles.secondary]: link.props.secondary,
                 [styles.first]: index === indexOfFirstSecondaryLink,
               })}
