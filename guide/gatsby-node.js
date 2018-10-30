@@ -119,24 +119,21 @@ function addSvgLoaders(config) {
 }
 
 function addMarkdownLoader(config) {
-  const babelConfig = {
-      presets: ['env', 'stage-0', 'react'],
-    },
-    mdConfig = {
-      passElementProps: true,
-      markdownItPlugins: [
-        require.resolve('markdown-it-anchor'),
-        require.resolve('markdown-it-table'),
-        [
-          require.resolve('markdown-it-table-of-contents'),
-          { includeLevel: [2, 3, 4] },
-        ],
+  const mdConfig = {
+    passElementProps: true,
+    markdownItPlugins: [
+      require.resolve('markdown-it-anchor'),
+      require.resolve('markdown-it-table'),
+      [
+        require.resolve('markdown-it-table-of-contents'),
+        { includeLevel: [2, 3, 4] },
       ],
-    };
+    ],
+  };
   config.loader('markdown-component-loader', {
     test: /\.md$/i,
     loaders: [
-      'babel-loader?' + JSON.stringify(babelConfig),
+      'babel-loader',
       require.resolve('./src/webpack-util/markdownWrapper.js'),
       'markdown-component-loader?' + JSON.stringify(mdConfig),
     ],
@@ -145,7 +142,8 @@ function addMarkdownLoader(config) {
 
 function addStyleGuideBabelLoader(config) {
   const babelConfig = {
-    presets: ['env', 'stage-0', 'react'],
+    babelrc: false,
+    presets: ['env', 'react'],
   };
   config.loader('style-guide-babel', {
     test: /\.jsx?$/i,
@@ -154,7 +152,7 @@ function addStyleGuideBabelLoader(config) {
       'cultureamp-style-guide',
       'components'
     ),
-    loaders: ['babel-loader?' + JSON.stringify(babelConfig)],
+    loaders: ['babel-loader'],
   });
 }
 
