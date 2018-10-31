@@ -32,7 +32,14 @@ $ca-layout-sidebar-width: 10 * $ca-grid;
   }
 }
 
-@mixin ca-position($start: auto, $end: auto, $top: null, $bottom: null) {
+@mixin ca-position($start: null, $end: null, $top: null, $bottom: null) {
+  @if ($start == null and $end != null) {
+    $start: auto;
+  }
+  @if ($end == null and $start != null) {
+    $end: auto;
+  }
+
   top: $top;
   bottom: $bottom;
   right: $end;
