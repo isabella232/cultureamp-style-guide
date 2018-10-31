@@ -23,10 +23,10 @@ module Button.Button exposing
     )
 
 import CssModules exposing (css)
+import Elm18Compat.Html.Events as Events exposing (defaultOptions, onWithOptions)
 import Html exposing (Html, a, button, span, text)
 import Html.Attributes
 import Html.Attributes.Aria
-import Html.Events as Events exposing (preventDefaultOn)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (SvgAsset)
 import Json.Decode as Json
@@ -107,22 +107,23 @@ onClickAttribs (Config config) =
     case config.onClick of
         Just msg ->
             let
-                preventDefault tagger =
+                preventDefault =
                     case config.buttonType of
                         Just buttonTypeValue ->
                             case buttonTypeValue of
                                 Submit ->
-                                    ( tagger, False )
+                                    False
 
                                 Reset ->
-                                    ( tagger, False )
+                                    False
 
                         Nothing ->
-                            ( tagger, True )
+                            True
             in
-            [ preventDefaultOn
+            [ onWithOptions
                 "click"
-                (Json.succeed (preventDefault msg))
+                { defaultOptions | preventDefault = preventDefault }
+                (Json.succeed msg)
             ]
 
         Nothing ->

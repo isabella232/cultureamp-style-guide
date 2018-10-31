@@ -15,19 +15,19 @@ module Notification.Notification exposing
     , view
     )
 
--- import Html.Events as Events exposing (defaultOptions, on, onWithOptions)
--- import Time exposing (every, second)
-
-import Browser.Events exposing (onAnimationFrame)
 import CssModules exposing (css)
+import Elm18Compat.AnimationFrame as AnimationFrame
+import Elm18Compat.Html.Events exposing (defaultOptions, onWithOptions)
+import Elm18Compat.String exposing (fromInt)
+import Elm18Compat.Time exposing (second)
 import Html exposing (Html, button, div, h6, p, span, text)
 import Html.Attributes
-import Html.Events as Events exposing (on, onClick, preventDefaultOn)
+import Html.Events as Events exposing (on)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
 import Json.Decode
 import Platform.Sub
-import Time exposing (every, millisToPosix)
+import Time exposing (every)
 
 
 {-| A notification component for Culture Amp projects.
@@ -114,7 +114,7 @@ view (Config config) state onStateChange =
                 Disappearing height ->
                     [ Html.Attributes.style
                         "marginTop"
-                        (String.fromInt -height ++ "px")
+                        (fromInt -height ++ "px")
                     ]
 
                 _ ->
@@ -259,16 +259,12 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
                 ( _, _ ) ->
                     persistent
 
-        alwaysPreventDefault msg =
-            ( msg, True )
-
         onClickCancel =
-            [ preventDefaultOn
+            [ onWithOptions
                 "click"
-                (Json.Decode.map alwaysPreventDefault
-                    (Json.Decode.at [ "target", "parentNode", "clientHeight" ] Json.Decode.int
-                        |> Json.Decode.andThen (\height -> Json.Decode.succeed <| onStateChange <| Manual (Disappearing height))
-                    )
+                { defaultOptions | preventDefault = True }
+                (Json.Decode.at [ "target", "parentNode", "clientHeight" ] Json.Decode.int
+                    |> Json.Decode.andThen (\height -> Json.Decode.succeed <| onStateChange <| Manual (Disappearing height))
                 )
             ]
     in
@@ -405,15 +401,15 @@ subscriptions allNotifications =
             (\( state, setter ) ->
                 case state of
                     Manual Appearing ->
-                        Just <| onAnimationFrame <| always <| setter <| Manual Visible
+                        Just <| AnimationFrame.times <| always <| setter <| Manual Visible
 
                     Autohide Appearing ->
-                        Just <| onAnimationFrame <| always <| setter <| Autohide Visible
+                        Just <| AnimationFrame.times <| always <| setter <| Autohide Visible
 
                     Autohide Visible ->
                         -- Note: we do not know the height of the notification here, so cannot animate margin-top.
                         -- We have a "transitionstart" event listener that will read the clientHeight and correct this value.
-                        Just <| every 5000 <| always <| setter <| Autohide (Disappearing 0)
+                        Just <| every (5 * second) <| always <| setter <| Autohide (Disappearing 0)
 
                     _ ->
                         Nothing
