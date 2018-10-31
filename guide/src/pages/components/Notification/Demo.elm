@@ -183,8 +183,8 @@ renderView props notificationStates configResult =
                 _ ->
                     Manual Appearing
 
-        getStateAndConfig : Result String (Config Msg) -> Result String ( Config Msg, NotificationState, NotificationStateSetter Msg )
-        getStateAndConfig poorlyNamed_configResult =
+        stateAndConfig : Result String ( Config Msg, NotificationState, NotificationStateSetter Msg )
+        stateAndConfig =
             Result.map
                 (\config ->
                     let
@@ -196,14 +196,14 @@ renderView props notificationStates configResult =
                     , SetNotificationState automationId
                     )
                 )
-                poorlyNamed_configResult
+                configResult
 
         jsxDecoder : Result String ( Config Msg, NotificationState, NotificationStateSetter Msg ) -> JsxDecoderWithInitMessages Msg
         jsxDecoder result =
             case result of
                 Ok ( config, currentState, notificationStateSetter ) ->
                     let
-                        poorlyNamed_view =
+                        renderedView =
                             Notification.view config currentState notificationStateSetter
 
                         initialMessages =
@@ -216,11 +216,10 @@ renderView props notificationStates configResult =
                                     []
                     in
                     Json.succeed
-                        ( [ poorlyNamed_view ], initialMessages )
+                        ( [ renderedView ], initialMessages )
 
                 Err msg ->
                     Json.fail msg
     in
-    configResult
-        |> getStateAndConfig
+    stateAndConfig
         |> jsxDecoder

@@ -161,8 +161,8 @@ initModelFromJsx jsxNode componentDecoders initialModel update =
 
         messages =
             case result of
-                Ok ( nodes, poorlyNamed_messages ) ->
-                    poorlyNamed_messages
+                Ok ( nodes, foundMessages ) ->
+                    foundMessages
 
                 Err str ->
                     -- Question: should we introduce some kind of error handling here?
