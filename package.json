@@ -68,6 +68,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.6.0",
     "postcss-normalize": "^3.0.0",
+    "prettier": "^1.14.3",
     "raw-loader": "^0.5.1",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
