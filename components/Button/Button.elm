@@ -23,7 +23,7 @@ module Button.Button exposing
     )
 
 import CssModules exposing (css)
-import Elm18Compat.Html.Events as Events exposing (defaultOptions, onWithOptions)
+import Elm18Compatible.Html.Events as Events exposing (defaultOptions, onWithOptions)
 import Html exposing (Html, a, button, span, text)
 import Html.Attributes
 import Html.Attributes.Aria

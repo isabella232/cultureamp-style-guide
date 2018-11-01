@@ -2,7 +2,7 @@
     "type": "application",
     "source-directories": [
         "components",
-        "elmcompat/elm19",
+        "node_modules/elm-upgrade-shims/lib-0.19",
         "guide/src/pages/components"
     ],
     "elm-version": "0.19.0",

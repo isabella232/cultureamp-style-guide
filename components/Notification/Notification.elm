@@ -16,10 +16,10 @@ module Notification.Notification exposing
     )
 
 import CssModules exposing (css)
-import Elm18Compat.AnimationFrame as AnimationFrame
-import Elm18Compat.Html.Events exposing (defaultOptions, onWithOptions)
-import Elm18Compat.String exposing (fromInt)
-import Elm18Compat.Time exposing (second)
+import Elm18Compatible.Html.Events exposing (defaultOptions, onWithOptions)
+import Elm18Compatible.Time exposing (second)
+import Elm19Compatible.Browser.Events exposing (onAnimationFrame)
+import Elm19Compatible.String exposing (fromInt)
 import Html exposing (Html, button, div, h6, p, span, text)
 import Html.Attributes
 import Html.Events as Events exposing (on)
@@ -401,10 +401,10 @@ subscriptions allNotifications =
             (\( state, setter ) ->
                 case state of
                     Manual Appearing ->
-                        Just <| AnimationFrame.times <| always <| setter <| Manual Visible
+                        Just <| onAnimationFrame <| always <| setter <| Manual Visible
 
                     Autohide Appearing ->
-                        Just <| AnimationFrame.times <| always <| setter <| Autohide Visible
+                        Just <| onAnimationFrame <| always <| setter <| Autohide Visible
 
                     Autohide Visible ->
                         -- Note: we do not know the height of the notification here, so cannot animate margin-top.

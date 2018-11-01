@@ -75,12 +75,7 @@ function addStyleGuideRules(config, options) {
 }
 
 function styleGuideRules(options) {
-  return [
-    jsRule(options),
-    elmRule(options),
-    cssRule(options),
-    svgRule(options),
-  ];
+  return [jsRule(options), cssRule(options), svgRule(options)];
 }
 
 function jsRule() {
@@ -89,30 +84,6 @@ function jsRule() {
     include: styleGuidePaths(),
     loader: require.resolve('babel-loader'),
     options: require('./babel.config.js'),
-  };
-}
-
-function elmRule() {
-  return {
-    test: /\.elm$/,
-    include: styleGuidePaths(),
-    use: [
-      {
-        loader: require.resolve('./elmSvgAssetLoader'),
-      },
-      {
-        loader: 'elm-css-modules-loader',
-      },
-      {
-        loader: 'elm-webpack-loader',
-        options: {
-          debug: false,
-          forceWatch:
-            path.basename(require.main.filename) === 'webpack-dev-server.js',
-          maxInstances: 1,
-        },
-      },
-    ],
   };
 }
 
