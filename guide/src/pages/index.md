@@ -35,8 +35,8 @@ Product:
 
   * <Link to="/components/text">Text</Link>
 
-* <Link to="/language/">Language</Link>
+* <Link to="/guides/">Guides</Link>
 
   * <Link to="/language/">Product Language Style Guide</Link>
 
-  * <Link to="/language/checklist/">Product Writing Checklist</Link>
+  * <Link to="/guides/localisation">Localisation Guide</Link>
