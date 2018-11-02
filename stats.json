@@ -12,6 +12,10 @@
       "component---src-pages-components-layout-layout-demo-js-25594ddcc5696d3e8555.js",
       "component---src-pages-components-layout-layout-demo-js-25594ddcc5696d3e8555.js.map"
     ],
+    "component---src-pages-guides-localisation-examples-ca-padding-example-js": [
+      "component---src-pages-guides-localisation-examples-ca-padding-example-js-5ec5eefeb8046b96cfe5.js",
+      "component---src-pages-guides-localisation-examples-ca-padding-example-js-5ec5eefeb8046b96cfe5.js.map"
+    ],
     "component---src-pages-components-dropdown-index-md": [
       "component---src-pages-components-dropdown-index-md-d89805a6b19907f92577.js",
       "component---src-pages-components-dropdown-index-md-d89805a6b19907f92577.js.map"
@@ -19,6 +23,10 @@
     "path---language": [
       "path---language-a0e39f21c11f6a62c5ab.js",
       "path---language-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-guides-localisation-examples-localisation-mixin-import-example-js": [
+      "component---src-pages-guides-localisation-examples-localisation-mixin-import-example-js-bbcf03584e419bf02701.js",
+      "component---src-pages-guides-localisation-examples-localisation-mixin-import-example-js-bbcf03584e419bf02701.js.map"
     ],
     "path---components-layout-layout-demo": [
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js",
@@ -37,8 +45,8 @@
       "path---styles-typography-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-notification-toast-md": [
-      "component---src-pages-components-notification-toast-md-9137346d9d1804f0c2a8.js",
-      "component---src-pages-components-notification-toast-md-9137346d9d1804f0c2a8.js.map"
+      "component---src-pages-components-notification-toast-md-94045e718c025b4da8e2.js",
+      "component---src-pages-components-notification-toast-md-94045e718c025b4da8e2.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -52,6 +60,10 @@
       "path---components-a0e39f21c11f6a62c5ab.js",
       "path---components-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---guides-localisation-examples-rtl-layout-example": [
+      "path---guides-localisation-examples-rtl-layout-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-rtl-layout-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-pages-components-button-icon-button-md": [
       "component---src-pages-components-button-icon-button-md-0e81e93ff1e3fddca558.js",
       "component---src-pages-components-button-icon-button-md-0e81e93ff1e3fddca558.js.map"
@@ -60,6 +72,10 @@
       "path---components-icon-a0e39f21c11f6a62c5ab.js",
       "path---components-icon-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---guides-localisation-examples-ca-margin-example": [
+      "path---guides-localisation-examples-ca-margin-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-ca-margin-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "path---components-button": [
       "path---components-button-a0e39f21c11f6a62c5ab.js",
       "path---components-button-a0e39f21c11f6a62c5ab.js.map"
@@ -67,6 +83,10 @@
     "path---language-check-list-item": [
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js",
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-guides-localisation-index-md": [
+      "component---src-pages-guides-localisation-index-md-19ea9af9d36ddd00dc19.js",
+      "component---src-pages-guides-localisation-index-md-19ea9af9d36ddd00dc19.js.map"
     ],
     "path---components-notification": [
       "path---components-notification-a0e39f21c11f6a62c5ab.js",
@@ -85,8 +105,16 @@
       "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-8b86f1eb9532efc6f5a4.js",
-      "component---src-layouts-index-js-8b86f1eb9532efc6f5a4.js.map"
+      "component---src-layouts-index-js-12f25bab6b984730b832.js",
+      "component---src-layouts-index-js-12f25bab6b984730b832.js.map"
+    ],
+    "path---guides": [
+      "path---guides-a0e39f21c11f6a62c5ab.js",
+      "path---guides-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---guides-localisation-examples-ca-padding-example": [
+      "path---guides-localisation-examples-ca-padding-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-ca-padding-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---components-button-button": [
       "path---components-button-button-a0e39f21c11f6a62c5ab.js",
@@ -97,8 +125,8 @@
       "path---index-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-notification-global-md": [
-      "component---src-pages-components-notification-global-md-2610a6faf1f17c14f9a5.js",
-      "component---src-pages-components-notification-global-md-2610a6faf1f17c14f9a5.js.map"
+      "component---src-pages-components-notification-global-md-183b59c7eba43f86f273.js",
+      "component---src-pages-components-notification-global-md-183b59c7eba43f86f273.js.map"
     ],
     "component---src-pages-components-navigation-bar-index-md": [
       "component---src-pages-components-navigation-bar-index-md-e45e30d13dfb63add524.js",
@@ -112,19 +140,23 @@
       "path---components-notification-inline-a0e39f21c11f6a62c5ab.js",
       "path---components-notification-inline-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-guides-index-md": [
+      "component---src-pages-guides-index-md-904551f475fdb2d37db4.js",
+      "component---src-pages-guides-index-md-904551f475fdb2d37db4.js.map"
+    ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js",
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-2eda1a0397c4b1db2493.js",
+      "commons-e80ab87af90e3642a475.js",
       "build-js-styles.css",
-      "commons-2eda1a0397c4b1db2493.js.map",
+      "commons-e80ab87af90e3642a475.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
-      "component---src-pages-components-notification-inline-md-81e2f69eb91c665e7c23.js",
-      "component---src-pages-components-notification-inline-md-81e2f69eb91c665e7c23.js.map"
+      "component---src-pages-components-notification-inline-md-46dd596713377a3bfd20.js",
+      "component---src-pages-components-notification-inline-md-46dd596713377a3bfd20.js.map"
     ],
     "component---src-pages-components-button-index-md": [
       "component---src-pages-components-button-index-md-13f81e61fd5d7da82b3b.js",
@@ -170,14 +202,26 @@
       "path---styles-animation-a0e39f21c11f6a62c5ab.js",
       "path---styles-animation-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-guides-localisation-examples-rtl-layout-example-js": [
+      "component---src-pages-guides-localisation-examples-rtl-layout-example-js-195b454e60b61536411a.js",
+      "component---src-pages-guides-localisation-examples-rtl-layout-example-js-195b454e60b61536411a.js.map"
+    ],
+    "path---guides-localisation": [
+      "path---guides-localisation-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-pages-components-index-md": [
       "component---src-pages-components-index-md-446b0690842536e459ce.js",
       "component---src-pages-components-index-md-446b0690842536e459ce.js.map"
     ],
+    "component---src-pages-guides-localisation-examples-ca-type-align-example-js": [
+      "component---src-pages-guides-localisation-examples-ca-type-align-example-js-f207111c6607586b5ffc.js",
+      "component---src-pages-guides-localisation-examples-ca-type-align-example-js-f207111c6607586b5ffc.js.map"
+    ],
     "app": [
-      "app-a6cb3a5584139832e147.js",
+      "app-1ee37832e6e2d6524599.js",
       "build-js-styles.css",
-      "app-a6cb3a5584139832e147.js.map",
+      "app-1ee37832e6e2d6524599.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -185,8 +229,12 @@
       "component---src-pages-language-index-md-4fca8dd20e5fdf5f8f55.js.map"
     ],
     "component---src-pages-index-md": [
-      "component---src-pages-index-md-168ea413bf79ac6c3713.js",
-      "component---src-pages-index-md-168ea413bf79ac6c3713.js.map"
+      "component---src-pages-index-md-29d2716c3408f16256a5.js",
+      "component---src-pages-index-md-29d2716c3408f16256a5.js.map"
+    ],
+    "component---src-pages-guides-localisation-examples-ca-position-example-js": [
+      "component---src-pages-guides-localisation-examples-ca-position-example-js-c96ad890d048facd6e8c.js",
+      "component---src-pages-guides-localisation-examples-ca-position-example-js-c96ad890d048facd6e8c.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
@@ -199,6 +247,10 @@
     "component---src-pages-language-checklist-md": [
       "component---src-pages-language-checklist-md-6dd756014cbc2f96dce2.js",
       "component---src-pages-language-checklist-md-6dd756014cbc2f96dce2.js.map"
+    ],
+    "path---guides-localisation-examples-localisation-mixin-import-example": [
+      "path---guides-localisation-examples-localisation-mixin-import-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-localisation-mixin-import-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---components-text": [
       "path---components-text-a0e39f21c11f6a62c5ab.js",
@@ -216,9 +268,21 @@
       "component---src-pages-components-icon-index-md-7a53a64a4cee936637ef.js",
       "component---src-pages-components-icon-index-md-7a53a64a4cee936637ef.js.map"
     ],
+    "component---src-pages-guides-localisation-examples-ca-margin-example-js": [
+      "component---src-pages-guides-localisation-examples-ca-margin-example-js-f86c26661b4bf06387be.js",
+      "component---src-pages-guides-localisation-examples-ca-margin-example-js-f86c26661b4bf06387be.js.map"
+    ],
     "component---src-pages-components-layout-index-md": [
       "component---src-pages-components-layout-index-md-39fed16a051dc4375c06.js",
       "component---src-pages-components-layout-index-md-39fed16a051dc4375c06.js.map"
+    ],
+    "path---guides-localisation-examples-ca-type-align-example": [
+      "path---guides-localisation-examples-ca-type-align-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-ca-type-align-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---guides-localisation-examples-ca-position-example": [
+      "path---guides-localisation-examples-ca-position-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-localisation-examples-ca-position-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-styles-typography-md": [
       "component---src-pages-styles-typography-md-11164a5ad37c0900bee7.js",
