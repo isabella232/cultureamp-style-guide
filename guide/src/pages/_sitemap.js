@@ -36,11 +36,11 @@ const sitemap = {
           ],
         },
         {
-          title: 'Language',
+          title: 'Guides',
           href: '/language',
           children: [
             { title: 'Product Language Style Guide', href: '/language' },
-            { title: 'Product Writing Checklist', href: '/language/checklist' },
+            { title: 'Localisation Guide', href: '/guides/localisation' },
           ],
         },
       ],
