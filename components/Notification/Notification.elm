@@ -19,6 +19,7 @@ import CssModules exposing (css)
 import Elm18Compatible.Html.Events exposing (defaultOptions, onWithOptions)
 import Elm18Compatible.Time exposing (second)
 import Elm19Compatible.Browser.Events exposing (onAnimationFrame)
+import Elm19Compatible.Html.Attributes
 import Elm19Compatible.String exposing (fromInt)
 import Html exposing (Html, button, div, h6, p, span, text)
 import Html.Attributes
@@ -112,7 +113,7 @@ view (Config config) state onStateChange =
         styleAttr =
             case notificationStage state of
                 Disappearing height ->
-                    [ Html.Attributes.style
+                    [ Elm19Compatible.Html.Attributes.style
                         "marginTop"
                         (fromInt -height ++ "px")
                     ]
