@@ -8,7 +8,8 @@ import {
 } from 'cultureamp-style-guide/components/MenuList';
 import meatballs from 'cultureamp-style-guide/icons/meatballs.svg';
 import kebab from 'cultureamp-style-guide/icons/kebab.svg';
-import print from 'cultureamp-style-guide/icons/print-white.svg';
+import printWhite from 'cultureamp-style-guide/icons/print-white.svg';
+import print from 'cultureamp-style-guide/icons/print.svg';
 import enso from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import React from 'react';
 
@@ -61,10 +62,19 @@ const presets = [
   {
     name: 'Control action',
     node: (
-      <Dropdown label="Print" icon={print} controlAction={true}>
+      <Dropdown label="Print" icon={printWhite} controlAction={true}>
         {menuList}
       </Dropdown>
     ),
+  },
+  {
+    name: 'Reversed Control action',
+    node: (
+      <Dropdown label="Print" icon={print} controlAction={true} reversed>
+        {menuList}
+      </Dropdown>
+    ),
+    darkBackground: true,
   },
 ];
 

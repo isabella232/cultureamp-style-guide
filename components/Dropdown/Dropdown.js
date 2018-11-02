@@ -20,6 +20,7 @@ type DropdownProps = {
   menuVisible?: boolean,
   controlAction?: boolean,
   automationId?: string,
+  reversed?: boolean,
 };
 
 export default class Dropdown extends React.Component<
@@ -68,13 +69,14 @@ export default class Dropdown extends React.Component<
   }
 
   render() {
-    let { icon, label, controlAction, automationId } = this.props;
+    let { icon, label, controlAction, automationId, reversed } = this.props;
     if (!icon && !label) {
       icon = defaultIcon;
     }
     const btnClass = classNames(styles.dropdownButton, {
       [styles.dropdownControlAction]: controlAction,
       [styles.isOpen]: this.state.isMenuVisible,
+      [styles.reversed]: reversed,
     });
     return (
       <div className={styles.dropdown}>
