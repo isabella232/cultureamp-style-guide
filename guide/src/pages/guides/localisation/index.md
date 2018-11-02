@@ -51,7 +51,7 @@ If you explicity need to set the `text-align` property for your document or comp
 
 When using any `left` or `right` specific css properties e.g. `margin-left`, `padding-left`, `left`... It is very common to need these values 'flipped' in a RTL layout. To help with this the following mixins are available.
 
-<InlineNotification persistent={true}>
+<InlineNotification persistent={true} type="informative">
 
 **Note:** These mixins also take a `$top` and `$bottom` value. While these values are never 'flipped' they can be supplied to the mixin which will avoid any css rules being over written.
 
