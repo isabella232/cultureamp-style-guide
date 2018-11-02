@@ -7,7 +7,7 @@ class CATypeAlignExample extends React.PureComponent {
       <Code>{`@import '~cultureamp-style-guide/styles/type';
 
 .my-text {
-  @include ca-text-align-start;
+  @include ca-type-align-start;
 }`}</Code>
     );
   }
