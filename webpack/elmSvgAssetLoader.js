@@ -1,5 +1,4 @@
 const loaderUtils = require('loader-utils');
-const elmPackageInfo = require('elm/package.json');
 
 /**
  * A webpack loader to transform SVG assets in Elm to Webpack require() calls.
@@ -19,14 +18,14 @@ const elmPackageInfo = require('elm/package.json');
  */
 function loader(source, inputSourceMap) {
   const config = loaderUtils.getOptions(this) || {};
-  const isElm18 = elmPackageInfo.version === '0.18.0';
+  const isElm19 = config.isElm19;
   config.module = config['module'] || 'Icon.SvgAsset';
   config.tagger = config['tagger'] || 'svgAsset';
 
   const packageName =
-    config['package'] || (isElm18 ? 'user/project' : 'author/project');
-  const prefix = isElm18 ? '_' : '';
-  const moduleSeparator = isElm18 ? '_' : '$';
+    config['package'] || (isElm19 ? 'author/project' : 'user/project');
+  const prefix = isElm19 ? '' : '_';
+  const moduleSeparator = isElm19 ? '$' : '_';
   const taggerName =
     prefix +
     [
