@@ -24,7 +24,7 @@ As the CultureAmp product/s mature and grow we want to be able to support as man
 
 <InlineNotification persistent={true} type="affirmative">
 
-**Tip:** It is a good idea to start thinking about the horizontal flow of a layout as `start` and `end` as opposed to `left` and `right`. This will help you determine where you need to cater for `RTL` layout support. CSS [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) takes this approach and uses `flex-start` and `flex-end` for positioning elements within a flex container. Wherever possible start using `flexbox` for you layout and you will find you get a lot of `RTL` support for free!
+**Tip:** It is a good idea to start thinking about the horizontal flow of a layout as `start` and `end` as opposed to `left` and `right`. This will help you determine where you need to cater for RTL layout support. CSS [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) takes this approach and uses `flex-start` and `flex-end` for positioning elements within a flex container. Wherever possible start using flexbox for you layout and you will find you get a lot of RTL support for free!
 
 </InlineNotification>
 
