@@ -1,15 +1,17 @@
-module Icon.Demo exposing (..)
+module Icon.Demo exposing (main)
 
-import Html exposing (Html, text)
-import Json.Encode
-import Json.Decode as Json
+import Browser
 import Demo exposing (..)
+import Html exposing (Html, div, pre, text)
 import Icon.Icon as Icon exposing (..)
 import Icon.SvgAsset as SvgAsset exposing (SvgAsset)
+import Json.Decode as Json
+import Json.Encode
 
 
 type alias Model =
-    Result String ViewArguments
+    { node : Json.Value
+    }
 
 
 type alias ViewArguments =
@@ -24,7 +26,7 @@ type alias Msg =
 
 main : Program Json.Encode.Value Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init
         , view = view
         , update = \_ model -> ( model, Cmd.none )
@@ -33,12 +35,12 @@ main =
 
 
 init : Json.Encode.Value -> ( Model, Cmd Msg )
-init props =
-    ( decode props, Cmd.none )
+init flags =
+    ( { node = flags }, Cmd.none )
 
 
-decode : Json.Value -> Model
-decode props =
+iconDecoder : JsxDecoder Msg
+iconDecoder =
     let
         iconVariantDecoder : Json.Decoder Config
         iconVariantDecoder =
@@ -66,21 +68,26 @@ decode props =
                                 Json.fail ("Error decoding '" ++ string ++ "': not a valid icon role")
                     )
     in
-        Ok presentation
-            -- variants
-            |> decodeAndUpdate iconVariantDecoder always props
-            -- -- modifiers
-            |> decodeField "inheritSize" Json.bool inheritSize props
-            -- arguments
-            |> Result.map ViewArguments
-            |> decodeField "icon" SvgAsset.decoder (|>) props
+    createPropsToHtmlDecoder
+        (\props ->
+            Ok presentation
+                -- variants
+                |> decodeAndUpdate iconVariantDecoder always props
+                -- -- modifiers
+                |> decodeField "inheritSize" Json.bool inheritSize props
+                -- arguments
+                |> Result.map ViewArguments
+                |> decodeField "icon" SvgAsset.decoder (|>) props
+                -- view
+                |> Result.map (\{ config, svgAsset } -> Icon.view config svgAsset)
+        )
 
 
 view : Model -> Html Msg
-view result =
-    case result of
-        Ok { config, svgAsset } ->
-            Icon.view config svgAsset
+view model =
+    case Json.decodeValue iconDecoder model.node of
+        Ok iconHtml ->
+            div [] iconHtml
 
-        Err message ->
-            text ("Props decoding error: " ++ message)
+        Err msg ->
+            pre [] [ text ("Error decoding Icon props: " ++ Debug.toString msg) ]

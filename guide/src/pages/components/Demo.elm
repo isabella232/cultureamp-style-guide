@@ -1,9 +1,9 @@
-module Demo exposing (..)
+module Demo exposing (ComponentDecoders, JsxDecoder, JsxDecoderWithInitMessages, JsxNodeInfo, NodesAndInitMessages, createPropsToHtmlDecoder, decodeAndUpdate, decodeField, decodeOptionalField, htmlJsxChildren, initModelFromJsx, jsxAttributes, jsxChildren, simpleDecoder, startsWithUpper, stringEnum, variantFlag, viewJsxNodes)
 
 import Dict
-import Json.Decode as Json
-import Html exposing (Html, node, div, pre, text)
+import Html exposing (Html, div, node, pre, text)
 import Html.Attributes exposing (property)
+import Json.Decode as Json
 
 
 {-| Utilities for Kaizen Demo components
@@ -41,6 +41,7 @@ variantFlag : config -> Bool -> config -> config
 variantFlag config flag previousConfig =
     if flag then
         config
+
     else
         previousConfig
 
@@ -69,7 +70,7 @@ decodeOptionalField fieldName decoder update =
                 Nothing ->
                     identity
     in
-        decodeAndUpdate optionalFieldDecoder maybeUpdate
+    decodeAndUpdate optionalFieldDecoder maybeUpdate
 
 
 decodeAndUpdate : Json.Decoder typeOfField -> (typeOfField -> previousType -> nextType) -> Json.Value -> Result String previousType -> Result String nextType
@@ -78,17 +79,17 @@ decodeAndUpdate decoder update json previousResult =
         decoded =
             Json.decodeValue decoder json
     in
-        case decoded of
-            Ok value ->
-                Result.map (update value) previousResult
+    case decoded of
+        Ok value ->
+            Result.map (update value) previousResult
 
-            Err message ->
-                case previousResult of
-                    Ok previousValue ->
-                        Err message
+        Err message ->
+            case previousResult of
+                Ok previousValue ->
+                    Err <| Debug.toString message
 
-                    Err previousMessage ->
-                        Err (previousMessage ++ "\nAnd " ++ message)
+                Err previousMessage ->
+                    Err (previousMessage ++ "\nAnd " ++ Debug.toString message)
 
 
 
@@ -140,14 +141,14 @@ createPropsToHtmlDecoder decodePropsPipeline =
         mapResultToJson result =
             case result of
                 Ok element ->
-                    Json.succeed ([ element ])
+                    Json.succeed [ element ]
 
                 Err msg ->
                     Json.fail msg
     in
-        Json.field "props" Json.value
-            |> Json.map decodePropsPipeline
-            |> Json.andThen mapResultToJson
+    Json.field "props" Json.value
+        |> Json.map decodePropsPipeline
+        |> Json.andThen mapResultToJson
 
 
 {-| Prepare your initial state by parsing a JSX node and applying the init messages
@@ -160,14 +161,14 @@ initModelFromJsx jsxNode componentDecoders initialModel update =
 
         messages =
             case result of
-                Ok ( nodes, messages ) ->
-                    messages
+                Ok ( nodes, foundMessages ) ->
+                    foundMessages
 
                 Err str ->
                     -- Question: should we introduce some kind of error handling here?
                     []
     in
-        List.foldl update initialModel messages
+    List.foldl update initialModel messages
 
 
 {-| Parse a JSX node and view the resulting Html.
@@ -179,12 +180,12 @@ viewJsxNodes jsxNode componentDecoders =
         result =
             Json.decodeValue (jsxChildren componentDecoders) jsxNode
     in
-        case result of
-            Ok ( nodes, messages ) ->
-                div [] nodes
+    case result of
+        Ok ( nodes, messages ) ->
+            div [] nodes
 
-            Err str ->
-                pre [] [ text <| "Error decoding JSX node: " ++ str ]
+        Err str ->
+            pre [] [ text <| "Error decoding JSX node: " ++ Debug.toString str ]
 
 
 {-| Create a JsxDecoder (with init messages for initialising state)
@@ -211,7 +212,7 @@ jsxChildren componentDecoders =
     let
         lazilyRecurse : JsxDecoderWithInitMessages msg
         lazilyRecurse =
-            Json.lazy <| (\_ -> jsxChildren componentDecoders)
+            Json.lazy <| \_ -> jsxChildren componentDecoders
 
         childrenDecoder : JsxDecoderWithInitMessages msg
         childrenDecoder =
@@ -234,7 +235,7 @@ jsxChildren componentDecoders =
                         |> List.map (\item -> Tuple.second item)
                         |> List.concat
             in
-                Json.succeed ( childNodes, childMessages )
+            Json.succeed ( childNodes, childMessages )
 
         createChildNode : JsxNodeInfo msg -> JsxDecoderWithInitMessages msg
         createChildNode { name, attributes, children } =
@@ -242,29 +243,29 @@ jsxChildren componentDecoders =
                 ( childNodes, childMessages ) =
                     children
             in
-                case Dict.fromList componentDecoders |> Dict.get name of
-                    Just componentDecoder ->
-                        componentDecoder
+            case Dict.fromList componentDecoders |> Dict.get name of
+                Just componentDecoder ->
+                    componentDecoder
 
-                    Nothing ->
-                        if startsWithUpper name then
-                            Json.fail ("No decoder was provided for the component " ++ name)
-                        else
-                            Json.succeed ( [ node name attributes childNodes ], childMessages )
+                Nothing ->
+                    if startsWithUpper name then
+                        Json.fail ("No decoder was provided for the component " ++ name)
+
+                    else
+                        Json.succeed ( [ node name attributes childNodes ], childMessages )
     in
-        Json.oneOf
-            ([ (Json.list lazilyRecurse)
-                |> Json.andThen flattenChildrenList
-             , Json.map3 JsxNodeInfo
-                (Json.field "type" Json.string)
-                jsxAttributes
-                childrenDecoder
-                |> Json.andThen createChildNode
-             , Json.string
-                |> Json.andThen (\string -> Json.succeed ( [ text string ], [] ))
-             , Json.null ( [ text "" ], [] )
-             ]
-            )
+    Json.oneOf
+        [ Json.list lazilyRecurse
+            |> Json.andThen flattenChildrenList
+        , Json.map3 JsxNodeInfo
+            (Json.field "type" Json.string)
+            jsxAttributes
+            childrenDecoder
+            |> Json.andThen createChildNode
+        , Json.string
+            |> Json.andThen (\string -> Json.succeed ( [ text string ], [] ))
+        , Json.null ( [ text "" ], [] )
+        ]
 
 
 {-| A simple decoder for decoding JSX that contains only plain HTML, no custom components
@@ -272,7 +273,7 @@ jsxChildren componentDecoders =
 You can use this directly in your custom component decoders:
 
     decodePipeline
-    |> decodeField "children" htmlJsxChildren (|>) props
+        |> decodeField "children" htmlJsxChildren (|>) props
 
 -}
 htmlJsxChildren : JsxDecoder msg
@@ -282,15 +283,15 @@ htmlJsxChildren =
         simplifyResult nodesAndInitMessages =
             Json.succeed <| Tuple.first nodesAndInitMessages
     in
-        jsxChildren []
-            |> Json.andThen simplifyResult
+    jsxChildren []
+        |> Json.andThen simplifyResult
 
 
 {-| Decode the attributes of a Html node from JSX props.
 -}
 jsxAttributes : Json.Decoder (List (Html.Attribute msg))
 jsxAttributes =
-    (Json.field "props"
+    Json.field "props"
         (Json.keyValuePairs Json.value
             |> Json.andThen
                 (\attrs ->
@@ -300,7 +301,6 @@ jsxAttributes =
                         |> Json.succeed
                 )
         )
-    )
 
 
 startsWithUpper : String -> Bool

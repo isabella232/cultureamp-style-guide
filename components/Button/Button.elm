@@ -1,37 +1,37 @@
-module Button.Button
-    exposing
-        ( view
-        , default
-        , primary
-        , secondary
-        , destructive
-        , iconButton
-        , destructiveIconButton
-        , disabled
-        , icon
-        , iconPosition
-        , IconPosition(..)
-        , form
-        , reversed
-        , reverseColor
-        , BrandColor(..)
-        , onClick
-        , href
-        , automationId
-        , Config
-        , buttonType
-        , ButtonType(..)
-        )
+module Button.Button exposing
+    ( BrandColor(..)
+    , ButtonType(..)
+    , Config
+    , IconPosition(..)
+    , automationId
+    , buttonType
+    , default
+    , destructive
+    , destructiveIconButton
+    , disabled
+    , form
+    , href
+    , icon
+    , iconButton
+    , iconPosition
+    , onClick
+    , primary
+    , reverseColor
+    , reversed
+    , secondary
+    , view
+    )
 
-import Html exposing (Html, text, span, button, a)
+import CssModules exposing (css)
+import Elm18Compatible.Html.Events as Events exposing (defaultOptions, onWithOptions)
+import Html exposing (Html, a, button, span, text)
 import Html.Attributes
 import Html.Attributes.Aria
-import Html.Events as Events exposing (onWithOptions, defaultOptions)
-import Json.Decode as Json
-import Maybe
-import CssModules exposing (css)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (SvgAsset)
+import Json.Decode as Json
+import Maybe
+
 
 
 -- VIEW
@@ -40,14 +40,15 @@ import Icon.SvgAsset exposing (SvgAsset)
 view : Config msg -> String -> Html msg
 view (Config config) label =
     let
-        disabled =
+        disabledAttr =
             if config.disabled then
                 [ Html.Attributes.disabled True ]
+
             else
                 []
 
         buttonClass =
-            [ classList
+            [ styles.classList
                 [ ( .button, True )
                 , ( .primary, config.variant == Primary )
                 , ( .secondary, config.variant == Secondary )
@@ -65,7 +66,7 @@ view (Config config) label =
                 ]
             ]
 
-        automationId =
+        automationIdAttr =
             case config.automationId of
                 Just id ->
                     [ Html.Attributes.attribute "data-automation-id" id ]
@@ -73,31 +74,32 @@ view (Config config) label =
                 Nothing ->
                     []
 
-        title =
+        titleAttr =
             if config.iconButton then
                 [ Html.Attributes.title label
                 , Html.Attributes.Aria.ariaLabel label
                 ]
+
             else
                 []
 
         attribs =
             buttonClass
                 ++ onClickAttribs (Config config)
-                ++ automationId
-                ++ title
+                ++ automationIdAttr
+                ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
     in
-        span [ class .container ]
-            [ case config.href of
-                Just href ->
-                    a (attribs ++ [ Html.Attributes.href href ])
-                        [ viewContent (Config config) label |> Html.map never ]
+    span [ styles.class .container ]
+        [ case config.href of
+            Just hrefValue ->
+                a (attribs ++ [ Html.Attributes.href hrefValue ])
+                    [ viewContent (Config config) label |> Html.map never ]
 
-                Nothing ->
-                    button (attribs ++ disabled)
-                        [ viewContent (Config config) label |> Html.map never ]
-            ]
+            Nothing ->
+                button (attribs ++ disabledAttr)
+                    [ viewContent (Config config) label |> Html.map never ]
+        ]
 
 
 onClickAttribs : Config msg -> List (Html.Attribute msg)
@@ -107,8 +109,8 @@ onClickAttribs (Config config) =
             let
                 preventDefault =
                     case config.buttonType of
-                        Just buttonType ->
-                            case buttonType of
+                        Just buttonTypeValue ->
+                            case buttonTypeValue of
                                 Submit ->
                                     False
 
@@ -118,11 +120,11 @@ onClickAttribs (Config config) =
                         Nothing ->
                             True
             in
-                [ onWithOptions
-                    "click"
-                    { defaultOptions | preventDefault = preventDefault }
-                    (Json.succeed msg)
-                ]
+            [ onWithOptions
+                "click"
+                { defaultOptions | preventDefault = preventDefault }
+                (Json.succeed msg)
+            ]
 
         Nothing ->
             []
@@ -136,17 +138,17 @@ buttonTypeAttribs (Config config) =
 
         Nothing ->
             case config.buttonType of
-                Just buttonType ->
+                Just buttonTypeValue ->
                     let
                         encodedButtonType =
-                            case buttonType of
+                            case buttonTypeValue of
                                 Submit ->
                                     "submit"
 
                                 Reset ->
                                     "reset"
                     in
-                        [ Html.Attributes.type_ encodedButtonType ]
+                    [ Html.Attributes.type_ encodedButtonType ]
 
                 Nothing ->
                     []
@@ -154,7 +156,7 @@ buttonTypeAttribs (Config config) =
 
 viewContent : Config msg -> String -> Html Never
 viewContent (Config config) label =
-    span [ class .content ]
+    span [ styles.class .content ]
         [ viewIconFor config Start
         , viewLabel label config.iconButton
         , viewIconFor config End
@@ -162,46 +164,48 @@ viewContent (Config config) label =
 
 
 viewLabel : String -> Bool -> Html Never
-viewLabel label iconButton =
-    if iconButton then
+viewLabel label isIconButton =
+    if isIconButton then
         text ""
+
     else
-        span [ class .label ]
+        span [ styles.class .label ]
             [ text label ]
 
 
 viewIconFor : ConfigValue msg -> IconPosition -> Html Never
-viewIconFor { icon, iconPosition } forPosition =
-    if iconPosition == forPosition then
-        case icon of
+viewIconFor configValue forPosition =
+    if configValue.iconPosition == forPosition then
+        case configValue.icon of
             Just svgAsset ->
                 Icon.view Icon.presentation svgAsset
 
             Nothing ->
                 text ""
+
     else
         text ""
 
 
-{ class, classList } =
+styles =
     css "cultureamp-style-guide/components/Button/components/GenericButton.module.scss"
-        { container = ""
-        , button = ""
-        , primary = ""
-        , secondary = ""
-        , iconButton = ""
-        , reversedIconButton = ""
-        , destructive = ""
-        , form = ""
-        , reversed = ""
-        , reverseColorLapis = ""
-        , reverseColorOcean = ""
-        , reverseColorPeach = ""
-        , reverseColorSeedling = ""
-        , reverseColorWisteria = ""
-        , reverseColorYuzu = ""
-        , content = ""
-        , label = ""
+        { container = "container"
+        , button = "button"
+        , primary = "primary"
+        , secondary = "secondary"
+        , iconButton = "iconButton"
+        , reversedIconButton = "reversedIconButton"
+        , destructive = "destructive"
+        , form = "form"
+        , reversed = "reversed"
+        , reverseColorLapis = "reverseColorLapis"
+        , reverseColorOcean = "reverseColorOcean"
+        , reverseColorPeach = "reverseColorPeach"
+        , reverseColorSeedling = "reverseColorSeedling"
+        , reverseColorWisteria = "reverseColorWisteria"
+        , reverseColorYuzu = "reverseColorYuzu"
+        , content = "content"
+        , label = "label"
         }
 
 
@@ -307,8 +311,8 @@ disabled value (Config config) =
 
 
 icon : SvgAsset -> Config msg -> Config msg
-icon icon (Config config) =
-    Config { config | icon = Just icon }
+icon svgAsset (Config config) =
+    Config { config | icon = Just svgAsset }
 
 
 iconPosition : IconPosition -> Config msg -> Config msg

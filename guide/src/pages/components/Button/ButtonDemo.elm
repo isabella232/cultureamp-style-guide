@@ -1,11 +1,12 @@
-port module Button.ButtonDemo exposing (..)
+port module Button.ButtonDemo exposing (Model, Msg(..), ViewArguments, buttonDecoder, init, main, onClick, update, view)
 
-import Html exposing (Html, div, pre, text)
-import Json.Encode
-import Json.Decode as Json
-import Demo exposing (..)
+import Browser
 import Button.Button as Button exposing (..)
+import Demo exposing (..)
+import Html exposing (Html, div, pre, text)
 import Icon.SvgAsset as SvgAsset
+import Json.Decode as Json
+import Json.Encode
 
 
 port onClick : () -> Cmd msg
@@ -28,7 +29,7 @@ type Msg
 
 main : Program Json.Encode.Value Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init
         , view = view
         , update = update
@@ -69,30 +70,29 @@ buttonDecoder =
                 , ( "yuzu", Yuzu )
                 ]
     in
-        createPropsToHtmlDecoder
-            (\props ->
-                (Ok (default)
-                    -- variants
-                    |> decodeField "secondary" Json.bool (variantFlag secondary) props
-                    |> decodeField "primary" Json.bool (variantFlag primary) props
-                    |> decodeField "destructive" Json.bool (variantFlag destructive) props
-                    -- modifiers
-                    |> decodeField "disabled" Json.bool disabled props
-                    |> decodeOptionalField "icon" SvgAsset.decoder icon props
-                    |> decodeField "iconPosition" iconPositionDecoder iconPosition props
-                    |> decodeField "form" Json.bool form props
-                    |> decodeField "reversed" Json.bool reversed props
-                    |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
-                    |> decodeOptionalField "href" Json.string href props
-                    |> decodeOptionalField "automationId" Json.string automationId props
-                    |> Result.map (Button.onClick Click)
-                    -- arguments
-                    |> Result.map ViewArguments
-                    |> decodeField "label" Json.string (|>) props
-                    -- view
-                    |> Result.map (\{ config, label } -> Button.view config label)
-                )
-            )
+    createPropsToHtmlDecoder
+        (\props ->
+            Ok default
+                -- variants
+                |> decodeField "secondary" Json.bool (variantFlag secondary) props
+                |> decodeField "primary" Json.bool (variantFlag primary) props
+                |> decodeField "destructive" Json.bool (variantFlag destructive) props
+                -- modifiers
+                |> decodeField "disabled" Json.bool disabled props
+                |> decodeOptionalField "icon" SvgAsset.decoder icon props
+                |> decodeField "iconPosition" iconPositionDecoder iconPosition props
+                |> decodeField "form" Json.bool form props
+                |> decodeField "reversed" Json.bool reversed props
+                |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
+                |> decodeOptionalField "href" Json.string href props
+                |> decodeOptionalField "automationId" Json.string automationId props
+                |> Result.map (Button.onClick Click)
+                -- arguments
+                |> Result.map ViewArguments
+                |> decodeField "label" Json.string (|>) props
+                -- view
+                |> Result.map (\{ config, label } -> Button.view config label)
+        )
 
 
 view : Model -> Html Msg
@@ -102,4 +102,4 @@ view model =
             div [] buttonHtml
 
         Err msg ->
-            pre [] [ text ("Error decoding Button props: " ++ msg) ]
+            pre [] [ text ("Error decoding Button props: " ++ Debug.toString msg) ]

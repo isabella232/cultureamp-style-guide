@@ -1,20 +1,19 @@
-module Text.Text
-    exposing
-        ( view
-        , Config
-        , TypeStyle(..)
-        , h1
-        , h2
-        , h3
-        , h4
-        , h5
-        , h6
-        , p
-        , div
-        , label
-        , style
-        , inheritBaseline
-        )
+module Text.Text exposing
+    ( Config
+    , TypeStyle(..)
+    , div
+    , h1
+    , h2
+    , h3
+    , h4
+    , h5
+    , h6
+    , inheritBaseline
+    , label
+    , p
+    , style
+    , view
+    )
 
 {--
 Create a text element using the correct semantic HTML tag and the appropriate visual style.
@@ -37,8 +36,9 @@ If you want to inherit the baseline of the parent (no relative positioning), use
     view (p |> inheritBaseline True) [text "This text inherits the baseline"]
 --}
 
-import Html exposing (Html)
 import CssModules exposing (css)
+import Html exposing (Html)
+
 
 
 -- VIEW
@@ -50,7 +50,7 @@ view (Config config) children =
 
 
 className : Element msg -> TypeStyle -> Bool -> Html.Attribute msg
-className tag typeStyle inheritBaseline =
+className tag typeStyle shouldInheritBaseline =
     let
         styleClass =
             case typeStyle of
@@ -99,30 +99,30 @@ className tag typeStyle inheritBaseline =
                 Button ->
                     .button
     in
-        classList
-            [ ( styleClass, True )
-            , ( .inheritBaseline, inheritBaseline )
-            ]
+    styles.classList
+        [ ( styleClass, True )
+        , ( .inheritBaseline, shouldInheritBaseline )
+        ]
 
 
-{ classList } =
+styles =
     css "cultureamp-style-guide/components/Text/Text.module.scss"
-        { defaultStyle = ""
-        , pageTitle = ""
-        , title = ""
-        , display = ""
-        , heading = ""
-        , paragraph = ""
-        , lede = ""
-        , body = ""
-        , bodyBold = ""
-        , small = ""
-        , smallBold = ""
-        , notification = ""
-        , label = ""
-        , controlAction = ""
-        , button = ""
-        , inheritBaseline = ""
+        { defaultStyle = "defaultStyle"
+        , pageTitle = "pageTitle"
+        , title = "title"
+        , display = "display"
+        , heading = "heading"
+        , paragraph = "paragraph"
+        , lede = "lede"
+        , body = "body"
+        , bodyBold = "bodyBold"
+        , small = "small"
+        , smallBold = "smallBold"
+        , notification = "notification"
+        , label = "label"
+        , controlAction = "controlAction"
+        , button = "button"
+        , inheritBaseline = "inheritBaseline"
         }
 
 

@@ -1,11 +1,13 @@
-port module Notification.Demo exposing (..)
+port module Notification.Demo exposing (Model, Msg(..), NotificationStates, decodeGlobalNotification, decodeInlineNotification, decodeToastNotification, init, main, notificationDecoders, onHide, renderView, subscriptions, typeDecoder, update, view)
 
-import Html exposing (Html)
-import Json.Encode
-import Json.Decode as Json
+import Browser
 import Demo exposing (..)
-import Notification.Notification as Notification exposing (..)
 import Dict exposing (Dict)
+import Html exposing (Html)
+import Json.Decode as Json
+import Json.Encode
+import Notification.Notification as Notification exposing (..)
+
 
 
 -- DEMO APP
@@ -30,7 +32,7 @@ type alias NotificationStates =
 
 main : Program Json.Encode.Value Model Msg
 main =
-    Html.programWithFlags
+    Browser.element
         { init = init
         , view = view
         , update = update
@@ -54,11 +56,11 @@ init flags =
             notificationDecoders initialModel.notificationStates
 
         updateFn =
-            (\msg model -> update msg model |> Tuple.first)
+            \msg model -> update msg model |> Tuple.first
     in
-        ( initModelFromJsx flags decoders initialModel updateFn
-        , Cmd.none
-        )
+    ( initModelFromJsx flags decoders initialModel updateFn
+    , Cmd.none
+    )
 
 
 view : Model -> Html Msg
@@ -67,7 +69,7 @@ view model =
         decoders =
             notificationDecoders model.notificationStates
     in
-        viewJsxNodes model.node decoders
+    viewJsxNodes model.node decoders
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -90,7 +92,7 @@ subscriptions model =
             Dict.toList model.notificationStates
                 |> List.map (\( automationId, state ) -> ( state, SetNotificationState automationId ))
     in
-        Notification.subscriptions allNotifications
+    Notification.subscriptions allNotifications
 
 
 
@@ -110,7 +112,7 @@ decodeInlineNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
-                Ok (inline)
+                Ok inline
                     -- variant arguments
                     |> decodeField "title" Json.string (|>) props
                     |> decodeField "children" htmlJsxChildren (|>) props
@@ -128,7 +130,7 @@ decodeToastNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
-                Ok (toast)
+                Ok toast
                     -- variant arguments
                     |> decodeField "title" Json.string (|>) props
                     |> decodeField "children" htmlJsxChildren (|>) props
@@ -147,7 +149,7 @@ decodeGlobalNotification notificationStates =
     Json.field "props" Json.value
         |> Json.andThen
             (\props ->
-                Ok (global)
+                Ok global
                     -- variant arguments
                     |> decodeField "children" htmlJsxChildren (|>) props
                     -- modifiers
@@ -181,18 +183,18 @@ renderView props notificationStates configResult =
                 _ ->
                     Manual Appearing
 
-        getStateAndConfig : Result String (Config Msg) -> Result String ( Config Msg, NotificationState, NotificationStateSetter Msg )
-        getStateAndConfig configResult =
+        stateAndConfig : Result String ( Config Msg, NotificationState, NotificationStateSetter Msg )
+        stateAndConfig =
             Result.map
                 (\config ->
                     let
                         automationId =
                             Maybe.withDefault "unknown-notification-id" (Notification.getAutomationId config)
                     in
-                        ( config
-                        , Maybe.withDefault initialState <| Dict.get automationId notificationStates
-                        , SetNotificationState automationId
-                        )
+                    ( config
+                    , Maybe.withDefault initialState <| Dict.get automationId notificationStates
+                    , SetNotificationState automationId
+                    )
                 )
                 configResult
 
@@ -201,7 +203,7 @@ renderView props notificationStates configResult =
             case result of
                 Ok ( config, currentState, notificationStateSetter ) ->
                     let
-                        view =
+                        renderedView =
                             Notification.view config currentState notificationStateSetter
 
                         initialMessages =
@@ -213,12 +215,11 @@ renderView props notificationStates configResult =
                                 Nothing ->
                                     []
                     in
-                        Json.succeed
-                            ( [ view ], initialMessages )
+                    Json.succeed
+                        ( [ renderedView ], initialMessages )
 
                 Err msg ->
                     Json.fail msg
     in
-        configResult
-            |> getStateAndConfig
-            |> jsxDecoder
+    stateAndConfig
+        |> jsxDecoder

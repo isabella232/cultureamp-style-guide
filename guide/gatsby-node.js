@@ -89,7 +89,8 @@ function addElmLoader(config) {
     exclude: [/elm-stuff/, /node_modules/],
     loaders: [
       'elm-css-modules-loader',
-      'cultureamp-style-guide/webpack/elmSvgAssetLoader',
+      'cultureamp-style-guide/webpack/elmSvgAssetLoader?' +
+        JSON.stringify({ elm19: true }),
       'elm-webpack-loader?' + JSON.stringify({ debug: true }),
     ],
   });

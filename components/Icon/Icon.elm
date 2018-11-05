@@ -1,55 +1,55 @@
-module Icon.Icon
-    exposing
-        ( Config
-        , view
-        , presentation
-        , img
-        , imgWithDesc
-        , inheritSize
-        )
+module Icon.Icon exposing
+    ( Config
+    , img
+    , imgWithDesc
+    , inheritSize
+    , presentation
+    , view
+    )
 
+import CssModules exposing (css)
 import Html exposing (Html, text)
 import Html.Attributes exposing (attribute)
 import Html.Attributes.Aria as Aria exposing (ariaHidden, ariaLabelledby)
+import Icon.SvgAsset exposing (SvgAsset, svgAsset)
 import Svg exposing (svg, use)
 import Svg.Attributes exposing (class, viewBox, xlinkHref)
-import Icon.SvgAsset exposing (SvgAsset, svgAsset)
-import CssModules exposing (css)
+
 
 
 -- VIEW
 
 
 view : Config -> SvgAsset -> Html Never
-view ((Config { inheritSize, role }) as config) svgAsset =
+view ((Config configValue) as config) svgAsset =
     let
         { toString } =
             css "cultureamp-style-guide/components/Icon/Icon.module.scss"
-                { icon = ""
-                , inheritSize = ""
+                { icon = "icon"
+                , inheritSize = "inheritSize"
                 }
     in
-        svg
-            (List.append
-                [ class
-                    -- cannot use Html.Attributes.classList for svg :(
-                    ([ ( .icon, True )
-                     , ( .inheritSize, inheritSize )
-                     ]
-                        |> List.filter Tuple.second
-                        |> List.map Tuple.first
-                        |> List.map toString
-                        |> String.join " "
-                    )
-                , viewBox svgAsset.viewBox
-                , attribute "focusable" "false" -- work around IE11 making all SVGs focusable. See http://simplyaccessible.com/article/7-solutions-svgs/#acc-heading-4
-                ]
-                (a11yAttributes config)
-            )
-            (List.append
-                (a11yElements config)
-                [ use [ xlinkHref ("#" ++ svgAsset.id) ] [] ]
-            )
+    svg
+        (List.append
+            [ class
+                -- cannot use Html.Attributes.classList for svg :(
+                ([ ( .icon, True )
+                 , ( .inheritSize, configValue.inheritSize )
+                 ]
+                    |> List.filter Tuple.second
+                    |> List.map Tuple.first
+                    |> List.map toString
+                    |> String.join " "
+                )
+            , viewBox svgAsset.viewBox
+            , attribute "focusable" "false" -- work around IE11 making all SVGs focusable. See http://simplyaccessible.com/article/7-solutions-svgs/#acc-heading-4
+            ]
+            (a11yAttributes config)
+        )
+        (List.append
+            (a11yElements config)
+            [ use [ xlinkHref ("#" ++ svgAsset.id) ] [] ]
+        )
 
 
 a11yAttributes : Config -> List (Html.Attribute Never)

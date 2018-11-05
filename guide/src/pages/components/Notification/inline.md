@@ -14,4 +14,4 @@ An inline notification!
 
 </IntroParagraph>
 
-<Demo presets={presets} elm={Elm.Notification.Demo} />
+<Demo presets={presets} elm={Elm.Elm.Notification.Demo} />
