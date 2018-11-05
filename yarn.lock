@@ -3781,7 +3781,7 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-elm-upgrade-shims@cultureamp/elm-upgrade-shims:
+elm-upgrade-shims@cultureamp/elm-upgrade-shims#0.2.0:
   version "0.2.0"
   resolved "https://codeload.github.com/cultureamp/elm-upgrade-shims/tar.gz/b376c8151958e447f0978a7f88c8b9584b0c208e"
   dependencies:
