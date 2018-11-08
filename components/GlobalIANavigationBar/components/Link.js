@@ -60,18 +60,25 @@ class Link extends React.Component<Props> {
     );
   };
 
-  renderToolTipLink = () => (
+  renderDefaultLink() {
+    if (this.props.target === '_blank')
+      return this.renderToolTipLink('Opens in new tab');
+    return this.renderLink();
+  }
+
+  renderToolTipLink = tooltip => (
     <Tooltip
       hideTooltip={false}
       tabIndex={null} // link inside takes focus instead
-      tooltip={this.props.tooltip}
+      tooltip={tooltip}
     >
       {this.renderLink()}
     </Tooltip>
   );
 
   render() {
-    return this.props.tooltip ? this.renderToolTipLink() : this.renderLink();
+    const { tooltip } = this.props;
+    return tooltip ? this.renderToolTipLink(tooltip) : this.renderDefaultLink();
   }
 }
 
