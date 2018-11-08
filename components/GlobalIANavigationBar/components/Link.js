@@ -20,7 +20,14 @@ type Props = {|
   target: '_self' | '_blank',
 |};
 
-class Link extends React.Component<Props> {
+export default class Link extends React.Component<Props> {
+  static defaultProps = {
+    iconOnly: false,
+    active: false,
+    secondary: false,
+    target: '_self',
+  };
+
   renderLink = () => {
     const {
       icon,
@@ -66,7 +73,7 @@ class Link extends React.Component<Props> {
     return this.renderLink();
   }
 
-  renderToolTipLink = tooltip => (
+  renderToolTipLink = (tooltip: string) => (
     <Tooltip
       hideTooltip={false}
       tabIndex={null} // link inside takes focus instead
@@ -81,13 +88,3 @@ class Link extends React.Component<Props> {
     return tooltip ? this.renderToolTipLink(tooltip) : this.renderDefaultLink();
   }
 }
-
-Link.displayName = 'Link';
-Link.defaultProps = {
-  iconOnly: false,
-  active: false,
-  secondary: false,
-  target: '_self',
-};
-
-export default Link;
