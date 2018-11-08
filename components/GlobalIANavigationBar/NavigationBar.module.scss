@@ -1,6 +1,7 @@
 @import 'styles';
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layout';
 
 .navigationBar {
   @extend %ca-global-ia-navigation-bar;
@@ -26,6 +27,10 @@
       &:first-child {
         margin-left: 0;
       }
+
+      &.secondary {
+        @include ca-margin($start: 0, $end: 0);
+      }
     }
   }
 }
@@ -42,7 +47,7 @@
 
 .otherChildren {
   display: flex;
-  margin-left: -1px;
+  @include ca-margin($start: $ca-grid / 2)
 }
 
 .active {
