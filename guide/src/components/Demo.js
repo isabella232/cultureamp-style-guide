@@ -205,9 +205,15 @@ export default class Demo extends React.Component<DemoProps, DemoState> {
       width &&
       height && (
         <Text tag="p">
-          <strong>{width}px</strong>
+          <strong>
+            {width}
+            px
+          </strong>
           {' × '}
-          <strong>{height}px</strong>
+          <strong>
+            {height}
+            px
+          </strong>
           {' viewport'}
         </Text>
       )
