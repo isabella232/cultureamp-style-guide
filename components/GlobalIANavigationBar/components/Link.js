@@ -16,11 +16,11 @@ type Props = {|
   id?: string,
   secondary: boolean,
   onClick?: (event: SyntheticMouseEvent<>) => void,
-  tooltip?: string,
+  tooltipText?: string,
   target: '_self' | '_blank',
 |};
 
-export default class Link extends React.Component<Props> {
+export default class Link extends React.PureComponent<Props> {
   static defaultProps = {
     iconOnly: false,
     active: false,
@@ -67,24 +67,19 @@ export default class Link extends React.Component<Props> {
     );
   };
 
-  renderDefaultLink() {
-    if (this.props.target === '_blank')
-      return this.renderToolTipLink('Opens in new tab');
-    return this.renderLink();
-  }
-
-  renderToolTipLink = (tooltip: string) => (
-    <Tooltip
-      hideTooltip={false}
-      tabIndex={null} // link inside takes focus instead
-      tooltip={tooltip}
-    >
-      {this.renderLink()}
-    </Tooltip>
-  );
-
   render() {
-    const { tooltip } = this.props;
-    return tooltip ? this.renderToolTipLink(tooltip) : this.renderDefaultLink();
+    const { tooltipText, target } = this.props;
+
+    return target === '_blank' ? (
+      <Tooltip
+        hideTooltip={false}
+        tabIndex={null} // link inside takes focus instead
+        tooltip={tooltipText ? tooltipText : 'Opens in a new tab'}
+      >
+        {this.renderLink()}
+      </Tooltip>
+    ) : (
+      this.renderLink()
+    );
   }
 }
