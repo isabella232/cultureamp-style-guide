@@ -1,0 +1,22 @@
+@import '~cultureamp-style-guide/styles/color';
+@import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/animation';
+
+.root {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  transform: translateX(-100%);
+  background-color: $ca-palette-ink;
+  transition: transform $ca-duration-rapid $ca-ease-out;
+}
+
+.active {
+  transform: translateX(0);
+}
+
+.trigger {
+  position: absolute;
+  left: $ca-grid / 2;
+  color: $ca-palette-ocean;
+}

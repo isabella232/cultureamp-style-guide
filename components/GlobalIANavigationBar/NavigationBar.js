@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import classNames from 'classnames';
+import Media from 'react-media';
 
 import styles from './NavigationBar.module.scss';
 import {
@@ -12,6 +13,7 @@ import {
 } from './components/Badge.js';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
+import OffCanvas from '../OffCanvas';
 
 type SupportedChild = React.Element<typeof Link> | React.Element<typeof Menu>;
 
@@ -43,11 +45,21 @@ export default class NavigationBar extends React.Component<Props> {
     });
 
     return (
-      <header className={classNames(styles.navigationBar, styles[colorScheme])}>
-        {this.renderBadge()}
-        {this.renderLinks(links)}
-        {this.renderOtherChildren(otherChildren)}
-      </header>
+      <Media query="(min-width: 768px)">
+        {matches =>
+          matches ? (
+            <header
+              className={classNames(styles.navigationBar, styles[colorScheme])}
+            >
+              {this.renderBadge()}
+              {this.renderLinks(links)}
+              {this.renderOtherChildren(otherChildren)}
+            </header>
+          ) : (
+            <OffCanvas badgeComponent={this.renderBadge()} links={links} />
+          )
+        }
+      </Media>
     );
   }
 

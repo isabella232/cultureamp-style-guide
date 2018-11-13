@@ -4,6 +4,7 @@ $ca-layout-max-width: 1416px;
 $ca-layout-side-padding: 24px;
 $ca-layout-content-width: 1080px;
 $ca-layout-title-block-height: 5 * $ca-grid;
+$ca-layout-title-block-mobile-height: 60px;
 $ca-layout-sidebar-width: 10 * $ca-grid;
 
 @mixin ca-margin($start: 0, $end: 0, $top: null, $bottom: null) {

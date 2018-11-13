@@ -1,6 +1,7 @@
 @import '../styles';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/responsive';
 
 $nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 $nav-timing: 150ms;
@@ -38,6 +39,13 @@ $link-margin: $ca-grid / 4;
     right: 0;
     background-color: #fff;
     transition: transform $nav-ease $nav-timing;
+
+    @include ca-media-mobile {
+      width: $indicator-height;
+      height: 60px;
+      right: auto;
+      transform: translateX(-#{$link-margin}) translateX(-100%);
+    }
   }
 
   &:hover {
@@ -46,6 +54,10 @@ $link-margin: $ca-grid / 4;
 
     .linkText::before {
       transform: translateY(-#{$link-margin});
+
+      @include ca-media-mobile {
+        transform: translateX(-#{$link-margin});
+      }
     }
   }
 

@@ -1,0 +1,23 @@
+@import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/color';
+
+.root {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  background-color: $ca-palette-ink;
+}
+
+.close {
+  position: absolute;
+  top: $ca-grid / 2;
+  right: $ca-grid / 2;
+}
+
+.heading {
+  @include ca-type-ideal-display;
+  @include ca-inherit-baseline;
+  color: #fff;
+}

@@ -1,0 +1,28 @@
+@import '~cultureamp-style-guide/styles/color';
+
+.links {
+  > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+}
+
+.child {
+  display: flex;
+  flex: 0 0 auto;
+  text-decoration: none;
+
+  &.secondary.first {
+    margin-left: auto;
+  }
+}
+
+.otherChildren {
+  display: flex;
+  margin-left: -1px;
+}
+
+.active {
+  background-color: add-tint($ca-palette-ink, 20%);
+}
