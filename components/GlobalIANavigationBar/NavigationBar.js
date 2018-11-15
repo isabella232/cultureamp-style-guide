@@ -13,7 +13,7 @@ import {
 } from './components/Badge.js';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
-import OffCanvas from '../OffCanvas';
+import ControlledOffCanvas from '../OffCanvas';
 
 type SupportedChild = React.Element<typeof Link> | React.Element<typeof Menu>;
 
@@ -56,7 +56,11 @@ export default class NavigationBar extends React.Component<Props> {
               {this.renderOtherChildren(otherChildren)}
             </header>
           ) : (
-            <OffCanvas badgeComponent={this.renderBadge()} links={links} />
+            <ControlledOffCanvas
+              headerComponent={this.renderBadge()}
+              links={[...links, ...otherChildren]}
+              heading="Menu"
+            />
           )
         }
       </Media>

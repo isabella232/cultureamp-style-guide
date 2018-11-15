@@ -6,6 +6,8 @@
   position: fixed;
   height: 100vh;
   width: 100%;
+  top: 0;
+  left: 0;
   transform: translateX(-100%);
   background-color: $ca-palette-ink;
   transition: transform $ca-duration-rapid $ca-ease-out;

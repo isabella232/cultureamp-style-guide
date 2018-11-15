@@ -14,7 +14,7 @@
   text-decoration: none;
 
   &.secondary.first {
-    margin-left: auto;
+    border-top: 1px solid add-tint($ca-palette-ink, 30%);
   }
 }
 

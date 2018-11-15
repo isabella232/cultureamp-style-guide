@@ -7,7 +7,7 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
-  background-color: $ca-palette-ink;
+  background-color: add-shade($ca-palette-ink, 10%);
 }
 
 .close {

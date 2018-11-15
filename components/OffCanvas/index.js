@@ -1,3 +1,7 @@
-import OffCanvas from './OffCanvas';
+import ControlledOffCanvas, {
+  OffCanvas as OffCanvasComponent,
+} from './OffCanvas';
 
-export default OffCanvas;
+export const OffCanvas = OffCanvasComponent;
+
+export default ControlledOffCanvas;

@@ -2,7 +2,12 @@
 import * as React from 'react';
 
 import styles from './Menu.module.scss';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip';
+import Link from './Link';
+import Media from 'react-media';
+import { OffCanvas } from 'cultureamp-style-guide/components/OffCanvas';
+import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
+import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
 type MenuItem = {
   label: string,
@@ -36,18 +41,29 @@ export default class Menu extends React.Component<Props, State> {
     const { children, automationId } = this.props;
 
     return (
-      <nav className={styles.root} ref={root => (this.root = root)}>
-        <button
-          className={styles.button}
-          onClick={this.toggle}
-          aria-expanded={this.state.open}
-          data-automation-id={automationId}
-          onMouseDown={e => e.preventDefault()}
-        >
-          {children}
-        </button>
-        {this.state.open && this.renderMenu()}
-      </nav>
+      <Media query="(min-width: 768px)">
+        {matches =>
+          matches ? (
+            <nav className={styles.root} ref={root => (this.root = root)}>
+              <button
+                className={styles.button}
+                onClick={this.toggle}
+                aria-expanded={this.state.open}
+                data-automation-id={automationId}
+                onMouseDown={e => e.preventDefault()}
+              >
+                {children}
+              </button>
+              {this.state.open && this.renderMenu()}
+            </nav>
+          ) : (
+            <React.Fragment>
+              <Link text="Settings" onClick={this.toggle} />
+              {this.renderOffCanvas(this.state.open)}
+            </React.Fragment>
+          )
+        }
+      </Media>
     );
   }
 
@@ -68,6 +84,27 @@ export default class Menu extends React.Component<Props, State> {
       </div>
     );
   }
+
+  renderOffCanvas(isOpen) {
+    const { items } = this.props;
+
+    return (
+      <OffCanvas
+        links={items.map(this.renderOffCanvasMenuItem)}
+        menuVisible={isOpen}
+        heading="Settings"
+        headerComponent={this.renderBackButton()}
+      />
+    );
+  }
+
+  renderBackButton() {
+    return <IconButton icon={backIcon} onClick={this.toggle} reversed />;
+  }
+
+  renderOffCanvasMenuItem = (item: Menuitem, index: number) => {
+    return <Link key={index} text={item.label} href={item.link} />;
+  };
 
   renderMenuItem = (item: MenuItem, index: number) => {
     const { newWindow } = item;

@@ -12,3 +12,15 @@ $ca-breakpoint-tablet: 1024px;
     @content;
   }
 }
+
+@mixin ca-media-tablet-and-up {
+  @media (min-width: #{$ca-breakpoint-mobile + 1px}) {
+    @content;
+  }
+}
+
+@mixin ca-media-desktop {
+  @media (min-width: #{$ca-breakpoint-tablet + 1px}) {
+    @content;
+  }
+}
