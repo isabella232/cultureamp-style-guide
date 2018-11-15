@@ -12,6 +12,8 @@ type Props = {|
   heading: string,
   menuVisible: boolean,
   headerComponent: React.Node,
+  footerComponent: ?React.Node,
+  toggleMenu: MouseEvent => void,
 |};
 
 export class OffCanvas extends React.Component<Props> {
@@ -33,6 +35,7 @@ export class OffCanvas extends React.Component<Props> {
           heading={this.props.heading}
         />
         <Menu links={this.props.links} />
+        {this.props.footerComponent}
       </div>
     );
   }

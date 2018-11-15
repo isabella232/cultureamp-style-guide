@@ -58,7 +58,7 @@ export default class Menu extends React.Component<Props, State> {
             </nav>
           ) : (
             <React.Fragment>
-              <Link text="Settings" onClick={this.toggle} />
+              <Link text="Settings" onClick={this.toggle} hasMenu />
               {this.renderOffCanvas(this.state.open)}
             </React.Fragment>
           )
@@ -94,6 +94,7 @@ export default class Menu extends React.Component<Props, State> {
         menuVisible={isOpen}
         heading="Settings"
         headerComponent={this.renderBackButton()}
+        toggleMenu={this.toggle}
       />
     );
   }

@@ -14,6 +14,7 @@ $link-margin: $ca-grid / 4;
   @include ca-media-mobile {
     width: 100%;
     justify-content: flex-start;
+    align-items: center;
   }
 
   // fill parent
@@ -144,4 +145,12 @@ $link-margin: $ca-grid / 4;
   .linkText::before {
     transform: translateY(-#{$link-margin});
   }
+}
+
+.menuIcon {
+  margin-left: auto;
+  margin-right: $ca-grid;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
 }

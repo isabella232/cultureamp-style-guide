@@ -22,6 +22,7 @@ type Props = {|
   loading: boolean,
   colorScheme: 'cultureamp' | 'kaizen',
   badgeHref: string,
+  footerComponent: ?React.Node,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
@@ -58,6 +59,7 @@ export default class NavigationBar extends React.Component<Props> {
           ) : (
             <ControlledOffCanvas
               headerComponent={this.renderBadge()}
+              footerComponent={this.props.footerComponent}
               links={[...links, ...otherChildren]}
               heading="Menu"
             />
