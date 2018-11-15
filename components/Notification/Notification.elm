@@ -22,7 +22,7 @@ import Elm19Compatible.Browser.Events exposing (onAnimationFrame)
 import Elm19Compatible.Html.Attributes
 import Elm19Compatible.String exposing (fromInt)
 import Html exposing (Html, button, div, h6, p, span, text)
-import Html.Attributes
+import Html.Attributes exposing (type_)
 import Html.Events as Events exposing (on)
 import Icon.Icon as Icon
 import Icon.SvgAsset exposing (svgAsset)
