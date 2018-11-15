@@ -6,6 +6,7 @@ import Header from './components/Header';
 import Menu from './components/Menu';
 import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
 import hamburgerIcon from 'cultureamp-style-guide/icons/hamburger.svg';
+import Link from 'cultureamp-style-guide/components/GlobalIANavigationBar/components/Link';
 
 type Props = {|
   links: Array<Link>,
@@ -14,6 +15,10 @@ type Props = {|
   headerComponent: React.Node,
   footerComponent: ?React.Node,
   toggleMenu: MouseEvent => void,
+|};
+
+type State = {|
+  menuVisible: boolean,
 |};
 
 export class OffCanvas extends React.Component<Props> {
@@ -41,8 +46,8 @@ export class OffCanvas extends React.Component<Props> {
   }
 }
 
-export function withTrigger(Component) {
-  return class ControlledOffCanvas extends React.Component {
+export function withTrigger(Component: React.ComponentType<*>) {
+  return class ControlledOffCanvas extends React.Component<*, State> {
     state = {
       menuVisible: false,
     };

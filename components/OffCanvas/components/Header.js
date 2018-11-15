@@ -6,7 +6,7 @@ import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
 import closeIcon from 'cultureamp-style-guide/icons/close.svg';
 
 type Props = {|
-  leftComponent: React.Element,
+  leftComponent: React.Node,
   onClose: MouseEvent => void,
   heading: string,
 |};

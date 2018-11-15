@@ -58,7 +58,7 @@ export default class Menu extends React.Component<Props, State> {
             </nav>
           ) : (
             <React.Fragment>
-              <Link text="Settings" onClick={this.toggle} hasMenu />
+              <Link text="Settings" href="#" onClick={this.toggle} hasMenu />
               {this.renderOffCanvas(this.state.open)}
             </React.Fragment>
           )
@@ -85,7 +85,7 @@ export default class Menu extends React.Component<Props, State> {
     );
   }
 
-  renderOffCanvas(isOpen) {
+  renderOffCanvas(isOpen: boolean) {
     const { items } = this.props;
 
     return (
@@ -100,10 +100,12 @@ export default class Menu extends React.Component<Props, State> {
   }
 
   renderBackButton() {
-    return <IconButton icon={backIcon} onClick={this.toggle} reversed />;
+    return (
+      <IconButton label="Back" icon={backIcon} onClick={this.toggle} reversed />
+    );
   }
 
-  renderOffCanvasMenuItem = (item: Menuitem, index: number) => {
+  renderOffCanvasMenuItem = (item: MenuItem, index: number) => {
     return <Link key={index} text={item.label} href={item.link} />;
   };
 
