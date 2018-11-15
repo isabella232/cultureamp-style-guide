@@ -26,9 +26,17 @@
   box-sizing: border-box;
 }
 
+.bodyInner {
+  @extend %global-ia-body-inner;
+}
+
 .sidebar {
   @extend %global-ia-sidebar;
   box-sizing: border-box;
+}
+
+.sidebarInner {
+  @extend %global-ia-sidebar-inner;
 }
 
 .content {

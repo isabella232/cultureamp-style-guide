@@ -24,8 +24,10 @@ class Layout extends React.Component<LayoutProps> {
           {header}
           {toasts}
           <div className={styles.body}>
-            {sidebar}
-            <main className={styles.content}>{content}</main>
+            <div className={styles.bodyInner}>
+              {sidebar}
+              <main className={styles.content}>{content}</main>
+            </div>
           </div>
           {footer}
         </div>
@@ -48,7 +50,11 @@ function NavigationBar(props: { children: React.Node }) {
 NavigationBar.displayName = 'NavigationBar';
 
 function Sidebar(props: { children: React.Node }) {
-  return <div className={styles.sidebar}>{props.children}</div>;
+  return (
+    <div className={styles.sidebar}>
+      <div className={styles.sidebarInner}>{props.children}</div>
+    </div>
+  );
 }
 Sidebar.displayName = 'Sidebar';
 
