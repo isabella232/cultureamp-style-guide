@@ -274,7 +274,7 @@ viewCancelButton (Config { persistent, variant }) state onStateChange =
 
     else
         button
-            ([ styles.class .cancel ]
+            ([ styles.class .cancel, type_ "button" ]
                 ++ onClickCancel
             )
             [ span
