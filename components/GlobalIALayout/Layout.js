@@ -92,7 +92,9 @@ function Announcers(props: { children: React.Node }) {
 Announcers.displayName = 'Announcers';
 
 function extractChildOfType(children, type) {
-  const match = children.find(child => child && child.type.name == type.name);
+  const match = children.find(
+    child => child && child.type.displayName == type.displayName
+  );
   if (match) {
     const index = children.indexOf(match);
     children.splice(index, 1);
