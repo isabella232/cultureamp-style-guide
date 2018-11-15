@@ -55,6 +55,7 @@ exports[`The basic notification renders correctly 1`] = `
         <button
           className="cancel"
           onClick={[Function]}
+          type="button"
         >
           <span
             className="cancelInner"
@@ -149,6 +150,7 @@ exports[`You can change the type 1`] = `
         <button
           className="cancel"
           onClick={[Function]}
+          type="button"
         >
           <span
             className="cancelInner"

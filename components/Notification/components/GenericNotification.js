@@ -124,7 +124,7 @@ class GenericNotification extends React.Component<Props, State> {
 }
 
 const CancelButton = ({ onClick }) => (
-  <button className={styles.cancel} onClick={onClick}>
+  <button className={styles.cancel} type="button" onClick={onClick}>
     <span className={styles.cancelInner}>
       <Icon icon={closeIcon} role="img" title="close notification" />
     </span>
