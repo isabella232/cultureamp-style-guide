@@ -62,7 +62,7 @@
 // and support a sticky footer that conforms to those dimensions
 %global-ia-body-inner {
   display: flex;
-
+  align-self: center;
   max-width: $ca-layout-max-width;
 
   // match position & dimensions of %global-ia-body
