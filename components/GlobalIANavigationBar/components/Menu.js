@@ -21,6 +21,7 @@ type Props = {|
   header?: React.Element<any>,
   items: Array<MenuItem>,
   automationId?: string,
+  heading?: string,
 |};
 
 type State = {|
@@ -38,7 +39,7 @@ export default class Menu extends React.Component<Props, State> {
   state = { open: false };
 
   render() {
-    const { children, automationId } = this.props;
+    const { children, automationId, heading } = this.props;
 
     return (
       <Media query="(min-width: 768px)">
@@ -58,7 +59,12 @@ export default class Menu extends React.Component<Props, State> {
             </nav>
           ) : (
             <React.Fragment>
-              <Link text="Settings" href="#" onClick={this.toggle} hasMenu />
+              <Link
+                text={heading ? heading : 'Menu'}
+                href="#"
+                onClick={this.toggle}
+                hasMenu
+              />
               {this.renderOffCanvas(this.state.open)}
             </React.Fragment>
           )
@@ -86,13 +92,13 @@ export default class Menu extends React.Component<Props, State> {
   }
 
   renderOffCanvas(isOpen: boolean) {
-    const { items } = this.props;
+    const { items, heading } = this.props;
 
     return (
       <OffCanvas
         links={items.map(this.renderOffCanvasMenuItem)}
         menuVisible={isOpen}
-        heading="Settings"
+        heading={heading ? heading : 'Menu'}
         headerComponent={this.renderBackButton()}
         toggleMenu={this.toggle}
       />

@@ -8,13 +8,17 @@
   width: 100%;
   top: 0;
   left: 0;
-  transform: translateX(-100%);
+  transform: translate3d(-120%, 0, 0);
   background-color: $ca-palette-ink;
-  transition: transform $ca-duration-rapid $ca-ease-out;
+  transition: transform $ca-duration-fast $ca-ease-out;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
 
 .active {
-  transform: translateX(0);
+  // Here we need to do a 3d transform and z-index bump
+  // in order to promote this to its own layer
+  transform: translate3d(0, 0, 0);
+  z-index: 1;
 }
 
 .trigger {
