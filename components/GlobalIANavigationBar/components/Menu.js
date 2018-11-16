@@ -4,6 +4,7 @@ import * as React from 'react';
 import styles from './Menu.module.scss';
 import Tooltip from './Tooltip';
 import Link from './Link';
+import { TABLET_AND_UP } from '../constants';
 import Media from 'react-media';
 import { OffCanvas } from 'cultureamp-style-guide/components/OffCanvas';
 import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
@@ -42,7 +43,7 @@ export default class Menu extends React.Component<Props, State> {
     const { children, automationId, heading } = this.props;
 
     return (
-      <Media query="(min-width: 768px)">
+      <Media query={TABLET_AND_UP}>
         {matches =>
           matches ? (
             <nav className={styles.root} ref={root => (this.root = root)}>

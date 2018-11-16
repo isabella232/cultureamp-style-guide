@@ -11,6 +11,7 @@ import {
   LocalBadge,
   namedBadge,
 } from './components/Badge.js';
+import { TABLET_AND_UP } from './constants';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
 import ControlledOffCanvas from '../OffCanvas';
@@ -46,7 +47,7 @@ export default class NavigationBar extends React.Component<Props> {
     });
 
     return (
-      <Media query="(min-width: 768px)">
+      <Media query={TABLET_AND_UP}>
         {matches =>
           matches ? (
             <header
