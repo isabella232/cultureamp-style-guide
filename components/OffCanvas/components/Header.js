@@ -15,7 +15,7 @@ const Header = ({ leftComponent, onClose, heading }: Props) => (
   <div className={styles.root}>
     {leftComponent}
     <span className={styles.heading}>{heading}</span>
-    <IconButton icon={closeIcon} onClick={onClose} reversed />
+    <IconButton label="Close" icon={closeIcon} onClick={onClose} reversed />
   </div>
 );
 

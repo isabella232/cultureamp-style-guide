@@ -58,7 +58,11 @@ export function withTrigger(Component: React.ComponentType<*>) {
       return (
         <React.Fragment>
           <div className={styles.trigger}>
-            <IconButton icon={hamburgerIcon} onClick={this.toggleMenu} />
+            <IconButton
+              label="Menu"
+              icon={hamburgerIcon}
+              onClick={this.toggleMenu}
+            />
           </div>
           <Component
             menuVisible={this.state.menuVisible}
