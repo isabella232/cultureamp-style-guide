@@ -6,8 +6,8 @@ import Tooltip from './Tooltip';
 import Link from './Link';
 import { TABLET_AND_UP } from '../constants';
 import Media from 'react-media';
-import { OffCanvas } from 'cultureamp-style-guide/components/OffCanvas';
-import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
+import { OffCanvas } from '../../OffCanvas';
+import IconButton from '../../Button/IconButton';
 import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
 type MenuItem = {

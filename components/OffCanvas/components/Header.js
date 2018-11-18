@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import styles from './Header.module.scss';
-import IconButton from 'cultureamp-style-guide/components/Button/IconButton';
+import IconButton from '../../Button/IconButton';
 import closeIcon from 'cultureamp-style-guide/icons/close.svg';
 
 type Props = {|
