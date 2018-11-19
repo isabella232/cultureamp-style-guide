@@ -1,1 +1,1 @@
-export const TABLET_AND_UP = '(min-width: 768px)';
+export const MOBILE_QUERY = '(max-width: 768px)';

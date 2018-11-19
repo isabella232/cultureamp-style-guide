@@ -4,7 +4,7 @@ import * as React from 'react';
 import styles from './Menu.module.scss';
 import Tooltip from './Tooltip';
 import Link from './Link';
-import { TABLET_AND_UP } from '../constants';
+import { MOBILE_QUERY } from '../constants';
 import Media from 'react-media';
 import { OffCanvas } from '../../OffCanvas';
 import IconButton from '../../Button/IconButton';
@@ -43,9 +43,19 @@ export default class Menu extends React.Component<Props, State> {
     const { children, automationId, heading } = this.props;
 
     return (
-      <Media query={TABLET_AND_UP}>
+      <Media query={MOBILE_QUERY}>
         {matches =>
           matches ? (
+            <React.Fragment>
+              <Link
+                text={heading ? heading : 'Menu'}
+                href="#"
+                onClick={this.toggle}
+                hasMenu
+              />
+              {this.renderOffCanvas(this.state.open)}
+            </React.Fragment>
+          ) : (
             <nav className={styles.root} ref={root => (this.root = root)}>
               <button
                 className={styles.button}
@@ -58,16 +68,6 @@ export default class Menu extends React.Component<Props, State> {
               </button>
               {this.state.open && this.renderMenu()}
             </nav>
-          ) : (
-            <React.Fragment>
-              <Link
-                text={heading ? heading : 'Menu'}
-                href="#"
-                onClick={this.toggle}
-                hasMenu
-              />
-              {this.renderOffCanvas(this.state.open)}
-            </React.Fragment>
           )
         }
       </Media>

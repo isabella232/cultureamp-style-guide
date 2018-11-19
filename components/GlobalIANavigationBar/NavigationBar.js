@@ -11,7 +11,7 @@ import {
   LocalBadge,
   namedBadge,
 } from './components/Badge.js';
-import { TABLET_AND_UP } from './constants';
+import { MOBILE_QUERY } from './constants';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
 import ControlledOffCanvas from '../OffCanvas';
@@ -47,9 +47,16 @@ export default class NavigationBar extends React.Component<Props> {
     });
 
     return (
-      <Media query={TABLET_AND_UP}>
+      <Media query={MOBILE_QUERY}>
         {matches =>
           matches ? (
+            <ControlledOffCanvas
+              headerComponent={this.renderBadge()}
+              footerComponent={this.props.footerComponent}
+              links={[...links, ...otherChildren]}
+              heading="Menu"
+            />
+          ) : (
             <header
               className={classNames(styles.navigationBar, styles[colorScheme])}
             >
@@ -57,13 +64,6 @@ export default class NavigationBar extends React.Component<Props> {
               {this.renderLinks(links)}
               {this.renderOtherChildren(otherChildren)}
             </header>
-          ) : (
-            <ControlledOffCanvas
-              headerComponent={this.renderBadge()}
-              footerComponent={this.props.footerComponent}
-              links={[...links, ...otherChildren]}
-              heading="Menu"
-            />
           )
         }
       </Media>
