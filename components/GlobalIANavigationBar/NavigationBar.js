@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import classNames from 'classnames';
+import Media from 'react-media';
 
 import styles from './NavigationBar.module.scss';
 import {
@@ -10,8 +11,10 @@ import {
   LocalBadge,
   namedBadge,
 } from './components/Badge.js';
+import { MOBILE_QUERY } from './constants';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
+import ControlledOffCanvas from '../OffCanvas';
 
 type SupportedChild = React.Element<typeof Link> | React.Element<typeof Menu>;
 
@@ -20,6 +23,7 @@ type Props = {|
   loading: boolean,
   colorScheme: 'cultureamp' | 'kaizen',
   badgeHref: string,
+  footerComponent: ?React.Node,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
@@ -43,11 +47,26 @@ export default class NavigationBar extends React.Component<Props> {
     });
 
     return (
-      <header className={classNames(styles.navigationBar, styles[colorScheme])}>
-        {this.renderBadge()}
-        {this.renderLinks(links)}
-        {this.renderOtherChildren(otherChildren)}
-      </header>
+      <Media query={MOBILE_QUERY}>
+        {matches =>
+          matches ? (
+            <ControlledOffCanvas
+              headerComponent={this.renderBadge()}
+              footerComponent={this.props.footerComponent}
+              links={[...links, ...otherChildren]}
+              heading="Menu"
+            />
+          ) : (
+            <header
+              className={classNames(styles.navigationBar, styles[colorScheme])}
+            >
+              {this.renderBadge()}
+              {this.renderLinks(links)}
+              {this.renderOtherChildren(otherChildren)}
+            </header>
+          )
+        }
+      </Media>
     );
   }
 
