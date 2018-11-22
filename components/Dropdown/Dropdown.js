@@ -20,7 +20,7 @@ type DropdownProps = {
   menuVisible?: boolean,
   controlAction?: boolean,
   automationId?: string,
-  reversed?: boolean,
+  iconPosition?: 'start' | 'end',
 };
 
 export default class Dropdown extends React.Component<
@@ -29,6 +29,10 @@ export default class Dropdown extends React.Component<
 > {
   static displayName = 'Dropdown';
   dropdownButton: ?HTMLButtonElement;
+
+  static defaultProps = {
+    iconPosition: 'start',
+  };
 
   constructor(props: DropdownProps) {
     super(props);
@@ -68,15 +72,60 @@ export default class Dropdown extends React.Component<
     );
   }
 
+  renderIcon = (icon: ?SvgAsset) => {
+    if (!icon) return;
+
+    return (
+      <span className={styles.dropdownIcon}>
+        <Icon icon={icon} role="img" title="Open menu" />
+      </span>
+    );
+  };
+
+  renderDownArrow = () => {
+    const { label, controlAction } = this.props;
+    if (!label || !controlAction) return;
+
+    return (
+      <span className={styles.chevronIcon}>
+        <Icon icon={chevronDown} role="img" title="Open menu" />
+      </span>
+    );
+  };
+
+  renderButtonContent = () => {
+    const { icon, label } = this.props;
+
+    return (
+      <React.Fragment>
+        {this.renderIcon(icon)}
+        {label && <span className={styles.dropdownLabel}>{label}</span>}
+        {this.renderDownArrow()}
+      </React.Fragment>
+    );
+  };
+
+  renderReversedButtonContent = () => {
+    const { icon, label } = this.props;
+
+    return (
+      <React.Fragment>
+        {this.renderDownArrow()}
+        {label && <span className={styles.dropdownLabel}>{label}</span>}
+        {this.renderIcon(icon)}
+      </React.Fragment>
+    );
+  };
+
   render() {
-    let { icon, label, controlAction, automationId, reversed } = this.props;
+    let { icon, label, controlAction, automationId, iconPosition } = this.props;
     if (!icon && !label) {
       icon = defaultIcon;
     }
+    const reverseIcon = iconPosition === 'end';
     const btnClass = classNames(styles.dropdownButton, {
       [styles.dropdownControlAction]: controlAction,
       [styles.isOpen]: this.state.isMenuVisible,
-      [styles.reversed]: reversed,
     });
     return (
       <div className={styles.dropdown}>
@@ -87,18 +136,8 @@ export default class Dropdown extends React.Component<
           ref={k => (this.dropdownButton = k)}
           data-automation-id={automationId}
         >
-          {icon && (
-            <span className={styles.dropdownIcon}>
-              <Icon icon={icon} role="img" title="Open menu" />
-            </span>
-          )}
-          {label && <span className={styles.dropdownLabel}>{label}</span>}
-          {label &&
-            controlAction && (
-              <span className={styles.chevronIcon}>
-                <Icon icon={chevronDown} role="img" title="Open menu" />
-              </span>
-            )}
+          {!reverseIcon && this.renderButtonContent()}
+          {reverseIcon && this.renderReversedButtonContent()}
         </button>
         {this.state.isMenuVisible && this.renderDropdownMenu()}
       </div>

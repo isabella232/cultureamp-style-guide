@@ -1,6 +1,7 @@
 @import '../../styles/border';
 @import '../../styles/color';
 @import '../../styles/type';
+@import '../../styles/layout';
 
 $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
@@ -331,11 +332,11 @@ $caButton-formHeight: $ca-grid * 5/3;
   }
 
   &:not(:first-child) {
-    margin-left: 0.5em;
+    @include ca-margin($start: 0.5em);
   }
 
   &:not(:last-child) {
-    margin-right: 0.5em;
+    @include ca-margin($end: 0.5em);
   }
 }
 
