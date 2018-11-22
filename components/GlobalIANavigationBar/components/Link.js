@@ -6,6 +6,7 @@ import styles from './Link.module.scss';
 import Icon from '../../Icon';
 import type { SvgAsset } from '../../Icon/Icon.js';
 import Tooltip from './Tooltip.js';
+import chevronRightIcon from 'cultureamp-style-guide/icons/chevron-right.svg';
 
 type Props = {|
   icon?: SvgAsset,
@@ -18,6 +19,7 @@ type Props = {|
   onClick?: (event: SyntheticMouseEvent<>) => void,
   tooltipText?: string,
   target: '_self' | '_blank',
+  hasMenu?: boolean,
 |};
 
 export default class Link extends React.PureComponent<Props> {
@@ -39,6 +41,7 @@ export default class Link extends React.PureComponent<Props> {
       secondary,
       iconOnly,
       target,
+      hasMenu,
     } = this.props;
 
     return (
@@ -63,6 +66,11 @@ export default class Link extends React.PureComponent<Props> {
           !(icon && iconOnly) && (
             <span className={styles.linkText}>{text}</span>
           )}
+        {hasMenu && (
+          <span className={styles.menuIcon}>
+            <Icon icon={chevronRightIcon} role="presentation" />
+          </span>
+        )}
       </a>
     );
   };

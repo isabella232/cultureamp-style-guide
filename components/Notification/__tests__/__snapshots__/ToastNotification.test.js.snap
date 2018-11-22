@@ -64,6 +64,7 @@ exports[`The basic notification renders correctly 1`] = `
         <button
           className="cancel"
           onClick={[Function]}
+          type="button"
         >
           <span
             className="cancelInner"
@@ -163,6 +164,7 @@ exports[`You cannot hide the close icon unless it is an autohide 1`] = `
         <button
           className="cancel"
           onClick={[Function]}
+          type="button"
         >
           <span
             className="cancelInner"

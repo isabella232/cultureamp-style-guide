@@ -2,7 +2,13 @@
 import * as React from 'react';
 
 import styles from './Menu.module.scss';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip';
+import Link from './Link';
+import { MOBILE_QUERY } from '../constants';
+import Media from 'react-media';
+import { OffCanvas } from '../../OffCanvas';
+import IconButton from '../../Button/IconButton';
+import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
 type MenuItem = {
   label: string,
@@ -16,6 +22,7 @@ type Props = {|
   header?: React.Element<any>,
   items: Array<MenuItem>,
   automationId?: string,
+  heading?: string,
 |};
 
 type State = {|
@@ -33,21 +40,37 @@ export default class Menu extends React.Component<Props, State> {
   state = { open: false };
 
   render() {
-    const { children, automationId } = this.props;
+    const { children, automationId, heading } = this.props;
 
     return (
-      <nav className={styles.root} ref={root => (this.root = root)}>
-        <button
-          className={styles.button}
-          onClick={this.toggle}
-          aria-expanded={this.state.open}
-          data-automation-id={automationId}
-          onMouseDown={e => e.preventDefault()}
-        >
-          {children}
-        </button>
-        {this.state.open && this.renderMenu()}
-      </nav>
+      <Media query={MOBILE_QUERY}>
+        {matches =>
+          matches ? (
+            <React.Fragment>
+              <Link
+                text={heading ? heading : 'Menu'}
+                href="#"
+                onClick={this.toggle}
+                hasMenu
+              />
+              {this.renderOffCanvas(this.state.open)}
+            </React.Fragment>
+          ) : (
+            <nav className={styles.root} ref={root => (this.root = root)}>
+              <button
+                className={styles.button}
+                onClick={this.toggle}
+                aria-expanded={this.state.open}
+                data-automation-id={automationId}
+                onMouseDown={e => e.preventDefault()}
+              >
+                {children}
+              </button>
+              {this.state.open && this.renderMenu()}
+            </nav>
+          )
+        }
+      </Media>
     );
   }
 
@@ -68,6 +91,30 @@ export default class Menu extends React.Component<Props, State> {
       </div>
     );
   }
+
+  renderOffCanvas(isOpen: boolean) {
+    const { items, heading } = this.props;
+
+    return (
+      <OffCanvas
+        links={items.map(this.renderOffCanvasMenuItem)}
+        menuVisible={isOpen}
+        heading={heading ? heading : 'Menu'}
+        headerComponent={this.renderBackButton()}
+        toggleMenu={this.toggle}
+      />
+    );
+  }
+
+  renderBackButton() {
+    return (
+      <IconButton label="Back" icon={backIcon} onClick={this.toggle} reversed />
+    );
+  }
+
+  renderOffCanvasMenuItem = (item: MenuItem, index: number) => {
+    return <Link key={index} text={item.label} href={item.link} />;
+  };
 
   renderMenuItem = (item: MenuItem, index: number) => {
     const { newWindow } = item;

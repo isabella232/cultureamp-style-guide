@@ -1,6 +1,7 @@
 @import '../styles';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/responsive';
 
 $nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
 $nav-timing: 150ms;
@@ -9,6 +10,12 @@ $link-margin: $ca-grid / 4;
 
 .link {
   @extend %ca-global-ia-navigation-bar__menu-item-focus;
+
+  @include ca-media-mobile {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
 
   // fill parent
   display: flex;
@@ -38,6 +45,13 @@ $link-margin: $ca-grid / 4;
     right: 0;
     background-color: #fff;
     transition: transform $nav-ease $nav-timing;
+
+    @include ca-media-mobile {
+      width: $indicator-height;
+      height: 60px;
+      right: auto;
+      transform: translateX(-#{$link-margin}) translateX(-100%);
+    }
   }
 
   &:hover {
@@ -46,6 +60,10 @@ $link-margin: $ca-grid / 4;
 
     .linkText::before {
       transform: translateY(-#{$link-margin});
+
+      @include ca-media-mobile {
+        transform: translateX(-#{$link-margin});
+      }
     }
   }
 
@@ -54,34 +72,36 @@ $link-margin: $ca-grid / 4;
   top: 0;
 
   &.secondary {
-    @include ca-type-ideal-body;
-    @include ca-inherit-baseline;
+    @include ca-media-tablet-and-up {
+      @include ca-type-ideal-body;
+      @include ca-inherit-baseline;
 
-    padding: 0 $ca-grid / 2;
+      padding: 0 $ca-grid / 2;
 
-    .linkText {
-      padding: 0;
+      .linkText {
+        padding: 0;
 
-      &::before {
-        display: none;
+        &::before {
+          display: none;
+        }
       }
-    }
 
-    &:hover,
-    &:focus {
-      background-color: rgba(#fff, 0.1);
+      &:hover,
+      &:focus {
+        background-color: rgba(#fff, 0.1);
 
-      .linkIcon {
-        opacity: 0.7;
+        .linkIcon {
+          opacity: 0.7;
+        }
       }
-    }
 
-    &:active {
-      background-color: rgba(#fff, 0.2);
-      transform: translateY(1px);
+      &:active {
+        background-color: rgba(#fff, 0.2);
+        transform: translateY(1px);
 
-      .linkIcon {
-        opacity: 1;
+        .linkIcon {
+          opacity: 1;
+        }
       }
     }
   }
@@ -90,10 +110,18 @@ $link-margin: $ca-grid / 4;
 .linkIcon {
   display: inline-flex;
   opacity: 0.5;
+
+  @include ca-media-mobile {
+    display: none;
+  }
 }
 
 .linkIcon + .linkText {
   margin-left: $link-margin;
+
+  @include ca-media-mobile {
+    margin-left: 0;
+  }
 }
 
 .linkText {
@@ -117,4 +145,12 @@ $link-margin: $ca-grid / 4;
   .linkText::before {
     transform: translateY(-#{$link-margin});
   }
+}
+
+.menuIcon {
+  margin-left: auto;
+  margin-right: $ca-grid;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
 }
