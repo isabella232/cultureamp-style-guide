@@ -78,7 +78,17 @@ $link-margin: $ca-grid / 4;
 
       padding: 0 $ca-grid / 2;
 
+      .linkIcon {
+        @include ca-media-tablet {
+          opacity: 1;
+        }
+      }
+
       .linkText {
+        @include ca-media-tablet {
+          display: none;
+        }
+
         padding: 0;
 
         &::before {
