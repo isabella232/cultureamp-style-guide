@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`The Announcers component renders correctly 1`] = `
+<Announcers>
+  <div
+    aria-live="assertive"
+    className="announcers"
+  />
+</Announcers>
+`;
+
+exports[`The Footer component renders correctly 1`] = `
+<Footer>
+  <footer
+    className="footer"
+  />
+</Footer>
+`;
+
+exports[`The Header component renders correctly 1`] = `
+<Header>
+  <aside
+    className="header"
+  />
+</Header>
+`;
+
+exports[`The Layout component renders child components in the correct positions 1`] = `
+<Layout>
+  <div
+    className="root"
+  >
+    <NavigationBar
+      key=".0"
+    >
+      <div
+        className="navigationBar"
+      >
+        NavigationBar
+      </div>
+    </NavigationBar>
+    <Announcers
+      key=".5"
+    >
+      <div
+        aria-live="assertive"
+        className="announcers"
+      >
+        Announcers
+      </div>
+    </Announcers>
+    <div
+      className="page"
+    >
+      <Header
+        key=".2"
+      >
+        <aside
+          className="header"
+        >
+          Header
+        </aside>
+      </Header>
+      <Toasts
+        key=".4"
+      >
+        <div
+          aria-live="assertive"
+          className="toasts"
+        >
+          Toasts
+        </div>
+      </Toasts>
+      <div
+        className="body"
+      >
+        <div
+          className="bodyInner"
+        >
+          <Sidebar
+            key=".1"
+          >
+            <div
+              className="sidebar"
+            >
+              <div
+                className="sidebarInner"
+              >
+                Sidebar
+              </div>
+            </div>
+          </Sidebar>
+          <main
+            className="content"
+          >
+            <div
+              key=".6"
+            >
+              My content
+            </div>
+          </main>
+        </div>
+      </div>
+      <Footer
+        key=".3"
+      >
+        <footer
+          className="footer"
+        >
+          Footer
+        </footer>
+      </Footer>
+    </div>
+  </div>
+</Layout>
+`;
+
+exports[`The Layout component renders correctly 1`] = `
+<Layout>
+  <div
+    className="root"
+  >
+    <div
+      className="page"
+    >
+      <div
+        className="body"
+      >
+        <div
+          className="bodyInner"
+        >
+          <main
+            className="content"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
+`;
+
+exports[`The NavigationBar component renders correctly 1`] = `
+<NavigationBar>
+  <div
+    className="navigationBar"
+  />
+</NavigationBar>
+`;
+
+exports[`The Sidebar component renders correctly 1`] = `
+<Sidebar>
+  <div
+    className="sidebar"
+  >
+    <div
+      className="sidebarInner"
+    />
+  </div>
+</Sidebar>
+`;
+
+exports[`The Toasts component renders correctly 1`] = `
+<Toasts>
+  <div
+    aria-live="assertive"
+    className="toasts"
+  />
+</Toasts>
+`;
