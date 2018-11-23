@@ -11,15 +11,20 @@ import Link from '../GlobalIANavigationBar/components/Link';
 type Props = {|
   links: Array<Link>,
   heading: string,
-  menuVisible: boolean,
   headerComponent: React.Node,
   footerComponent: ?React.Node,
-  toggleMenu: MouseEvent => void,
+  menuId: string,
 |};
 
 type State = {|
-  menuVisible: boolean,
+  visibleMenus: Array<string>,
 |};
+
+export const OffCanvasContext = React.createContext({
+  visibleMenus: [],
+  toggleVisibleMenu: menuId => {},
+  resetVisibleMenus: () => {},
+});
 
 export class OffCanvas extends React.Component<Props> {
   static defaultProps = {
@@ -29,50 +34,82 @@ export class OffCanvas extends React.Component<Props> {
 
   render() {
     return (
-      <div
-        className={classNames(styles.root, {
-          [styles.active]: this.props.menuVisible,
-        })}
-      >
-        <Header
-          onClose={this.props.toggleMenu}
-          leftComponent={this.props.headerComponent}
-          heading={this.props.heading}
-        />
-        <Menu links={this.props.links} />
-        {this.props.footerComponent}
-      </div>
+      <OffCanvasContext.Consumer>
+        {({ visibleMenus, resetVisibleMenus }) => (
+          <div
+            className={classNames(styles.root, {
+              [styles.active]: visibleMenus.includes(this.props.menuId),
+            })}
+          >
+            <Header
+              onClose={resetVisibleMenus}
+              leftComponent={this.props.headerComponent}
+              heading={this.props.heading}
+            />
+            <Menu links={this.props.links} />
+            {this.props.footerComponent}
+          </div>
+        )}
+      </OffCanvasContext.Consumer>
     );
   }
 }
 
-export function withTrigger(Component: React.ComponentType<*>) {
-  return class ControlledOffCanvas extends React.Component<*, State> {
+function withContextProvider(Component: React.ComponentType<*>) {
+  return class OffCanvasWithContextProvider extends React.Component<
+    Props,
+    State
+  > {
     state = {
-      menuVisible: false,
+      visibleMenus: [],
     };
 
-    toggleMenu = () => this.setState({ menuVisible: !this.state.menuVisible });
+    toggleMenu = (menuId: string) =>
+      this.setState({
+        visibleMenus: this.state.visibleMenus.includes(menuId)
+          ? this.state.visibleMenus.filter(item => item !== menuId)
+          : [...this.state.visibleMenus, menuId],
+      });
+
+    resetMenu = () => this.setState({ visibleMenus: [] });
 
     render() {
       return (
-        <React.Fragment>
-          <div className={styles.trigger}>
-            <IconButton
-              label="Menu"
-              icon={hamburgerIcon}
-              onClick={this.toggleMenu}
-            />
-          </div>
-          <Component
-            menuVisible={this.state.menuVisible}
-            toggleMenu={this.toggleMenu}
-            {...this.props}
-          />
-        </React.Fragment>
+        <OffCanvasContext.Provider
+          value={{
+            ...this.state,
+            toggleVisibleMenu: this.toggleMenu,
+            resetVisibleMenus: this.resetMenu,
+          }}
+        >
+          <Component {...this.props} />
+        </OffCanvasContext.Provider>
       );
     }
   };
 }
 
-export default withTrigger(OffCanvas);
+function withTrigger(Component: React.ComponentType<*>) {
+  return class OffCanvasWithTrigger extends React.Component<Props> {
+    render() {
+      return (
+        <OffCanvasContext.Consumer>
+          {({ toggleVisibleMenu }) => (
+            <React.Fragment>
+              <div className={styles.trigger}>
+                <IconButton
+                  label="Menu"
+                  icon={hamburgerIcon}
+                  onClick={() => toggleVisibleMenu(this.props.menuId)}
+                />
+              </div>
+              <Component {...this.props} />
+            </React.Fragment>
+          )}
+        </OffCanvasContext.Consumer>
+      );
+    }
+  };
+}
+
+export default withContextProvider(withTrigger(OffCanvas));

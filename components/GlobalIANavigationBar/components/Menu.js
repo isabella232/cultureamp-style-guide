@@ -6,7 +6,7 @@ import Tooltip from './Tooltip';
 import Link from './Link';
 import { MOBILE_QUERY } from '../constants';
 import Media from 'react-media';
-import { OffCanvas } from '../../OffCanvas';
+import { OffCanvas, OffCanvasContext } from '../../OffCanvas';
 import IconButton from '../../Button/IconButton';
 import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
@@ -47,13 +47,17 @@ export default class Menu extends React.Component<Props, State> {
         {matches =>
           matches ? (
             <React.Fragment>
-              <Link
-                text={heading ? heading : 'Menu'}
-                href="#"
-                onClick={this.toggle}
-                hasMenu
-              />
-              {this.renderOffCanvas(this.state.open)}
+              <OffCanvasContext.Consumer>
+                {({ toggleVisibleMenu }) => (
+                  <Link
+                    text={heading ? heading : ''}
+                    href="#"
+                    onClick={() => toggleVisibleMenu(heading)}
+                    hasMenu
+                  />
+                )}
+              </OffCanvasContext.Consumer>
+              {this.renderOffCanvas()}
             </React.Fragment>
           ) : (
             <nav className={styles.root} ref={root => (this.root = root)}>
@@ -92,23 +96,31 @@ export default class Menu extends React.Component<Props, State> {
     );
   }
 
-  renderOffCanvas(isOpen: boolean) {
+  renderOffCanvas() {
     const { items, heading } = this.props;
 
     return (
       <OffCanvas
         links={items.map(this.renderOffCanvasMenuItem)}
-        menuVisible={isOpen}
         heading={heading ? heading : 'Menu'}
         headerComponent={this.renderBackButton()}
-        toggleMenu={this.toggle}
+        menuId={heading}
       />
     );
   }
 
   renderBackButton() {
     return (
-      <IconButton label="Back" icon={backIcon} onClick={this.toggle} reversed />
+      <OffCanvasContext.Consumer>
+        {({ toggleVisibleMenu }) => (
+          <IconButton
+            label="Back"
+            icon={backIcon}
+            onClick={() => toggleVisibleMenu(this.props.heading)}
+            reversed
+          />
+        )}
+      </OffCanvasContext.Consumer>
     );
   }
 
