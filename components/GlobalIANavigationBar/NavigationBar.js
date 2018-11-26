@@ -55,6 +55,7 @@ export default class NavigationBar extends React.Component<Props> {
               footerComponent={this.props.footerComponent}
               links={[...links, ...otherChildren]}
               heading="Menu"
+              menuId="menu"
             />
           ) : (
             <header
