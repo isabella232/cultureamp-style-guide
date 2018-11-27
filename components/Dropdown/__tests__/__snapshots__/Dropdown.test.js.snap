@@ -25,14 +25,14 @@ exports[`Dropdown renders control action dropdown 1`] = `
           title="Open menu"
         >
           <svg
-            aria-labelledby="id-3-title"
+            aria-labelledby="id-4-title"
             className="icon"
             focusable="false"
             role="img"
             viewBox="viewBox"
           >
             <title
-              id="id-3-title"
+              id="id-4-title"
             >
               Open menu
             </title>
@@ -57,14 +57,14 @@ exports[`Dropdown renders control action dropdown 1`] = `
           title="Open menu"
         >
           <svg
-            aria-labelledby="id-4-title"
+            aria-labelledby="id-5-title"
             className="icon"
             focusable="false"
             role="img"
             viewBox="viewBox"
           >
             <title
-              id="id-4-title"
+              id="id-5-title"
             >
               Open menu
             </title>
@@ -81,23 +81,6 @@ exports[`Dropdown renders control action dropdown 1`] = `
 
 exports[`Dropdown renders default view 1`] = `
 <Dropdown
-  iconPosition="start"
->
-  <div
-    className="dropdown"
-  >
-    <button
-      className="dropdownButton"
-      onClick={[Function]}
-      onMouseDown={[Function]}
-    />
-  </div>
-</Dropdown>
-`;
-
-exports[`Dropdown renders drop down with icon 1`] = `
-<Dropdown
-  icon={null}
   iconPosition="start"
 >
   <div
@@ -140,11 +123,10 @@ exports[`Dropdown renders drop down with icon 1`] = `
 </Dropdown>
 `;
 
-exports[`Dropdown renders drop down with icon and label 1`] = `
+exports[`Dropdown renders drop down with icon 1`] = `
 <Dropdown
   icon={null}
   iconPosition="start"
-  label="add"
 >
   <div
     className="dropdown"
@@ -172,6 +154,52 @@ exports[`Dropdown renders drop down with icon and label 1`] = `
           >
             <title
               id="id-2-title"
+            >
+              Open menu
+            </title>
+            <use
+              xlinkHref="#id"
+            />
+          </svg>
+        </Icon>
+      </span>
+    </button>
+  </div>
+</Dropdown>
+`;
+
+exports[`Dropdown renders drop down with icon and label 1`] = `
+<Dropdown
+  icon={null}
+  iconPosition="start"
+  label="add"
+>
+  <div
+    className="dropdown"
+  >
+    <button
+      className="dropdownButton"
+      onClick={[Function]}
+      onMouseDown={[Function]}
+    >
+      <span
+        className="dropdownIcon"
+      >
+        <Icon
+          icon={null}
+          inheritSize={false}
+          role="img"
+          title="Open menu"
+        >
+          <svg
+            aria-labelledby="id-3-title"
+            className="icon"
+            focusable="false"
+            role="img"
+            viewBox="viewBox"
+          >
+            <title
+              id="id-3-title"
             >
               Open menu
             </title>
@@ -240,14 +268,14 @@ exports[`Dropdown renders reversed control action dropdown 1`] = `
           title="Open menu"
         >
           <svg
-            aria-labelledby="id-5-title"
+            aria-labelledby="id-6-title"
             className="icon"
             focusable="false"
             role="img"
             viewBox="viewBox"
           >
             <title
-              id="id-5-title"
+              id="id-6-title"
             >
               Open menu
             </title>
@@ -272,14 +300,14 @@ exports[`Dropdown renders reversed control action dropdown 1`] = `
           title="Open menu"
         >
           <svg
-            aria-labelledby="id-6-title"
+            aria-labelledby="id-7-title"
             className="icon"
             focusable="false"
             role="img"
             viewBox="viewBox"
           >
             <title
-              id="id-6-title"
+              id="id-7-title"
             >
               Open menu
             </title>

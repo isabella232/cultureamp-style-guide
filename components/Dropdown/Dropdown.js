@@ -95,7 +95,11 @@ export default class Dropdown extends React.Component<
   };
 
   renderButtonContent = () => {
-    const { icon, label } = this.props;
+    let { icon, label } = this.props;
+
+    if (!icon && !label) {
+      icon = defaultIcon;
+    }
 
     return (
       <React.Fragment>
@@ -119,10 +123,15 @@ export default class Dropdown extends React.Component<
   };
 
   render() {
-    let { icon, label, controlAction, automationId, iconPosition, reversed } = this.props;
-    if (!icon && !label) {
-      icon = defaultIcon;
-    }
+    let {
+      icon,
+      label,
+      controlAction,
+      automationId,
+      iconPosition,
+      reversed,
+    } = this.props;
+
     const reverseIcon = iconPosition === 'end';
     const btnClass = classNames(styles.dropdownButton, {
       [styles.dropdownControlAction]: controlAction,
