@@ -12,7 +12,7 @@ type GenericProps = {|
   form: boolean,
   reversed: boolean,
   icon?: SvgAsset,
-  onClick?: MouseEvent => void,
+  onClick?: MouseEvent => any,
   href?: string,
   type?: 'submit' | 'reset',
   automationId?: string,
