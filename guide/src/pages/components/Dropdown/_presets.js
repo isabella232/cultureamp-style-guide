@@ -70,7 +70,7 @@ const presets = [
   {
     name: 'Reversed Control action',
     node: (
-      <Dropdown label="Print" icon={print} controlAction={true} reversed>
+      <Dropdown label="Print" icon={print} controlAction={true} reversedColor>
         {menuList}
       </Dropdown>
     ),
