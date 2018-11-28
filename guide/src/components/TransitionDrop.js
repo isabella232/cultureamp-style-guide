@@ -7,27 +7,39 @@ import {
   MenuItem,
   MenuSeparator,
 } from 'cultureamp-style-guide/components/MenuList';
-import Drop from './_Drop';
+import Drop from './Drop';
 import Text from 'cultureamp-style-guide/components/Text';
 
-class AnimationDrop extends React.PureComponent {
+class TransitionDrop extends React.PureComponent {
   state = {
     isAnimating: false,
-    duration: 400,
-    preset: 'slow',
+    direction: 'out',
+    duration: 300,
+    preset: 'fast',
   };
   presets = [
     { preset: 'immediate', duration: 100 },
+    { preset: 'rapid', duration: 200 },
     { preset: 'fast', duration: 300 },
     { preset: 'slow', duration: 400 },
     { preset: 'deliberate', duration: 700 },
   ];
 
-  playAnimation = () => {
-    const { duration } = this.state;
+  updateTransitionDirection = () => {
+    const { direction } = this.state;
+    const newTransitionDirection = direction === 'out' ? 'in' : 'out';
+
+    this.setState({
+      isAnimating: false,
+      direction: newTransitionDirection,
+    });
+  };
+
+  playTransition = () => {
+    const { duration, preset } = this.state;
 
     this.setState({ isAnimating: true }, () => {
-      setTimeout(() => this.setState({ isAnimating: false }), duration);
+      setTimeout(this.updateTransitionDirection, duration);
     });
   };
 
@@ -44,7 +56,7 @@ class AnimationDrop extends React.PureComponent {
               action={() =>
                 this.setState(
                   { preset: item.preset, duration: item.duration },
-                  this.playAnimation
+                  this.playTransition
                 )
               }
               active={item.preset === preset}
@@ -58,17 +70,23 @@ class AnimationDrop extends React.PureComponent {
   };
 
   render() {
-    const { color = '#3E4543', render, name } = this.props;
-    const { isAnimating, preset } = this.state;
+    const { color = '#333', render, name } = this.props;
+    const { isAnimating, direction, preset } = this.state;
+    const state = direction === 'in' ? 'enter' : 'exit';
 
-    const classes = classnames(`ca-duration-${preset}`, {
-      [`ca-animation-${name}`]: isAnimating,
-    });
+    const classes = classnames(
+      `ca-duration-${preset}`,
+      `ca-transition-${name}-${direction}`,
+      `ca-${state}`,
+      {
+        [`ca-${state}-active`]: isAnimating,
+      }
+    );
 
     return (
-      <Drop onClick={this.playAnimation} color={color} classes={classes}>
+      <Drop classes={classes} color={color} onClick={this.playTransition}>
         <Text tag="div" style="label">
-          {name}
+          {name}-{direction}
         </Text>
         <div>{this.getPresetMenu()}</div>
       </Drop>
@@ -76,4 +94,4 @@ class AnimationDrop extends React.PureComponent {
   }
 }
 
-export default AnimationDrop;
+export default TransitionDrop;

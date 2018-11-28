@@ -3,20 +3,20 @@
 ///////////////////////////////////////////////
 // ANIMATION PRESET CLASSES                  //
 ///////////////////////////////////////////////
-.ca-animation-pop {
-  @include ca-animation-pop();
-}
-
-.ca-animation-pulsate {
-  @include ca-animation-pulsate();
-}
-
 .ca-animation-fade-in {
   @include ca-animation-fade(in);
 }
 
 .ca-animation-fade-out {
   @include ca-animation-fade(out);
+}
+
+.ca-animation-pop {
+  @include ca-animation-pop();
+}
+
+.ca-animation-pulsate {
+  @include ca-animation-pulsate();
 }
 
 .ca-animation-slide-fade-in {

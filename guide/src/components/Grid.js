@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import styles from './_Grid.module.scss';
+import styles from './Grid.module.scss';
 
 class Grid extends React.PureComponent {
   render() {

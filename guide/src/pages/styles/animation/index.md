@@ -1,8 +1,6 @@
 ---
 imports:
-  AnimationPresets: ./examples/_AnimationPresets.js
-  AnimationSequences: ./examples/_AnimationSequences.js
-  TransitionPresets: ./examples/_TransitionPresets.js
+  InlineNotification: cultureamp-style-guide/components/Notification/InlineNotification.js
   IntroParagraph: components/IntroParagraph.js
   "{TipContainer,TipCard}": components/tip-card
 ---
@@ -14,6 +12,8 @@ imports:
 Meaningful motion helps make our product easy for everyone and tells our brand's story.
 
 </IntroParagraph>
+
+<InlineNotification persistent={true} type="affirmative">**Tip:** Looking for the technical animation guide? _Check out the [Animation Getting Started Guide](http://localhost:8000/guides/animation)_</InlineNotification>
 
 [[toc]]
 
@@ -116,84 +116,3 @@ _In contrast to a placeholder loading skeleton_, choreographed or stylized entra
 
 </TipCard>
 </TipContainer>
-
-### Easing timing functions
-
-When we talk about “ease in”, “ease out”, or “ease-in-out”, we do NOT mean the standard keyword CSS values. We use Culture Amp branded timing function e.g. $ca-ease-in: cubic-bezier(…).
-
-Here are some extremely loose guidelines:
-
-* Ease in (acceleration) for system-initiated animation (e.g. modal pop up).
-* Ease out (deceleration) for user-initiated animation (e.g. page transitions).
-* Ease in and out (speed up and slow down) when moving a thing from one place to another.
-* Linear (constant) for fades and color changes (no movement).
-* Bounce for fun and attention (e.g. jiggling errors).
-
-### Durations and delays
-
-Exits can be faster than entrances.
-
-Use delays to “sequence” multiple animations.
-
-Most people first notice or perceive an animation at about the 250ms mark, so we only use the "Immediate" option for the most subtle animations (color changes etc).
-
-Sizing and spacing (e.g. distance to travel) can influence durations needed, so 200ms might be more appropriate than 300ms for some elements.
-
-| Variable                | Duration |
-| ----------------------- | -------- |
-| $ca-duration-instant    | 0ms      |
-| $ca-duration-immediate  | 100ms    |
-| $ca-duration-rapid      | 200ms    |
-| $ca-duration-fast       | 300ms    |
-| $ca-duration-slow       | 400ms    |
-| $ca-duration-deliberate | 700ms    |
-
-## Effects and styles
-
-### Presets
-
-Here are examples of pre-defined CSS transitions and animations that are ready to use. All transition styles have accompanying mixins that allow you to define customized behavior in respect to _duration_, _delay_, and _direction_.
-
-<TransitionPresets />
-<AnimationPresets />
-
-We use **Slide and Fade** for revealing or moving existing content whereas we use **Scale and Fade** for creating content, such as new items in a list.
-
-| Type    | Mixin                                                |
-| ------- | ---------------------------------------------------- |
-| Fade    | @include ca-animation-fade($state: `in | out`)       |
-| Fade    | @include ca-animation-slide-fade($state: `in | out`) |
-| Fade    | @include ca-animation-scale-fade($state: `in | out`) |
-| Pop     | @include ca-animation-pop                            |
-| Pulsate | @include ca-animation-pulsate                        |
-
-## Sequencing Animations
-
-<AnimationSequences />
-
-[List sequence animation example](https://codesandbox.io/s/z35w3zzmom)
-[List sequence transition example](https://codesandbox.io/s/o72wwooq0y)
-
-## Technical considerations
-
-### Rendering performance
-
-For fast 60&nbsp;frames per second animations, you can cheaply animate:
-
-* Opacity
-* Translate (move the position)
-* Scale (pixel scaling)
-* Rotate
-
-Note: none of these affect the “box” the item takes up on the page. You can use “transform: scale” or “transform: translate” but the content will still take up the same space on the page as if no transform happened.
-
-For animating other properties, you might use “will-change” so the browser can set up appropriate optimizations ahead of time before the element is actually changed.
-
-### Animate collapsing height
-
-There are trade-offs to the different approaches to Expand and Collapse animations.
-
-* “transform: scaleY()” - fast, but items below do not move up
-* “transform: translateY()” - fast, but items below do not move up
-* “height: 0” - the box shrinks height, so content inside is reflowed (can look awkward, or generate scrollbars, etc.)
-* “margin-top:” - the box stays the same size, but shifts up and consumes less space, so items below shift up. (This can result in overlapping content above if you are not careful!) Useful if you want to “slide behind” another element or if you time it so the shift up happens in conjunction with a fade out such that it has mostly faded out by the time it would overlap with other content.

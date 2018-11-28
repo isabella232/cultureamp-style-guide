@@ -1,13 +1,12 @@
 import React from 'react';
 import classnames from 'classnames';
-import Grid from '../components/_Grid';
-import Drop from '../components/_Drop';
+import Grid from '../../../../components/Grid';
+import Drop from '../../../../components/Drop';
 import Code from '../../../../components/Code';
-import './_AnimationExamples.scss';
-import './_AnimationSequences.scss';
-import scssCode from '!raw-loader!./_AnimationSequences.scss';
+import './AnimationSequencesExample.scss';
+import scssCode from '!raw-loader!./AnimationSequencesExample.scss';
 
-class AnimationPresets extends React.PureComponent {
+class AnimationSequencesExample extends React.PureComponent {
   state = {
     isAnimating: false,
   };
@@ -38,4 +37,4 @@ class AnimationPresets extends React.PureComponent {
   }
 }
 
-export default AnimationPresets;
+export default AnimationSequencesExample;

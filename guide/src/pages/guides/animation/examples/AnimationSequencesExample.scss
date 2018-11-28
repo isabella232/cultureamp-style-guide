@@ -5,12 +5,12 @@ $delay: -$ca-duration-slow; // -400ms (stagger effect)
 
 @include ca-series {
   .spin-1 {
-    @include ca-queue($duration, $delay, spin, fade($from: 0.75));
+    @include ca-queue($duration, $delay, pulsate);
   }
   .spin-2 {
-    @include ca-queue($duration, $delay, spin, fade($from: 0.5));
+    @include ca-queue($duration, $delay, pulsate);
   }
   .spin-3 {
-    @include ca-queue($duration, 0, spin, fade($from: 0.25));
+    @include ca-queue($duration, 0, pulsate);
   }
 }
