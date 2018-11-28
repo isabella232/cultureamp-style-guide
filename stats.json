@@ -1,12 +1,16 @@
 {
   "assetsByChunkName": {
     "component---src-pages-styles-colors-index-md": [
-      "component---src-pages-styles-colors-index-md-2d7253419a1087dc4991.js",
-      "component---src-pages-styles-colors-index-md-2d7253419a1087dc4991.js.map"
+      "component---src-pages-styles-colors-index-md-2093975605607c45738a.js",
+      "component---src-pages-styles-colors-index-md-2093975605607c45738a.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-animation-usage-output-example-js": [
+      "component---src-pages-guides-animation-examples-animation-usage-output-example-js-9bf5daa2afaedc3fcd14.js",
+      "component---src-pages-guides-animation-examples-animation-usage-output-example-js-9bf5daa2afaedc3fcd14.js.map"
     ],
     "component---src-pages-styles-index-md": [
-      "component---src-pages-styles-index-md-61bf8cf526ed02654841.js",
-      "component---src-pages-styles-index-md-61bf8cf526ed02654841.js.map"
+      "component---src-pages-styles-index-md-084ec3d6ec30f999f621.js",
+      "component---src-pages-styles-index-md-084ec3d6ec30f999f621.js.map"
     ],
     "component---src-pages-components-layout-layout-demo-js": [
       "component---src-pages-components-layout-layout-demo-js-25594ddcc5696d3e8555.js",
@@ -16,13 +20,21 @@
       "component---src-pages-guides-localisation-examples-ca-padding-example-js-5ec5eefeb8046b96cfe5.js",
       "component---src-pages-guides-localisation-examples-ca-padding-example-js-5ec5eefeb8046b96cfe5.js.map"
     ],
+    "path---guides-animation-examples-animation-usage-output-example": [
+      "path---guides-animation-examples-animation-usage-output-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-animation-usage-output-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-pages-components-dropdown-index-md": [
-      "component---src-pages-components-dropdown-index-md-3de36d6675a424664a6e.js",
-      "component---src-pages-components-dropdown-index-md-3de36d6675a424664a6e.js.map"
+      "component---src-pages-components-dropdown-index-md-dbcf87371f2abdfd6612.js",
+      "component---src-pages-components-dropdown-index-md-dbcf87371f2abdfd6612.js.map"
     ],
     "path---language": [
       "path---language-a0e39f21c11f6a62c5ab.js",
       "path---language-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-animation-presets-example-js": [
+      "component---src-pages-guides-animation-examples-animation-presets-example-js-a6e879ae1b510ccaac67.js",
+      "component---src-pages-guides-animation-examples-animation-presets-example-js-a6e879ae1b510ccaac67.js.map"
     ],
     "component---src-pages-guides-localisation-examples-localisation-mixin-import-example-js": [
       "component---src-pages-guides-localisation-examples-localisation-mixin-import-example-js-bbcf03584e419bf02701.js",
@@ -56,9 +68,17 @@
       "path---styles-colors-a0e39f21c11f6a62c5ab.js",
       "path---styles-colors-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---guides-animation-examples-animation-sequences-example": [
+      "path---guides-animation-examples-animation-sequences-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-animation-sequences-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "path---components": [
       "path---components-a0e39f21c11f6a62c5ab.js",
       "path---components-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-animation-import-example-js": [
+      "component---src-pages-guides-animation-examples-animation-import-example-js-db437ed3871c7498229c.js",
+      "component---src-pages-guides-animation-examples-animation-import-example-js-db437ed3871c7498229c.js.map"
     ],
     "path---guides-localisation-examples-rtl-layout-example": [
       "path---guides-localisation-examples-rtl-layout-example-a0e39f21c11f6a62c5ab.js",
@@ -76,6 +96,10 @@
       "path---guides-localisation-examples-ca-margin-example-a0e39f21c11f6a62c5ab.js",
       "path---guides-localisation-examples-ca-margin-example-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "component---src-pages-guides-animation-examples-transition-usage-output-example-js": [
+      "component---src-pages-guides-animation-examples-transition-usage-output-example-js-70f0928fe9ea3e941fdf.js",
+      "component---src-pages-guides-animation-examples-transition-usage-output-example-js-70f0928fe9ea3e941fdf.js.map"
+    ],
     "path---components-button": [
       "path---components-button-a0e39f21c11f6a62c5ab.js",
       "path---components-button-a0e39f21c11f6a62c5ab.js.map"
@@ -85,12 +109,16 @@
       "path---language-check-list-item-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-guides-localisation-index-md": [
-      "component---src-pages-guides-localisation-index-md-1305516d3dbb095f13cc.js",
-      "component---src-pages-guides-localisation-index-md-1305516d3dbb095f13cc.js.map"
+      "component---src-pages-guides-localisation-index-md-ecaea296b1f33796a2bd.js",
+      "component---src-pages-guides-localisation-index-md-ecaea296b1f33796a2bd.js.map"
     ],
     "path---components-notification": [
       "path---components-notification-a0e39f21c11f6a62c5ab.js",
       "path---components-notification-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---guides-animation-examples-duration-presets-example": [
+      "path---guides-animation-examples-duration-presets-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-duration-presets-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-button-md": [
       "component---src-pages-components-button-button-md-fece67fa603fba505270.js",
@@ -105,8 +133,8 @@
       "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-4ed8e5b985c023c0bebe.js",
-      "component---src-layouts-index-js-4ed8e5b985c023c0bebe.js.map"
+      "component---src-layouts-index-js-453cf6b2d739810e0963.js",
+      "component---src-layouts-index-js-453cf6b2d739810e0963.js.map"
     ],
     "path---guides": [
       "path---guides-a0e39f21c11f6a62c5ab.js",
@@ -141,22 +169,34 @@
       "path---components-notification-inline-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-guides-index-md": [
-      "component---src-pages-guides-index-md-904551f475fdb2d37db4.js",
-      "component---src-pages-guides-index-md-904551f475fdb2d37db4.js.map"
+      "component---src-pages-guides-index-md-b79187bb7f5e1d574761.js",
+      "component---src-pages-guides-index-md-b79187bb7f5e1d574761.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-transition-presets-example-js": [
+      "component---src-pages-guides-animation-examples-transition-presets-example-js-e987c6b2578099b902dd.js",
+      "component---src-pages-guides-animation-examples-transition-presets-example-js-e987c6b2578099b902dd.js.map"
+    ],
+    "path---guides-animation-examples-transition-usage-output-example": [
+      "path---guides-animation-examples-transition-usage-output-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-transition-usage-output-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js",
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-0fd7f9eed422e7c8794e.js",
+      "commons-93b6c450df826b4e0c64.js",
       "build-js-styles.css",
-      "commons-0fd7f9eed422e7c8794e.js.map",
+      "commons-93b6c450df826b4e0c64.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
       "component---src-pages-components-notification-inline-md-920fea1ef37a95fd9abe.js",
       "component---src-pages-components-notification-inline-md-920fea1ef37a95fd9abe.js.map"
+    ],
+    "path---guides-animation-examples-transition-usage-input-example": [
+      "path---guides-animation-examples-transition-usage-input-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-transition-usage-input-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-index-md": [
       "component---src-pages-components-button-index-md-13f81e61fd5d7da82b3b.js",
@@ -182,9 +222,17 @@
       "path---components-notification-toast-a0e39f21c11f6a62c5ab.js",
       "path---components-notification-toast-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---guides-animation-examples-animation-presets-example": [
+      "path---guides-animation-examples-animation-presets-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-animation-presets-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "path---styles": [
       "path---styles-a0e39f21c11f6a62c5ab.js",
       "path---styles-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---guides-animation-examples-easing-presets-example": [
+      "path---guides-animation-examples-easing-presets-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-easing-presets-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-language-check-list-item-js": [
       "component---src-pages-language-check-list-item-js-bb123183016049a51017.js",
@@ -193,6 +241,10 @@
     "path---components-menu-list": [
       "path---components-menu-list-a0e39f21c11f6a62c5ab.js",
       "path---components-menu-list-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---guides-animation-examples-animation-usage-input-example": [
+      "path---guides-animation-examples-animation-usage-input-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-animation-usage-input-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---components-notification-global": [
       "path---components-notification-global-a0e39f21c11f6a62c5ab.js",
@@ -210,31 +262,63 @@
       "path---guides-localisation-a0e39f21c11f6a62c5ab.js",
       "path---guides-localisation-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---guides-animation": [
+      "path---guides-animation-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-a0e39f21c11f6a62c5ab.js.map"
+    ],
     "component---src-pages-components-index-md": [
       "component---src-pages-components-index-md-446b0690842536e459ce.js",
       "component---src-pages-components-index-md-446b0690842536e459ce.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-animation-sequences-example-js": [
+      "component---src-pages-guides-animation-examples-animation-sequences-example-js-0de3f487d26455bb2d99.js",
+      "component---src-pages-guides-animation-examples-animation-sequences-example-js-0de3f487d26455bb2d99.js.map"
     ],
     "component---src-pages-guides-localisation-examples-ca-type-align-example-js": [
       "component---src-pages-guides-localisation-examples-ca-type-align-example-js-2b698bf792a5ab4d180f.js",
       "component---src-pages-guides-localisation-examples-ca-type-align-example-js-2b698bf792a5ab4d180f.js.map"
     ],
     "app": [
-      "app-1ee37832e6e2d6524599.js",
+      "app-3bcede4e1284d5e58878.js",
       "build-js-styles.css",
-      "app-1ee37832e6e2d6524599.js.map",
+      "app-3bcede4e1284d5e58878.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
-      "component---src-pages-language-index-md-4fca8dd20e5fdf5f8f55.js",
-      "component---src-pages-language-index-md-4fca8dd20e5fdf5f8f55.js.map"
+      "component---src-pages-language-index-md-8878e7a15e99c6ea623a.js",
+      "component---src-pages-language-index-md-8878e7a15e99c6ea623a.js.map"
+    ],
+    "path---guides-animation-examples-animation-import-example": [
+      "path---guides-animation-examples-animation-import-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-animation-import-example-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-animation-usage-input-example-js": [
+      "component---src-pages-guides-animation-examples-animation-usage-input-example-js-4ddb9745192e122a29a6.js",
+      "component---src-pages-guides-animation-examples-animation-usage-input-example-js-4ddb9745192e122a29a6.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-easing-presets-example-js": [
+      "component---src-pages-guides-animation-examples-easing-presets-example-js-2d963514a5e450bba270.js",
+      "component---src-pages-guides-animation-examples-easing-presets-example-js-2d963514a5e450bba270.js.map"
+    ],
+    "path---guides-animation-examples-transition-presets-example": [
+      "path---guides-animation-examples-transition-presets-example-a0e39f21c11f6a62c5ab.js",
+      "path---guides-animation-examples-transition-presets-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-index-md": [
-      "component---src-pages-index-md-29d2716c3408f16256a5.js",
-      "component---src-pages-index-md-29d2716c3408f16256a5.js.map"
+      "component---src-pages-index-md-86daf08965234cbf51e9.js",
+      "component---src-pages-index-md-86daf08965234cbf51e9.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-transition-usage-input-example-js": [
+      "component---src-pages-guides-animation-examples-transition-usage-input-example-js-903a0efeada29ca90769.js",
+      "component---src-pages-guides-animation-examples-transition-usage-input-example-js-903a0efeada29ca90769.js.map"
     ],
     "component---src-pages-guides-localisation-examples-ca-position-example-js": [
       "component---src-pages-guides-localisation-examples-ca-position-example-js-c96ad890d048facd6e8c.js",
       "component---src-pages-guides-localisation-examples-ca-position-example-js-c96ad890d048facd6e8c.js.map"
+    ],
+    "component---src-pages-guides-animation-index-md": [
+      "component---src-pages-guides-animation-index-md-2ba29c66da940622b3b2.js",
+      "component---src-pages-guides-animation-index-md-2ba29c66da940622b3b2.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
@@ -261,12 +345,16 @@
       "path---components-layout-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-styles-animation-index-md": [
-      "component---src-pages-styles-animation-index-md-d1d0f988ef62e91766c9.js",
-      "component---src-pages-styles-animation-index-md-d1d0f988ef62e91766c9.js.map"
+      "component---src-pages-styles-animation-index-md-f3d8c49f428a9a7db82c.js",
+      "component---src-pages-styles-animation-index-md-f3d8c49f428a9a7db82c.js.map"
     ],
     "component---src-pages-components-icon-index-md": [
       "component---src-pages-components-icon-index-md-be4db7d866e0ad71e0a5.js",
       "component---src-pages-components-icon-index-md-be4db7d866e0ad71e0a5.js.map"
+    ],
+    "component---src-pages-guides-animation-examples-duration-presets-example-js": [
+      "component---src-pages-guides-animation-examples-duration-presets-example-js-210759fa61ec8c81d20d.js",
+      "component---src-pages-guides-animation-examples-duration-presets-example-js-210759fa61ec8c81d20d.js.map"
     ],
     "component---src-pages-guides-localisation-examples-ca-margin-example-js": [
       "component---src-pages-guides-localisation-examples-ca-margin-example-js-f86c26661b4bf06387be.js",
