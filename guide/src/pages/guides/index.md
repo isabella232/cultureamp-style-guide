@@ -9,5 +9,6 @@ imports:
 
 Menu:
 
-* <Link to="/language">Product Language Style Guide</Link>
+* <Link to="/guides/animation">Animation</Link>
 * <Link to="/guides/localisation">Localisation Guide</Link>
+* <Link to="/language">Product Language Style Guide</Link>

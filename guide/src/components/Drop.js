@@ -1,6 +1,6 @@
 import React from 'react';
 import classnames from 'classnames';
-import styles from './_Drop.module.scss';
+import styles from './Drop.module.scss';
 
 class Drop extends React.PureComponent {
   render() {

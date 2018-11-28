@@ -22,11 +22,7 @@ Welcome to the Culture Amp Localisation 'Getting Started' guide. We hope that th
 
 As the Culture Amp product/s mature and grow, we want to be able to support as many languages as needed. Aside from the obvious language changes required, certain languages such as Arabic and Hebrew also require that our user interfaces support different directional layouts e.g. _right-to-left (RTL)_. The guidelines below outline some of the core approaches we can take to ensure we cater for languages that need RTL support.
 
-<InlineNotification persistent={true} type="affirmative">
-
-**Tip:** It is a good idea to start thinking about the horizontal flow of a layout in terms of `start` and `end` as opposed to `left` and `right`. This will help you determine where you need to cater for RTL layout support. CSS [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) takes this approach and uses `flex-start` and `flex-end` for positioning elements within a flex container. Wherever possible, start using flexbox for your layout and you will find you get a lot of RTL support for free!
-
-</InlineNotification>
+<InlineNotification persistent={true} type="affirmative">**Tip:** It is a good idea to start thinking about the horizontal flow of a layout in terms of `start` and `end` as opposed to `left` and `right`. This will help you determine where you need to cater for RTL layout support. CSS [Flexbox](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox) takes this approach and uses `flex-start` and `flex-end` for positioning elements within a flex container. Wherever possible, start using flexbox for your layout and you will find you get a lot of RTL support for free!</InlineNotification>
 
 ## Getting Started
 
@@ -51,11 +47,7 @@ If you explicity need to set the `text-align` property for your document or comp
 
 When using any `left` or `right`-specific CSS properties e.g. `margin-left`, `padding-left`, `left`, and so on, it is very common to need these values 'flipped' in an RTL layout. To help with this, the following mixins are available.
 
-<InlineNotification persistent={true} type="informative">
-
-**Note:** These mixins also take a `$top` and `$bottom` value. While these values are never 'flipped', they can be supplied to the mixin, which will avoid any CSS rules being overwritten.
-
-</InlineNotification>
+<InlineNotification persistent={true} type="informative">**Note:** These mixins also take a `$top` and `$bottom` value. While these values are never 'flipped', they can be supplied to the mixin, which will avoid any CSS rules being overwritten.</InlineNotification>
 
 ### Margins
 

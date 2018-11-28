@@ -49,7 +49,6 @@ This helps us avoid “computer speak”. For example, “16 items deleted” be
 
 </Admonition>
 
-
 If you’re writing longer text and you’re wondering about tone, the Brand tone of voice is:
 
 * Friendly but not casual
@@ -92,136 +91,136 @@ Using this guide and the associated training, you should be able to develop basi
 
 ### Writing process
 
-1. **Understand the context**
+1.  **Understand the context**
 
-   Where does the text appear in the user flow? What’s just happened? How did the user get here? What else in the current context gives the user cues and clues about possible next steps?
+    Where does the text appear in the user flow? What’s just happened? How did the user get here? What else in the current context gives the user cues and clues about possible next steps?
 
-2. **Think about users and cultures**
+2.  **Think about users and cultures**
 
-   Consider the personas (and actual people) using the interface, and the languages and cultures into which it will be translated. That means you’ll avoid:
+    Consider the personas (and actual people) using the interface, and the languages and cultures into which it will be translated. That means you’ll avoid:
 
-   * jargon
-   * colloquialisms
-   * references to popular culture and in-jokes
-   * humour (unless you’re working with a Product Writer)
-   * language that suggests or references violence or destruction.
+    * jargon
+    * colloquialisms
+    * references to popular culture and in-jokes
+    * humour (unless you’re working with a Product Writer)
+    * language that suggests or references violence or destruction.
 
-   Next, identify likely audience feelings at this moment in the UX. What are they trying to get done and how do they feel about it?
+    Next, identify likely audience feelings at this moment in the UX. What are they trying to get done and how do they feel about it?
 
-3. **Check the component specifications**
+3.  **Check the component specifications**
 
-   The Culture Amp design team has set specifications for certain interface components (buttons, tooltips, and so on). Check the Component Specifications section of this guide to see if the component you’re working on is defined there. If it is, you’ll need to write to those specifications.
+    The Culture Amp design team has set specifications for certain interface components (buttons, tooltips, and so on). Check the Component Specifications section of this guide to see if the component you’re working on is defined there. If it is, you’ll need to write to those specifications.
 
-4. **Write the message**
+4.  **Write the message**
 
-   The message is the key information you need to communicate at this moment to help the user achieve their objective with Culture Amp.
+    The message is the key information you need to communicate at this moment to help the user achieve their objective with Culture Amp.
 
-   Ask yourself:
+    Ask yourself:
 
-   1. What’s the goal of this text? What is its role in helping the user achieve their larger objective within Culture Amp?
-   2. At its _most basic_, what’s the message we need to communicate? Write this as if you were _speaking_ to the person trying to use the product.
-   3. What in 2) is not communicated elsewhere on the page/in the context? The point here is to avoid stating the already-obvious, but take care to consider non-visual users who may not be able to see other visual cues. Consider the example below. Here, the heading puts the action into the continuous tense — it’s happening now. We have the little three-step process diagram at top-right. And we have the three bullets (which change colour as the progress bar gets filled in and each one is completed). In this context, the word “currently” and the line “What we’re processing” seem unnecessary.
+    1.  What’s the goal of this text? What is its role in helping the user achieve their larger objective within Culture Amp?
+    2.  At its _most basic_, what’s the message we need to communicate? Write this as if you were _speaking_ to the person trying to use the product.
+    3.  What in 2) is not communicated elsewhere on the page/in the context? The point here is to avoid stating the already-obvious, but take care to consider non-visual users who may not be able to see other visual cues. Consider the example below. Here, the heading puts the action into the continuous tense — it’s happening now. We have the little three-step process diagram at top-right. And we have the three bullets (which change colour as the progress bar gets filled in and each one is completed). In this context, the word “currently” and the line “What we’re processing” seem unnecessary.
 
-   <img src={require('file-loader!./img/analyze-imports.png')} alt="Analyze Imports" />
+    <img src={require('file-loader!./img/analyze-imports.png')} alt="Analyze Imports" />
 
-   With your answers to the three questions above, write down what the text _must_ communicate in fewer than 10 words (obviously for buttons and labels the text will be _much_ shorter).
+    With your answers to the three questions above, write down what the text _must_ communicate in fewer than 10 words (obviously for buttons and labels the text will be _much_ shorter).
 
-   Don’t write like a marketer. Use plain English. If it helps, imagine you’re explaining to someone who doesn’t speak English as a first language – not because our users can’t speak English, but because you’re probably very close to the product, and you’ve likely been looking at this process or interaction for a while. You want to get outside that mindset to make the text work.
+    Don’t write like a marketer. Use plain English. If it helps, imagine you’re explaining to someone who doesn’t speak English as a first language – not because our users can’t speak English, but because you’re probably very close to the product, and you’ve likely been looking at this process or interaction for a while. You want to get outside that mindset to make the text work.
 
-5. **Tighten up your text**
+5.  **Tighten up your text**
 
-   Revise the message by asking yourself these questions. Note that you’ll likely need to balance these points against one another to arrive at a best-case scenario for each piece of text.
+    Revise the message by asking yourself these questions. Note that you’ll likely need to balance these points against one another to arrive at a best-case scenario for each piece of text.
 
-   These guidelines are summarized for easy reference in the <Link to='/language/checklist'>Product Writing Checklist</Link>
+    These guidelines are summarized for easy reference in the <Link to='/language/checklist'>Product Writing Checklist</Link>
 
-   1. **Does your text talk about what the user has just done?** They already know that, so you can cut that part.
+    1.  **Does your text talk about what the user has just done?** They already know that, so you can cut that part.
 
-   2. **Does your text talk in terms of the product, or descriptions?** Put the focus on people and actions instead.
+    2.  **Does your text talk in terms of the product, or descriptions?** Put the focus on people and actions instead.
 
-      * **Needs work:** The latest import of employee data was successful. You can now manage your surveys or employee data.
-      * **Good:** Your import worked. Now, go to your surveys or employee data.
+        * **Needs work:** The latest import of employee data was successful. You can now manage your surveys or employee data.
+        * **Good:** Your import worked. Now, go to your surveys or employee data.
 
-   3. **Does your text talk in the negative?** Rephrase it to the positive wherever possible.
+    3.  **Does your text talk in the negative?** Rephrase it to the positive wherever possible.
 
-      * **Needs work:** Don’t click Delete unless...
-      * **Good:** If you click Delete you will...
+        * **Needs work:** Don’t click Delete unless...
+        * **Good:** If you click Delete you will...
 
-   4. **Is your text polite?** As with the examples above, polite text is usually longer than plain language. Opt for the plainest language you can write. Plain doesn’t mean rude.
+    4.  **Is your text polite?** As with the examples above, polite text is usually longer than plain language. Opt for the plainest language you can write. Plain doesn’t mean rude.
 
-      * **Needs work:** Sorry, that didn’t work. Please try again, and if you’re still having problems feel free to get in touch with us at support@cultureamp.com
-      * **Good:** Sorry, that didn’t work. Try again, or contact us at support@cultureamp.com.
+        * **Needs work:** Sorry, that didn’t work. Please try again, and if you’re still having problems feel free to get in touch with us at support@cultureamp.com
+        * **Good:** Sorry, that didn’t work. Try again, or contact us at support@cultureamp.com.
 
-   5. **Shorten or break up sentences wherever you can.**
+    5.  **Shorten or break up sentences wherever you can.**
 
-      * **Needs work:** Along with options to launch, share and complete multiple 360 processes, you can now change due dates, set reminders, or delete multiple 360s in just one click!
-      * **Good:** It’s now easier than ever to manage multiple 360 processes. Change due dates, set reminders, and delete multiple 360s in one click.
+        * **Needs work:** Along with options to launch, share and complete multiple 360 processes, you can now change due dates, set reminders, or delete multiple 360s in just one click!
+        * **Good:** It’s now easier than ever to manage multiple 360 processes. Change due dates, set reminders, and delete multiple 360s in one click.
 
-   6. **Check each word** and make sure it aligns with contextual interface text
-      and the product lexicon:
+    6.  **Check each word** and make sure it aligns with contextual interface text
+        and the product lexicon:
 
-      * Use consistent capitalization and spelling.
-      * Use consistent nomenclature. In this example, “apply” would ideally be “review” because we’re at the Review step in the import process, and the heading reflects this.
+        * Use consistent capitalization and spelling.
+        * Use consistent nomenclature. In this example, “apply” would ideally be “review” because we’re at the Review step in the import process, and the heading reflects this.
 
-        <img src={require('file-loader!./img/apply-review.png')} alt="Screenshot of import modal" />
+          <img src={require('file-loader!./img/apply-review.png')} alt="Screenshot of import modal" />
 
-      - Check that your text has the same grammatical structure as parallel text on the page (that is, text that serves the same purpose in the same level of the interface). For example, in the form below, the final heading (and button text) should ideally reflect the verb-noun structure of the other two. It could read: Extract Survey Data.
+        - Check that your text has the same grammatical structure as parallel text on the page (that is, text that serves the same purpose in the same level of the interface). For example, in the form below, the final heading (and button text) should ideally reflect the verb-noun structure of the other two. It could read: Extract Survey Data.
 
-        <img src={require('file-loader!./img/verb-noun.png')} alt="Screenshot of survey admin" />
+          <img src={require('file-loader!./img/verb-noun.png')} alt="Screenshot of survey admin" />
 
-      - Remove any redundancy. For example, in the warning below, “no longer” is redundant in the context of a reference to the “future”. We could rephrase this to: If you delete a demographic, it won’t be available to use in future surveys, but it will stay in existing surveys.
+        - Remove any redundancy. For example, in the warning below, “no longer” is redundant in the context of a reference to the “future”. We could rephrase this to: If you delete a demographic, it won’t be available to use in future surveys, but it will stay in existing surveys.
 
-        <img src={require('file-loader!./img/no-longer.png')} alt="Screenshot of Culture Amp warning" />
+          <img src={require('file-loader!./img/no-longer.png')} alt="Screenshot of Culture Amp warning" />
 
-      - If, as you write, you need to associate particular concepts with a feature (e.g. working with/managing “batches” of 360° processes), choose language that you can use consistently, and ask the Product Writer to add it to the product lexicon so that it is used consistently.
+        - If, as you write, you need to associate particular concepts with a feature (e.g. working with/managing “batches” of 360° processes), choose language that you can use consistently, and ask the Product Writer to add it to the product lexicon so that it is used consistently.
 
-   7. **For words that don’t appear elsewhere in the interface, try to find a synonym that’s simpler** and has fewer syllables. Use a thesaurus (e.g. Apple thesaurus) if you need to.
+    7.  **For words that don’t appear elsewhere in the interface, try to find a synonym that’s simpler** and has fewer syllables. Use a thesaurus (e.g. Apple thesaurus) if you need to.
 
-      * **Needs work:** We’ve been notified and are investigating the issue.
+        * **Needs work:** We’ve been notified and are investigating the issue.
 
-      * **Good:** We’re working on the problem now.
+        * **Good:** We’re working on the problem now.
 
-   8. **Check the tense.** Make sure that the text maintains the same tense throughout, unless a change in tense is needed. Present tense is most commonly needed for interface text. Change tense (e.g. from present to future text) only when it’s needed (e.g. when you’re talking about the consequences of an action).
+    8.  **Check the tense.** Make sure that the text maintains the same tense throughout, unless a change in tense is needed. Present tense is most commonly needed for interface text. Change tense (e.g. from present to future text) only when it’s needed (e.g. when you’re talking about the consequences of an action).
 
-      * **Needs work:** We’ve added some features that would make it easy for you to manage 360 surveys at scale.
-      * **Good:** New features make it easier for you to manage 360 surveys at scale.
+        * **Needs work:** We’ve added some features that would make it easy for you to manage 360 surveys at scale.
+        * **Good:** New features make it easier for you to manage 360 surveys at scale.
 
-   9. **Remove -ing verbs** (gerunds and continuous constructions).
+    9.  **Remove -ing verbs** (gerunds and continuous constructions).
 
-      Ing verbs tend to add syllables and complicate grammar, which often raises the reading level of text for no benefit. These verbs fall into 2 categories:
+        Ing verbs tend to add syllables and complicate grammar, which often raises the reading level of text for no benefit. These verbs fall into 2 categories:
 
-      * Continuous verbs, which we use to describe actions that have begun but haven’t finished (e.g. We’re saving your changes).
-      * Gerunds, or ing-verbs acting as nouns. (e.g. Saving will make your changes live.)
+        * Continuous verbs, which we use to describe actions that have begun but haven’t finished (e.g. We’re saving your changes).
+        * Gerunds, or ing-verbs acting as nouns. (e.g. Saving will make your changes live.)
 
-      Continuous verbs are fine if you’re alerting people about a process that’s in progress. In all other cases, reword text to avoid verbs that end in ing.
+        Continuous verbs are fine if you’re alerting people about a process that’s in progress. In all other cases, reword text to avoid verbs that end in ing.
 
-      * **Needs work:** Deleting survey name will also delete any associated responses and reporting data.
-      * **Good:** If you delete survey name, the survey and its data will be gone forever.
+        * **Needs work:** Deleting survey name will also delete any associated responses and reporting data.
+        * **Good:** If you delete survey name, the survey and its data will be gone forever.
 
-   10. **Make sure the text is active, not passive.**
+    10. **Make sure the text is active, not passive.**
 
-       There are two kinds of construction in English: active and passive.
+        There are two kinds of construction in English: active and passive.
 
-       Active sentences have an <u>actor</u>, an <b>action</b>, and a <i>thing that receives the action</i>: <u>The cat</u> <b>sat</b> on <i>the mat</i>.
+        Active sentences have an <u>actor</u>, an <b>action</b>, and a <i>thing that receives the action</i>: <u>The cat</u> <b>sat</b> on <i>the mat</i>.
 
-       Passive sentences demote the actor (or remove them entirely) to prioritize either the action, or the thing that’s receiving action: <i>The mat</i> was <b>sat on</b> [by <u>the cat</u>].
+        Passive sentences demote the actor (or remove them entirely) to prioritize either the action, or the thing that’s receiving action: <i>The mat</i> was <b>sat on</b> [by <u>the cat</u>].
 
-       As you can see, passive sentences tend to be longer. They’re also murkier. Let’s look at the previous example, which is passive:
+        As you can see, passive sentences tend to be longer. They’re also murkier. Let’s look at the previous example, which is passive:
 
-       <b>Deleting</b> <i>survey name</i> will also <b>delete</b> any <i>associated responses and reporting data</i>.
+        <b>Deleting</b> <i>survey name</i> will also <b>delete</b> any <i>associated responses and reporting data</i>.
 
-       To fix it, we can add the actor and make “deleting” the action (that is, a verb) rather than the name of a task (that is, a gerund).
+        To fix it, we can add the actor and make “deleting” the action (that is, a verb) rather than the name of a task (that is, a gerund).
 
-       If <u>you</u> <b>delete</b> <i>survey name</i> <u>you’ll</u> also <b>delete</b> its <i>responses and report data</i>.
+        If <u>you</u> <b>delete</b> <i>survey name</i> <u>you’ll</u> also <b>delete</b> its <i>responses and report data</i>.
 
-   11. **Check that you’ve used American English.** See the General Styles for details.
-   12. **Check that your usage of Culture Amp language aligns with the Product Lexicon.**
-   13. **Check punctuation** and any other questions against the information in this style guide and the AP Stylebook.
-   14. **Check the readability of your text** at https://www.webpagefx.com/tools/read-able/check.php, or on your own copy of [Hemingway for desktop](http://www.hemingwayapp.com/desktop.html). It should be at grade 7 level or below. To reduce the reading level:
-       * shorten sentences
-       * make sentences active
-       * use simpler words
-       * cut words.
-   15. **Show your text to a friend** in design for a sanity check.
+    11. **Check that you’ve used American English.** See the General Styles for details.
+    12. **Check that your usage of Culture Amp language aligns with the Product Lexicon.**
+    13. **Check punctuation** and any other questions against the information in this style guide and the AP Stylebook.
+    14. **Check the readability of your text** at https://www.webpagefx.com/tools/read-able/check.php, or on your own copy of [Hemingway for desktop](http://www.hemingwayapp.com/desktop.html). It should be at grade 7 level or below. To reduce the reading level:
+        * shorten sentences
+        * make sentences active
+        * use simpler words
+        * cut words.
+    15. **Show your text to a friend** in design for a sanity check.
 
 For tips on user-testing interface text, see https://userresearch.blog.gov.uk/2015/07/01/what-does-this-mean-tips-for-testing-your-words/
 
@@ -346,32 +345,32 @@ When you’re writing help content:
 
 ### Writing process
 
-1. **Consider users and context**
+1.  **Consider users and context**
 
-   Orient yourself to the user’s mindset. How do they feel when they reach this piece of help content? Consider their stresses, frustrations and desires in this moment.
+    Orient yourself to the user’s mindset. How do they feel when they reach this piece of help content? Consider their stresses, frustrations and desires in this moment.
 
-2. **Identify their goal within the product**
+2.  **Identify their goal within the product**
 
-   Define what the user wants to do in around five words.
+    Define what the user wants to do in around five words.
 
-   Shape this into a title for your help article. In doing this:
+    Shape this into a title for your help article. In doing this:
 
-   * consider the title’s searchability and the natural language of users
-   * consider the scannability of the title in a list of categorised articles
-   * ensure How-to titles begin with a present-simple-tense verb:
-     * **Needs work:** Running Onboard & Exit Surveys
-     * **Good:** Run Onboard and Exit Surveys
-   * ensure titles are written in sentence case with appropriate product- and feature-name capitalization.
+    * consider the title’s searchability and the natural language of users
+    * consider the scannability of the title in a list of categorised articles
+    * ensure How-to titles begin with a present-simple-tense verb:
+      * **Needs work:** Running Onboard & Exit Surveys
+      * **Good:** Run Onboard and Exit Surveys
+    * ensure titles are written in sentence case with appropriate product- and feature-name capitalization.
 
-3. **Map the process to achieve that goal**
+3.  **Map the process to achieve that goal**
 
-   Map the process as a series of numbered steps. Allocate a new step for each interaction a user must make (e.g. each click, each field-completion-and-click, and so on).
+    Map the process as a series of numbered steps. Allocate a new step for each interaction a user must make (e.g. each click, each field-completion-and-click, and so on).
 
-   * **Use an image** to clarify any point that might confuse users.
-   * **Use subheadings** to break up parallel chunks of information that must logically appear in the same help article.
-   * **Use a Note** to highlight information which is not a direct part of the process of achieving the user’s goal, but will help them complete that process.
+    * **Use an image** to clarify any point that might confuse users.
+    * **Use subheadings** to break up parallel chunks of information that must logically appear in the same help article.
+    * **Use a Note** to highlight information which is not a direct part of the process of achieving the user’s goal, but will help them complete that process.
 
-4. **Tighten up the text**
+4.  **Tighten up the text**
 
 * Shorten or break up sentences wherever you can.
 * Put the focus on users and actions.

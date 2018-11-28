@@ -5,6 +5,11 @@ $motion-ui-classes: (
   active: '-active',
 );
 
+$motion-ui-states: (
+  in: 'enter',
+  out: 'exit',
+);
+
 // TIMING FUNCTIONS
 $motion-ui-delays: (
   default: $ca-duration-instant,

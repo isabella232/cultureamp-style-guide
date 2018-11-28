@@ -1,19 +1,44 @@
-///////////////////////////////////////////////
-// TRANSITION PRESETS                        //
-///////////////////////////////////////////////
-@mixin ca-animation-fade($state: in) {
-  @include ca-fade($state);
+@mixin ca-transition-fade($state: in, $duration: $ca-duration-slow, $delay: 0) {
+  @include ca-fade($state, $duration: $duration, $delay: $delay);
 }
 
-@mixin ca-animation-slide-fade($state: in) {
-  $direction: if ($state == in, up, down);
-  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
+@mixin ca-transition-slide-fade(
+  $state: in,
+  $duration: $ca-duration-slow,
+  $delay: null
+) {
+  $direction: up;
+  $timing: $ca-bounce-in;
 
-  @include ca-slide($direction: $direction, $fade: true, $timing: $timing);
+  @if ($state == out) {
+    $direction: down;
+    $timing: $ca-bounce-out;
+  }
+
+  @include ca-slide(
+    $direction: $direction,
+    $fade: true,
+    $timing: $timing,
+    $duration: $duration,
+    $delay: $delay
+  );
 }
 
-@mixin ca-animation-scale-fade($state: in) {
-  $timing: if ($state == in, $ca-bounce-in, $ca-bounce-out);
+@mixin ca-transition-scale-fade(
+  $state: in,
+  $duration: $ca-duration-slow,
+  $delay: null
+) {
+  $timing: $ca-bounce-in;
 
-  @include ca-zoom($state, $timing: $timing);
+  @if ($state == out) {
+    $timing: $ca-bounce-out;
+  }
+
+  @include ca-zoom(
+    $state,
+    $timing: $timing,
+    $duration: $duration,
+    $delay: $delay
+  );
 }

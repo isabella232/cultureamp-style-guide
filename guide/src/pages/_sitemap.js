@@ -12,7 +12,7 @@ const sitemap = {
       icon: home,
       children: [
         {
-          title: 'Foundational Styles',
+          title: 'Foundation',
           href: '/styles',
           children: [
             { title: 'Animation', href: '/styles/animation' },
@@ -39,8 +39,9 @@ const sitemap = {
           title: 'Guides',
           href: '/language',
           children: [
-            { title: 'Product Language Style Guide', href: '/language' },
+            { title: 'Animation Guide', href: '/guides/animation' },
             { title: 'Localisation Guide', href: '/guides/localisation' },
+            { title: 'Product Language Style Guide', href: '/language' },
           ],
         },
       ],
