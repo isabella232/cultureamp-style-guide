@@ -29,9 +29,9 @@ describe('Dropdown', () => {
     expect(component).toMatchSnapshot();
   });
 
-  test('renders reversed control action dropdown', () => {
+  test('renders reversed color control action dropdown', () => {
     const component = mount(
-      <Dropdown icon={icon} label="add" controlAction reversed />
+      <Dropdown icon={icon} label="add" controlAction reversedColor />
     );
     expect(component).toMatchSnapshot();
   });

@@ -20,7 +20,7 @@ type DropdownProps = {
   menuVisible?: boolean,
   controlAction?: boolean,
   automationId?: string,
-  reversed?: boolean,
+  reversedColor?: boolean,
   iconPosition?: 'start' | 'end',
 };
 
@@ -129,14 +129,14 @@ export default class Dropdown extends React.Component<
       controlAction,
       automationId,
       iconPosition,
-      reversed,
+      reversedColor,
     } = this.props;
 
     const reverseIcon = iconPosition === 'end';
     const btnClass = classNames(styles.dropdownButton, {
       [styles.dropdownControlAction]: controlAction,
       [styles.isOpen]: this.state.isMenuVisible,
-      [styles.reversed]: reversed,
+      [styles.reversedColor]: reversedColor,
     });
     return (
       <div className={styles.dropdown}>

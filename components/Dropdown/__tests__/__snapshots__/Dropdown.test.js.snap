@@ -242,19 +242,19 @@ exports[`Dropdown renders drop down with only label 1`] = `
 </Dropdown>
 `;
 
-exports[`Dropdown renders reversed control action dropdown 1`] = `
+exports[`Dropdown renders reversed color control action dropdown 1`] = `
 <Dropdown
   controlAction={true}
   icon={null}
   iconPosition="start"
   label="add"
-  reversed={true}
+  reversedColor={true}
 >
   <div
     className="dropdown"
   >
     <button
-      className="dropdownButton dropdownControlAction reversed"
+      className="dropdownButton dropdownControlAction reversedColor"
       onClick={[Function]}
       onMouseDown={[Function]}
     >
