@@ -128,7 +128,7 @@
 
     @media (min-width: 480px) {
       min-width: auto;
-      max-width: 900px;
+      max-width: $ca-layout-content-width;
     }
   }
 }
