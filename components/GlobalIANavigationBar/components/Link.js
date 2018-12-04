@@ -20,6 +20,7 @@ type Props = {|
   tooltipText?: string,
   target: '_self' | '_blank',
   hasMenu?: boolean,
+  bottomTooltip?: boolean,
 |};
 
 export default class Link extends React.PureComponent<Props> {
@@ -28,6 +29,7 @@ export default class Link extends React.PureComponent<Props> {
     active: false,
     secondary: false,
     target: '_self',
+    bottomTooltip: false,
   };
 
   renderLink = () => {
@@ -76,13 +78,14 @@ export default class Link extends React.PureComponent<Props> {
   };
 
   render() {
-    const { tooltipText, target } = this.props;
+    const { tooltipText, bottomTooltip, target } = this.props;
 
     return target === '_blank' ? (
       <Tooltip
         hideTooltip={false}
         tabIndex={null} // link inside takes focus instead
         tooltip={tooltipText ? tooltipText : 'Opens in a new tab'}
+        bottomPosition={bottomTooltip}
       >
         {this.renderLink()}
       </Tooltip>

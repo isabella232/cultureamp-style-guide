@@ -28,14 +28,6 @@
   justify-content: center;
 
   right: -1000em;
-  &:not(.suppressed) {
-    :hover > &,
-    :focus > &,
-    :focus + &,
-    &.visible {
-      right: calc(100% + #{$ca-grid - $tooltip__arrow-size});
-    }
-  }
 
   // tooltip arrow
   &::before {
@@ -47,6 +39,30 @@
     border: $tooltip__arrow-size solid transparent;
     border-right-width: 0;
     border-left-color: $ca-palette-ink;
+  }
+
+  &:not(.suppressed) {
+    :hover > &,
+    :focus > &,
+    :focus + &,
+    &.visible {
+      right: calc(100% + #{$ca-grid - $tooltip__arrow-size});
+
+      &.bottomPosition {
+        top: calc(100% - #{$tooltip__arrow-size});
+        right: 0;
+        left: 0;
+
+        // tooltip arrow
+        &::before {
+          top: calc(15% - #{$tooltip__arrow-size});
+          right: calc(50% - #{$tooltip__arrow-size});
+          border-left-color: transparent;
+          border-right-width: $tooltip__arrow-size;
+          border-bottom-color: $ca-palette-ink;
+        }
+      }
+    }
   }
 
   > * {
