@@ -98,6 +98,10 @@ You can view the release history from the [Releases page on Github](https://gith
 
 For release history pre-dating 12.4.3, you can see the [old CHANGELOG.md](https://github.com/cultureamp/cultureamp-style-guide/blob/23c17f2e8e296ef0c470e6872cd715321ab1910c/CHANGELOG.md).
 
+## Ownership
+
+cultureamp-style-guide is maintained by the Front End Capability Team at Culture Amp (#team_front_end in #camp_amplify).
+
 ---
 
 <small><sup id="nodejs">[1](#fn1)</sup>You should use [NVM][nvm] to install
