@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import styles from './OffCanvas.module.scss';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import IconButton from '../Button/IconButton';
-import hamburgerIcon from 'cultureamp-style-guide/icons/hamburger.svg';
 import Link from '../GlobalIANavigationBar/components/Link';
 
 type Props = {|
