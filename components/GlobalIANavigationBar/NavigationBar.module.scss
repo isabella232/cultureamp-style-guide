@@ -14,7 +14,7 @@
 
 .links {
   flex: 1 0 0;
-  margin-left: 2 * $ca-grid;
+  @include ca-margin($start: 2 * $ca-grid);
 
   > ul {
     margin: 0;
@@ -26,7 +26,7 @@
       margin: 0 ($ca-grid / 4);
 
       &:first-child {
-        margin-left: 0;
+        @include ca-margin($start: 0);
       }
 
       &.secondary {
@@ -40,7 +40,7 @@
   }
 
   @include ca-media-tablet {
-    margin-left: $ca-grid / 2;
+    @include ca-margin($start: $ca-grid / 2);
   }
 }
 
@@ -50,7 +50,7 @@
   text-decoration: none;
 
   &.secondary.first {
-    margin-left: auto;
+    @include ca-margin($start: auto);
   }
 }
 
