@@ -96,13 +96,12 @@ function withTrigger(Component: React.ComponentType<*>) {
         <OffCanvasContext.Consumer>
           {({ toggleVisibleMenu }) => (
             <React.Fragment>
-              <div className={styles.trigger}>
-                <IconButton
-                  label="Menu"
-                  icon={hamburgerIcon}
-                  onClick={() => toggleVisibleMenu(this.props.menuId)}
-                />
-              </div>
+              <button
+                className={styles.trigger}
+                onClick={() => toggleVisibleMenu(this.props.menuId)}
+              >
+                <span className={styles.hamburger} />
+              </button>
               <Component {...this.props} />
             </React.Fragment>
           )}

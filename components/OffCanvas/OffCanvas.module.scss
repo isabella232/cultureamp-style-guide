@@ -1,6 +1,11 @@
 @import '~cultureamp-style-guide/styles/color';
 @import '~cultureamp-style-guide/styles/type';
 @import '~cultureamp-style-guide/styles/animation';
+@import '~cultureamp-style-guide/components/Button/styles';
+
+$hamburger-width: 18px;
+$hamburger-layer-height: 2px;
+$hamburger-layer-spacing: 3px;
 
 .root {
   position: fixed;
@@ -22,8 +27,37 @@
 }
 
 .trigger {
+  @include button-reset;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: $ca-grid;
+  left: $ca-grid / 2;
   color: $ca-palette-ocean;
+}
+
+.hamburger {
+  width: $hamburger-width;
+  height: $hamburger-layer-height;
+  background-color: add-tint($ca-palette-ocean, 30%);
+  position: relative;
+  display: block;
+
+  &::before {
+    content: '';
+    width: $hamburger-width;
+    height: $hamburger-layer-height;
+    position: absolute;
+    top: $hamburger-layer-height + $hamburger-layer-spacing;
+    left: 0;
+    background-color: add-tint($ca-palette-ocean, 30%);
+  }
+
+  &::after {
+    content: '';
+    width: $hamburger-width;
+    height: $hamburger-layer-height;
+    position: absolute;
+    top: ($hamburger-layer-height + $hamburger-layer-spacing) * 2;
+    left: 0;
+    background-color: add-tint($ca-palette-ocean, 30%);
+  }
 }
