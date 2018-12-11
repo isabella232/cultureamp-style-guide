@@ -4,8 +4,6 @@ import classNames from 'classnames';
 import styles from './OffCanvas.module.scss';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import IconButton from '../Button/IconButton';
-import hamburgerIcon from 'cultureamp-style-guide/icons/hamburger.svg';
 import Link from '../GlobalIANavigationBar/components/Link';
 
 type Props = {|
@@ -96,13 +94,12 @@ function withTrigger(Component: React.ComponentType<*>) {
         <OffCanvasContext.Consumer>
           {({ toggleVisibleMenu }) => (
             <React.Fragment>
-              <div className={styles.trigger}>
-                <IconButton
-                  label="Menu"
-                  icon={hamburgerIcon}
-                  onClick={() => toggleVisibleMenu(this.props.menuId)}
-                />
-              </div>
+              <button
+                className={styles.trigger}
+                onClick={() => toggleVisibleMenu(this.props.menuId)}
+              >
+                <span className={styles.hamburger} />
+              </button>
               <Component {...this.props} />
             </React.Fragment>
           )}
