@@ -1,6 +1,7 @@
 @import '../styles';
 @import '~cultureamp-style-guide/styles/border';
 @import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layout';
 @import '~cultureamp-style-guide/styles/responsive';
 
 $nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
@@ -127,10 +128,10 @@ $link-margin: $ca-grid / 4;
 }
 
 .linkIcon + .linkText {
-  margin-left: $link-margin;
+  @include ca-margin($start: $link-margin);
 
   @include ca-media-mobile {
-    margin-left: 0;
+    @include ca-margin($start: 0);
   }
 }
 
