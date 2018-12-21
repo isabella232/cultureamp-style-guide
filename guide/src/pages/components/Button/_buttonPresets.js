@@ -37,6 +37,18 @@ const buttonPresets = [
     node: <Button label="Configure" icon={configureIcon} iconPosition="end" />,
   },
   {
+    name: 'Overflowing text',
+    node: (
+      <div style={{ width: 120 }}>
+        <Button
+          icon={configureIcon}
+          label="Passez au rapport de synthèse"
+          automationId="demo-button"
+        />
+      </div>
+    ),
+  },
+  {
     name: 'Disabled',
     node: <Button label="Label" disabled />,
   },

@@ -136,5 +136,9 @@ function renderContent(props: Props) {
 }
 
 function renderIcon(icon: SvgAsset) {
-  return <Icon icon={icon} role="presentation" />;
+  return (
+    <span className={styles.iconWrapper}>
+      <Icon icon={icon} role="presentation" />
+    </span>
+  );
 }
