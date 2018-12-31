@@ -7,7 +7,10 @@ $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
 $caButton-height: $ca-grid * 2;
 $caButton-formHeight: $ca-grid * 5/3;
-$caButton-vertical-padding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
+$caButton-verticalPadding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
+$caButton-verticalPaddingForm: calc(
+  #{$ca-grid / 3} - #{$caButton-border-width}
+);
 
 // reset user agent syles for button elment type
 @mixin button-reset {
@@ -86,7 +89,7 @@ $caButton-vertical-padding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
 }
 
 %caButtonForm {
-  height: $caButton-formHeight;
+  min-height: $caButton-formHeight;
 }
 
 %caButtonPrimary,
@@ -302,27 +305,45 @@ $caButton-vertical-padding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
 
   // Padding applied to button content and not button so that mix-blend-mode
   // effects can be applied to the button content but not the button border
-  padding: $caButton-vertical-padding
+  padding: $caButton-verticalPadding
     calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
   %caButtonSecondary & {
-    padding: $caButton-vertical-padding
-      calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+    padding-left: calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+    padding-right: calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+  }
+
+  %caButtonForm & {
+    padding-top: $caButton-verticalPaddingForm;
+    padding-bottom: $caButton-verticalPaddingForm;
   }
 
   @supports (mix-blend-mode: screen) {
     %caButtonReversed%caButtonPrimary & {
-      padding: $caButton-vertical-padding ($ca-grid * 1);
+      padding-left: ($ca-grid * 1);
+      padding-right: ($ca-grid * 1);
     }
   }
 
   :global(.js-focus-visible) %caButton:global(.focus-visible) & {
-    padding: $caButton-vertical-padding
+    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
       calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
   }
 
   :global(.js-focus-visible) %caButtonSecondary:global(.focus-visible) & {
-    padding: $caButton-vertical-padding
+    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
+  }
+
+  :global(.js-focus-visible) %caButton%caButtonForm:global(.focus-visible) & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+  }
+
+  :global(.js-focus-visible)
+    %caButtonSecondary%caButtonForm:global(.focus-visible)
+    & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
       calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
   }
 }

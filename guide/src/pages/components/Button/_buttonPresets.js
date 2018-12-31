@@ -53,10 +53,6 @@ const buttonPresets = [
     node: <Button label="Label" disabled />,
   },
   {
-    name: 'Form',
-    node: <Button label="Label" form />,
-  },
-  {
     name: 'Primary',
     node: <Button label="Label" primary />,
   },
@@ -106,6 +102,41 @@ const buttonPresets = [
   {
     name: 'Primary Reversed Disabled',
     node: <Button label="Label" primary reversed disabled />,
+    darkBackground: true,
+  },
+  {
+    name: 'Form',
+    node: <Button label="Label" form />,
+  },
+  {
+    name: 'Form (Overflowing text)',
+    node: (
+      <div style={{ width: 120 }}>
+        <Button
+          form
+          icon={configureIcon}
+          label="Passez au rapport de synthèse"
+          automationId="demo-button"
+        />
+      </div>
+    ),
+  },
+  {
+    name: 'Form Primary',
+    node: <Button primary label="Label" form />,
+  },
+  {
+    name: 'Form Secondary',
+    node: <Button secondary label="Label" form />,
+  },
+  {
+    name: 'Form Reversed',
+    node: <Button label="Label" reversed form />,
+    darkBackground: true,
+  },
+  {
+    name: 'Form Primary Reversed',
+    node: <Button primary label="Label" reversed form />,
     darkBackground: true,
   },
   {
