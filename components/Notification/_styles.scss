@@ -21,11 +21,6 @@ $ca-notification-collapse-height-delayed: margin-top $ca-duration-fast
 $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
 %ca-notification {
-  // Notification components are not yet supported on our mobile platform UI
-  @include ca-media-mobile {
-    display: none;
-  }
-
   display: flex;
   box-sizing: border-box;
 
