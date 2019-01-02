@@ -9,6 +9,7 @@
   text-decoration: none;
   text-transform: uppercase;
   width: $ca-navigation-bar__height;
+  flex: 0 0 $ca-navigation-bar__height;
 
   // auto 1:1 (square) aspect ratio
   position: relative;
