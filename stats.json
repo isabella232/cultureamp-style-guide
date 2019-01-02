@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "component---src-pages-styles-colors-index-md": [
-      "component---src-pages-styles-colors-index-md-2093975605607c45738a.js",
-      "component---src-pages-styles-colors-index-md-2093975605607c45738a.js.map"
+      "component---src-pages-styles-colors-index-md-e24f154d58a08e1b1888.js",
+      "component---src-pages-styles-colors-index-md-e24f154d58a08e1b1888.js.map"
     ],
     "component---src-pages-guides-animation-examples-animation-usage-output-example-js": [
       "component---src-pages-guides-animation-examples-animation-usage-output-example-js-9bf5daa2afaedc3fcd14.js",
@@ -45,8 +45,8 @@
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-text-index-md": [
-      "component---src-pages-components-text-index-md-68d52613442ae202d1a3.js",
-      "component---src-pages-components-text-index-md-68d52613442ae202d1a3.js.map"
+      "component---src-pages-components-text-index-md-51aad6adf8bc2d99f27a.js",
+      "component---src-pages-components-text-index-md-51aad6adf8bc2d99f27a.js.map"
     ],
     "path---styles-icons": [
       "path---styles-icons-a0e39f21c11f6a62c5ab.js",
@@ -57,8 +57,8 @@
       "path---styles-typography-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-notification-toast-md": [
-      "component---src-pages-components-notification-toast-md-cebc3e2686eadc880b98.js",
-      "component---src-pages-components-notification-toast-md-cebc3e2686eadc880b98.js.map"
+      "component---src-pages-components-notification-toast-md-da5d68d16a1466722983.js",
+      "component---src-pages-components-notification-toast-md-da5d68d16a1466722983.js.map"
     ],
     "path---": [
       "path----557518bd178906f8d58a.js",
@@ -85,8 +85,8 @@
       "path---guides-localisation-examples-rtl-layout-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-icon-button-md": [
-      "component---src-pages-components-button-icon-button-md-9bb3bd492d17eab26b18.js",
-      "component---src-pages-components-button-icon-button-md-9bb3bd492d17eab26b18.js.map"
+      "component---src-pages-components-button-icon-button-md-047fca955fa984c5928f.js",
+      "component---src-pages-components-button-icon-button-md-047fca955fa984c5928f.js.map"
     ],
     "path---components-icon": [
       "path---components-icon-a0e39f21c11f6a62c5ab.js",
@@ -121,8 +121,8 @@
       "path---guides-animation-examples-duration-presets-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-button-md": [
-      "component---src-pages-components-button-button-md-fece67fa603fba505270.js",
-      "component---src-pages-components-button-button-md-fece67fa603fba505270.js.map"
+      "component---src-pages-components-button-button-md-4f176e7228294010c900.js",
+      "component---src-pages-components-button-button-md-4f176e7228294010c900.js.map"
     ],
     "component---src-pages-styles-icons-index-md": [
       "component---src-pages-styles-icons-index-md-293f6832e3edcf0bef54.js",
@@ -133,8 +133,8 @@
       "path---components-button-icon-button-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-453cf6b2d739810e0963.js",
-      "component---src-layouts-index-js-453cf6b2d739810e0963.js.map"
+      "component---src-layouts-index-js-bd1a2317b6d084e837df.js",
+      "component---src-layouts-index-js-bd1a2317b6d084e837df.js.map"
     ],
     "path---guides": [
       "path---guides-a0e39f21c11f6a62c5ab.js",
@@ -153,12 +153,12 @@
       "path---index-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-notification-global-md": [
-      "component---src-pages-components-notification-global-md-52fac395752b597f6cda.js",
-      "component---src-pages-components-notification-global-md-52fac395752b597f6cda.js.map"
+      "component---src-pages-components-notification-global-md-305153324b6ee767992a.js",
+      "component---src-pages-components-notification-global-md-305153324b6ee767992a.js.map"
     ],
     "component---src-pages-components-navigation-bar-index-md": [
-      "component---src-pages-components-navigation-bar-index-md-9b271eb372f976e589ff.js",
-      "component---src-pages-components-navigation-bar-index-md-9b271eb372f976e589ff.js.map"
+      "component---src-pages-components-navigation-bar-index-md-b5a4e09d705071f0d647.js",
+      "component---src-pages-components-navigation-bar-index-md-b5a4e09d705071f0d647.js.map"
     ],
     "path---language-checklist": [
       "path---language-checklist-a0e39f21c11f6a62c5ab.js",
@@ -185,14 +185,14 @@
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-93b6c450df826b4e0c64.js",
+      "commons-e870272b68a32cc4c268.js",
       "build-js-styles.css",
-      "commons-93b6c450df826b4e0c64.js.map",
+      "commons-e870272b68a32cc4c268.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
-      "component---src-pages-components-notification-inline-md-920fea1ef37a95fd9abe.js",
-      "component---src-pages-components-notification-inline-md-920fea1ef37a95fd9abe.js.map"
+      "component---src-pages-components-notification-inline-md-9a798868970de0119783.js",
+      "component---src-pages-components-notification-inline-md-9a798868970de0119783.js.map"
     ],
     "path---guides-animation-examples-transition-usage-input-example": [
       "path---guides-animation-examples-transition-usage-input-example-a0e39f21c11f6a62c5ab.js",
@@ -279,9 +279,9 @@
       "component---src-pages-guides-localisation-examples-ca-type-align-example-js-2b698bf792a5ab4d180f.js.map"
     ],
     "app": [
-      "app-3bcede4e1284d5e58878.js",
+      "app-965c30a45c3f6215fa0d.js",
       "build-js-styles.css",
-      "app-3bcede4e1284d5e58878.js.map",
+      "app-965c30a45c3f6215fa0d.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-language-index-md": [
@@ -349,8 +349,8 @@
       "component---src-pages-styles-animation-index-md-f3d8c49f428a9a7db82c.js.map"
     ],
     "component---src-pages-components-icon-index-md": [
-      "component---src-pages-components-icon-index-md-be4db7d866e0ad71e0a5.js",
-      "component---src-pages-components-icon-index-md-be4db7d866e0ad71e0a5.js.map"
+      "component---src-pages-components-icon-index-md-38dee094981f1d14fbf7.js",
+      "component---src-pages-components-icon-index-md-38dee094981f1d14fbf7.js.map"
     ],
     "component---src-pages-guides-animation-examples-duration-presets-example-js": [
       "component---src-pages-guides-animation-examples-duration-presets-example-js-210759fa61ec8c81d20d.js",
