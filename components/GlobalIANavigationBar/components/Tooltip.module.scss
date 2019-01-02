@@ -27,7 +27,8 @@
   height: 100%;
   justify-content: center;
 
-  right: -1000em;
+  right: calc(100% + #{$ca-grid - $tooltip__arrow-size});
+  visibility: hidden;
 
   // tooltip arrow
   &::before {
@@ -46,7 +47,7 @@
     :focus > &,
     :focus + &,
     &.visible {
-      right: calc(100% + #{$ca-grid - $tooltip__arrow-size});
+      visibility: visible;
 
       &.bottomPosition {
         top: calc(100% - #{$tooltip__arrow-size});
