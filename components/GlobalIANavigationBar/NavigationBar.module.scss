@@ -64,4 +64,7 @@
 
 .active {
   background-color: add-alpha($ca-palette-ink, 80%);
+  .kaizen & {
+    background-color: add-tint($ca-palette-wisteria, 10%);
+  }
 }

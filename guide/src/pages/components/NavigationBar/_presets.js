@@ -1,26 +1,37 @@
 // @flow
-import NavigationBar from 'cultureamp-style-guide/components/NavigationBar';
+import NavigationBar from 'cultureamp-style-guide/components/GlobalIANavigationBar';
 import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
 import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
 import supportIcon from 'cultureamp-style-guide/icons/support.svg';
+import academyIcon from 'cultureamp-style-guide/icons/academy.svg';
 import NavigationBarDemo from './_NavigationBarDemo';
 import React from 'react';
 
-const homeLink = (
-  <NavigationBar.Link icon={homeIcon} href="/" tooltip="Home" active={true} />
+const dashboardLink = <NavigationBar.Link text="Home" href="/" active={true} />;
+const surveysLink = (
+  <NavigationBar.Link text="Surveys" href="/" active={false} />
 );
 const supportLink = (
   <NavigationBar.Link
     icon={supportIcon}
+    text="Support"
     href="http://academy.cultureamp.com/"
-    tooltip="Support"
     active={false}
+    secondary
+  />
+);
+const academyLink = (
+  <NavigationBar.Link
+    icon={academyIcon}
+    text="Academy"
+    href="http://academy.cultureamp.com/"
+    active={false}
+    secondary
   />
 );
 const menu = (
   <NavigationBar.Menu
-    tooltip="Culture Amp"
     items={[
       {
         label: 'About Culture Amp',
@@ -28,7 +39,8 @@ const menu = (
       },
       {
         label: 'Contribute to this guide',
-        link: 'https://github.com/cultureamp/cultureamp-style-guide/tree/master/guide',
+        link:
+          'https://github.com/cultureamp/cultureamp-style-guide/tree/master/guide',
         target: '_blank',
       },
     ]}
@@ -55,8 +67,10 @@ const presets = [
     name: 'Default',
     node: (
       <NavigationBarDemo>
-        {homeLink}
+        {dashboardLink}
+        {surveysLink}
         {supportLink}
+        {academyLink}
         {menu}
       </NavigationBarDemo>
     ),
@@ -65,7 +79,7 @@ const presets = [
     name: 'Loading',
     node: (
       <NavigationBarDemo loading>
-        {homeLink}
+        {dashboardLink}
         {supportLink}
         {menu}
       </NavigationBarDemo>
@@ -75,7 +89,7 @@ const presets = [
     name: 'Kaizen Colours',
     node: (
       <NavigationBarDemo colorScheme="kaizen">
-        {homeLink}
+        {dashboardLink}
         {menu}
       </NavigationBarDemo>
     ),
