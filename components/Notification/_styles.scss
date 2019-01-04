@@ -209,9 +209,11 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
 
   a[href] {
     color: $ca-link-text-color;
+    text-decoration: underline;
 
     &:hover {
       color: $ca-link-hover-text-color;
+      text-decoration: none;
     }
 
     %ca-notification---global &,
