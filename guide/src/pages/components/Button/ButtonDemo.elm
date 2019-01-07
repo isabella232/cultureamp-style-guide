@@ -83,6 +83,7 @@ buttonDecoder =
                 |> decodeField "iconPosition" iconPositionDecoder iconPosition props
                 |> decodeField "form" Json.bool form props
                 |> decodeField "reversed" Json.bool reversed props
+                |> decodeField "fullWidth" Json.bool fullWidth props
                 |> decodeOptionalField "reverseColor" brandColorDecoder reverseColor props
                 |> decodeOptionalField "href" Json.string href props
                 |> decodeOptionalField "automationId" Json.string automationId props

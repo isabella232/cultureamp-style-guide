@@ -9,6 +9,10 @@ const buttonPresets = [
     node: <Button label="Label" automationId="demo-button" />,
   },
   {
+    name: 'Full Width',
+    node: <Button label="Label" automationId="demo-button" fullWidth />,
+  },
+  {
     name: 'Hyperlink',
     node: <Button label="Label" href="//example.com" />,
   },

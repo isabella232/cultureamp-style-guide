@@ -414,7 +414,12 @@ type ElmApp = {
 
 class ElmComponent extends React.Component<{ src: ElmApp, flags: {} }> {
   render() {
-    return <div ref={node => this.initialize(node)} />;
+    return (
+      <div
+        ref={node => this.initialize(node)}
+        className={styles.elmComponentWrapper}
+      />
+    );
   }
 
   initialize(container) {
@@ -427,6 +432,7 @@ class ElmComponent extends React.Component<{ src: ElmApp, flags: {} }> {
       // The workaround is to create an extra <div>, which React doesn't control, and allow Elm to replace that node.
       const elmPlaceholder = document.createElement('div');
       container.appendChild(elmPlaceholder);
+
       const app = this.props.src.init({
         node: elmPlaceholder,
         flags: this.props.flags,

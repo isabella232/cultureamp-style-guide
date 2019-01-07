@@ -4,6 +4,7 @@ import GenericButton from './components/GenericButton.js';
 import type { ButtonProps } from './components/GenericButton.js';
 
 Button.defaultProps = {
+  fullWidth: false,
   form: false,
   primary: false,
   secondary: false,
