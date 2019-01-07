@@ -11,6 +11,7 @@ type GenericProps = {|
   disabled: boolean,
   form: boolean,
   reversed: boolean,
+  fullWidth?: boolean,
   icon?: SvgAsset,
   onClick?: MouseEvent => any,
   href?: string,
@@ -48,7 +49,11 @@ GenericButton.defaultProps = {
 
 export default function GenericButton(props: Props) {
   return (
-    <span className={styles.container}>
+    <span
+      className={classNames(styles.container, {
+        [styles.fullWidth]: props.fullWidth,
+      })}
+    >
       {props.href ? renderLink(props) : renderButton(props)}
     </span>
   );

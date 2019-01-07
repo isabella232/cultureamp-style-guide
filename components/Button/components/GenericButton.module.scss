@@ -68,3 +68,15 @@
 .label {
   @extend %caButtonLabel;
 }
+
+.fullWidth {
+  width: 100%;
+
+  .button {
+    width: 100%;
+  }
+
+  .content {
+    justify-content: center;
+  }
+}

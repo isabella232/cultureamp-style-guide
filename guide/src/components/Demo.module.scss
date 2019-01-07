@@ -22,6 +22,18 @@
   transition: width $ca-duration-deliberate;
 }
 
+// Elm components are wrapped in an extra div
+// We need to apply layout styles from the parent element to maintain centering of example
+.elmComponentWrapper {
+  width: 100%;
+
+  > div {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+  }
+}
+
 .gridOverlay {
   @include debug-vertical-rhythm-grid();
 }

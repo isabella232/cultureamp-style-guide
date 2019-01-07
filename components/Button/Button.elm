@@ -10,6 +10,7 @@ module Button.Button exposing
     , destructiveIconButton
     , disabled
     , form
+    , fullWidth
     , href
     , icon
     , iconButton
@@ -90,7 +91,12 @@ view (Config config) label =
                 ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
     in
-    span [ styles.class .container ]
+    span
+        [ styles.classList
+            [ ( .container, True )
+            , ( .fullWidth, config.fullWidth )
+            ]
+        ]
         [ case config.href of
             Just hrefValue ->
                 a (attribs ++ [ Html.Attributes.href hrefValue ])
@@ -206,6 +212,7 @@ styles =
         , reverseColorYuzu = "reverseColorYuzu"
         , content = "content"
         , label = "label"
+        , fullWidth = "fullWidth"
         }
 
 
@@ -230,6 +237,7 @@ type alias ConfigValue msg =
     , href : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
+    , fullWidth : Bool
     }
 
 
@@ -273,6 +281,7 @@ defaults =
     , href = Nothing
     , automationId = Nothing
     , buttonType = Nothing
+    , fullWidth = False
     }
 
 
@@ -328,6 +337,11 @@ form value (Config config) =
 reversed : Bool -> Config msg -> Config msg
 reversed value (Config config) =
     Config { config | reversed = value }
+
+
+fullWidth : Bool -> Config msg -> Config msg
+fullWidth value (Config config) =
+    Config { config | fullWidth = value }
 
 
 reverseColor : BrandColor -> Config msg -> Config msg
