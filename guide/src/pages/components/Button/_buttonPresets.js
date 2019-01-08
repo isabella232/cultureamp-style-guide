@@ -39,7 +39,7 @@ const buttonPresets = [
   {
     name: 'Overflowing text',
     node: (
-      <div style={{ width: 120 }}>
+      <div style={{ width: 220 }}>
         <Button
           icon={configureIcon}
           label="Passez au rapport de synthèse"
@@ -111,7 +111,7 @@ const buttonPresets = [
   {
     name: 'Form (Overflowing text)',
     node: (
-      <div style={{ width: 120 }}>
+      <div style={{ width: 220 }}>
         <Button
           form
           icon={configureIcon}
