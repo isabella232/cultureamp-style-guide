@@ -140,6 +140,15 @@ const buttonPresets = [
     darkBackground: true,
   },
   {
+    name: 'Multiple buttons',
+    node: (
+      <div>
+        <Button label="Save" primary automationId="demo-button-1" />
+        <Button label="Exit" automationId="demo-button-2" />
+      </div>
+    ),
+  },
+  {
     name: 'Type Submit',
     node: <Button label="Label" type="submit" />,
   },
