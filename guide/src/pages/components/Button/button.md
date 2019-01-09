@@ -30,6 +30,8 @@ A button!
 
 - flip the direction of arrow icons when the user is using a right-to-left language.
 
+- either be hyperlinks (if they navigate to a new page and can be opened in a new tab) or a button element.
+
 </TipCard>
 <TipCard title="Buttons should not…" type="warning">
 
