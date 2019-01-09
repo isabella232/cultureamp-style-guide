@@ -31,7 +31,8 @@ $caButton-verticalPaddingForm: calc(
   @include button-reset;
   @include ca-type-ideal-button;
 
-  display: inline-block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   min-height: $caButton-height;
   border: $caButton-border-width solid;
