@@ -542,7 +542,7 @@ Some examples of error messages from the app:
 
 Maximum character length: N/A
 
-Capitalization: Title case. Don’t capitalise articles (a, the, an) or prepositions (e.g. in, on, at).
+Capitalization: Sentence case.
 
 Punctuation: No finishing punctuation.
 
@@ -686,9 +686,7 @@ Note that gender describes the characteristics that a society or culture delinea
 
 ##### Headings and titles
 
-Page titles in the product take title case.
-
-Titles in the Academy take sentence case, without finishing punctuation.
+Page titles in both the product and the Academy take sentence case, without finishing punctuation.
 
 ##### i.e.
 
