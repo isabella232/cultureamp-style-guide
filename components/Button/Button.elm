@@ -12,6 +12,7 @@ module Button.Button exposing
     , form
     , fullWidth
     , href
+    , id
     , icon
     , iconButton
     , iconPosition
@@ -235,6 +236,7 @@ type alias ConfigValue msg =
     , reverseColor : Maybe BrandColor
     , onClick : Maybe msg
     , href : Maybe String
+    , id : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
     , fullWidth : Bool
@@ -357,6 +359,10 @@ onClick value (Config config) =
 href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
+
+id : String -> Config msg -> Config msg
+id value (Config config) =
+    Config { config | id = Just value }
 
 
 automationId : String -> Config msg -> Config msg
