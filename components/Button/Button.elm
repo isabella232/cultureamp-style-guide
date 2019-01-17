@@ -184,7 +184,8 @@ viewIconFor configValue forPosition =
     if configValue.iconPosition == forPosition then
         case configValue.icon of
             Just svgAsset ->
-                Icon.view Icon.presentation svgAsset
+                span [ styles.class .iconWrapper ]
+                    [ Icon.view Icon.presentation svgAsset ]
 
             Nothing ->
                 text ""
@@ -213,6 +214,7 @@ styles =
         , content = "content"
         , label = "label"
         , fullWidth = "fullWidth"
+        , iconWrapper = "iconWrapper"
         }
 
 
