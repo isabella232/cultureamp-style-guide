@@ -105,7 +105,7 @@ function renderLink(props: Props) {
 
 function buttonClass(props: Props) {
   if (props.reversed && !props.reverseColor) {
-    console.warn('please provide a fallback colour for revered buttons');
+    console.warn('please provide a fallback colour for reversed buttons');
   }
 
   const variantClass =
