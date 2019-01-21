@@ -96,7 +96,7 @@ const buttonPresets = [
   },
   {
     name: 'Primary Reversed',
-    node: <Button label="Label" primary reversed reverseColor="ocean" />,
+    node: <Button label="Label" primary reversed />,
     darkBackground: true,
   },
   {
