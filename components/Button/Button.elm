@@ -12,7 +12,7 @@ module Button.Button exposing
     , form
     , fullWidth
     , href
-    , setId
+    , id
     , icon
     , iconButton
     , iconPosition
@@ -80,6 +80,8 @@ view (Config config) label =
             case config.id of
                 Just id ->
                     [ Html.Attributes.id id ]
+                Nothing ->
+                    [ ]
 
         titleAttr =
             if config.iconButton then
@@ -368,8 +370,8 @@ href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
 
-setId : String -> Config msg -> Config msg
-setId value (Config config) =
+id : String -> Config msg -> Config msg
+id value (Config config) =
     Config { config | id = Just value }
 
 
