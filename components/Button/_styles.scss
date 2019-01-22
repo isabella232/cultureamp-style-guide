@@ -6,6 +6,7 @@
 $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
 $caButton-height: $ca-grid * 2;
+$caButtonIcon-height: 20px;
 $caButton-formHeight: $ca-grid * 5/3;
 $caButton-verticalPadding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
 $caButton-verticalPaddingForm: calc(
@@ -319,7 +320,7 @@ $caButton-verticalPaddingForm: calc(
 }
 
 %caButtonIconWrapper {
-  height: 20px;
+  height: $caButtonIcon-height;
   align-self: flex-start;
 }
 
@@ -360,6 +361,11 @@ $caButton-verticalPaddingForm: calc(
     justify-content: center;
     width: 100%;
     padding: 0;
+    // IE 10/11 workaround to fix vertical centering of icon
+    margin: calc(
+        (((#{$caButton-height}) - #{$caButtonIcon-height}) / 2) - #{$caButton-border-width}
+      )
+      0;
   }
 
   &%caButtonForm {
