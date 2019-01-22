@@ -37,12 +37,20 @@ const buttonPresets = [
     node: <Button label="Configure" icon={configureIcon} iconPosition="end" />,
   },
   {
-    name: 'Disabled',
-    node: <Button label="Label" disabled />,
+    name: 'Overflowing text',
+    node: (
+      <div style={{ width: 220 }}>
+        <Button
+          icon={configureIcon}
+          label="Passez au rapport de synthèse"
+          automationId="demo-button"
+        />
+      </div>
+    ),
   },
   {
-    name: 'Form',
-    node: <Button label="Label" form />,
+    name: 'Disabled',
+    node: <Button label="Label" disabled />,
   },
   {
     name: 'Primary',
@@ -95,6 +103,50 @@ const buttonPresets = [
     name: 'Primary Reversed Disabled',
     node: <Button label="Label" primary reversed disabled />,
     darkBackground: true,
+  },
+  {
+    name: 'Form',
+    node: <Button label="Label" form />,
+  },
+  {
+    name: 'Form (Overflowing text)',
+    node: (
+      <div style={{ width: 220 }}>
+        <Button
+          form
+          icon={configureIcon}
+          label="Passez au rapport de synthèse"
+          automationId="demo-button"
+        />
+      </div>
+    ),
+  },
+  {
+    name: 'Form Primary',
+    node: <Button primary label="Label" form />,
+  },
+  {
+    name: 'Form Secondary',
+    node: <Button secondary label="Label" form />,
+  },
+  {
+    name: 'Form Reversed',
+    node: <Button label="Label" reversed form />,
+    darkBackground: true,
+  },
+  {
+    name: 'Form Primary Reversed',
+    node: <Button primary label="Label" reversed form />,
+    darkBackground: true,
+  },
+  {
+    name: 'Multiple buttons',
+    node: (
+      <div>
+        <Button label="Save" primary automationId="demo-button-1" />
+        <Button label="Exit" automationId="demo-button-2" />
+      </div>
+    ),
   },
   {
     name: 'Type Submit',

@@ -7,6 +7,10 @@ $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
 $caButton-height: $ca-grid * 2;
 $caButton-formHeight: $ca-grid * 5/3;
+$caButton-verticalPadding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
+$caButton-verticalPaddingForm: calc(
+  #{$ca-grid / 3} - #{$caButton-border-width}
+);
 
 // reset user agent syles for button elment type
 @mixin button-reset {
@@ -27,9 +31,10 @@ $caButton-formHeight: $ca-grid * 5/3;
   @include button-reset;
   @include ca-type-ideal-button;
 
-  display: inline-block;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
-  height: $caButton-height;
+  min-height: $caButton-height;
   border: $caButton-border-width solid;
   border-radius: $ca-border-radius;
   // looking for padding? See %caButtonContent
@@ -85,7 +90,7 @@ $caButton-formHeight: $ca-grid * 5/3;
 }
 
 %caButtonForm {
-  height: $caButton-formHeight;
+  min-height: $caButton-formHeight;
 }
 
 %caButtonPrimary,
@@ -301,28 +306,56 @@ $caButton-formHeight: $ca-grid * 5/3;
 
   // Padding applied to button content and not button so that mix-blend-mode
   // effects can be applied to the button content but not the button border
-  padding: 0 calc(#{$ca-grid * 1} - #{$caButton-border-width});
+  padding: $caButton-verticalPadding
+    calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
   %caButtonSecondary & {
-    padding: 0 calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+    padding-left: calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+    padding-right: calc(#{$ca-grid * 0.5} - #{$caButton-border-width});
+  }
+
+  %caButtonForm & {
+    padding-top: $caButton-verticalPaddingForm;
+    padding-bottom: $caButton-verticalPaddingForm;
   }
 
   @supports (mix-blend-mode: screen) {
     %caButtonReversed%caButtonPrimary & {
-      padding: 0 ($ca-grid * 1);
+      padding-left: ($ca-grid * 1);
+      padding-right: ($ca-grid * 1);
     }
   }
 
   :global(.js-focus-visible) %caButton:global(.focus-visible) & {
-    padding: 0 calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
   }
 
   :global(.js-focus-visible) %caButtonSecondary:global(.focus-visible) & {
-    padding: 0 calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
+    padding: calc(#{$ca-grid / 2} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
+  }
+
+  :global(.js-focus-visible) %caButton%caButtonForm:global(.focus-visible) & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 1} - #{$caButton-focus-border-width});
+  }
+
+  :global(.js-focus-visible)
+    %caButtonSecondary%caButtonForm:global(.focus-visible)
+    & {
+    padding: calc(#{$ca-grid / 3} - #{$caButton-focus-border-width})
+      calc(#{$ca-grid * 0.5} - #{$caButton-focus-border-width});
   }
 }
 
 %caButtonLabel {
+  // This line height equates to 3/4 of a grid unit - so 18px. We set this
+  // here rather than in ca-type-ideal-button because changing the type style
+  // changes the baseline grid alignment for all buttons. Changing it here keeps
+  // the baseline alignment correct for single line buttons.
+  line-height: 1;
+
   &:only-child {
     margin: 0 $ca-grid / 2;
 
@@ -338,6 +371,11 @@ $caButton-formHeight: $ca-grid * 5/3;
   &:not(:last-child) {
     @include ca-margin($end: 0.5em);
   }
+}
+
+%caButtonIconWrapper {
+  height: 20px;
+  align-self: flex-start;
 }
 
 %caButtonIconButton {

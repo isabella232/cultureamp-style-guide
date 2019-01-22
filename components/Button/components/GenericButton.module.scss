@@ -80,3 +80,7 @@
     justify-content: center;
   }
 }
+
+.iconWrapper {
+  @extend %caButtonIconWrapper;
+}
