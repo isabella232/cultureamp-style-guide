@@ -12,6 +12,7 @@ module Button.Button exposing
     , form
     , fullWidth
     , href
+    , id
     , icon
     , iconButton
     , iconPosition
@@ -69,11 +70,18 @@ view (Config config) label =
 
         automationIdAttr =
             case config.automationId of
-                Just id ->
-                    [ Html.Attributes.attribute "data-automation-id" id ]
+                Just idString ->
+                    [ Html.Attributes.attribute "data-automation-id" idString ]
 
                 Nothing ->
                     []
+
+        idAttr =
+            case config.id of
+                Just idString ->
+                    [ Html.Attributes.id idString ]
+                Nothing ->
+                    [ ]
 
         titleAttr =
             if config.iconButton then
@@ -90,6 +98,7 @@ view (Config config) label =
                 ++ automationIdAttr
                 ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
+                ++ idAttr
     in
     span
         [ styles.classList
@@ -237,6 +246,7 @@ type alias ConfigValue msg =
     , reverseColor : Maybe BrandColor
     , onClick : Maybe msg
     , href : Maybe String
+    , id : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
     , fullWidth : Bool
@@ -281,6 +291,7 @@ defaults =
     , reverseColor = Nothing
     , onClick = Nothing
     , href = Nothing
+    , id = Nothing
     , automationId = Nothing
     , buttonType = Nothing
     , fullWidth = False
@@ -359,6 +370,10 @@ onClick value (Config config) =
 href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
+
+id : String -> Config msg -> Config msg
+id value (Config config) =
+    Config { config | id = Just value }
 
 
 automationId : String -> Config msg -> Config msg
