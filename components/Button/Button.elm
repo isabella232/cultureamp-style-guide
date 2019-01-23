@@ -70,16 +70,16 @@ view (Config config) label =
 
         automationIdAttr =
             case config.automationId of
-                Just id ->
-                    [ Html.Attributes.attribute "data-automation-id" id ]
+                Just idString ->
+                    [ Html.Attributes.attribute "data-automation-id" idString ]
 
                 Nothing ->
                     []
 
         idAttr =
             case config.id of
-                Just id ->
-                    [ Html.Attributes.id id ]
+                Just idString ->
+                    [ Html.Attributes.id idString ]
                 Nothing ->
                     [ ]
 
