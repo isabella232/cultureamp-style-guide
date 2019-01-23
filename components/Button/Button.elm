@@ -291,6 +291,7 @@ defaults =
     , reverseColor = Nothing
     , onClick = Nothing
     , href = Nothing
+    , id = Nothing
     , automationId = Nothing
     , buttonType = Nothing
     , fullWidth = False
