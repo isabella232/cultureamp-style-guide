@@ -6,6 +6,7 @@
 $caButton-border-width: 1px;
 $caButton-focus-border-width: 2px;
 $caButton-height: $ca-grid * 2;
+$caButtonIcon-height: 20px;
 $caButton-formHeight: $ca-grid * 5/3;
 $caButton-verticalPadding: calc(#{$ca-grid / 2} - #{$caButton-border-width});
 $caButton-verticalPaddingForm: calc(
@@ -244,52 +245,6 @@ $caButton-verticalPaddingForm: calc(
         background: add-alpha($white, 90%);
         border-color: transparent;
       }
-
-      // knockout text effect (background visible through text) for supported browsers
-      @supports (mix-blend-mode: lighten) {
-        // add background to %caButtonContent instead, so we can mix-blend-mode the button's background but not its border (for solid focus ring)
-        background: transparent;
-        border-width: 0;
-        overflow: hidden;
-
-        %caButtonContent {
-          mix-blend-mode: screen;
-          background: $white;
-          color: $black; // mix-blend-mode makes this transparent
-        }
-
-        &:hover {
-          background: transparent;
-
-          %caButtonContent {
-            // mix-blend-mode makes this 95% alpha white
-            background: add-tint($black, 95%);
-          }
-        }
-
-        :global(.js-focus-visible) &:global(.focus-visible):not(:active) {
-          background: transparent;
-
-          %caButtonContent {
-            // mix-blend-mode makes this 95% alpha white
-            background: add-tint($black, 95%);
-          }
-        }
-
-        &:active {
-          background: transparent;
-
-          // translateY interferes with mix-blend-mode, so use margin instead
-          margin-top: 1px;
-          margin-bottom: -1px;
-          transform: none;
-
-          %caButtonContent {
-            // mix-blend-mode makes this 90% alpha white
-            background: add-tint($black, 90%);
-          }
-        }
-      }
     }
 
     &:disabled {
@@ -304,8 +259,6 @@ $caButton-verticalPaddingForm: calc(
   display: flex;
   align-items: center;
 
-  // Padding applied to button content and not button so that mix-blend-mode
-  // effects can be applied to the button content but not the button border
   padding: $caButton-verticalPadding
     calc(#{$ca-grid * 1} - #{$caButton-border-width});
 
@@ -317,13 +270,6 @@ $caButton-verticalPaddingForm: calc(
   %caButtonForm & {
     padding-top: $caButton-verticalPaddingForm;
     padding-bottom: $caButton-verticalPaddingForm;
-  }
-
-  @supports (mix-blend-mode: screen) {
-    %caButtonReversed%caButtonPrimary & {
-      padding-left: ($ca-grid * 1);
-      padding-right: ($ca-grid * 1);
-    }
   }
 
   :global(.js-focus-visible) %caButton:global(.focus-visible) & {
@@ -374,7 +320,7 @@ $caButton-verticalPaddingForm: calc(
 }
 
 %caButtonIconWrapper {
-  height: 20px;
+  height: $caButtonIcon-height;
   align-self: flex-start;
 }
 
@@ -399,7 +345,6 @@ $caButton-verticalPaddingForm: calc(
           %caButtonContent {
             color: white;
             background: none;
-            mix-blend-mode: initial;
           }
         }
       }
@@ -416,6 +361,11 @@ $caButton-verticalPaddingForm: calc(
     justify-content: center;
     width: 100%;
     padding: 0;
+    // IE 10/11 workaround to fix vertical centering of icon
+    margin: calc(
+        (((#{$caButton-height}) - #{$caButtonIcon-height}) / 2) - #{$caButton-border-width}
+      )
+      0;
   }
 
   &%caButtonForm {
