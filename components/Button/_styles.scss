@@ -73,6 +73,7 @@ $caButton-verticalPaddingForm: calc(
       // hide native focus ring when :focus but not :focus-visible
       &:focus {
         outline: none;
+        border: $caButton-focus-border-width solid $ca-palette-ocean;
       }
 
       // show custom focus ring when :focus-visible
