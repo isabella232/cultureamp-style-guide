@@ -6,6 +6,7 @@ import Icon from '../../Icon/Icon.js';
 import type { SvgAsset } from '../../Icon/Icon.js';
 
 type GenericProps = {|
+  id?: string,
   label: string,
   destructive: boolean,
   disabled: boolean,
@@ -60,11 +61,12 @@ export default function GenericButton(props: Props) {
 }
 
 function renderButton(props: Props) {
-  const { disabled, onClick, type } = props;
+  const { id, disabled, onClick, type } = props;
   const label = props.icon && props.iconButton ? props.label : undefined;
 
   return (
     <button
+      id={id}
       disabled={disabled}
       className={buttonClass(props)}
       onClick={e => {
@@ -84,10 +86,11 @@ function renderButton(props: Props) {
 }
 
 function renderLink(props: Props) {
-  const { href, onClick } = props;
+  const { id, href, onClick } = props;
 
   return (
     <a
+      id={id}
       href={href}
       className={buttonClass(props)}
       onClick={e => {
