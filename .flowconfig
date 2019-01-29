@@ -6,8 +6,10 @@
 .*node_modules/npm/.*
 
 [include]
+.*/guide/src/.*
 
 [libs]
+./guide/node_modules/@cultureamp/kaizen/flow-typed/definitions/npm
 
 [lints]
 

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-import Icon from 'cultureamp-style-guide/components/Icon';
-import configureIcon from 'cultureamp-style-guide/icons/configure.svg';
+import { Icon } from '@cultureamp/kaizen/components/Icon';
+import configureIcon from '@cultureamp/kaizen/icons/configure.svg';
 
 const iconPresets = [
   {

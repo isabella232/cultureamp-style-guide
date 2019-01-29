@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
-import Layout from 'cultureamp-style-guide/components/Layout';
-import NavigationBar from 'cultureamp-style-guide/components/NavigationBar';
-import Icon from 'cultureamp-style-guide/components/Icon';
-import homeIcon from 'cultureamp-style-guide/icons/home.svg';
-import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
-import supportIcon from 'cultureamp-style-guide/icons/support.svg';
+import { Layout } from '@cultureamp/kaizen/components/GlobalIALayout';
+import { NavigationBar } from '@cultureamp/kaizen/components/GlobalIANavigationBar';
+import { Icon } from '@cultureamp/kaizen/components/Icon';
+import homeIcon from '@cultureamp/kaizen/icons/home.svg';
+import caIcon from '@cultureamp/kaizen/icons/ca-monogram.svg';
+import supportIcon from '@cultureamp/kaizen/icons/support.svg';
 import LayoutDemo from './LayoutDemo';
 import styles from './LayoutDemo.module.scss';
 
@@ -15,17 +15,19 @@ const navBar = (
       <NavigationBar.Link
         icon={homeIcon}
         href="/"
-        tooltip="Home"
+        target="_blank"
+        tooltipText="Home"
         active={true}
       />
       <NavigationBar.Link
         icon={supportIcon}
         href="http://academy.cultureamp.com/"
-        tooltip="Support"
+        target="_blank"
+        tooltipText="Support"
         active={false}
       />
       <NavigationBar.Menu
-        tooltip="Culture Amp"
+        heading="Menu"
         items={[
           {
             label: 'About Culture Amp',

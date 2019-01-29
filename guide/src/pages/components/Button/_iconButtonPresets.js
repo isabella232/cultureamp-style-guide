@@ -1,9 +1,10 @@
 // @flow
-import configureIcon from 'cultureamp-style-guide/icons/configure.svg';
-import trashIcon from 'cultureamp-style-guide/icons/trash.svg';
-import searchIcon from 'cultureamp-style-guide/icons/search-white.svg';
-import logoutIcon from 'cultureamp-style-guide/icons/log-out.svg';
-import IconButton from 'cultureamp-style-guide/components/Button/IconButton.js';
+import configureIcon from '@cultureamp/kaizen/icons/configure.svg';
+import trashIcon from '@cultureamp/kaizen/icons/trash.svg';
+import searchIcon from '@cultureamp/kaizen/icons/search-white.svg';
+import logoutIcon from '@cultureamp/kaizen/icons/log-out.svg';
+import { IconButton } from '@cultureamp/kaizen/components/Button';
+
 import React from 'react';
 
 const buttonPresets = [

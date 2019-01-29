@@ -1,6 +1,6 @@
 // @flow
-import configureIcon from 'cultureamp-style-guide/icons/configure.svg';
-import Button from 'cultureamp-style-guide/components/Button/Button.js';
+import configureIcon from '@cultureamp/kaizen/icons/configure.svg';
+import { Button } from '@cultureamp/kaizen/components/Button';
 import React from 'react';
 
 const buttonPresets = [

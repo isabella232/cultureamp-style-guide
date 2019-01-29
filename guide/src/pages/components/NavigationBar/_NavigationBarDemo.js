@@ -1,5 +1,5 @@
 import React from 'react';
-import NavigationBar from 'cultureamp-style-guide/components/GlobalIANavigationBar';
+import NavigationBar from '@cultureamp/kaizen/components/GlobalIANavigationBar/NavigationBar';
 import styles from './_NavigationBarDemo.module.scss';
 
 // Note: because of the `position: fixed` styling, we need to wrap the NavigationBar and insert some styles to make it position: static.

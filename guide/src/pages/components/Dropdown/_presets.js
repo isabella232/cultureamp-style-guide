@@ -1,16 +1,17 @@
 // @flow
-import Dropdown from 'cultureamp-style-guide/components/Dropdown';
+import { Dropdown } from '@cultureamp/kaizen/components/Dropdown';
 import {
   MenuList,
   MenuHeader,
   MenuItem,
   MenuSeparator,
-} from 'cultureamp-style-guide/components/MenuList';
-import meatballs from 'cultureamp-style-guide/icons/meatballs.svg';
-import kebab from 'cultureamp-style-guide/icons/kebab.svg';
-import printWhite from 'cultureamp-style-guide/icons/print-white.svg';
-import print from 'cultureamp-style-guide/icons/print.svg';
-import enso from 'cultureamp-style-guide/icons/ca-monogram.svg';
+} from '@cultureamp/kaizen/components/MenuList';
+
+import meatballs from '@cultureamp/kaizen/icons/meatballs.svg';
+import kebab from '@cultureamp/kaizen/icons/kebab.svg';
+import printWhite from '@cultureamp/kaizen/icons/print-white.svg';
+import print from '@cultureamp/kaizen/icons/print.svg';
+import enso from '@cultureamp/kaizen/icons/ca-monogram.svg';
 import React from 'react';
 
 const menuList = (
@@ -62,7 +63,7 @@ const presets = [
   {
     name: 'Control action',
     node: (
-      <Dropdown label="Print" icon={printWhite} controlAction={true}>
+      <Dropdown label="Print" icon={kebab} controlAction={true}>
         {menuList}
       </Dropdown>
     ),
@@ -70,7 +71,7 @@ const presets = [
   {
     name: 'Reversed Control action',
     node: (
-      <Dropdown label="Print" icon={print} controlAction={true} reversedColor>
+      <Dropdown label="Print" icon={kebab} controlAction={true} reversedColor>
         {menuList}
       </Dropdown>
     ),

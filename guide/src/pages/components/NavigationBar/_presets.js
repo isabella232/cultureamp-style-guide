@@ -1,10 +1,10 @@
 // @flow
-import NavigationBar from 'cultureamp-style-guide/components/GlobalIANavigationBar';
-import Icon from 'cultureamp-style-guide/components/Icon';
-import homeIcon from 'cultureamp-style-guide/icons/home.svg';
-import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
-import supportIcon from 'cultureamp-style-guide/icons/support.svg';
-import academyIcon from 'cultureamp-style-guide/icons/academy.svg';
+import { NavigationBar } from '@cultureamp/kaizen/components/GlobalIANavigationBar';
+import { Icon } from '@cultureamp/kaizen/components/Icon';
+import homeIcon from '@cultureamp/kaizen/icons/home.svg';
+import caIcon from '@cultureamp/kaizen/icons/ca-monogram.svg';
+import supportIcon from '@cultureamp/kaizen/icons/support.svg';
+import academyIcon from '@cultureamp/kaizen/icons/academy.svg';
 import NavigationBarDemo from './_NavigationBarDemo';
 import React from 'react';
 
@@ -32,6 +32,7 @@ const academyLink = (
 );
 const menu = (
   <NavigationBar.Menu
+    heading="Menu"
     items={[
       {
         label: 'About Culture Amp',
@@ -41,7 +42,7 @@ const menu = (
         label: 'Contribute to this guide',
         link:
           'https://github.com/cultureamp/cultureamp-style-guide/tree/master/guide',
-        target: '_blank',
+        newWindow: true,
       },
     ]}
   >

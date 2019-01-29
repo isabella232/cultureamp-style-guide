@@ -4,10 +4,10 @@ import {
   MenuHeader,
   MenuItem,
   MenuSeparator,
-} from 'cultureamp-style-guide/components/MenuList';
-import print from 'cultureamp-style-guide/icons/print-white.svg';
-import trash from 'cultureamp-style-guide/icons/trash.svg';
-import enso from 'cultureamp-style-guide/icons/ca-monogram.svg';
+} from '@cultureamp/kaizen/components/MenuList';
+import print from '@cultureamp/kaizen/icons/print-white.svg';
+import trash from '@cultureamp/kaizen/icons/trash.svg';
+import enso from '@cultureamp/kaizen/icons/ca-monogram.svg';
 import React from 'react';
 
 const heading = <MenuHeader title="Contextual Select Menu" />;

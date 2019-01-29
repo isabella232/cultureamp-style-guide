@@ -1,5 +1,5 @@
 // @flow
-import Text from 'cultureamp-style-guide/components/Text';
+import { Text } from '@cultureamp/kaizen/components/Text';
 import React from 'react';
 
 const presets = [
@@ -124,7 +124,8 @@ const presets = [
     node: (
       <Text tag="div" style="notification">
         Div with "Notification" styles
-        <br />that have a smaller line-height
+        <br />
+        that have a smaller line-height
       </Text>
     ),
   },

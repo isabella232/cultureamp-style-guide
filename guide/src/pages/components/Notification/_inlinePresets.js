@@ -2,7 +2,7 @@ import {
   InlineNotification,
   GlobalNotification,
   ToastNotification,
-} from 'cultureamp-style-guide/components/Notification/';
+} from '@cultureamp/kaizen/components/Notification';
 import React from 'react';
 
 const presets = [
