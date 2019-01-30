@@ -13,7 +13,7 @@ Meaningful motion helps make our product easy for everyone and tells our brand's
 
 </IntroParagraph>
 
-<InlineNotification persistent={true} type="affirmative">**Tip:** Looking for the technical animation guide? _Check out the [Animation Getting Started Guide](http://localhost:8000/guides/animation)_</InlineNotification>
+<InlineNotification persistent={true} type="affirmative">**Tip:** Looking for the technical animation guide? _Check out the [Animation Getting Started Guide](/guides/animation)_</InlineNotification>
 
 [[toc]]
 
