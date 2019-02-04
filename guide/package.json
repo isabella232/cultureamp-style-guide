@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
+    "@cultureamp/kaizen": "^0.1.0",
     "classnames": "^2.2.5",
     "color": "^3.0.0",
     "color-string": "1.5.2",

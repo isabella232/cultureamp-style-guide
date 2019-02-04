@@ -14,7 +14,11 @@ const iconPresets = [
   },
   {
     name: 'Inherit size',
-    node: <Icon icon={configureIcon} role="presentation" inheritSize />,
+    node: (
+      <div style={{ width: '100%' }}>
+        <Icon icon={configureIcon} role="presentation" inheritSize />
+      </div>
+    ),
   },
 ];
 

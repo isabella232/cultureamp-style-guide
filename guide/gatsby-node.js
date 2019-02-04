@@ -113,6 +113,7 @@ function addSvgLoaders(config) {
   config.loader('svg-sprite-loader', {
     test: /\.svg$/,
     loaders: [
+      path.resolve(__dirname, 'kaizen-svg-loader.js'),
       'svg-sprite-loader?' + JSON.stringify(spriteLoaderConf),
       'svgo-loader?' + JSON.stringify(svgoConf),
     ],

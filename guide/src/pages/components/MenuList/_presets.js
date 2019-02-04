@@ -12,25 +12,50 @@ import React from 'react';
 
 const heading = <MenuHeader title="Contextual Select Menu" />;
 const actions = [
-  <MenuItem action={() => alert('Print!')} icon={print} hoverIcon={false}>
+  <MenuItem
+    key={1}
+    action={() => alert('Print!')}
+    icon={print}
+    hoverIcon={false}
+  >
     Action label with icon
   </MenuItem>,
-  <MenuItem action={() => alert('Print!')} icon={print} hoverIcon={true}>
+  <MenuItem
+    key={2}
+    action={() => alert('Print!')}
+    icon={print}
+    hoverIcon={true}
+  >
     Action label with hover icon
   </MenuItem>,
-  <MenuItem action={() => alert('Print!')}>Action label</MenuItem>,
+  <MenuItem key={3} action={() => alert('Print!')}>
+    Action label
+  </MenuItem>,
 ];
 const links = [
-  <MenuItem action="https://www.cultureamp.com/" icon={enso} hoverIcon={false}>
+  <MenuItem
+    key={1}
+    action="https://www.cultureamp.com/"
+    icon={enso}
+    hoverIcon={false}
+  >
     Link label with icon
   </MenuItem>,
-  <MenuItem action="https://www.cultureamp.com/" icon={enso} hoverIcon={true}>
+  <MenuItem
+    key={2}
+    action="https://www.cultureamp.com/"
+    icon={enso}
+    hoverIcon={true}
+  >
     Link label with hover icon
   </MenuItem>,
-  <MenuItem action="https://www.cultureamp.com/">Link label</MenuItem>,
+  <MenuItem key={3} action="https://www.cultureamp.com/">
+    Link label
+  </MenuItem>,
 ];
 const destructiveActions = [
   <MenuItem
+    key={1}
     action={() => alert('Delete!')}
     icon={trash}
     hoverIcon={false}
@@ -39,6 +64,7 @@ const destructiveActions = [
     Destructive Action label with icon
   </MenuItem>,
   <MenuItem
+    key={2}
     action={() => alert('Delete!')}
     icon={trash}
     hoverIcon={true}
@@ -46,7 +72,7 @@ const destructiveActions = [
   >
     Destructive Action label with hover icon
   </MenuItem>,
-  <MenuItem action={() => alert('Delete!')} destructive>
+  <MenuItem key={3} action={() => alert('Delete!')} destructive>
     Destructive Action label
   </MenuItem>,
 ];
