@@ -10,7 +10,7 @@ $indicator-height: 3px;
 $link-margin: $ca-grid / 4;
 
 .link {
-  @extend %ca-global-ia-navigation-bar__menu-item-focus;
+  @extend %ca-navigation-bar__menu-item-focus;
 
   @include ca-media-mobile {
     width: 100%;

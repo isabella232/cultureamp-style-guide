@@ -15,7 +15,7 @@ $menu__square-size: $ca-grid * 2;
 }
 
 .button {
-  @extend %ca-global-ia-navigation-bar__menu-item-focus;
+  @extend %ca-navigation-bar__menu-item-focus;
 
   // reset button styles
   appearance: none;

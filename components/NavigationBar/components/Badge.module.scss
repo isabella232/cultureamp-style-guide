@@ -19,7 +19,7 @@
     padding-bottom: 100%; // % of parent width
   }
   > * {
-    @extend %ca-global-ia-navigation-bar__menu-item-focus;
+    @extend %ca-navigation-bar__menu-item-focus;
 
     // fill the square
     position: absolute;
