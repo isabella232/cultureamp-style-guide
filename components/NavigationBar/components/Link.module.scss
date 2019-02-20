@@ -1,14 +1,28 @@
+@import '../styles';
 @import '~cultureamp-style-guide/styles/border';
+@import '~cultureamp-style-guide/styles/type';
+@import '~cultureamp-style-guide/styles/layout';
+@import '~cultureamp-style-guide/styles/responsive';
 
-.root {
-  composes: root from './Tooltip.module.scss';
-}
+$nav-ease: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+$nav-timing: 150ms;
+$indicator-height: 3px;
+$link-margin: $ca-grid / 4;
 
 .link {
+  @extend %ca-global-ia-navigation-bar__menu-item-focus;
+
+  @include ca-media-mobile {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
   // fill parent
   display: flex;
-  width: 100%;
-  height: 100%;
+  min-width: 2 * $ca-grid;
+  height: 2 * $ca-grid;
+  margin: ($ca-grid / 4) 0;
 
   // center child
   align-items: center;
@@ -16,29 +30,140 @@
 
   border-radius: $ca-border-radius;
 
-  color: #fff;
-  composes: interactiveIconWrapper from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+  color: add-tint($ca-palette-ink, 70%);
+  padding: 0;
+  text-decoration: none;
 
-  &:hover,
-  &:focus {
-    background-color: rgba(#fff, 0.1);
+  // active indicator
+  .linkText::before {
+    content: '';
+    display: block;
+    transform: translateY(-#{$link-margin}) translateY(-100%);
+    height: $indicator-height;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    transition: transform $nav-ease $nav-timing;
+
+    @include ca-media-mobile {
+      width: $indicator-height;
+      height: 60px;
+      right: auto;
+      transform: translateX(-#{$link-margin}) translateX(-100%);
+    }
+  }
+
+  &:hover {
     color: #fff; // override hyperlink hover color
-    outline: none; // override native focus styles
+    text-decoration: none;
+
+    .linkText::before {
+      transform: translateY(-#{$link-margin});
+
+      @include ca-media-mobile {
+        transform: translateX(-#{$link-margin});
+      }
+    }
+  }
+
+  @include ca-type-ideal-heading;
+  @include ca-inherit-baseline;
+  top: 0;
+
+  &.secondary {
+    @include ca-media-tablet-and-up {
+      @include ca-type-ideal-body;
+      @include ca-inherit-baseline;
+
+      padding: 0 $ca-grid / 2;
+
+      .linkIcon {
+        @include ca-media-tablet {
+          opacity: 1;
+        }
+      }
+
+      .linkText {
+        @include ca-media-tablet {
+          display: none;
+        }
+
+        padding: 0;
+
+        &::before {
+          display: none;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        background-color: rgba(#fff, 0.1);
+
+        .linkIcon {
+          opacity: 0.7;
+        }
+      }
+
+      &:active {
+        background-color: rgba(#fff, 0.2);
+        transform: translateY(1px);
+
+        .linkIcon {
+          opacity: 1;
+        }
+      }
+    }
   }
 }
 
+.linkIcon {
+  display: inline-flex;
+  opacity: 0.5;
+
+  @include ca-media-mobile {
+    display: none;
+  }
+}
+
+.linkIcon + .linkText {
+  @include ca-margin($start: $link-margin);
+
+  @include ca-media-mobile {
+    @include ca-margin($start: 0);
+  }
+}
+
+.linkText {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: $ca-grid;
+  justify-content: center;
+}
+
+.containsText {
+  padding: 0;
+}
+
 .active {
-  composes: active from 'cultureamp-style-guide/components/Icon/Icon.module.scss';
+  color: #fff; // override hyperlink hover color
+  outline: none; // override native focus styles
+  text-decoration: none;
+
+  .linkText::before {
+    transform: translateY(-#{$link-margin});
+  }
 }
 
-.tooltip {
-  composes: tooltip from './Tooltip.module.scss';
-}
-
-.content {
-  composes: content from './Tooltip.module.scss';
-}
-
-.suppressed {
-  composes: suppressed from './Tooltip.module.scss';
+.menuIcon {
+  margin-left: auto;
+  margin-right: $ca-grid;
+  opacity: 0.5;
+  display: flex;
+  align-items: center;
 }

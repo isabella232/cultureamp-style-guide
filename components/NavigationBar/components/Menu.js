@@ -2,9 +2,15 @@
 import * as React from 'react';
 
 import styles from './Menu.module.scss';
-import Tooltip from './Tooltip.js';
+import Tooltip from './Tooltip';
+import Link from './Link';
+import { MOBILE_QUERY } from '../constants';
+import Media from 'react-media';
+import { OffCanvas, OffCanvasContext } from '../../OffCanvas';
+import IconButton from '../../Button/IconButton';
+import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
-export type MenuItem = {
+type MenuItem = {
   label: string,
   link: string,
   newWindow?: boolean,
@@ -14,11 +20,9 @@ export type MenuItem = {
 type Props = {|
   children?: React.Element<any>,
   header?: React.Element<any>,
-  tooltip: string,
-  hideTooltip: boolean,
   items: Array<MenuItem>,
-  onMenuChange?: (open: boolean) => void,
   automationId?: string,
+  heading?: string,
 |};
 
 type State = {|
@@ -29,43 +33,54 @@ export default class Menu extends React.Component<Props, State> {
   root: ?HTMLElement;
 
   static displayName = 'Menu';
-
   static defaultProps = {
     items: [],
-    hideTooltip: false,
   };
 
   state = { open: false };
 
   render() {
-    const { children, tooltip, hideTooltip, automationId } = this.props;
+    const { children, automationId, heading } = this.props;
 
     return (
-      <nav className={styles.root} ref={root => (this.root = root)}>
-        <Tooltip
-          tooltip={tooltip}
-          hideTooltip={this.state.open || hideTooltip}
-          tabIndex={null} // button inside takes focus instead
-        >
-          <button
-            className={styles.button}
-            onClick={this.toggle}
-            aria-expanded={this.state.open}
-            data-automation-id={automationId}
-            onMouseDown={e => e.preventDefault()}
-          >
-            {children}
-          </button>
-        </Tooltip>
-        {this.state.open && this.renderMenu()}
-      </nav>
+      <Media query={MOBILE_QUERY}>
+        {matches =>
+          matches ? (
+            <React.Fragment>
+              <OffCanvasContext.Consumer>
+                {({ toggleVisibleMenu }) => (
+                  <Link
+                    text={heading ? heading : ''}
+                    href="#"
+                    onClick={() => toggleVisibleMenu(heading)}
+                    hasMenu
+                  />
+                )}
+              </OffCanvasContext.Consumer>
+              {this.renderOffCanvas()}
+            </React.Fragment>
+          ) : (
+            <nav className={styles.root} ref={root => (this.root = root)}>
+              <button
+                className={styles.button}
+                onClick={this.toggle}
+                aria-expanded={this.state.open}
+                data-automation-id={automationId}
+                onMouseDown={e => e.preventDefault()}
+              >
+                {children}
+              </button>
+              {this.state.open && this.renderMenu()}
+            </nav>
+          )
+        }
+      </Media>
     );
   }
 
   toggle = (e: SyntheticEvent<> | MouseEvent) => {
     const open = !this.state.open;
     this.setState({ open });
-    if (this.props.onMenuChange) this.props.onMenuChange(open);
   };
 
   renderMenu() {
@@ -80,6 +95,38 @@ export default class Menu extends React.Component<Props, State> {
       </div>
     );
   }
+
+  renderOffCanvas() {
+    const { items, heading } = this.props;
+
+    return (
+      <OffCanvas
+        links={items.map(this.renderOffCanvasMenuItem)}
+        heading={heading ? heading : 'Menu'}
+        headerComponent={this.renderBackButton()}
+        menuId={heading}
+      />
+    );
+  }
+
+  renderBackButton() {
+    return (
+      <OffCanvasContext.Consumer>
+        {({ toggleVisibleMenu }) => (
+          <IconButton
+            label="Back"
+            icon={backIcon}
+            onClick={() => toggleVisibleMenu(this.props.heading)}
+            reversed
+          />
+        )}
+      </OffCanvasContext.Consumer>
+    );
+  }
+
+  renderOffCanvasMenuItem = (item: MenuItem, index: number) => {
+    return <Link key={index} text={item.label} href={item.link} />;
+  };
 
   renderMenuItem = (item: MenuItem, index: number) => {
     const { newWindow } = item;

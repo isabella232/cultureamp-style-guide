@@ -1,4 +1,4 @@
-@import '~cultureamp-style-guide/components/Layout/styles';
+@import './styles';
 
 .root {
   @extend %root;
@@ -26,9 +26,17 @@
   box-sizing: border-box;
 }
 
+.bodyInner {
+  @extend %body-inner;
+}
+
 .sidebar {
   @extend %sidebar;
   box-sizing: border-box;
+}
+
+.sidebarInner {
+  @extend %sidebar-inner;
 }
 
 .content {

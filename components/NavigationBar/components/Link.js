@@ -4,56 +4,93 @@ import classNames from 'classnames';
 
 import styles from './Link.module.scss';
 import Icon from '../../Icon';
-import iconStyles from '../../Icon/Icon.module.scss';
 import type { SvgAsset } from '../../Icon/Icon.js';
+import Tooltip from './Tooltip.js';
+import chevronRightIcon from 'cultureamp-style-guide/icons/chevron-right.svg';
 
 type Props = {|
-  icon: SvgAsset,
+  icon?: SvgAsset,
+  text: string,
+  iconOnly: boolean,
   href: string,
   active: boolean,
-  tooltip: string,
-  hideTooltip: boolean,
   id?: string,
+  secondary: boolean,
   onClick?: (event: SyntheticMouseEvent<>) => void,
-  onMenuChange?: boolean => void,
+  tooltipText?: string,
+  target: '_self' | '_blank',
+  hasMenu?: boolean,
+  bottomTooltip?: boolean,
 |};
 
-const Link = ({
-  icon,
-  href,
-  active,
-  tooltip,
-  hideTooltip,
-  id,
-  onClick,
-}: Props) => {
-  return (
-    <div className={styles.root}>
+export default class Link extends React.PureComponent<Props> {
+  static defaultProps = {
+    iconOnly: false,
+    active: false,
+    secondary: false,
+    target: '_self',
+    bottomTooltip: false,
+  };
+
+  renderLink = () => {
+    const {
+      icon,
+      text,
+      href,
+      active,
+      id,
+      onClick,
+      secondary,
+      iconOnly,
+      target,
+      hasMenu,
+    } = this.props;
+
+    return (
       <a
-        className={classNames(styles.link, { [iconStyles.active]: active })}
-        {...{ href, id, onClick }}
-      >
-        <Icon icon={icon} title={tooltip} />
-      </a>
-      <div
-        className={classNames(styles.tooltip, {
-          [styles.suppressed]: hideTooltip,
+        className={classNames(styles.link, {
+          [styles.active]: active,
+          [styles.containsText]: typeof text != 'undefined',
+          [styles.secondary]: secondary,
         })}
-        aria-hidden
+        {...{ href, id, onClick, target }}
       >
-        <div>
-          <small className={styles.content}>{tooltip}</small>
-        </div>
-      </div>
-    </div>
-  );
-};
+        {icon && (
+          <span className={styles.linkIcon}>
+            <Icon
+              icon={icon}
+              role={iconOnly ? 'img' : 'presentation'}
+              title={iconOnly ? text : undefined}
+            />
+          </span>
+        )}
+        {text &&
+          !(icon && iconOnly) && (
+            <span className={styles.linkText}>{text}</span>
+          )}
+        {hasMenu && (
+          <span className={styles.menuIcon}>
+            <Icon icon={chevronRightIcon} role="presentation" />
+          </span>
+        )}
+      </a>
+    );
+  };
 
-Link.displayName = 'Link';
+  render() {
+    const { tooltipText, bottomTooltip, target } = this.props;
 
-Link.defaultProps = {
-  active: false,
-  hideTooltip: false,
-};
-
-export default Link;
+    return target === '_blank' ? (
+      <Tooltip
+        hideTooltip={false}
+        tabIndex={null} // link inside takes focus instead
+        tooltip={tooltipText ? tooltipText : 'Opens in a new tab'}
+        bottomPosition={bottomTooltip}
+      >
+        {this.renderLink()}
+      </Tooltip>
+    ) : (
+      this.renderLink()
+    );
+  }
+}
