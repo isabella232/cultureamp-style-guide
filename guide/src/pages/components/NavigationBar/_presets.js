@@ -1,5 +1,5 @@
 // @flow
-import NavigationBar from 'cultureamp-style-guide/components/GlobalIANavigationBar';
+import NavigationBar from 'cultureamp-style-guide/components/NavigationBar';
 import Icon from 'cultureamp-style-guide/components/Icon';
 import homeIcon from 'cultureamp-style-guide/icons/home.svg';
 import caIcon from 'cultureamp-style-guide/icons/ca-monogram.svg';
