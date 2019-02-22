@@ -10,7 +10,7 @@ import { OffCanvas, OffCanvasContext } from '../../OffCanvas';
 import IconButton from '../../Button/IconButton';
 import backIcon from 'cultureamp-style-guide/icons/arrow-backward.svg';
 
-type MenuItem = {
+export type MenuItem = {
   label: string,
   link: string,
   newWindow?: boolean,
