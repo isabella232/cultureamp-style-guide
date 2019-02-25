@@ -5,7 +5,7 @@
 @import '~cultureamp-style-guide/styles/responsive';
 
 .navigationBar {
-  @extend %navigation-bar;
+  @extend %ca-navigation-bar;
 
   &.kaizen {
     background: $ca-palette-wisteria;
