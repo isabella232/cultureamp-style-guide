@@ -84,8 +84,6 @@ const content = (
     <p>...</p>
     <p>...</p>
     <p>...</p>
-    <p>...</p>
-    <p>While the sidebar and navbar should remain fixed.</p>
   </div>
 );
 

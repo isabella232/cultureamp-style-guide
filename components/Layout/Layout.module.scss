@@ -5,9 +5,8 @@
 }
 
 .navigationBar {
-  @extend %ca-navigation-bar;
+  @extend %navigation-bar;
   box-sizing: border-box;
-  width: 60px;
 }
 
 .page {

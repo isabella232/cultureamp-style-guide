@@ -7,7 +7,7 @@ $padding: $ca-grid;
 
 .layoutWrapper {
   box-sizing: border-box;
-  padding: $padding;
+  padding: 0 $padding;
   width: 100%;
   height: 100vh;
   overflow: scroll;
@@ -17,10 +17,8 @@ $padding: $ca-grid;
     background: $ca-palette-stone;
   }
 
-  // Get the header and sidebar to not be "position: fixed" for the purpose of this demo.
-  header,
-  // .root > .page > .body > .sidebar
-  > div > div:last-child > :not(aside):not(footer) > :not(main) {
+  //Get the header and sidebar to not be "position: fixed" for the purpose of this demo.
+  header {
     position: absolute;
   }
 }

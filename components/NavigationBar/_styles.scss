@@ -3,7 +3,7 @@
 
 $ca-navigation-bar__height: 2.5 * $ca-grid;
 
-%ca-navigation-bar {
+%navigation-bar {
   display: flex;
   flex-direction: row;
   background-color: add-shade($ca-palette-ink, 20%);
