@@ -50,11 +50,7 @@ function NavigationBar(props: { children: React.Node }) {
 NavigationBar.displayName = 'NavigationBar';
 
 function Sidebar(props: { children: React.Node }) {
-  return (
-    <div className={styles.sidebar}>
-      <div className={styles.sidebarInner}>{props.children}</div>
-    </div>
-  );
+  return <div className={styles.sidebar}>{props.children}</div>;
 }
 Sidebar.displayName = 'Sidebar';
 

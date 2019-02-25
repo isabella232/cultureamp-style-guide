@@ -103,11 +103,6 @@
   }
 }
 
-// enforce fixed width to avoid change when scrollbar on %sidebar is visible
-%sidebar-inner {
-  width: $ca-layout-sidebar-width - 2 * $ca-grid;
-}
-
 %content {
   // to support sticky footer
   display: flex;

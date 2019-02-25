@@ -34,10 +34,6 @@
   box-sizing: border-box;
 }
 
-.sidebarInner {
-  @extend %sidebar-inner;
-}
-
 .content {
   @extend %content;
   box-sizing: border-box;
