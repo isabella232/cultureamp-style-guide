@@ -83,11 +83,7 @@ exports[`The Layout component renders child components in the correct positions 
             <div
               className="sidebar"
             >
-              <div
-                className="sidebarInner"
-              >
-                Sidebar
-              </div>
+              Sidebar
             </div>
           </Sidebar>
           <main
@@ -151,11 +147,7 @@ exports[`The Sidebar component renders correctly 1`] = `
 <Sidebar>
   <div
     className="sidebar"
-  >
-    <div
-      className="sidebarInner"
-    />
-  </div>
+  />
 </Sidebar>
 `;
 
