@@ -45,8 +45,8 @@
       "path---components-layout-layout-demo-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-text-index-md": [
-      "component---src-pages-components-text-index-md-51aad6adf8bc2d99f27a.js",
-      "component---src-pages-components-text-index-md-51aad6adf8bc2d99f27a.js.map"
+      "component---src-pages-components-text-index-md-0c275883738e97189122.js",
+      "component---src-pages-components-text-index-md-0c275883738e97189122.js.map"
     ],
     "path---styles-icons": [
       "path---styles-icons-a0e39f21c11f6a62c5ab.js",
@@ -185,9 +185,9 @@
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-5360c3b5e5054b5051c3.js",
+      "commons-46f14cc229ba6763d60b.js",
       "build-js-styles.css",
-      "commons-5360c3b5e5054b5051c3.js.map",
+      "commons-46f14cc229ba6763d60b.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
