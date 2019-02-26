@@ -22,6 +22,7 @@ type TextProps = {
     | 'control-action'
     | 'button',
   inheritBaseline: boolean,
+  inline: boolean,
   children: React.Node,
 };
 
@@ -31,6 +32,7 @@ const Text = (props: TextProps) => {
     <Tag
       className={classNames(styles[props.style], {
         [styles.inheritBaseline]: props.inheritBaseline,
+        [styles.inline]: props.inline,
       })}
     >
       {props.children}
@@ -41,6 +43,7 @@ const Text = (props: TextProps) => {
 Text.defaultProps = {
   style: 'default-style',
   inheritBaseline: false,
+  inline: false,
 };
 
 Text.displayName = 'Text';

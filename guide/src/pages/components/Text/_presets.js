@@ -19,6 +19,23 @@ const presets = [
     name: 'H2',
     node: <Text tag="h2">This is a Title (H2)</Text>,
   },
+
+  {
+    name: 'H2 (inline)',
+    node: (
+      <div>
+        <Text tag="h2" inline={true}>
+          This is a Title (H2)
+        </Text>
+        <Text tag="h2" inline={true}>
+          This is a Title (H2)
+        </Text>
+        <Text tag="h2" inline={true}>
+          This is a Title (H2)
+        </Text>
+      </div>
+    ),
+  },
   {
     name: 'H3',
     node: <Text tag="h3">This is a Display Heading (H3)</Text>,
@@ -124,7 +141,8 @@ const presets = [
     node: (
       <Text tag="div" style="notification">
         Div with "Notification" styles
-        <br />that have a smaller line-height
+        <br />
+        that have a smaller line-height
       </Text>
     ),
   },
