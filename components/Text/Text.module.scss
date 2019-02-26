@@ -89,6 +89,12 @@ p.default-style {
   @include ca-inherit-baseline;
 }
 
+// Required for aligning text alongside other elements e.g. Button
+.inline.inline {
+  display: inline-flex;
+  margin-bottom: 0;
+}
+
 // Alias classes for Elm CSS modules
 .defaultStyle {
   composes: default-style;

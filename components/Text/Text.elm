@@ -9,6 +9,7 @@ module Text.Text exposing
     , h5
     , h6
     , inheritBaseline
+    , inline
     , label
     , p
     , style
@@ -46,11 +47,11 @@ import Html exposing (Html)
 
 view : Config msg -> List (Html.Html msg) -> Html.Html msg
 view (Config config) children =
-    config.tag [ className config.tag config.style config.inheritBaseline ] children
+    config.tag [ className config.tag config.style config.inheritBaseline config.inline ] children
 
 
-className : Element msg -> TypeStyle -> Bool -> Html.Attribute msg
-className tag typeStyle shouldInheritBaseline =
+className : Element msg -> TypeStyle -> Bool -> Bool -> Html.Attribute msg
+className tag typeStyle shouldInheritBaseline shouldInline =
     let
         styleClass =
             case typeStyle of
@@ -102,6 +103,7 @@ className tag typeStyle shouldInheritBaseline =
     styles.classList
         [ ( styleClass, True )
         , ( .inheritBaseline, shouldInheritBaseline )
+        , ( .inline, shouldInline )
         ]
 
 
@@ -123,6 +125,7 @@ styles =
         , controlAction = "controlAction"
         , button = "button"
         , inheritBaseline = "inheritBaseline"
+        , inline = "inline"
         }
 
 
@@ -138,6 +141,7 @@ type alias ConfigValue msg =
     { tag : Element msg
     , style : TypeStyle
     , inheritBaseline : Bool
+    , inline : Bool
     }
 
 
@@ -168,6 +172,7 @@ defaultConfig =
     { tag = Html.div
     , style = DefaultStyle
     , inheritBaseline = False
+    , inline = False
     }
 
 
@@ -223,6 +228,11 @@ label =
 inheritBaseline : Bool -> Config msg -> Config msg
 inheritBaseline value (Config config) =
     Config { config | inheritBaseline = value }
+
+
+inline : Bool -> Config msg -> Config msg
+inline value (Config config) =
+    Config { config | inline = value }
 
 
 style : TypeStyle -> Config msg -> Config msg
