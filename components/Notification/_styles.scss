@@ -188,11 +188,13 @@ $ca-notification-slide-right: transform $ca-duration-slow ease-out;
   padding-right: $ca-grid / 2;
   // overriding Bootstrap style that changes h6s to text-transform: uppercase
   text-transform: none;
+  color: inherit;
 }
 
 %ca-notification__text {
   @include ca-type-block;
   margin: 0;
+  color: inherit;
 
   %ca-notification---inline &,
   %ca-notification---toast & {
