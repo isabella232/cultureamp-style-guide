@@ -3,6 +3,7 @@ module Button.Button exposing
     , ButtonType(..)
     , Config
     , IconPosition(..)
+    , Target(..)
     , automationId
     , buttonType
     , default
@@ -12,15 +13,16 @@ module Button.Button exposing
     , form
     , fullWidth
     , href
-    , id
     , icon
     , iconButton
     , iconPosition
+    , id
     , onClick
     , primary
     , reverseColor
     , reversed
     , secondary
+    , target
     , view
     )
 
@@ -80,8 +82,9 @@ view (Config config) label =
             case config.id of
                 Just idString ->
                     [ Html.Attributes.id idString ]
+
                 Nothing ->
-                    [ ]
+                    []
 
         titleAttr =
             if config.iconButton then
@@ -99,6 +102,13 @@ view (Config config) label =
                 ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
                 ++ idAttr
+
+        targetValue =
+            case config.target of
+                Self ->
+                    "_self"
+                Blank ->
+                    "_blank"
     in
     span
         [ styles.classList
@@ -108,7 +118,7 @@ view (Config config) label =
         ]
         [ case config.href of
             Just hrefValue ->
-                a (attribs ++ [ Html.Attributes.href hrefValue ])
+                a (attribs ++ [ Html.Attributes.href hrefValue, Html.Attributes.target targetValue ])
                     [ viewContent (Config config) label |> Html.map never ]
 
             Nothing ->
@@ -246,6 +256,7 @@ type alias ConfigValue msg =
     , reverseColor : Maybe BrandColor
     , onClick : Maybe msg
     , href : Maybe String
+    , target : Target
     , id : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
@@ -263,6 +274,11 @@ type Variant
 type IconPosition
     = Start
     | End
+
+
+type Target
+    = Self
+    | Blank
 
 
 type BrandColor
@@ -291,6 +307,7 @@ defaults =
     , reverseColor = Nothing
     , onClick = Nothing
     , href = Nothing
+    , target = Self
     , id = Nothing
     , automationId = Nothing
     , buttonType = Nothing
@@ -370,6 +387,12 @@ onClick value (Config config) =
 href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
+
+
+target : Target -> Config msg -> Config msg
+target value (Config config) =
+    Config { config | target = value }
+
 
 id : String -> Config msg -> Config msg
 id value (Config config) =
