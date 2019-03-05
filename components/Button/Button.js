@@ -12,6 +12,7 @@ Button.defaultProps = {
   disabled: false,
   reversed: false,
   iconPosition: 'start',
+  target: '_self' || '_blank',
 };
 
 export default function Button(props: ButtonProps) {
