@@ -16,7 +16,7 @@ type GenericProps = {|
   icon?: SvgAsset,
   onClick?: MouseEvent => any,
   href?: string,
-  target?: '_self' | '_blank',
+  newTab?: boolean,
   type?: 'submit' | 'reset',
   automationId?: string,
 |};
@@ -47,7 +47,7 @@ GenericButton.defaultProps = {
   iconButton: false,
   primary: false,
   secondary: false,
-  target: '_self',
+  newTab: false,
 };
 
 export default function GenericButton(props: Props) {
@@ -88,13 +88,13 @@ function renderButton(props: Props) {
 }
 
 function renderLink(props: Props) {
-  const { id, href, onClick, target } = props;
+  const { id, href, onClick, newTab } = props;
 
   return (
     <a
       id={id}
       href={href}
-      target={target}
+      target={newTab ? '_blank' : '_self'}
       className={buttonClass(props)}
       onClick={e => {
         if (onClick) {
