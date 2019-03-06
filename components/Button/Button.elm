@@ -16,7 +16,7 @@ module Button.Button exposing
     , iconButton
     , iconPosition
     , id
-    , newTab
+    , newTabAndIUnderstandTheAccessibilityImplications
     , onClick
     , primary
     , reverseColor
@@ -103,7 +103,7 @@ view (Config config) label =
                 ++ idAttr
 
         targetValue =
-            if config.newTab then
+            if config.newTabAndIUnderstandTheAccessibilityImplications then
                 "_blank"
 
             else
@@ -255,7 +255,7 @@ type alias ConfigValue msg =
     , reverseColor : Maybe BrandColor
     , onClick : Maybe msg
     , href : Maybe String
-    , newTab : Bool
+    , newTabAndIUnderstandTheAccessibilityImplications : Bool
     , id : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
@@ -301,7 +301,7 @@ defaults =
     , reverseColor = Nothing
     , onClick = Nothing
     , href = Nothing
-    , newTab = False
+    , newTabAndIUnderstandTheAccessibilityImplications = False
     , id = Nothing
     , automationId = Nothing
     , buttonType = Nothing
@@ -383,9 +383,9 @@ href value (Config config) =
     Config { config | href = Just value }
 
 
-newTab : Config msg -> Config msg
-newTab (Config config) =
-    Config { config | newTab = True }
+newTabAndIUnderstandTheAccessibilityImplications : Config msg -> Config msg
+newTabAndIUnderstandTheAccessibilityImplications (Config config) =
+    Config { config | newTabAndIUnderstandTheAccessibilityImplications = True }
 
 
 id : String -> Config msg -> Config msg
