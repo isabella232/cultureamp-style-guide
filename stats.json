@@ -85,8 +85,8 @@
       "path---guides-localisation-examples-rtl-layout-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-icon-button-md": [
-      "component---src-pages-components-button-icon-button-md-346ca84c171b6d4f9ffe.js",
-      "component---src-pages-components-button-icon-button-md-346ca84c171b6d4f9ffe.js.map"
+      "component---src-pages-components-button-icon-button-md-4c12842bbac65862fdb4.js",
+      "component---src-pages-components-button-icon-button-md-4c12842bbac65862fdb4.js.map"
     ],
     "path---components-icon": [
       "path---components-icon-a0e39f21c11f6a62c5ab.js",
@@ -121,8 +121,8 @@
       "path---guides-animation-examples-duration-presets-example-a0e39f21c11f6a62c5ab.js.map"
     ],
     "component---src-pages-components-button-button-md": [
-      "component---src-pages-components-button-button-md-0afebcba9eb5812769f1.js",
-      "component---src-pages-components-button-button-md-0afebcba9eb5812769f1.js.map"
+      "component---src-pages-components-button-button-md-3f8f617cab6aef9af317.js",
+      "component---src-pages-components-button-button-md-3f8f617cab6aef9af317.js.map"
     ],
     "component---src-pages-styles-icons-index-md": [
       "component---src-pages-styles-icons-index-md-293f6832e3edcf0bef54.js",
@@ -185,9 +185,9 @@
       "component---src-pages-404-js-4730dbe6feaf1b212f94.js.map"
     ],
     "commons": [
-      "commons-46f14cc229ba6763d60b.js",
+      "commons-e4eed109e3b6e977c44d.js",
       "build-js-styles.css",
-      "commons-46f14cc229ba6763d60b.js.map",
+      "commons-e4eed109e3b6e977c44d.js.map",
       "build-js-styles.css.map"
     ],
     "component---src-pages-components-notification-inline-md": [
