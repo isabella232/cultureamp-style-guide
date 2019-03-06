@@ -12,10 +12,11 @@ module Button.Button exposing
     , form
     , fullWidth
     , href
-    , id
     , icon
     , iconButton
     , iconPosition
+    , id
+    , newTabAndIUnderstandTheAccessibilityImplications
     , onClick
     , primary
     , reverseColor
@@ -80,8 +81,9 @@ view (Config config) label =
             case config.id of
                 Just idString ->
                     [ Html.Attributes.id idString ]
+
                 Nothing ->
-                    [ ]
+                    []
 
         titleAttr =
             if config.iconButton then
@@ -99,6 +101,13 @@ view (Config config) label =
                 ++ titleAttr
                 ++ buttonTypeAttribs (Config config)
                 ++ idAttr
+
+        targetValue =
+            if config.newTabAndIUnderstandTheAccessibilityImplications then
+                "_blank"
+
+            else
+                "_self"
     in
     span
         [ styles.classList
@@ -108,7 +117,7 @@ view (Config config) label =
         ]
         [ case config.href of
             Just hrefValue ->
-                a (attribs ++ [ Html.Attributes.href hrefValue ])
+                a (attribs ++ [ Html.Attributes.href hrefValue, Html.Attributes.target targetValue ])
                     [ viewContent (Config config) label |> Html.map never ]
 
             Nothing ->
@@ -246,6 +255,7 @@ type alias ConfigValue msg =
     , reverseColor : Maybe BrandColor
     , onClick : Maybe msg
     , href : Maybe String
+    , newTabAndIUnderstandTheAccessibilityImplications : Bool
     , id : Maybe String
     , automationId : Maybe String
     , buttonType : Maybe ButtonType
@@ -291,6 +301,7 @@ defaults =
     , reverseColor = Nothing
     , onClick = Nothing
     , href = Nothing
+    , newTabAndIUnderstandTheAccessibilityImplications = False
     , id = Nothing
     , automationId = Nothing
     , buttonType = Nothing
@@ -370,6 +381,12 @@ onClick value (Config config) =
 href : String -> Config msg -> Config msg
 href value (Config config) =
     Config { config | href = Just value }
+
+
+newTabAndIUnderstandTheAccessibilityImplications : Config msg -> Config msg
+newTabAndIUnderstandTheAccessibilityImplications (Config config) =
+    Config { config | newTabAndIUnderstandTheAccessibilityImplications = True }
+
 
 id : String -> Config msg -> Config msg
 id value (Config config) =
