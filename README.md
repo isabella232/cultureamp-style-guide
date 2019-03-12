@@ -1,4 +1,8 @@
-# Kaizen
+# STATUS: DEPRECATED AND UNMAINTAINED
+
+**This repo is no longer in use and Pull Requests will not be accepted. Please use the new [Kaizen Component Library](https://github.com/cultureamp/big-frontend-repo/tree/master/packages/kaizen-component-library). All components from this repo have been migrated across.**
+
+## Kaizen
 
 **_Culture Amp’s Component Library and Living Style Guide_**
 
