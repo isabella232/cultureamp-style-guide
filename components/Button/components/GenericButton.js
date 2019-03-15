@@ -17,7 +17,7 @@ type GenericProps = {|
   onClick?: MouseEvent => any,
   href?: string,
   newTabAndIUnderstandTheAccessibilityImplications?: boolean,
-  type?: 'submit' | 'reset',
+  type?: 'submit' | 'reset' | 'button',
   automationId?: string,
 |};
 
@@ -48,6 +48,7 @@ GenericButton.defaultProps = {
   primary: false,
   secondary: false,
   newTabAndIUnderstandTheAccessibilityImplications: false,
+  type: 'button',
 };
 
 export default function GenericButton(props: Props) {
