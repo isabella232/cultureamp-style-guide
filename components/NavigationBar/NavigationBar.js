@@ -59,7 +59,7 @@ export default class NavigationBar extends React.Component<Props> {
             />
           ) : (
             <header
-              className={classNames(styles.navigationBar, styles[colorScheme])}
+              className={classNames(styles.navigationBar, styles[colorScheme ? colorScheme : 'cultureamp'])}
             >
               {this.renderBadge()}
               {this.renderLinks(links)}
@@ -74,6 +74,8 @@ export default class NavigationBar extends React.Component<Props> {
   renderBadge() {
     const { environment, loading, badgeHref } = this.props;
 
+    const getEnvironment = environment ? environment : 'production'
+
     const badges: {
       [key: string]: React.ComponentType<{|
         loading: boolean,
@@ -85,8 +87,10 @@ export default class NavigationBar extends React.Component<Props> {
       test: TestBadge,
       local: LocalBadge,
     };
-    const Badge = badges[environment] || namedBadge(environment);
-    return <Badge loading={loading} href={badgeHref} />;
+
+
+    const Badge = badges[getEnvironment] || namedBadge(getEnvironment);
+    return <Badge loading={loading ? loading : false} href={badgeHref ? badgeHref : '/'} />;
   }
 
   renderLinks(links: React.Element<typeof Link>[]) {
@@ -127,12 +131,6 @@ export default class NavigationBar extends React.Component<Props> {
   }
 
   static displayName = 'NavigationBar';
-  static defaultProps = {
-    environment: 'production',
-    loading: false,
-    colorScheme: 'cultureamp',
-    badgeHref: '/',
-  };
 
   static Link = Link;
   static Menu = Menu;
