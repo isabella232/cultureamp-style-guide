@@ -23,7 +23,7 @@ type Props = {|
   loading?: boolean,
   colorScheme?: 'cultureamp' | 'kaizen',
   badgeHref?: string,
-  footerComponent: React.Node,
+  footerComponent?: React.Node,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
