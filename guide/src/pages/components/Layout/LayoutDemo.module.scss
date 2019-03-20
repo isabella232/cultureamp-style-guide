@@ -19,7 +19,7 @@ $padding: $ca-grid;
 
   //Get the header and sidebar to not be "position: fixed" for the purpose of this demo.
   header {
-    position: absolute;
+    position: static;
   }
 }
 

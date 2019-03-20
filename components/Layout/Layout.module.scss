@@ -7,7 +7,6 @@
 .navigationBar {
   @extend %navigation-bar;
   box-sizing: border-box;
-  position: sticky;
   top: 0;
   z-index: $ca-z-index-fixed;
 }
