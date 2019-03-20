@@ -91,8 +91,7 @@
   // stack sidebar and content vertically in print
   @media print {
     background-color: transparent;
-    overflow-y: visible;
-    overflow-x: visible;
+    overflow: visible;
     position: static;
     width: auto;
     height: auto;

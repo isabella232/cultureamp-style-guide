@@ -50,7 +50,7 @@ export default class Link extends React.PureComponent<Props> {
       <a
         className={classNames(styles.link, {
           [styles.active]: active,
-          [styles.containsText]: typeof text != 'undefined',
+          [styles.containsText]: !!text,
           [styles.secondary]: secondary,
         })}
         {...{ href, id, onClick, target }}

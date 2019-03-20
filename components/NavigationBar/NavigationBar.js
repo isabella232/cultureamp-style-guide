@@ -19,11 +19,11 @@ import ControlledOffCanvas from '../OffCanvas';
 type SupportedChild = React.Element<typeof Link> | React.Element<typeof Menu>;
 
 type Props = {|
-  environment: string,
-  loading: boolean,
-  colorScheme: 'cultureamp' | 'kaizen',
-  badgeHref: string,
-  footerComponent?: ?React.Node,
+  environment?: string,
+  loading?: boolean,
+  colorScheme?: 'cultureamp' | 'kaizen',
+  badgeHref?: string,
+  footerComponent: React.Node,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
