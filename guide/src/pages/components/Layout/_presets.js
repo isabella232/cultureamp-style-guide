@@ -12,24 +12,22 @@ import styles from './LayoutDemo.module.scss';
 const navBar = (
   <Layout.NavigationBar>
     <NavigationBar>
+      <NavigationBar.Link href="/" text="Home" active={true} />
       <NavigationBar.Link
-        icon={homeIcon}
-        href="/"
-        tooltip="Home"
-        active={true}
-      />
-      <NavigationBar.Link
-        icon={supportIcon}
         href="http://academy.cultureamp.com/"
-        tooltip="Support"
-        active={false}
+        text="Support"
       />
       <NavigationBar.Menu
-        tooltip="Culture Amp"
         items={[
           {
             label: 'About Culture Amp',
             link: 'https://www.cultureamp.com/',
+          },
+          {
+            label: 'Contribute to this guide',
+            link:
+              'https://github.com/cultureamp/cultureamp-style-guide/tree/master/guide',
+            target: '_blank',
           },
         ]}
       >
@@ -86,8 +84,6 @@ const content = (
     <p>...</p>
     <p>...</p>
     <p>...</p>
-    <p>...</p>
-    <p>While the sidebar and navbar should remain fixed.</p>
   </div>
 );
 

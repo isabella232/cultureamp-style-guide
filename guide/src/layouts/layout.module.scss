@@ -8,7 +8,7 @@
 
 $tablet: (min-width: 768px);
 $desktop: (min-width: 1366px);
-$headerHeight: $ca-navigation-bar__width;
+$headerHeight: $ca-navigation-bar__height;
 $transitionSpeed: $ca-duration-slow;
 
 @mixin fullscreenFixed {
@@ -26,7 +26,7 @@ $transitionSpeed: $ca-duration-slow;
   .navOpen & {
     @include fullscreenFixed();
     z-index: $ca-z-index-fixed;
-    width: $ca-navigation-bar__width;
+    width: 0;
     right: auto;
   }
 }
@@ -35,7 +35,7 @@ $transitionSpeed: $ca-duration-slow;
   .navOpen & {
     @include fullscreenFixed();
     z-index: $ca-z-index-fixed;
-    left: $ca-navigation-bar__width;
+    left: 0;
   }
 }
 .subnavBackdrop {
@@ -46,13 +46,13 @@ $transitionSpeed: $ca-duration-slow;
   z-index: $ca-z-index-body;
 }
 .pageContainer {
-  margin: 0 auto;
+  margin: $ca-navigation-bar__height auto 0;
   max-width: 960px;
   padding: $ca-grid;
   clear: both;
   display: flex;
   flex-direction: column;
-  min-height: calc(100% - #{$ca-navigation-bar__width});
+  min-height: calc(100% - #{$ca-navigation-bar__height + $headerHeight});
 }
 .footer {
   @include ca-type-ideal-small;
@@ -79,10 +79,10 @@ $transitionSpeed: $ca-duration-slow;
       grid-template-areas:
         'navbar subnav header'
         'navbar subnav content';
-      grid-template-rows: $headerHeight auto;
-      grid-template-columns: $ca-navigation-bar__width 0 auto;
+      grid-template-rows: $ca-navigation-bar__height auto;
+      grid-template-columns: 0 0 auto;
       @media #{$desktop} {
-        grid-template-columns: $ca-navigation-bar__width min-content auto;
+        grid-template-columns: 0 min-content auto;
       }
       height: 100vh;
     }
@@ -130,9 +130,9 @@ $transitionSpeed: $ca-duration-slow;
       z-index: $ca-z-index-fixed;
       .headerBar {
         position: fixed;
-        left: $ca-navigation-bar__width;
+        left: 0;
         right: 0;
-        top: 0;
+        top: $ca-navigation-bar__height;
         z-index: $ca-z-index-fixed;
         transition: transform $transitionSpeed ease;
         transform: translateX(0);
@@ -152,8 +152,8 @@ $transitionSpeed: $ca-duration-slow;
       :target:before {
         content: '';
         display: block;
-        height: $headerHeight;
-        margin: -$headerHeight 0 0;
+        height: $ca-navigation-bar__height;
+        margin: -$ca-navigation-bar__height 0 0;
       }
     }
 

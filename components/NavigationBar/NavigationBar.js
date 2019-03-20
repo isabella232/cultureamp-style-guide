@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import classNames from 'classnames';
+import Media from 'react-media';
 
 import styles from './NavigationBar.module.scss';
 import {
@@ -10,27 +11,23 @@ import {
   LocalBadge,
   namedBadge,
 } from './components/Badge.js';
+import { MOBILE_QUERY } from './constants';
 import Link from './components/Link.js';
 import Menu from './components/Menu.js';
-import Tooltip from './components/Tooltip.js';
+import ControlledOffCanvas from '../OffCanvas';
 
-type SupportedChild =
-  | React.Element<typeof Link>
-  | React.Element<typeof Menu>
-  | React.Element<typeof Tooltip>;
+type SupportedChild = React.Element<typeof Link> | React.Element<typeof Menu>;
 
 type Props = {|
-  environment: string,
-  loading: boolean,
-  colorScheme: 'cultureamp' | 'kaizen',
+  environment?: string,
+  loading?: boolean,
+  colorScheme?: 'cultureamp' | 'kaizen',
+  badgeHref?: string,
+  footerComponent?: React.Node,
   children: React.ChildrenArray<SupportedChild | false>,
 |};
 
-type State = {|
-  menusOpen: number,
-|};
-
-export default class NavigationBar extends React.Component<Props, State> {
+export default class NavigationBar extends React.Component<Props> {
   render() {
     const { environment, loading, children, colorScheme } = this.props;
 
@@ -43,47 +40,77 @@ export default class NavigationBar extends React.Component<Props, State> {
       // Because react-hot-loader wraps the type, and uglify changes the type name,
       // we compare the displayName rather than comparing the type of name directly.
       if (child.type.displayName == Link.displayName) {
-        links.push(child);
+        links.push(((child: any): React.Element<typeof Link>));
       } else {
         otherChildren.push(child);
       }
     });
 
     return (
-      <header className={classNames(styles.navigationBar, styles[colorScheme])}>
-        {this.renderBadge()}
-        {this.renderLinks(links)}
-        {this.renderOtherChildren(otherChildren)}
-      </header>
+      <Media query={MOBILE_QUERY}>
+        {matches =>
+          matches ? (
+            <ControlledOffCanvas
+              headerComponent={this.renderBadge()}
+              footerComponent={this.props.footerComponent}
+              links={[...links, ...otherChildren]}
+              heading="Menu"
+              menuId="menu"
+            />
+          ) : (
+            <header
+              className={classNames(styles.navigationBar, styles[colorScheme ? colorScheme : 'cultureamp'])}
+            >
+              {this.renderBadge()}
+              {this.renderLinks(links)}
+              {this.renderOtherChildren(otherChildren)}
+            </header>
+          )
+        }
+      </Media>
     );
   }
 
   renderBadge() {
-    const { environment, loading } = this.props;
+    const { environment, loading, badgeHref } = this.props;
+
+    const getEnvironment = environment ? environment : 'production'
 
     const badges: {
-      [key: string]: React.ComponentType<{| loading: boolean |}>,
+      [key: string]: React.ComponentType<{|
+        loading: boolean,
+        href: string,
+      |}>,
     } = {
       production: ProductionBadge,
       staging: StagingBadge,
       test: TestBadge,
       local: LocalBadge,
     };
-    const Badge = badges[environment] || namedBadge(environment);
-    return <Badge loading={loading} />;
+
+
+    const Badge = badges[getEnvironment] || namedBadge(getEnvironment);
+    return <Badge loading={loading ? loading : false} href={badgeHref ? badgeHref : '/'} />;
   }
 
-  renderLinks(links: SupportedChild[]) {
+  renderLinks(links: React.Element<typeof Link>[]) {
+    const indexOfFirstSecondaryLink = links.findIndex(
+      link => link.props.secondary
+    );
+
     return (
       <nav className={styles.links}>
-        <ul className={styles.linkList}>
-          {links.map(link => (
-            <li key={link.key} className={styles.child}>
-              <div>
-                {React.cloneElement(link, {
-                  hideTooltip: this.state.menusOpen > 0,
-                })}
-              </div>
+        <ul>
+          {links.map((link, index) => (
+            <li
+              key={link.key}
+              className={classNames(styles.child, {
+                [styles.active]: link.props.active,
+                [styles.secondary]: link.props.secondary,
+                [styles.first]: index === indexOfFirstSecondaryLink,
+              })}
+            >
+              {link}
             </li>
           ))}
         </ul>
@@ -92,36 +119,19 @@ export default class NavigationBar extends React.Component<Props, State> {
   }
 
   renderOtherChildren(otherChildren: SupportedChild[]) {
-    return otherChildren.map(child => (
-      <div key={child.key} className={styles.child}>
-        <div>
-          {React.cloneElement(child, {
-            hideTooltip: this.state.menusOpen > 0,
-            onMenuChange: this.menuChange,
-          })}
-        </div>
+    return (
+      <div className={styles.otherChildren}>
+        {otherChildren.map(child => (
+          <div key={child.key} className={styles.child}>
+            {child}
+          </div>
+        ))}
       </div>
-    ));
+    );
   }
-
-  menuChange = (open: boolean) => {
-    this.setState(state => ({
-      ...state,
-      menusOpen: state.menusOpen + (open ? 1 : -1),
-    }));
-  };
 
   static displayName = 'NavigationBar';
 
-  static defaultProps = {
-    environment: 'production',
-    loading: false,
-    colorScheme: 'cultureamp',
-  };
-
-  state = { menusOpen: 0 };
-
   static Link = Link;
   static Menu = Menu;
-  static Tooltip = Tooltip;
 }

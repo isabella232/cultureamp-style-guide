@@ -1,4 +1,4 @@
-@import '~cultureamp-style-guide/components/Layout/styles';
+@import './styles';
 
 .root {
   @extend %root;
@@ -7,7 +7,8 @@
 .navigationBar {
   @extend %navigation-bar;
   box-sizing: border-box;
-  width: 60px;
+  top: 0;
+  z-index: $ca-z-index-fixed;
 }
 
 .page {
@@ -24,6 +25,10 @@
 .body {
   @extend %body;
   box-sizing: border-box;
+}
+
+.bodyInner {
+  @extend %body-inner;
 }
 
 .sidebar {

@@ -16,7 +16,6 @@ const MainNav = ({ openNav }, context) => {
       {sitemap.children.map(page => (
         <NavigationBar.Link
           key={page.title}
-          icon={page.icon}
           href={withPrefix(page.href)}
           tooltip={page.title}
           onClick={e => {
@@ -27,7 +26,8 @@ const MainNav = ({ openNav }, context) => {
             openNav();
             e.preventDefault();
           }}
-          active={path.startsWith(page.href)}
+          active={false}
+          text="Home"
         />
       ))}
       <NavigationBar.Menu

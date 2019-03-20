@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './OffCanvas.module.scss';
 import Header from './components/Header';
 import Menu from './components/Menu';
-import Link from '../GlobalIANavigationBar/components/Link';
+import Link from '../NavigationBar/components/Link';
 
 type Props = {|
   links: Array<Link>,
