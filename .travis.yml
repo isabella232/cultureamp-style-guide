@@ -12,7 +12,6 @@ script:
 - yarn flow
 - yarn jest
 - bin/buildSite
-- yarn semantic-release
 deploy:
   provider: pages
   local-dir: guide/public
