@@ -24,6 +24,7 @@ class ColorShowcase extends React.Component {
           'Positive-Delta',
           'Negative-Delta',
           'Stone',
+          'Ash',
         ])}
       </div>
     );
