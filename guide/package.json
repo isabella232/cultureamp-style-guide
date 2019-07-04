@@ -27,7 +27,8 @@
     "react-helmet": "^5.2.0",
     "react-syntax-highlighter": "^8.0.1",
     "style-loader": "^0.20.3",
-    "wcag-contrast-verifier": "^1.1.0"
+    "wcag-contrast-verifier": "^1.1.0",
+    "snyk": "^1.189.0"
   },
   "keywords": [
     "gatsby"
@@ -35,7 +36,9 @@
   "license": "MIT",
   "main": "n/a",
   "scripts": {
-    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\""
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "devDependencies": {
     "elm-webpack-loader": "^5.0.0",
@@ -44,5 +47,6 @@
   "resolutions": {
     "gatsby/react": "16.7.0",
     "gatsby/react-dom": "16.7.0"
-  }
+  },
+  "snyk": true
 }
