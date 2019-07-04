@@ -17,7 +17,9 @@
     "Android >= 4"
   ],
   "scripts": {
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "commitlint": {
     "extends": [
@@ -108,7 +110,8 @@
     "style-loader": "^0.23.0",
     "svg-sprite-loader": "^3.9.2",
     "svgo": "^0.7.2",
-    "svgo-loader": "^1.2.1"
+    "svgo-loader": "^1.2.1",
+    "snyk": "^1.189.0"
   },
   "peerDependencies": {
     "@babel/polyfill": "^7.0.0",
@@ -123,5 +126,6 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
-  }
+  },
+  "snyk": true
 }
