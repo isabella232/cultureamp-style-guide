@@ -10,7 +10,7 @@
     "cultureamp-style-guide": "^10.1.0",
     "elm": "^0.19.0-bugfix2",
     "elm-css-modules-loader": "^3.0.0",
-    "gatsby": "^1.9.238",
+    "gatsby": "^2.0.0",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
     "helmet": "^3.12.0",
