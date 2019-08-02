@@ -7,7 +7,7 @@
     "classnames": "^2.2.5",
     "color": "^3.0.0",
     "color-string": "1.5.2",
-    "cultureamp-style-guide": "^10.1.0",
+    "cultureamp-style-guide": "^18.0.0",
     "elm": "^0.19.0-bugfix2",
     "elm-css-modules-loader": "^3.0.0",
     "gatsby": "^1.9.238",
