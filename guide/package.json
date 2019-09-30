@@ -13,7 +13,7 @@
     "gatsby": "^1.9.238",
     "gatsby-link": "^1.6.39",
     "gatsby-plugin-react-helmet": "^2.0.8",
-    "helmet": "^3.12.0",
+    "helmet": "^3.21.1",
     "markdown-component-loader": "^1.1.0",
     "markdown-it-anchor": "^4.0.0",
     "markdown-it-table": "^1.0.3",
