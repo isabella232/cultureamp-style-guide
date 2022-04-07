@@ -1,13 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
-    <title>flag-off-white</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="flag-off-white">
-            <polygon id="Icons/Actions/flag-off" fill="#000000" points="11.7882353 3.88235294 11.4117647 2 2.94117647 2 2.94117647 18 4.82352941 18 4.82352941 11.4117647 10.0941176 11.4117647 10.4705882 13.2941176 17.0588235 13.2941176 17.0588235 3.88235294"></polygon>
-            <polygon id="Path-3" fill="#FFFFFF" points="4.82485064 3.87798713 9.83725873 3.87798713 10.3517923 5.74919577 15.2116348 5.74919577 15.2217371 11.4025161 12.2774012 11.4025161 11.8255974 9.56594669 4.82485064 9.54641544"></polygon>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20" version="1.1" viewBox="0 0 20 20"><title>flag-off-white</title><desc>Created with Sketch.</desc><g id="Symbols" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="flag-off-white"><polygon id="Icons/Actions/flag-off" fill="#000" points="11.788 3.882 11.412 2 2.941 2 2.941 18 4.824 18 4.824 11.412 10.094 11.412 10.471 13.294 17.059 13.294 17.059 3.882"/><polygon id="Path-3" fill="#FFF" points="4.825 3.878 9.837 3.878 10.352 5.749 15.212 5.749 15.222 11.403 12.277 11.403 11.826 9.566 4.825 9.546"/></g></g></svg>
